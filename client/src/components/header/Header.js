@@ -6,7 +6,7 @@ export default function Header() {
         <div className='header'>
             <div className='wrapper'>
                 <div class='logo'>
-                    <a href='#home'>Application Name</a>
+                    <a href='#home'>Name of the app.</a>
                 </div>
             </div>
         </div>
