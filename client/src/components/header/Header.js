@@ -1,11 +1,12 @@
-import React from 'react'
+import React from 'react';
+import './style.css';
 
 export default function Header() {
     return (
-        <div>
-            <div className="left">
-                <div class="logo">
-                    <a href="#home">Application Name</a>
+        <div className='header'>
+            <div className='wrapper'>
+                <div class='logo'>
+                    <a href='#home'>Application Name</a>
                 </div>
             </div>
         </div>
