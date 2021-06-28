@@ -8,6 +8,7 @@ mongoose.connect(
 
 const userSeed = [
     {
+        _id: 1,
         username: 'Michael',
         password: 'Password',
         email: 'michael@yahoo.com',
@@ -16,6 +17,7 @@ const userSeed = [
         friends: [{username: 'Sarah'}, {username: 'Lyndsey'}, {username: 'Roger'}]
     },
     {
+        _id: 2,
         username: 'Sarah',
         password: 'Password123',
         email: 'sarah@gmail.com',
@@ -24,6 +26,7 @@ const userSeed = [
         friends: [{username: 'Michael'}, {username: 'Lyndsey'}, {username: 'Roger'}]
     },
     {
+        _id: 3,
         username: 'Lyndsey',
         password: '123password',
         email: 'lyndsey@gmail.com',
@@ -32,6 +35,7 @@ const userSeed = [
         friends: [{username: 'Michael'}, {username: 'Sarah'}, {username: 'Roger'}]
     },
     {
+        _id: 4,
         username: 'Roger',
         password: '123password',
         email: 'roger@hotmail.com',
@@ -43,10 +47,32 @@ const userSeed = [
 
 const tabSeed = [
     {
-
+        _id: 1,
+        user_id: 1,
+        title: 'D&D',
+        image: 'https://aurora.libnet.info/images/events/aurora/84939cb5ee9d5d54c7719e7fdc4fd1fd.png',
+        description: 'Never a dull moment when in the world of Dungeons & Dragons! You want to be a prince, you got it! Wizard, hell yeah! I meet with a group of friends every other week and we always get into some crazy adventures together!'
     },
     {
-
+        _id: 2,
+        user_id: 2,
+        title: 'Surfing',
+        image: 'https://cdn.wionews.com/sites/default/files/styles/story_page/public/2020/09/08/158748-br2.png',
+        description: 'When that sun hits the horizon, it is time to get to the waves! There are many situations a surfer can run into that bring danger into their lives, however, there are more positive vibes to even or tilt the scales.'
+    },
+    {
+        _id: 3,
+        user_id: 3,
+        title: 'Novels',
+        image: 'https://screencraft.org/wp-content/uploads/2019/01/photoplaysMAIN.jpg',
+        description: 'Diving into a amazing novel takes you to all kinds of places. It is amazing what author\'s come up with. I long to write a novel one day about the supernatural world in a new way. Until then, I will continue to visit worlds unknown and people unseen!'
+    },
+    {
+        _id: 4,
+        user_id: 4,
+        title: 'Salsa',
+        image: 'https://acc.libfl.ru/wp-content/uploads/2018/11/ff188960-2a3f-11e7-9e97-35518dba98d9-1024x683.jpg',
+        description: 'Who does not like a good sweat! Bring the passion and heat into the realm of salsa dancing. I have been dancing salsa for as long as I can remember. I am always trying to learn up-and-coming moves.'
     }
 ];
 

@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const tabSchema = new Schema({
     user_id: {
-        type: String,
+        type: Number,
     },
     title: {
         type: String,
