@@ -11,7 +11,8 @@ const tabSchema = new Schema({
         required: 'Title is Required!'
     },
     image: {
-        type: String
+        contentType: String,
+        data: Buffer
     },
     description: {
         type: String,

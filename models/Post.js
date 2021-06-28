@@ -16,7 +16,8 @@ const postSchema = new Schema({
         trim: true,
     },
     image: {
-        type: String
+        contentType: String,
+        data: Buffer
     },
     date: {
         type: Date,

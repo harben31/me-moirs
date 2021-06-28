@@ -22,7 +22,8 @@ const userSchema = new Schema({
         match: [/.+@.+\..+/, "Please enter a valid e-mail address"]
     },
     image: {
-        type: String
+        contentType: String,
+        data: Buffer
     },
     about: {
         type: String,
