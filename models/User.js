@@ -5,7 +5,8 @@ const userSchema = new Schema({
     username: {
         type: String,
         trim: true,
-        required: 'Username is Required'
+        required: 'Username is Required',
+        match: [/^[a-zA-Z0-9]+$/, 'Must use letters']
     },
     password: {
         type: String,
@@ -21,8 +22,11 @@ const userSchema = new Schema({
         match: [/.+@.+\..+/, "Please enter a valid e-mail address"]
     },
     image: {
+        type: Buffer
+    },
+    about: {
         type: String,
-        data: Buffer
+        maxLength: 500
     }
 });
 
