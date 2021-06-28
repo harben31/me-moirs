@@ -51,7 +51,7 @@ const tabSeed = [
         user_id: 1,
         title: 'D&D',
         image: 'https://aurora.libnet.info/images/events/aurora/84939cb5ee9d5d54c7719e7fdc4fd1fd.png',
-        description: 'Never a dull moment when in the world of Dungeons & Dragons! You want to be a prince, you got it! Wizard, hell yeah! I meet with a group of friends every other week and we always get into some crazy adventures together!'
+        description: 'Never a dull moment when in the world of Dungeons & Dragons! You want to be an elf, you got it! Wizard, hell yeah! I meet with a group of friends every other week and we always get into some crazy adventures together!'
     },
     {
         _id: 2,
@@ -78,10 +78,36 @@ const tabSeed = [
 
 const postSeed = [
     {
-
+        _id: 1,
+        tab_id: 4,
+        title: 'First time attempting Salsa Dancing Alone',
+        content: 'When interested in Salsa dancing, you can always practice on your own if you do not have a partner yet. Remember to keep your arms out in front of you while you take these steps. Don\'t be afraid to ask for tips. We all love to lend a helping hand to new dancers.',
+        image: 'https://www.wikihow.com/images/thumb/8/8c/Dance-Salsa-Alone-Step-1.jpg/v4-460px-Dance-Salsa-Alone-Step-1.jpg.webp',
+        date: new Date(Date.now())
     },
     {
-
+        _id: 2,
+        tab_id: 1,
+        title: 'One of my favorite characters: Half-elf Bard 1',
+        content: 'Background (Entertainer): You have been the center of attention since before you could walk, and once you learned to sing and play, you never surrendered the spotlight again. And who deserves it more than you?By Popular Demand. You can always find a place to perform. You receive free lodging and food of a modest or comfortable standard as long as you perform each night. When strangers recognize you in a town where you have performed, they typically take a liking to you.Faction. You are a member of the Harpers, a clandestine organization who work against tyranny through the sharing of information and lore.Personality Trait. You change your mood or your mind as quickly as you change key in a song.Ideal. When you perform, you make the world better than it was.Bond. You will do anything to prove yourself superior to your hated rival.Flaw. You’re a sucker for a pretty face',
+        image: 'https://static0.srcdn.com/wordpress/wp-content/uploads/2018/10/Dungeons-Dragons-Bard-1.jpg?q=50&fit=crop&w=740&h=370&dpr=1.5',
+        date: new Date(Date.now())
+    },
+    {
+        _id: 3,
+        tab_id: 2,
+        title: 'Layne Beachley: Surfer I aspire to be like!',
+        content: 'poised, competitively deadly, and oozing class, almost no other woman has dominated the top spot in women\'s pro surfing like Australian Layne Beachley. A true icon of the sport- and, national treasure in Australia- Beachley was appointed an Officer of the Order of Australia for her distinguished service to the community and range of charitable organizations.',
+        image: 'https://www.opencolleges.edu.au/blog/wp-content/uploads/2014/11/layne-beechey.jpg',
+        date: new Date(Date.now())
+    }
+    {
+        _id: 4,
+        tab_id: 3,
+        title: 'Latest Read: Safe With Me',
+        content: 'This one kept me on my seat just as it claimed \'A psychological thriller so tense it will take your breath away!\' Anna had something terrible happen to her years ago which caused her to be very cautious of letting others get too close. When she witnesses a car accident, she realizes one of the people involved (Carla) is the very person that ruined her life. She dives deep and gets involved with the case only to reveal her own secrets. Is Carla really dangerous or does Anna need to worry about someone far loser to home?',
+        image: 'https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1476613715l/32618205.jpg',
+        date: new Date(Date.now())
     }
 ];
 
