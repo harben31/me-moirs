@@ -19,6 +19,10 @@ const userSchema = new Schema({
         trim: true,
         required: 'Email is Required!',
         match: [/.+@.+\..+/, "Please enter a valid e-mail address"]
+    },
+    image: {
+        type: String,
+        data: Buffer
     }
 });
 
