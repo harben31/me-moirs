@@ -22,12 +22,19 @@ const userSchema = new Schema({
         match: [/.+@.+\..+/, "Please enter a valid e-mail address"]
     },
     image: {
-        type: Buffer
+        type: String
     },
     about: {
         type: String,
         maxLength: 500
-    }
+    },
+    friends: [
+        {
+            username: {
+                type: String
+            }
+        }
+    ]
 });
 
 const User = mongoose.model('User', userSchema);

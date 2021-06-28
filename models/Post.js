@@ -12,11 +12,11 @@ const postSchema = new Schema({
     },
     content: {
         type: String,
-        maxLength: 5000,
+        maxLength: 3000,
         trim: true,
     },
     image: {
-        type: Buffer
+        type: String
     },
     date: {
         type: Date,
