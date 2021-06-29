@@ -1,10 +1,10 @@
 const router = require('express').Router();
 const userController = require('../../controllers/userControllers')
 
-router.route('/users')
+router.route('/')
     .post(userController.createUser)
 
-router.route('users/:id')
+router.route('/:id')
     .get(userController.findUserById)
     .put(userController.updateUser)
 
