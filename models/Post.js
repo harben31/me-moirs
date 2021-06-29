@@ -4,7 +4,8 @@ const Schema = mongoose.Schema;
 //user_id as well?
 const postSchema = new Schema({
     tab_id: {
-        type: String
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Tab'
     },
     title: {
         type: String,
@@ -17,7 +18,8 @@ const postSchema = new Schema({
         trim: true,
     },
     image: {
-        type: String
+        contentType: String,
+        data: Buffer
     },
     date: {
         type: Date,

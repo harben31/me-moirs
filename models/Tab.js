@@ -6,7 +6,8 @@ const Schema = mongoose.Schema;
 //when a tab is loaded all associated posts and post's comments should load
 const tabSchema = new Schema({
     user_id: {
-        type: String,
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
     },
     title: {
         type: String,
@@ -14,7 +15,8 @@ const tabSchema = new Schema({
         required: 'Title is Required!'
     },
     image: {
-        type: String
+        contentType: String,
+        data: Buffer
     },
     description: {
         type: String,
