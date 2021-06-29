@@ -1,6 +1,6 @@
 import React, {useState, useEffect } from 'react';
 import Cards from '../components/Cards/Cards';
-import Carousel from '../components/Carousel /Carousel';
+import Carousel from '../components/Carousel/Carousel';
 import CoverPhoto from '../components/CoverPhoto/CoverPhoto';
 import ProfileImage from '../components/ProfileImage/ProfileImage';
 import { SliderData} from '../components/Demo'
