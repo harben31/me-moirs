@@ -1,22 +1,97 @@
-.App {
+.slider {
+  position: relative;
+  height: 500px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20%;
+}
+
+.right-arrow {
+  position: absolute;
+  top: 50%;
+  right: 50px;
+  font-size: 3rem;
+  color: rgb(0, 0, 0);
+  z-index: 10;
+  cursor: pointer;
+  user-select: none;
+}
+
+.left-arrow {
+  position: absolute;
+  top: 50%;
+  left: 50px;
+  font-size: 3rem;
+  color: rgb(0, 0, 0);
+  z-index: 10;
+  cursor: pointer;
+  user-select: none;
+}
+
+.slide {
+  opacity: 0;
+  transition-duration: 1s ease;
+}
+
+.slide.active {
+  opacity: 1;
+  transition-duration: 1s;
+  transform: scale(1.08);
+}
+
+.wrapper {
+  display: flex;
+  justify-content: center;
+  height: fit-content;
+  width: 100%;
   text-align: center;
+  /* margin-bottom: 10%;  */
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+.add-image {
+  margin-top: 5%;
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-top: 15%;
 }
 
-.App-intro {
-  font-size: large;
+.card-body {
+  margin-top: 15%;
+ }
+
+ .cover-photo-image{
+  width: 100vw;  
+  height: 100vh;
+  z-index: -1;
+  position:absolute;
+  top:1px;
+  left:1px;
+ }
+ 
+
+.profile {
+  border-radius: 50%;
+  box-sizing: border-box;
+  background-color: rgb(255, 255, 255);
+  text-align: center;
+  width: 300px;
+  height: 300px;
+  margin-top: 10%;
 }
+
+.profile-image {
+  border-radius: 50%;
+  /* width: 155px; */
+  height: 200px;
+  margin-top: 15%;
+}
+
 
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
