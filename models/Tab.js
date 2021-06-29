@@ -3,7 +3,8 @@ const Schema = mongoose.Schema;
 
 const tabSchema = new Schema({
     user_id: {
-        type: Number,
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
     },
     title: {
         type: String,

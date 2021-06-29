@@ -3,7 +3,8 @@ const Schema = mongoose.Schema;
 
 const postSchema = new Schema({
     tab_id: {
-        type: String
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Tab'
     },
     title: {
         type: String,
