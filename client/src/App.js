@@ -7,7 +7,7 @@ import DemoPage from './pages/DemoPage';
 
 import Header from './components/header/Header';
 import Footer from './components/footer/Footer';
-
+import LoginSignup from './pages/LoginSignup';
 
 import "./App.css";
 import Profile from './pages/Profile';
@@ -18,6 +18,7 @@ function App() {
     return (
         <div className='App'>
           <Header/>
+          <LoginSignup/>
           {/* <Home/> 
           <Card/> */}
           <Profile/>
