@@ -1,9 +1,40 @@
 const db = require('../models');
-
+    
 module.exports = {
-    findUserTabs: function(req, res) {
+    createUserPost: function(req, res) {
         db.Post
+            .create(req.body)
+            .then(dbModel => res.json(dbModel))
+            .catch(err => {
+                console.log(err);
+                res.status(422).json(err);
+            });
+    },
+    findUserPosts: function(req, res) {
+        db.Post
+        //identify by tabId or PostId? i.e. _id. is post seperate schema
             .find({}, {tabId: req.params.id})
+            .then(dbModel => res.json(dbModel))
+            .catch(err => {
+                console.log(err);
+                res.status(422).json(err);
+            });
+    },
+    //when would we call by id? how would id get to FE api
+    findUserPostById: function(req, res) {
+        db.Post
+            .findById(req.params.id)
+            .then(dbModel => res.json(dbModel))
+            .catch(err => {
+                console.log(err);
+                res.status(422).json(err);
+            });
+    },
+    //editing posts
+    updateUserPost: function(req, res) {
+        db.Post
+            .findOneAndUpdate({_id: req.params.id}, req.body)
+            .then(dbModel => res.json(dbModel))
             .catch(err => {
                 console.log(err);
                 res.status(422).json(err);

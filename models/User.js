@@ -28,6 +28,8 @@ const userSchema = new Schema({
         type: String,
         maxLength: 500
     },
+    //is friend more than just string? 
+    //is string just other user's _id and tha is used to make additional call. 
     friends: [
         {
             username: {

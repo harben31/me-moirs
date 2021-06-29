@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
+//user_id as well?
 const postSchema = new Schema({
     tab_id: {
         type: String

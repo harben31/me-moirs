@@ -1,4 +1,7 @@
-// const db = require('..models/');
+const db = require('../models');
+
+//onload of user profile= user data + minimal tabs data. 
+//Tabs data should not load until specific tab is selected by user. 
 
 module.exports = {
     findAllUsers: function (req, res) {
@@ -10,6 +13,7 @@ module.exports = {
                 res.status(422).json(err);
             });
     },
+    //prob need by name as well. Or instead of?
     findUserById: function (req, res) {
         db.User
             .findById(req.params.id)
