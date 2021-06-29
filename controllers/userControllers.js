@@ -15,6 +15,7 @@ module.exports = {
     },
     //prob need by name as well. Or instead of?
     findUserById: function (req, res) {
+        console.log('Hello')
         db.User
             .findById(req.params.id)
             .then(dbModel => res.json(dbModel))

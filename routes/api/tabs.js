@@ -6,7 +6,7 @@ router.route('/')
     .post(tabController.createUserTab)
     
 
-    router('/:id')
-        .put(tabController.updateUserTab)
+    // router('/:id')
+    //     .put(tabController.updateUserTab)
 
 module.exports = router;
