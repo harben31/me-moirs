@@ -113,10 +113,60 @@ const postSeed = [
 
 const commentSeed = [
     {
-
+        _id: '1',
+        post_id: '1',
+        username: 'Lyndsey',
+        date: new Date(Date.now()),
+        content: 'This is really helpful because I just recently became interested in learning how to Salsa dance. Definitely will be following this tab!'
     },
     {
-
+        _id: '2',
+        post_id: '1',
+        username: 'Michael',
+        date: new Date(Date.now()),
+        content: 'My wife and I just tried this out in the kitchen today. Brought a huge smile to her face :-)!'
+    },
+    {
+        _id: '3',
+        post_id: '2',
+        username: 'Lyndsey',
+        date: new Date(Date.now()),
+        content: 'My son loves this character! This helps me understand why he likes it so much.'
+    },
+    {
+        _id: '4',
+        post_id: '2',
+        username: 'Sarah',
+        date: new Date(Date.now()),
+        content: 'I really enjoy playing D&D as well! Definitely going to follow this tab.'
+    },
+    {
+        _id: '5',
+        post_id: '3',
+        username: 'Roger',
+        date: new Date(Date.now()),
+        content: 'Thanks for sharing this. I didn\'t even know about her before today. She sounds like she was an amazing person as a whole and a great surfer!'
+    },
+    {
+        _id: '6',
+        post_id: '3',
+        username: 'Michael',
+        date: new Date(Date.now()),
+        content: 'What a wonderful person! It was wonderful getting to see her competitions.'
+    },
+    {
+        _id: '7',
+        post_id: '4',
+        username: 'Sarah',
+        date: new Date(Date.now()),
+        content: 'Psychological thrillers are my life!!!! Have you read Gone Girl?'
+    },
+    {
+        _id: '8',
+        post_id: '4',
+        username: 'Roger',
+        date: new Date(Date.now()),
+        content: 'This sounds really suspenseful! I will definitely have to add this book to my list to read. Following this tab!'
     }
 ];
 
