@@ -9,13 +9,25 @@ import {
 } from './common';
 import { Marginer } from './marginer';
 import {AccountContext}  from './accountContext';
+import Axios from 'axios';
 
 export default function SignupForm(props) {
     const { switchToLogin } = useContext(AccountContext);
     const [userNameSignup, setUserNameSignup] = useState('');
     const [emailSignup, setEmailSignup] = useState('');
     const [passwordSignup, setPasswordSignup] = useState('');
+    
+    //Create function that will post our data to arout in backend that will post that data in to the database
 
+    const signupUser = () => {
+        Axios.post('http://localhost3001/users', {
+            username: userNameSignup,
+            email: emailSignup,
+            password: passwordSignup,
+        }).then((res) => {
+            console.log(res);
+        })
+    }
 
     return(
         <BoxContainer>
@@ -46,7 +58,12 @@ export default function SignupForm(props) {
 
             </FormContainer>
             <Marginer direction="vertical" margin={10} />
-            <SubmitButton type="submit">Signup</SubmitButton>
+            <SubmitButton 
+            type="submit"
+            onClick={signupUser}
+            >
+                Signup
+            </SubmitButton>
             <Marginer direction="vertical" margin="1em" />
             <MutedLink href='#'>
             Already have an account?
