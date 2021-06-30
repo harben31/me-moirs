@@ -4,6 +4,7 @@ import { BoxContainer, FormContainer, Input } from './common';
 
 export default function SignupForm(props) {
     return <BoxContainer>
+        
         <FormContainer>
             <Input type='text' placeholder='Full Name'/>
             <Input type='email' placeholder='Email'/>
