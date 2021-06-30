@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, createContext } from 'react';
 import styled from 'styled-components';
 import LoginForm  from './logInForm';
+import SignupForm  from './signUpForm';
 import { AccountContext } from "./accountContext";
 import { motion } from 'framer-motion';
+// const AccountContext = createContext();
 
 const BoxContainer = styled.div`
     width: 280px;
@@ -123,9 +125,10 @@ export function AccountBox(props) {
         }, 400);
     }
 
-    const contextValue = {}
+    const contextValue = {switchToSignup, switchToLogin}
     return (
     // <div style={{position: 'relative'}}>
+    <AccountContext.Provider value={contextValue}>
         <BoxContainer>
             <TopContainer>
                 <BackDrop 
@@ -134,17 +137,25 @@ export function AccountBox(props) {
                 variants={backdropVariants}
                 transition={expandingTransition}
                 />
-                <HeaderContainer>
-                    <HeaderText>Welcome</HeaderText>
-                    <HeaderText>Back</HeaderText>
+                {active === 'login' && <HeaderContainer>
+                    <HeaderText>Hello!</HeaderText>
+                    <HeaderText>Welcome Back</HeaderText>
                     <SmallText>Please Log-in to continue!</SmallText>
-                </HeaderContainer>
+                </HeaderContainer>}
+                {active === 'signup' && <HeaderContainer>
+                    <HeaderText>Create</HeaderText>
+                    <HeaderText>New Account</HeaderText>
+                    <SmallText>Please Sign-up to continue!</SmallText>
+                </HeaderContainer>}
             </TopContainer>
             <InnerContainer>
-                <LoginForm />
-                <p onClick={playExpandingAnimation}>Click me </p>
+
+                {active === 'login' && <LoginForm/>}
+                {active === 'signup' && <SignupForm/>}
             </InnerContainer>
         </BoxContainer>
+    </AccountContext.Provider>
+
     // </div>
     )
 

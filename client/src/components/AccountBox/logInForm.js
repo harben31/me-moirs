@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useContext, createContext } from 'react';
 import { BoxContainer, FormContainer, Input, SubmitButton, MutedLink, BoldLink } from './common';
 import { Marginer } from './marginer';
-
-
+import { AccountContext } from "./accountContext";
 
 export default function LoginForm(props) {
+    const  {switchToSignup}  = useContext(AccountContext);
+
     return(
         <BoxContainer>
             <FormContainer>
@@ -16,11 +17,10 @@ export default function LoginForm(props) {
             <Marginer direction="vertical" margin="1em" />
             <MutedLink href='#'>
             Don't have an accoun?
-            <BoldLink href='#'>
-            Signup
+            <BoldLink href='#' onClick={switchToSignup}>
+                Signup
             </BoldLink>
             </MutedLink>
         </BoxContainer>
-    ) 
-    
+    );  
 }

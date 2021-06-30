@@ -19,8 +19,7 @@ function App() {
     return (
         <div className='App'>
           <Header/>
-          <AccountBox/>
-          {/* <LoginSignup/> */}
+          <LoginSignup/>
           {/* <Home/> 
           <Card/> */}
           <Profile/>
