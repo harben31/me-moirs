@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import LoginForm  from './logInForm';
-import { Marginer } from './marginer';
+import { AccountContext } from "./accountContext";
+import { motion } from 'framer-motion';
 
 const BoxContainer = styled.div`
     width: 280px;
@@ -27,11 +28,12 @@ const TopContainer = styled.div`
     padding-bottom: 5em;
 `;
 
-const BackDrop = styled.div`
+const BackDrop = styled(motion.div)`
     width: 160%;
     height: 550px;
     position: absolute;
     display: flex;
+    z-index: 10;
     flex-direction: column;
     border-radius: 50%;
     transform: rotate(60deg);
@@ -76,12 +78,46 @@ const InnerContainer = styled.div`
     padding: 0 1.8em;
 `;
 
+const backdropVariants = {
+    expanded: {
+      width: "253%",
+      height: "1050px",
+      borderRadius: "20%",
+      transform: "rotate(60deg)",
+    },
+    collapsed: {
+      width: "160%",
+      height: "550px",
+      borderRadius: "50%",
+      transform: "rotate(60deg)",
+    },
+  };
+
+  const expandingTransition = {
+    type: "spring",
+    duration: 2.3,
+    stiffness: 30,
+  };
+
 export function AccountBox(props) {
+    const [isExpanded, setExpanded] = useState(false);
+
+    const playExpandingAnimation = () => {
+        setExpanded(true);
+        setTimeout(() => {
+          setExpanded(false);
+        }, expandingTransition.duration * 1000 - 1500);
+      };
     return (
     // <div style={{position: 'relative'}}>
         <BoxContainer>
             <TopContainer>
-                <BackDrop/>
+                <BackDrop 
+                initial={false}
+                animate={isExpanded ? 'expanded' : 'collapsed'} 
+                variants={backdropVariants}
+                transition={expandingTransition}
+                />
                 <HeaderContainer>
                     <HeaderText>Welcome</HeaderText>
                     <HeaderText>Back</HeaderText>
@@ -90,6 +126,7 @@ export function AccountBox(props) {
             </TopContainer>
             <InnerContainer>
                 <LoginForm />
+                <p onClick={playExpandingAnimation}>Click me </p>
             </InnerContainer>
         </BoxContainer>
     // </div>
