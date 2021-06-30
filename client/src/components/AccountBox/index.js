@@ -101,6 +101,7 @@ const backdropVariants = {
 
 export function AccountBox(props) {
     const [isExpanded, setExpanded] = useState(false);
+    const [active, setActive] = useState('login');
 
     const playExpandingAnimation = () => {
         setExpanded(true);
@@ -110,6 +111,9 @@ export function AccountBox(props) {
       };
     const switchToSignup = () => {
         playExpandingAnimation();
+        setTimeout(() => {
+            setActive('signup');
+        }, 400);
     }
     const contextValue = {}
     return (
