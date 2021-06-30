@@ -108,6 +108,10 @@ export function AccountBox(props) {
           setExpanded(false);
         }, expandingTransition.duration * 1000 - 1500);
       };
+    const switchToSignup = () => {
+        playExpandingAnimation();
+    }
+    const contextValue = {}
     return (
     // <div style={{position: 'relative'}}>
         <BoxContainer>
