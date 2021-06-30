@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import LoginForm  from './logInForm';
+import { Marginer } from './marginer';
 
 const BoxContainer = styled.div`
     width: 280px;

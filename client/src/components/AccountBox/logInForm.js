@@ -1,5 +1,7 @@
 import React from 'react';
 import { BoxContainer, FormContainer, Input, SubmitButton } from './common';
+import { Marginer } from './marginer';
+
 
 
 export default function LoginForm(props) {
@@ -7,8 +9,10 @@ export default function LoginForm(props) {
         <FormContainer>
             <Input type='email' placeholder='Email'/>
             <Input type='password' placeholder='Password'/>
-            <SubmitButton type="submit">Login</SubmitButton>
         </FormContainer>
+        <Marginer direction="vertical" margin={10} />
+        <SubmitButton type="submit">Login</SubmitButton>
+        <Marginer direction="vertical" margin="1em" />
     </BoxContainer>
     
 }
