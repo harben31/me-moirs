@@ -12,13 +12,15 @@ import LoginSignup from './pages/LoginSignup';
 import "./App.css";
 import Profile from './pages/Profile';
 import Demo from './pages/DemoPage';
+import { AccountBox } from './components/AccountBox/index';
 
 
 function App() {
     return (
         <div className='App'>
           <Header/>
-          <LoginSignup/>
+          <AccountBox/>
+          {/* <LoginSignup/> */}
           {/* <Home/> 
           <Card/> */}
           <Profile/>

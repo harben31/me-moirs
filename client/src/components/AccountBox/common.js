@@ -64,7 +64,7 @@ export const SubmitButton = styled.button`
     border-radius: 100px 100px 100px 100px;
     cursor: pointer;
     transition: all, 240ms ease-in-out;
-    background: rgb(241, 196, 15);
+    background: rgb(42, 157, 143);
     background: linear-gradient(
         58deg,
         rgba(42, 157, 143, 1) 20%,
