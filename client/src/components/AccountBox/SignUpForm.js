@@ -1,14 +1,14 @@
-import React, { useContext } from 'react';
-import { AcountContext } from './accountContext';
+import React from 'react';
+import { BoxContainer, FormContainer, Input } from './common';
 
-export default function signUpForm() {
-    const { switchToLogin } = useContext(AcountContext);
-    return (
-        <div>
-            <input type='text' placeholder='Full Name'/>
-            <input type='email' placeholder='Email'/>
-            <input type='password' placeholder='Password'/>
 
-        </div>
-    )
+export default function SignupForm(props) {
+    return <BoxContainer>
+        <FormContainer>
+            <Input type='text' placeholder='Full Name'/>
+            <Input type='email' placeholder='Email'/>
+            <Input type='password' placeholder='Password'/>
+        </FormContainer>
+    </BoxContainer>
+    
 }
