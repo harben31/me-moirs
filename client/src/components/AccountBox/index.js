@@ -6,6 +6,8 @@ import { Marginer } from './marginer';
 const BoxContainer = styled.div`
     width: 280px;
     min-height: 550px;
+    top:90px;
+    margin: auto;
     display: flex;
     flex-direction: column;
     border-radius: 19px;
@@ -75,19 +77,22 @@ const InnerContainer = styled.div`
 `;
 
 export function AccountBox(props) {
-    return <BoxContainer>
-        <TopContainer>
-            <BackDrop/>
-            <HeaderContainer>
-                <HeaderText>Welcome</HeaderText>
-                <HeaderText>Back</HeaderText>
-                <SmallText>Please Log-in to continue!</SmallText>
-            </HeaderContainer>
-        </TopContainer>
-        <InnerContainer>
-            <LoginForm />
-        </InnerContainer>
-    </BoxContainer>
-
+    return (
+    // <div style={{position: 'relative'}}>
+        <BoxContainer>
+            <TopContainer>
+                <BackDrop/>
+                <HeaderContainer>
+                    <HeaderText>Welcome</HeaderText>
+                    <HeaderText>Back</HeaderText>
+                    <SmallText>Please Log-in to continue!</SmallText>
+                </HeaderContainer>
+            </TopContainer>
+            <InnerContainer>
+                <LoginForm />
+            </InnerContainer>
+        </BoxContainer>
+    // </div>
+    )
 
 }
