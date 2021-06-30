@@ -115,6 +115,14 @@ export function AccountBox(props) {
             setActive('signup');
         }, 400);
     }
+
+    const switchToLogin = () => {
+        playExpandingAnimation();
+        setTimeout(() => {
+            setActive('login');
+        }, 400);
+    }
+
     const contextValue = {}
     return (
     // <div style={{position: 'relative'}}>
