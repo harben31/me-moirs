@@ -1,10 +1,18 @@
-import React, { useContext, createContext } from 'react';
-import { BoxContainer, FormContainer, Input, SubmitButton, MutedLink, BoldLink } from './common';
+import React, { useContext, createContext, useState } from 'react';
+import { 
+    BoxContainer, 
+    FormContainer, 
+    Input, 
+    SubmitButton, 
+    MutedLink, 
+    BoldLink 
+} from './common';
 import { Marginer } from './marginer';
 import { AccountContext } from "./accountContext";
 
 export default function LoginForm(props) {
     const  {switchToSignup}  = useContext(AccountContext);
+    const [userNameLog, setUserNameLog] = useState('')
 
     return(
         <BoxContainer>
