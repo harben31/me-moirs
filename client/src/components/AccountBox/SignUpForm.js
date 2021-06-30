@@ -19,7 +19,7 @@ export default function SignupForm(props) {
     
     //Create function that will post our data to arout in backend that will post that data in to the database
 
-    const signupUser = () => {
+    const signupNewUser = () => {
         Axios.post('http://localhost3001/users', {
             username: userNameSignup,
             email: emailSignup,
@@ -60,7 +60,7 @@ export default function SignupForm(props) {
             <Marginer direction="vertical" margin={10} />
             <SubmitButton 
             type="submit"
-            onClick={signupUser}
+            onClick={signupNewUser}
             >
                 Signup
             </SubmitButton>
