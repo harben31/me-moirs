@@ -4,7 +4,6 @@ import LoginForm  from './logInForm';
 import SignupForm  from './signUpForm';
 import { AccountContext } from "./accountContext";
 import { motion } from 'framer-motion';
-// const AccountContext = createContext();
 
 const BoxContainer = styled.div`
     width: 280px;

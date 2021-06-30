@@ -2,8 +2,6 @@ import React, { useContext, createContext } from 'react';
 import { BoxContainer, FormContainer, Input, SubmitButton, MutedLink, BoldLink } from './common';
 import { Marginer } from './marginer';
 import {AccountContext}  from './accountContext';
-// import { createContext } from 'react';
-// const AccountContext = createContext();
 
 export default function SignupForm(props) {
     const { switchToLogin } = useContext(AccountContext);
