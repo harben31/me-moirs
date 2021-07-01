@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { Card, CardTitle, CardText, CardActions, CardMenu, Button,IconButton, Navigation } from 'react-mdl';
-
+import { Card, CardTitle, CardText, CardActions, CardMenu, Button,IconButton } from 'react-mdl';
+import './style.css';
 
 
 
@@ -60,9 +60,7 @@ return (
           <CardTitle style={{color: '#fff', height: '176px', background: 'url(https://images.unsplash.com/photo-1483546363825-7ebf25fb7513?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8b3BlbiUyMGpvdXJuYWxzfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60) center / cover'}}>{card.title}
          </CardTitle>
          <CardText>
-        {/* Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-        Mauris sagittis pellentesque lacus eleifend lacinia... */}
-        {card.description}
+          {card.description}
          </CardText>
          <CardActions border>
            <Button colored>Read more</Button>

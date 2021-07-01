@@ -1,6 +1,6 @@
 import React from 'react';
-import { FABButton, Icon } from 'react-mdl';
 import { IconButton, MenuItem, Menu } from 'react-mdl';
+import './style.css';
 
 
 
@@ -17,9 +17,6 @@ export default function ProfileImage(props) {
              <MenuItem>Add A New Cover Photo</MenuItem>
             </Menu>
           </div>
-            {/* <FABButton mini ripple>
-                <Icon name="add" className='icon'/>
-            </FABButton> */}
          </div>
       </div>
   </div>
