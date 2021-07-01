@@ -5,9 +5,9 @@ router.route('/')
     .get(postController.findUserPosts)
     .post(postController.createUserPost);
 
-router.route('./:id')
+router.route('/:id')
     .put(postController.updateUserPost)
-    .get(postController.findUserPostById);
+    .get(postController.findUserPosts);
 
 module.exports = router;
 

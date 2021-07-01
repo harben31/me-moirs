@@ -38,7 +38,7 @@ module.exports = {
     findAllUserTabs: function(req, res) {
         //find all of one users tabs. search/sort by user id
         db.Tab
-            .find({}, {user_id: req.params.id})
+            .find({user_id: req.params.id})
             .then(dbModel => res.json(dbModel))
             .catch(err => {
                 console.log(err);
