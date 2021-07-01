@@ -1,7 +1,10 @@
 const db = require('../models');
+const mongoose = require('mongoose');
     
 module.exports = {
     createUserPost: function(req, res) {
+       
+        console.log(req.body, 'creater post route');
         db.Post
             .create(req.body)
             .then(dbModel => res.json(dbModel))
@@ -11,9 +14,10 @@ module.exports = {
             });
     },
     findUserPosts: function(req, res) {
+        console.log('get tabs postws');
+        let idToSearch = mongoose.Types.ObjectId(req.body.id);
         db.Post
-        //identify by tabId or PostId? i.e. _id. is post seperate schema
-            .find({}, {tabId: req.params.id})
+            .find({tab_id: req.params.id})
             .then(dbModel => res.json(dbModel))
             .catch(err => {
                 console.log(err);
