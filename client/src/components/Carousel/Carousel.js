@@ -20,50 +20,6 @@ export default function Carousel({slides}) {
         return null;
     };
 
-
-//   const [cardInfo, setCardInfo] = useState([]);
-
-//   useEffect (() => {
-    
-//     setCardInfo([
-//     {
-//      title: 'Music',
-//      description: 'testing the profile page',
-//      post_img: ''
-//     },
-//     {
-//      title: 'Hiking',
-//      description: 'testing the profile page',
-//      post_img:''
-//     },
-//     {
-//      title: 'Gardening',
-//      description: 'testing the profile page',
-//      post_img:''
-//     },
-//     {
-//      title: 'Cars',
-//      description: 'testing the profile page',
-//      post_img:''
-//     },
-//     {
-//      title: 'Horses',
-//      description: 'testing the profile page',
-//      post_img:''
-//     },
-//     {
-//      title: 'Movies',
-//      description: 'testing the profile page',
-//      post_img:''
-//     },
-//     {
-//      title: 'Cooking',
-//      description: 'testing the profile page',
-//      post_img:''
-//     },
-   
-//    ])
-//   });
       return (
         
             <section className= 'slider'>
