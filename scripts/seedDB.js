@@ -8,7 +8,7 @@ mongoose.connect(
 
 const userSeed = [
     {
-        _id: '1',
+        // _id: '1',
         username: 'Michael',
         password: 'Password',
         email: 'michael@yahoo.com',
@@ -17,7 +17,7 @@ const userSeed = [
         friends: [{username: 'Sarah'}, {username: 'Lyndsey'}, {username: 'Roger'}]
     },
     {
-        _id: '2',
+        // _id: '2',
         username: 'Sarah',
         password: 'Password123',
         email: 'sarah@gmail.com',
@@ -26,7 +26,7 @@ const userSeed = [
         friends: [{username: 'Michael'}, {username: 'Lyndsey'}, {username: 'Roger'}]
     },
     {
-        _id: '3',
+        // _id: '3',
         username: 'Lyndsey',
         password: '123password',
         email: 'lyndsey@gmail.com',
@@ -35,7 +35,7 @@ const userSeed = [
         friends: [{username: 'Michael'}, {username: 'Sarah'}, {username: 'Roger'}]
     },
     {
-        _id: '4',
+        // _id: '4',
         username: 'Roger',
         password: '123password',
         email: 'roger@hotmail.com',
@@ -47,28 +47,28 @@ const userSeed = [
 
 const tabSeed = [
     {
-        _id: '1',
+        // _id: '1',
         user_id: '1',
         title: 'D&D',
         image: 'https://aurora.libnet.info/images/events/aurora/84939cb5ee9d5d54c7719e7fdc4fd1fd.png',
         description: 'Never a dull moment when in the world of Dungeons & Dragons! You want to be an elf, you got it! Wizard, hell yeah! I meet with a group of friends every other week and we always get into some crazy adventures together!'
     },
     {
-        _id: '2',
+        // _id: '2',
         user_id: '2',
         title: 'Surfing',
         image: 'https://cdn.wionews.com/sites/default/files/styles/story_page/public/2020/09/08/158748-br2.png',
         description: 'When that sun hits the horizon, it is time to get to the waves! There are many situations a surfer can run into that bring danger into their lives, however, there are more positive vibes to even or tilt the scales.'
     },
     {
-        _id: '3',
+        // _id: '3',
         user_id: '3',
         title: 'Novels',
         image: 'https://screencraft.org/wp-content/uploads/2019/01/photoplaysMAIN.jpg',
         description: 'Diving into a amazing novel takes you to all kinds of places. It is amazing what author\'s come up with. I long to write a novel one day about the supernatural world in a new way. Until then, I will continue to visit worlds unknown and people unseen!'
     },
     {
-        _id: '4',
+        // _id: '4',
         user_id: '4',
         title: 'Salsa',
         image: 'https://acc.libfl.ru/wp-content/uploads/2018/11/ff188960-2a3f-11e7-9e97-35518dba98d9-1024x683.jpg',
@@ -78,7 +78,7 @@ const tabSeed = [
 
 const postSeed = [
     {
-        _id: '1',
+        // _id: '1',
         tab_id: '4',
         title: 'First time attempting Salsa Dancing Alone',
         content: 'When interested in Salsa dancing, you can always practice on your own if you do not have a partner yet. Remember to keep your arms out in front of you while you take these steps. Don\'t be afraid to ask for tips. We all love to lend a helping hand to new dancers.',
@@ -86,7 +86,7 @@ const postSeed = [
         date: new Date(Date.now())
     },
     {
-        _id: '2',
+        // _id: '2',
         tab_id: '1',
         title: 'One of my favorite characters: Half-elf Bard 1',
         content: 'Background (Entertainer): You have been the center of attention since before you could walk, and once you learned to sing and play, you never surrendered the spotlight again. And who deserves it more than you?By Popular Demand. You can always find a place to perform. You receive free lodging and food of a modest or comfortable standard as long as you perform each night. When strangers recognize you in a town where you have performed, they typically take a liking to you.Faction. You are a member of the Harpers, a clandestine organization who work against tyranny through the sharing of information and lore.Personality Trait. You change your mood or your mind as quickly as you change key in a song.Ideal. When you perform, you make the world better than it was.Bond. You will do anything to prove yourself superior to your hated rival.Flaw. You’re a sucker for a pretty face',
@@ -94,7 +94,7 @@ const postSeed = [
         date: new Date(Date.now())
     },
     {
-        _id: '3',
+        // _id: '3',
         tab_id: '2',
         title: 'Layne Beachley: Surfer I aspire to be like!',
         content: 'poised, competitively deadly, and oozing class, almost no other woman has dominated the top spot in women\'s pro surfing like Australian Layne Beachley. A true icon of the sport- and, national treasure in Australia- Beachley was appointed an Officer of the Order of Australia for her distinguished service to the community and range of charitable organizations.',
@@ -102,7 +102,7 @@ const postSeed = [
         date: new Date(Date.now())
     },
     {
-        _id: '4',
+        // _id: '4',
         tab_id: '3',
         title: 'Latest Read: Safe With Me',
         content: 'This one kept me on my seat just as it claimed \'A psychological thriller so tense it will take your breath away!\' Anna had something terrible happen to her years ago which caused her to be very cautious of letting others get too close. When she witnesses a car accident, she realizes one of the people involved (Carla) is the very person that ruined her life. She dives deep and gets involved with the case only to reveal her own secrets. Is Carla really dangerous or does Anna need to worry about someone far loser to home?',
@@ -113,56 +113,56 @@ const postSeed = [
 
 const commentSeed = [
     {
-        _id: '1',
+        // _id: '1',
         post_id: '1',
         username: 'Lyndsey',
         date: new Date(Date.now()),
         content: 'This is really helpful because I just recently became interested in learning how to Salsa dance. Definitely will be following this tab!'
     },
     {
-        _id: '2',
+        // _id: '2',
         post_id: '1',
         username: 'Michael',
         date: new Date(Date.now()),
         content: 'My wife and I just tried this out in the kitchen today. Brought a huge smile to her face :-)!'
     },
     {
-        _id: '3',
+        // _id: '3',
         post_id: '2',
         username: 'Lyndsey',
         date: new Date(Date.now()),
         content: 'My son loves this character! This helps me understand why he likes it so much.'
     },
     {
-        _id: '4',
+        // _id: '4',
         post_id: '2',
         username: 'Sarah',
         date: new Date(Date.now()),
         content: 'I really enjoy playing D&D as well! Definitely going to follow this tab.'
     },
     {
-        _id: '5',
+        // _id: '5',
         post_id: '3',
         username: 'Roger',
         date: new Date(Date.now()),
         content: 'Thanks for sharing this. I didn\'t even know about her before today. She sounds like she was an amazing person as a whole and a great surfer!'
     },
     {
-        _id: '6',
+        // _id: '6',
         post_id: '3',
         username: 'Michael',
         date: new Date(Date.now()),
         content: 'What a wonderful person! It was wonderful getting to see her competitions.'
     },
     {
-        _id: '7',
+        // _id: '7',
         post_id: '4',
         username: 'Sarah',
         date: new Date(Date.now()),
         content: 'Psychological thrillers are my life!!!! Have you read Gone Girl?'
     },
     {
-        _id: '8',
+        // _id: '8',
         post_id: '4',
         username: 'Roger',
         date: new Date(Date.now()),

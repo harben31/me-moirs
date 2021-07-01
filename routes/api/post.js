@@ -2,7 +2,8 @@ const router = require('express').Router();
 const postController = require('../../controllers/postController');
 
 router.route('/')
-    .get(postController.findUserPosts);
+    .get(postController.findUserPosts)
+    .post(postController.createUserPost);
 
 router.route('./:id')
     .put(postController.updateUserPost)

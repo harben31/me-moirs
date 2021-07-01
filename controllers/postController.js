@@ -2,6 +2,7 @@ const db = require('../models');
     
 module.exports = {
     createUserPost: function(req, res) {
+        console.log(req.body, 'creater post route');
         db.Post
             .create(req.body)
             .then(dbModel => res.json(dbModel))

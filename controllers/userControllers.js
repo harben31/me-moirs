@@ -1,4 +1,5 @@
 const db = require('../models');
+const mongoose = require('mongoose');
 
 //onload of user profile= user data + minimal tabs data. 
 //Tabs data should not load until specific tab is selected by user. 
@@ -15,8 +16,31 @@ module.exports = {
     },
     //prob need by name as well. Or instead of?
     findUserById: function (req, res) {
+        console.log(req.params.id, 1234, '1234');
+        let idToSearch = mongoose.Types.ObjectId(req.params.id);
         db.User
-            .findById(req.params.id)
+        .findOne({_id: req.params.id})
+        .populate({
+            path: 'shortTabInfo',
+            select: 'title'
+        },
+        )
+            // .aggregate([{
+            //     $match: {
+            //         _id: idToSearch
+            //     },
+            // },
+            // {
+            //     $lookup:
+            //     {
+            //         from: 'Tab',
+            //         localField: '_id',
+            //         foreignField: 'user_id',
+            //         as: 'tabTitle'
+            //     }
+            // }
+                
+            // ])
             .then(dbModel => res.json(dbModel))
             .catch(err => {
                 console.log(err);
