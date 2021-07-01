@@ -16,8 +16,10 @@ module.exports = {
     },
     //prob need by name as well. Or instead of?
     findUserById: function (req, res) {
+
         console.log(req.params.id, 1234, '1234');
         let idToSearch = mongoose.Types.ObjectId(req.params.id);
+
         db.User
         .findOne({_id: req.params.id})
         .populate({
