@@ -15,25 +15,30 @@ export default function LoginForm(props) {
     const  {switchToSignup}  = useContext(AccountContext);
     const [emailLogin, setEmailLogin] = useState('');
     const [passwordLogin, setPasswordLogin] = useState('');
+    const [loginStatus, setLoginStatus] = useState('');
 
     const loginUser = () => {
-        Axios.post('http://localhost3001/login', {
+        Axios.post('/login', {
             email: emailLogin,
             password: passwordLogin,
         }).then((res) => {
-            console.log(res);
+            if(res.data.message){
+                setLoginStatus(res.data.message);
+            }else
+            setLoginStatus(res.data[0].username);
         })
     }
 
     return(
         <BoxContainer>
-            <FormContainer>
+            <FormContainer onSubmit={loginUser}>
                 <Input 
                 type='email' 
                 placeholder='Email'
                 onChange={(e) => {
                     setEmailLogin(e.target.value);
                 }}
+                required
                 />
 
                 <Input 
@@ -42,15 +47,14 @@ export default function LoginForm(props) {
                 onChange={(e) => {
                     setPasswordLogin(e.target.value);
                 }}
+                required
                 />
-            </FormContainer>
+            
             <Marginer direction="vertical" margin={10} />
-            <SubmitButton 
-            type="submit"
-            onClick={loginUser}
-            >
+            <SubmitButton type="submit">
                 Login
             </SubmitButton>
+            </FormContainer>
             <Marginer direction="vertical" margin="1em" />
             <MutedLink href='#'>
             Don't have an accoun?
@@ -58,6 +62,7 @@ export default function LoginForm(props) {
                 Signup
             </BoldLink>
             </MutedLink>
+            <h1>{loginStatus}</h1>
         </BoxContainer>
     );  
 }

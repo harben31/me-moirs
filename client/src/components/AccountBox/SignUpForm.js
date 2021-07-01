@@ -17,10 +17,11 @@ export default function SignupForm(props) {
     const [emailSignup, setEmailSignup] = useState('');
     const [passwordSignup, setPasswordSignup] = useState('');
     
-    //Create function that will post our data to arout in backend that will post that data in to the database
+    //Create function that will post our data to a route in backend routes that will post that data in to the database
 
-    const signupNewUser = () => {
-        Axios.post('http://localhost3001/users', {
+    const signupNewUser = (e) => {
+        e.preventDefault();
+        Axios.post('/signup', {
             username: userNameSignup,
             email: emailSignup,
             password: passwordSignup,
@@ -31,13 +32,15 @@ export default function SignupForm(props) {
 
     return(
         <BoxContainer>
-            <FormContainer>
+            <FormContainer onSubmit={signupNewUser}>
                 <Input 
                 type='text' 
                 placeholder='User Name'
                 onChange={(e) => {
                     setUserNameSignup(e.target.value);
                 }}
+
+                required
                 />
 
                 <Input 
@@ -46,6 +49,7 @@ export default function SignupForm(props) {
                 onChange={(e) => {
                     setEmailSignup(e.target.value);
                 }}
+                required
                 />
 
                 <Input 
@@ -54,16 +58,14 @@ export default function SignupForm(props) {
                 onChange={(e) => {
                     setPasswordSignup(e.target.value);
                 }}
+                required
                 />
-
-            </FormContainer>
+                
             <Marginer direction="vertical" margin={10} />
-            <SubmitButton 
-            type="submit"
-            onClick={signupNewUser}
-            >
+            <SubmitButton type="submit">
                 Signup
             </SubmitButton>
+            </FormContainer>
             <Marginer direction="vertical" margin="1em" />
             <MutedLink href='#'>
             Already have an account?
