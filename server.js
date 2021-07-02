@@ -2,14 +2,13 @@ const express = require("express");
 const path = require("path");
 const app = express();
 const mongoose = require('mongoose');
-const bodyParser = require('body-parser');
-
+// const bodyParser = require('body-parser');
 const routes = require('./routes')
 
 const PORT = process.env.PORT || 3001;
 
 // Define middleware here
-app.use(bodyParser.json());
+// app.use(bodyParser.urlencoded({ extended: true}));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 // Serve up static assets (usually on heroku)
@@ -27,6 +26,10 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/project_three_d
 
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "./client/build/index.html"));
+});
+
+app.get('/', (req, res) => {
+  res.json({ message: 'API working'})
 });
 
 app.listen(PORT, () => {

@@ -25,38 +25,12 @@ module.exports = {
         .populate({
             path: 'shortTabInfo',
             select: 'title'
-        },
-        )
-            // .aggregate([{
-            //     $match: {
-            //         _id: idToSearch
-            //     },
-            // },
-            // {
-            //     $lookup:
-            //     {
-            //         from: 'Tab',
-            //         localField: '_id',
-            //         foreignField: 'user_id',
-            //         as: 'tabTitle'
-            //     }
-            // }
-                
-            // ])
-            .then(dbModel => res.json(dbModel))
-            .catch(err => {
-                console.log(err);
-                res.status(422).json(err);
-            });
-    },
-    createUser: function (req, res) {
-        db.User
-            .create(req.body)
-            .then(dbModel => res.json(dbModel))
-            .catch(err => {
-                console.log(err);
-                res.status(422).json(err);
-            });
+        })
+        .then(dbModel => res.json(dbModel))
+        .catch(err => {
+            console.log(err);
+            res.status(422).json(err);
+        });
     },
     updateUser: function (req, res) {
         db.User
