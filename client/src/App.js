@@ -37,9 +37,9 @@ function App() {
           <LoginSignup/>
             {/* <Navbar/> */}
           
-          {/* <Home/> 
-          <Card/> */}
-             {/* <Profile/> */}
+          {/* <Home/>  */}
+          {/* <Card/>  */}
+           {/* <Profile/> */}
           {user.map((name) => {
             return (
               <ul>
