@@ -8,8 +8,8 @@ import {
     BoldLink 
 } from './common';
 import { Marginer } from './marginer';
-import { AccountContext } from "./accountContext";
-import Axios from 'axios';
+import { AccountContext } from './accountContext';
+import API from '../../Utils/API';
 
 export default function LoginForm(props) {
     const  {switchToSignup}  = useContext(AccountContext);
@@ -17,8 +17,9 @@ export default function LoginForm(props) {
     const [passwordLogin, setPasswordLogin] = useState('');
     const [loginStatus, setLoginStatus] = useState('');
 
-    const loginUser = () => {
-        Axios.post('/login', {
+    const loginUser = (e) => {
+        e.preventDefault();
+        API.getUser({
             email: emailLogin,
             password: passwordLogin,
         }).then((res) => {
