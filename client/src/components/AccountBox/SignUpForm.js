@@ -9,8 +9,7 @@ import {
 } from './common';
 import { Marginer } from './marginer';
 import {AccountContext}  from './accountContext';
-import Axios from 'axios';
-
+import API from '../../Utils/API';
 export default function SignupForm(props) {
     const { switchToLogin } = useContext(AccountContext);
     const [userNameSignup, setUserNameSignup] = useState('');
@@ -21,10 +20,10 @@ export default function SignupForm(props) {
 
     const signupNewUser = (e) => {
         e.preventDefault();
-        Axios.post('/signup', {
+        API.saveUser({
             username: userNameSignup,
             email: emailSignup,
-            password: passwordSignup,
+            password: passwordSignup,        
         }).then((res) => {
             console.log(res);
         })
