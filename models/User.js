@@ -31,17 +31,20 @@ const userSchema = new Schema({
     },
     //is friend more than just string? 
     //is string just other user's _id and tha is used to make additional call. 
-    friends: [
+    tabs: [
         {
-            username: {
-                type: String
-            }
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Tab'
         }
     ],
-    shortTabInfo: [{
-        type: Schema.Types.ObjectId,
-        ref: 'Tab'
-    }]
+    friends: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'User'
+        }
+    ]
+}, {
+    timestamps: true
 });
 
 const User = mongoose.model('User', userSchema);
