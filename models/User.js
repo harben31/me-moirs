@@ -37,12 +37,13 @@ const userSchema = new Schema({
             ref: 'Tab'
         }
     ],
-    friends: [
-        {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'User'
-        }
-    ]
+    //CURRENTLY NOT USING THIS FOR USERS
+    // friends: [
+    //     {
+    //         type: mongoose.Schema.Types.ObjectId,
+    //         ref: 'User'
+    //     }
+    // ]
 }, {
     timestamps: true
 });
