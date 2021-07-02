@@ -43,43 +43,18 @@ router.route('/signup').post(
             return res.status(400).json({
                 msg: 'User Already Exists'
             });
-        }
-             
-        //     user = new User({
-        //         username,
-        //         email,
-        //         password
-        //     });
-        
-        //     await user.create();
-        //     const payload ={
-        //         user: {
-        //             id: user.id
-        //         }
-        //     };
-
-        //     jwt.sign(
-        //         payload,
-        //         'randomString', {
-        //             expiresIn: 10000
-        //         },
-        //         (err, token) => {
-        //             if (err) throw err;
-        //             res.status(200).json({
-        //                 token
-        //             });
-        //         }
-        //     );
+        }    
+       
         await db.User.create({
             username: username,
             password: password,
             email: email
         })
-        .then(user => res.json(user));
-        // } catch (err) {
-        //     console.log(err.message);
-        //     res.status(500).send('Error in Saving');
-        // }
+        .then(user => res.json(user))
+        .catch(err => {
+            console.log(err.message);
+            res.status(500).send('Error in Saving');
+        })
     },
 );
 
