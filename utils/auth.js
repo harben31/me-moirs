@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken');
 
+//Will verify token and retrieve user based on the token payload
 module.exports = function (req, res, next) {
     const token = req.header('token');
     if (!token) {

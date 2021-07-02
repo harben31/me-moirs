@@ -43,14 +43,33 @@ router.route('/signup').post(
             return res.status(400).json({
                 msg: 'User Already Exists'
             });
-        }    
+        }   
        
         await db.User.create({
             username: username,
             password: password,
             email: email
         })
-        .then(user => res.json(user))
+        .then(user => {
+            const payload = {
+                user: {
+                    id: user.id
+                }
+            };
+            console.log('payload', payload);
+            jwt.sign(
+                payload,
+                'secret', {
+                    expiresIn: 10000
+                },
+                (err, token) => {
+                    if (err) throw err;
+                    res.status(200).json({
+                        token
+                    });
+                }
+            )
+            res.json(user)})
         .catch(err => {
             console.log(err.message);
             res.status(500).send('Error in Saving');
