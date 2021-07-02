@@ -27,6 +27,8 @@ router.route('/signup').post(
             email,
             password
         } = req.body;
+
+        // const oldPassword = password;
         
         bcrypt.genSalt(10, await function (err, salt) {
             bcrypt.hash(password, salt, function(err, hash) {
@@ -53,7 +55,8 @@ router.route('/signup').post(
         .then(user => {
             const payload = {
                 user: {
-                    id: user.id
+                    id: user.id,
+                    // password: oldPassword
                 }
             };
             console.log('payload', payload);
@@ -77,44 +80,49 @@ router.route('/signup').post(
     },
 );
 
-// router.route('/login').post(
-//     [
-//         body('username', 'Please enter a Valid Username')
-//         .not()
-//         .isEmpty(),
-//         body('password', 'Please enter a Valid password').isLength({
-//             min: 8
-//         }),
-//         body('email', 'Please enter a Valid email').isEmail()
-//     ],
-//     async (req, res) => {
-//         const errors = validationResult(req);
-//         if (!errors.isEmpty()) {
-//             return res.status(400).json({
-//                 errors: errors.array()
-//             });
-//         }
-//         const {
-//             username,
-//             email,
-//             password
-//         } = req.body;
-//         try {
-//             let user = await db.User.findOne({
-//                 email
-//             });
-//             if (user) {
-//                 return res.status(400).json({
-//                     msg: 'User Already Exists'
-//                 });
-//             }
-//             user = newUser({
-//                 username,
-//                 email,
-//                 password
-//             });
-//             const salt = await bcrypt.genSalt(10);
-//             user.password = await bcrypt.hash(password, salt);
+router.route('/login').post(
+    [
+        body('email', 'Please enter a Valid email')
+        .isEmail(),
+        body('password', 'Please enter a Valid password').isLength({
+            min: 8
+        })
+    ],
+    async (req, res) => {
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return res.status(400).json({
+                errors: errors.array()
+            });
+        }
+        let {
+            email,
+            password
+        } = req.body
+
+        let user = await db.User.findOne({
+            email
+        });
+
+        if (!user) {
+            return res.status(400).json({
+                msg: 'User Doesn\'t Exists'
+            });
+        }
+
+        console.log('user', user.password);
+        console.log('password', password);
+        let isMatch;
+        await bcrypt.compare(password, user.password, function(err, res) {
+            isMatch = res;
+            console.log(isMatch);
+            
+        });
+        
+        
+        if (!isMatch) {
+            return res.status(400).json({ message: 'Incorrect password!'})
+        };
 
 //             await user.create();
 //             const payload ={
@@ -140,7 +148,8 @@ router.route('/signup').post(
 //             res.status(500).send('Error in Saving');
 //         }
 //     }
-// );
+    }
+);
 
 router.route('/:id')
     .get(userController.findUserById)
