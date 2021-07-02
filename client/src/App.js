@@ -5,14 +5,14 @@ import Card from './components/Cards/Cards'
 import DemoPage from './pages/DemoPage';
 
 
-
-import Header from './components/header/Header';
-import Footer from './components/footer/Footer';
-
+import Header from './components/Header/Header';
+import Footer from './components/Footer/Footer';
+import LoginSignup from './pages/LoginSignup';
 
 import "./App.css";
 import Profile from './pages/Profile';
 import Demo from './pages/DemoPage';
+import { AccountBox } from './components/AccountBox/index';
 import Navbar from './components/Navbar/Navbar';
 import API from './Utils/API';
 
@@ -34,11 +34,12 @@ function App() {
     return (
         <div className='App'>
           <Header/>
+          <LoginSignup/>
             {/* <Navbar/> */}
           
-          {/* <Home/> 
-          <Card/> */}
-             {/* <Profile/> */}
+          {/* <Home/>  */}
+          {/* <Card/>  */}
+           {/* <Profile/> */}
           {user.map((name) => {
             return (
               <ul>
