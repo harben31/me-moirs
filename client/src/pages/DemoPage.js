@@ -1,12 +1,13 @@
 import React from 'react';
-import Carousel from '../components/Carousel/Carousel';
+import CarouselSlides from '../components/Carousel/CarouselSlides';
+import Carousel from '../components/Carousel/CarouselSlides';
 import { SliderData } from '../components/Demo';
 
 
 export default function Demo() {
     return (
         <div>
-            <Carousel slides={SliderData}/>
+            <CarouselSlides slides={SliderData}/>
         </div>
     )
 }

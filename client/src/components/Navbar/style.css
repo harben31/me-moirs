@@ -1,0 +1,18 @@
+.navbar-menu {
+    height: 60px;
+    width: 100vw;
+    display: flex;
+    background: rgb(31, 31, 31);
+}
+
+.navbar-menu h5 {
+    margin-left: 2%;
+   /* margin-top: 1%; */
+    color: rgb(255, 255, 255);
+}
+
+.category-btn{
+    margin-top: 18px;
+    color: rgb(255, 255, 255) ;
+}
+

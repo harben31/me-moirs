@@ -1,14 +1,14 @@
 import React, { useState, createContext } from 'react';
 import styled from 'styled-components';
 import LoginForm  from './logInForm';
-import SignupForm  from './signUpForm';
+import SignupForm  from './SignUpForm';
 import { AccountContext } from './accountContext';
 import { motion } from 'framer-motion';
 
 const BoxContainer = styled.div`
     width: 280px;
     min-height: 550px;
-    top:90px;
+    top:180px;
     margin: auto;
     display: flex;
     flex-direction: column;

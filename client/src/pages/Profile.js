@@ -1,9 +1,13 @@
 import React, {useState, useEffect } from 'react';
 import Cards from '../components/Cards/Cards';
-import Carousel from '../components/Carousel/Carousel';
+import Carousel from '../components/Carousel/CarouselSlides';
 import CoverPhoto from '../components/CoverPhoto/CoverPhoto';
 import ProfileImage from '../components/ProfileImage/ProfileImage';
-import { SliderData} from '../components/Demo'
+import { SliderData } from '../components/Demo';
+import Navbar from '../components/Navbar/Navbar'
+import Header from '../components/Header/Header';
+import Banner from '../components/Banner/Banner';
+import CarouselSlides from '../components/Carousel/CarouselSlides'
 
 
 export default function Profile() {
@@ -76,15 +80,20 @@ export default function Profile() {
     }, [])
    
     return (
+       
           <div>
-              <CoverPhoto image={coverImage.cover_image}/>
-             <ProfileImage image={profileImage.profile_image}/>
+              {/* <Header/>
+                <Navbar /> */}
+                <CoverPhoto image={coverImage.cover_image}/>
+                 <ProfileImage image={profileImage.profile_image}/>
              {/* {cardInfo.map(card => { 
                 return <Cards key={card.id} name={card.name}
                 title={card.title}
                 description={card.description}/>})} */} 
-                 <Cards/>
-                {/* <Carousel slides={SliderData}/> */}
+                <Banner/>
+                 {/* <Cards/> */}
+
+                {/* <CarouselSlides slides={SliderData}/> */}
              
           </div>
       )

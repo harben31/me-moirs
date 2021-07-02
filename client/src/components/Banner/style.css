@@ -1,0 +1,13 @@
+.banner {
+    background-color: rgb(0, 0, 0);
+    opacity: .8;
+    width: 25%;
+    margin: auto;
+    border-radius: 10px;
+    text-align: center;
+    padding: 1px;
+  }
+
+  .banner h5 {
+      color: rgb(255, 255, 255);
+  }

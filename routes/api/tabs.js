@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const tabController = require('../../controllers/tabControllers');
 
-router.route('/')
+router.route('/:id')
     .get(tabController.findAllUserTabs)
     .post(tabController.createUserTab)
     

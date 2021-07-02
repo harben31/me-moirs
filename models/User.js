@@ -37,7 +37,11 @@ const userSchema = new Schema({
                 type: String
             }
         }
-    ]
+    ],
+    shortTabInfo: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Tab'
+    }]
 });
 
 const User = mongoose.model('User', userSchema);
