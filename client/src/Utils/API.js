@@ -8,13 +8,13 @@ export default {
     // },
 
 
-    // getUser: function(id) {
-    //     return axios.get('/api/users/me')
-    // },
-
     getUser: function(id) {
-        return axios.get('/api/users' + id)
+        return axios.get('/api/users/me')
     },
+
+    // getUser: function(id) {
+    //     return axios.get('/api/users' + id)
+    // },
 
 
     // deleteUser: function(id) {

@@ -2,27 +2,6 @@ const db = require('../models');
 const mongoose = require('mongoose');
 
 module.exports = {
-    //when user creates new tab
-    createUserTab: function (req, res) {
-        let idToSearch = mongoose.Types.ObjectId(req.body.id);
-        let tabIdToSearch = mongoose.Types.ObjectId(req.body.user_id);
-        // console.log('createUserRoute', req.body);
-        db.Tab
-            .create(req.body)
-            .then(async dbModel => {
-                console.log(dbModel)
-                await db.User
-                    .findOneAndUpdate({_id: req.body.user_id},
-                    {$push: {shortTabInfo: dbModel._id}})
-
-                return res.json(dbModel);
-            })
-            .catch(err => {
-                console.log(err);
-                res.status(422).json(err);
-            });
-            
-    },
     //editing overall tab
     updateUserTab: function(req, res) {
         db.Tab
