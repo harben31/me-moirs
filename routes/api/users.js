@@ -67,9 +67,11 @@ router.route('/signup').post(
                 },
                 (err, token) => {
                     if (err) throw err;
+                    console.log(token);
                     res.status(200).json({
                         token
                     });
+                    
                 }
             )
             res.json(user)})
@@ -113,41 +115,40 @@ router.route('/login').post(
         console.log('user', user.password);
         console.log('password', password);
         let isMatch;
-        await bcrypt.compare(password, user.password, function(err, res) {
+        await bcrypt.compare(password, user.password)
+        .then((res) => {
             isMatch = res;
-            console.log(isMatch);
-            
-        });
-        
-        
+            console.log('inside', isMatch);
+            res.json(res)})
+        .catch(err => console.log(err));
+
+        console.log('before if', isMatch)
         if (!isMatch) {
+            console.log('gotcha')
             return res.status(400).json({ message: 'Incorrect password!'})
         };
-
-//             await user.create();
-//             const payload ={
-//                 user: {
-//                     id: user.id
-//                 }
-//             };
-
-//             jwt.sign(
-//                 payload,
-//                 'randomString', {
-//                     expiresIn: 10000
-//                 },
-//                 (err, token) => {
-//                     if (err) throw err;
-//                     res.status(200).json({
-//                         token
-//                     });
-//                 }
-//             );
-//         } catch (err) {
-//             console.log(err.message);
-//             res.status(500).send('Error in Saving');
-//         }
-//     }
+        if (isMatch) {
+                console.log(user.id);
+                const payload = { 
+                    user: {
+                        id: user.id
+                    }
+                };
+                console.log(payload);
+                jwt.sign(
+                    payload,
+                    'secret',
+                    {
+                        expiresIn: 10000
+                    },
+                    (err, token) => {
+                        if (err) throw err;
+                        res.status(200).json({
+                            token
+                        });
+                    }
+                );
+            }
     }
 );
 
