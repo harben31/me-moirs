@@ -7,9 +7,22 @@ export default {
     //     return axios.get('/api/users')
     // },
 
+    userLogin: function(email, password){
+       return axios.post('/api/users/login', {
+            body: {
+                email,
+                password
+            }
+        })
+    },
 
-    getUser: function(id) {
-        return axios.get('/api/users/me')
+    getUser: function(email, pw) {
+        let token = this.userLogin(email, pw);
+        return axios.get('/api/users/me', {
+            header: {
+                token: token
+            }
+        })
     },
 
     // getUser: function(id) {
