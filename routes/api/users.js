@@ -6,7 +6,6 @@ const jwt = require('jsonwebtoken');
 const db = require('../../models');
 const auth = require('../../utils/auth');
 
-//when signing up a new user checks if fields are entered correctly, hashes the password, checks if user exists already, if not then creates new user, and creates authentication with a token
 router.route('/signup').post(
     [
         body('username', 'Please enter a Valid Username')
@@ -29,10 +28,13 @@ router.route('/signup').post(
             email,
             password
         } = req.body;
+
+        // const oldPassword = password;
         
         bcrypt.genSalt(10, await function (err, salt) {
             bcrypt.hash(password, salt, function(err, hash) {
                 password = hash;
+                console.log('line 37:', password);
                 return password;
             })
         })
@@ -82,7 +84,6 @@ router.route('/signup').post(
     },
 );
 
-//checks whether fields were entered correctly, checks if user doesn't exist yet, checks if password matches bcrypt hashed password, and creates a token upon logging in successfully
 router.route('/login').post(
     [
         body('email', 'Please enter a Valid email')
@@ -120,7 +121,7 @@ router.route('/login').post(
         .then((res) => {
             isMatch = res;
             console.log('inside', isMatch);
-            res.json(isMatch)})
+            res.json(res)})
         .catch(err => console.log(err));
 
         console.log('before if', isMatch)
@@ -153,24 +154,18 @@ router.route('/login').post(
     }
 );
 
-//gets the user along with it's tab id's based on their auth token
 router.route('/me')
     .get(auth, async (req, res) => {
-        await db.User
-            .findById(req.user.id)
-            .populate({
-                path: 'shortTabInfo',
-                select: 'title'
-            })
-            .then(user => res.json(user))
-            .catch((err) => {
-                console.log(err);
-                res.status(422).json(err);
-            });
+        try {
+            const user = await db.User.findById(req.user.id);
+            res.json(user);
+        } catch (err) {
+            res.send({ message: 'Error in fetching User'});
+        }
     });
 
-router.route('/:id')
-    // .get(userController.findUserById)
-    .put(userController.updateUser)
+// router.route('/:id')
+//     .get(userController.findUserById)
+//     .put(userController.updateUser)
 
 module.exports = router

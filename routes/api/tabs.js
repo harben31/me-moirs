@@ -25,7 +25,7 @@ router.route('/')
             });
     });
 
-    router('/:id')
-        .put(tabController.updateUserTab)
+    // router('/:id')
+    //     .put(tabController.updateUserTab)
 
 module.exports = router;
