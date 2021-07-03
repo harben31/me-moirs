@@ -8,14 +8,13 @@ export default {
     // },
 
 
-    //gets called when user clicks login. should return token.
-    
+    getUser: function(id) {
+        return axios.get('/api/users/me')
+    },
 
     // getUser: function(id) {
-    //     return axios.get('/api/users/me', {
+    //     return axios.get('/api/users' + id)
     // },
-
-   
 
 
     // deleteUser: function(id) {

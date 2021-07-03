@@ -15,9 +15,8 @@ module.exports = {
                 res.status(422).json(err);
             });
     },
-    //prob need by name as well. Or instead of?
-    findUserById: function (req, res) {
 
+<<<<<<< HEAD
         let idToSearch = mongoose.Types.ObjectId(req.params.id);
 
         db.User
@@ -32,6 +31,8 @@ module.exports = {
             res.status(422).json(err);
         });
     },
+=======
+>>>>>>> 68c29013e622469970be84929a1b550272f2e703
     updateUser: function (req, res) {
         db.User
             .findOneAndUpdate({_id: req.params.id}, req.body)
