@@ -3,6 +3,7 @@ const jwt = require('jsonwebtoken');
 //Will verify token and retrieve user based on the token payload
 module.exports = function (req, res, next) {
     const token = req.header('token');
+    console.log(token);
     if (!token) {
         return res.status(401).json({ message: 'Auth Error'});
     };

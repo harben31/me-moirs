@@ -15,24 +15,7 @@ module.exports = {
                 res.status(422).json(err);
             });
     },
-    //prob need by name as well. Or instead of?
-    findUserById: function (req, res) {
 
-        console.log(req.params.id, 1234, '1234');
-        let idToSearch = mongoose.Types.ObjectId(req.params.id);
-
-        db.User
-        .findOne({_id: req.params.id})
-        .populate({
-            path: 'shortTabInfo',
-            select: 'title'
-        })
-        .then(dbModel => res.json(dbModel))
-        .catch(err => {
-            console.log(err);
-            res.status(422).json(err);
-        });
-    },
     updateUser: function (req, res) {
         db.User
             .findOneAndUpdate({_id: req.params.id}, req.body)

@@ -31,7 +31,7 @@ const userSchema = new Schema({
     },
     //is friend more than just string? 
     //is string just other user's _id and tha is used to make additional call. 
-    tabs: [
+    shortTabInfo: [
         {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'Tab'

@@ -120,7 +120,7 @@ router.route('/login').post(
         .then((res) => {
             isMatch = res;
             console.log('inside', isMatch);
-            res.json(res)})
+            res.json(isMatch)})
         .catch(err => console.log(err));
 
         console.log('before if', isMatch)
@@ -155,6 +155,12 @@ router.route('/login').post(
 
 router.route('/me')
     .get(auth, async (req, res) => {
+        // try {
+        //     const user = await db.User.findById(req.user.id);
+        //     res.json(user);
+        // } catch (err) {
+        //     res.send({ message: 'Error in Fetching User'});
+        // }
         await db.User
             .findById(req.user.id)
             .populate({
@@ -169,7 +175,7 @@ router.route('/me')
     });
 
 router.route('/:id')
-    .get(userController.findUserById)
+    // .get(userController.findUserById)
     .put(userController.updateUser)
 
 module.exports = router
