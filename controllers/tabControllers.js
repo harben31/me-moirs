@@ -45,16 +45,27 @@ module.exports = {
                 res.status(422).json(err);
             });
     },
-    //find any public tab by their 'tag' or category.
-    findTabByTag: function(req, res) {
+    //Will need to delete all posts as well
+    deleteTab: function(req, res) {
         db.Tab
-            .find({}, {user_id: req.params.id})
-            .then(dbModel => res.json(dbModel))
+            .findById(req.params.id)
+            .then(dbModel => dbModel.remove())
+            .then(deModel => res.json(dbModel))
             .catch(err => {
                 console.log(err);
-                res.status(422).json(err);
-            });
-    }
+                res.json(err);
+            })
+    },
+    //find any public tab by their 'tag' or category.
+    // findTabByTag: function(req, res) {
+    //     db.Tab
+    //         .find({}, {user_id: req.params.id})
+    //         .then(dbModel => res.json(dbModel))
+    //         .catch(err => {
+    //             console.log(err);
+    //             res.status(422).json(err);
+    //         });
+    // }
 };
 
 //find update to following tabs

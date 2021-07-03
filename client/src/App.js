@@ -14,7 +14,7 @@ import Profile from './pages/Profile';
 import Demo from './pages/DemoPage';
 import { AccountBox } from './components/AccountBox/index';
 import Navbar from './components/Navbar/Navbar';
-import API from './Utils/API';
+import API from './utils/API';
 
 
 function App() {
@@ -34,12 +34,12 @@ function App() {
     return (
         <div className='App'>
           <Header/>
-          <LoginSignup/>
+          {/* <LoginSignup/> */}
             {/* <Navbar/> */}
           
           {/* <Home/>  */}
           {/* <Card/>  */}
-           {/* <Profile/> */}
+           <Profile/>
           {user.map((name) => {
             return (
               <ul>
