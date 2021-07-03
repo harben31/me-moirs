@@ -4,6 +4,7 @@ const { body, validationResult } = require('express-validator');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const db = require('../../models');
+const auth = require('../../utils/auth');
 
 router.route('/signup').post(
     [
@@ -151,6 +152,16 @@ router.route('/login').post(
             }
     }
 );
+
+router.route('/me')
+    .get(auth, async (req, res) => {
+        try {
+            const user = await db.User.findById(req.user.id);
+            res.json(user);
+        } catch (err) {
+            res.send({ message: 'Error in fetching User'});
+        }
+    });
 
 router.route('/:id')
     .get(userController.findUserById)
