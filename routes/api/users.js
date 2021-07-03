@@ -155,12 +155,17 @@ router.route('/login').post(
 
 router.route('/me')
     .get(auth, async (req, res) => {
-        try {
-            const user = await db.User.findById(req.user.id);
-            res.json(user);
-        } catch (err) {
-            res.send({ message: 'Error in fetching User'});
-        }
+        await db.User
+            .findById(req.user.id)
+            .populate({
+                path: 'shortTabInfo',
+                select: 'title'
+            })
+            .then(user => res.json(user))
+            .catch((err) => {
+                console.log(err);
+                res.status(422).json(err);
+            });
     });
 
 router.route('/:id')
