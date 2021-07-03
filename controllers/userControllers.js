@@ -1,5 +1,6 @@
 const db = require('../models');
 const mongoose = require('mongoose');
+// const auth = require('../utils/auth');
 
 //onload of user profile= user data + minimal tabs data. 
 //Tabs data should not load until specific tab is selected by user. 
@@ -25,38 +26,12 @@ module.exports = {
         .populate({
             path: 'shortTabInfo',
             select: 'title'
-        },
-        )
-            // .aggregate([{
-            //     $match: {
-            //         _id: idToSearch
-            //     },
-            // },
-            // {
-            //     $lookup:
-            //     {
-            //         from: 'Tab',
-            //         localField: '_id',
-            //         foreignField: 'user_id',
-            //         as: 'tabTitle'
-            //     }
-            // }
-                
-            // ])
-            .then(dbModel => res.json(dbModel))
-            .catch(err => {
-                console.log(err);
-                res.status(422).json(err);
-            });
-    },
-    createUser: function (req, res) {
-        db.User
-            .create(req.body)
-            .then(dbModel => res.json(dbModel))
-            .catch(err => {
-                console.log(err);
-                res.status(422).json(err);
-            });
+        })
+        .then(dbModel => res.json(dbModel))
+        .catch(err => {
+            console.log(err);
+            res.status(422).json(err);
+        });
     },
     updateUser: function (req, res) {
         db.User

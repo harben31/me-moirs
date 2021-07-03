@@ -21,7 +21,13 @@ const tabSchema = new Schema({
     description: {
         type: String,
         maxLength: 500
-    }
+    },
+    posts: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'Post'
+        }
+    ]
 });
 
 const Tab = mongoose.model('Tab', tabSchema);

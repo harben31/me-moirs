@@ -6,20 +6,20 @@ const userSchema = new Schema({
         type: String,
         trim: true,
         required: 'Username is Required',
-        match: [/^[a-zA-Z0-9]+$/, 'Must use letters']
+        // match: [/^[a-zA-Z0-9]+$/, 'Must use letters and/or numbers']
     },
     password: {
         type: String,
         trim: true,
         required: 'Password is Required!',
-        validate: [({ length }) => length >= 8, "Password should be longer."]
+        // validate: [({ length }) => length >= 8, "Password should be longer."]
     },
     email: {
         type: String,
         unique: true,
         trim: true,
         required: 'Email is Required!',
-        match: [/.+@.+\..+/, "Please enter a valid e-mail address"]
+        // match: [/.+@.+\..+/, "Please enter a valid e-mail address"]
     },
     image: {
         contentType: String,
@@ -31,17 +31,21 @@ const userSchema = new Schema({
     },
     //is friend more than just string? 
     //is string just other user's _id and tha is used to make additional call. 
-    friends: [
+    tabs: [
         {
-            username: {
-                type: String
-            }
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Tab'
         }
     ],
-    shortTabInfo: [{
-        type: Schema.Types.ObjectId,
-        ref: 'Tab'
-    }]
+    //CURRENTLY NOT USING THIS FOR USERS
+    // friends: [
+    //     {
+    //         type: mongoose.Schema.Types.ObjectId,
+    //         ref: 'User'
+    //     }
+    // ]
+}, {
+    timestamps: true
 });
 
 const User = mongoose.model('User', userSchema);
