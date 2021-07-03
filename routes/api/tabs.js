@@ -5,7 +5,8 @@ const db = require('../../models');
 
 router.route('/')
     .get(tabController.findAllUserTabs)
-    // .post(auth, tabController.createUserTab)
+
+    //adds a new tab and stores that rab's id in the User schema at shortTabInfo's array
     .post(auth, async (req, res) => {
         console.log('body', req.user.id);
         await db.Tab
@@ -16,7 +17,6 @@ router.route('/')
                 await db.User
                     .findOneAndUpdate({ _id: req.user.id},
                     {$push: {shortTabInfo: dbModel._id}})
-                
                     return res.json(dbModel);
             })
             .catch(err => {
@@ -25,7 +25,7 @@ router.route('/')
             });
     });
 
-    // router('/:id')
-    //     .put(tabController.updateUserTab)
+    router('/:id')
+        .put(tabController.updateUserTab)
 
 module.exports = router;
