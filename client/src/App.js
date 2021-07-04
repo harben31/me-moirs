@@ -14,7 +14,7 @@ import Profile from './pages/Profile';
 import Demo from './pages/DemoPage';
 import { AccountBox } from './components/AccountBox/index';
 import Navbar from './components/Navbar/Navbar';
-import API from './utils/API';
+import API from './Utils/API';
 
 
 function App() {
