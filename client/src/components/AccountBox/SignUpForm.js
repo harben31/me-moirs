@@ -20,7 +20,7 @@ export default function SignupForm(props) {
 
     const signupNewUser = (e) => {
         e.preventDefault();
-        API.setUser({
+        API.saveUser({
             username: userNameSignup,
             email: emailSignup,
             password: passwordSignup,        

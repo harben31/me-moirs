@@ -36,17 +36,6 @@ export default {
         return axios.post('/api/users/signup', userData)
     },
 
-    setUser: async function(userData){
-        let res = await this.saveUser(userData);
-        let config = {
-            headers: {
-                token:res.data.token
-            }
-        }
-        console.log(res.data.token);
-        return axios.post('/api/users/signup/me', config)
-    },
-
 
 
     getTab: function() {
