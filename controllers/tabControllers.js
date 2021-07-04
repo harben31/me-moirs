@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 
 module.exports = {
     //editing overall tab
-    updateUserTab: function(req, res) {
+    updateTab: function(req, res) {
         db.Tab
         //returning 'no such file or directory'
             .findOneAndUpdate({ _id: idToSearch }, req.body)
@@ -14,7 +14,7 @@ module.exports = {
             })
     },
     //loading users tabs
-    findAllUserTabs: function(req, res) {
+    findAllTabs: function(req, res) {
         //find all of one users tabs. search/sort by user id
         db.Tab
             .find({user_id: req.params.id})
@@ -24,16 +24,27 @@ module.exports = {
                 res.status(422).json(err);
             });
     },
-    //find any public tab by their 'tag' or category.
-    findTabByTag: function(req, res) {
+    //Will need to delete all posts as well
+    deleteTab: function(req, res) {
         db.Tab
-            .find({}, {user_id: req.params.id})
-            .then(dbModel => res.json(dbModel))
+            .findById(req.params.id)
+            .then(dbModel => dbModel.remove())
+            .then(deModel => res.json(dbModel))
             .catch(err => {
                 console.log(err);
-                res.status(422).json(err);
-            });
-    }
+                res.json(err);
+            })
+    },
+    //find any public tab by their 'tag' or category.
+    // findTabByTag: function(req, res) {
+    //     db.Tab
+    //         .find({}, {user_id: req.params.id})
+    //         .then(dbModel => res.json(dbModel))
+    //         .catch(err => {
+    //             console.log(err);
+    //             res.status(422).json(err);
+    //         });
+    // }
 };
 
 //find update to following tabs

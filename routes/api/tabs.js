@@ -4,7 +4,10 @@ const auth = require('../../utils/auth');
 const db = require('../../models');
 
 router.route('/')
-    .get(tabController.findAllUserTabs)
+    .get(tabController.findAllTabs)
+
+router.route('/:id')
+    .put(tabController.updateTab)
 
     //adds a new tab and stores that rab's id in the User schema at shortTabInfo's array
     .post(auth, async (req, res) => {
@@ -25,7 +28,6 @@ router.route('/')
             });
     });
 
-    router('/:id')
-        .put(tabController.updateUserTab)
+    
 
 module.exports = router;
