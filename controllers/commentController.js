@@ -7,7 +7,10 @@ module.exports = {
             // .find({post_id: req.body.post_id})
             //find all post's comment with post_id passed into url
             .find({post_id: req.params.id})
-            .then(dbModel => req.json(dbModel))
+            .then(dbModel => {
+                console.log(dbModel, 'comment controller')
+                res.json(dbModel)
+            })
             .catch(err => {
                 console.log(err);
                 res.json(err);
@@ -35,7 +38,7 @@ module.exports = {
         db.Comment
             .find({_id: req.params.id})
             .then(dbModel => dbModel.remove())
-            .then(deModel = res.json(dbModel))
+            .then(dbModel => res.json(dbModel))
             .catch(err => {
                 console.log(err);
                 res.json(err);
