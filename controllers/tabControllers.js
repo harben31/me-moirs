@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 
 module.exports = {
     //editing overall tab
-    updateUserTab: function(req, res) {
+    updateTab: function(req, res) {
         db.Tab
         //returning 'no such file or directory'
             .findOneAndUpdate({ _id: idToSearch }, req.body)
@@ -14,7 +14,7 @@ module.exports = {
             })
     },
     //loading users tabs
-    findAllUserTabs: function(req, res) {
+    findAllTabs: function(req, res) {
         //find all of one users tabs. search/sort by user id
         db.Tab
             .find({user_id: req.params.id})

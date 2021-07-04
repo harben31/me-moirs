@@ -16,6 +16,16 @@ module.exports = {
             });
     },
 
+    findUserById: function (req, res) {
+        db.User
+            .findById(req.params.id)
+            .then(dbModel => res.json(dbModel))
+            .catch(err => {
+                console.log(err);
+                res.json(err);
+            });
+    },
+
     updateUser: function (req, res) {
         db.User
             .findOneAndUpdate({_id: req.params.id}, req.body)

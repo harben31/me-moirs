@@ -98,11 +98,12 @@ router.route('/login').post(
             return res.status(400).json({
                 errors: errors.array()
             });
-        }
+        };
+
         let {
             email,
             password
-        } = req.body
+        } = req.body;
 
         let user = await db.User.findOne({
             email
@@ -164,8 +165,11 @@ router.route('/me')
         }
     });
 
-// router.route('/:id')
-//     .get(userController.findUserById)
-//     .put(userController.updateUser)
+router.route('/:id')
+    .get(userController.findUserById)
+    .put(userController.updateUser)
+
+router.route('/')
+    .get(userController.findAllUsers)
 
 module.exports = router
