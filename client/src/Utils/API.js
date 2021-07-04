@@ -13,14 +13,13 @@ export default {
     },
 
     getUser: async function(loginInfo) {
-        let token = await this.userLogin(loginInfo);
-        let data;
+        let resData = await this.userLogin(loginInfo);
         let config = {
             headers: {
-                token: token.data.token
+                token: resData.data.token
             }
         }
-        console.log(token.data.token);
+        console.log(resData.data.token);
         return axios.get('/api/users/me', config)
     },
 
