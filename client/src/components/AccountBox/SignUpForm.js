@@ -69,6 +69,7 @@ export default function SignupForm(props) {
             <MutedLink href='#'>
             Already have an account?
             <BoldLink href='#' onClick={switchToLogin}>
+            
                 Login
             </BoldLink>
             </MutedLink>

@@ -1,4 +1,5 @@
 import React, { useState, useEffect} from 'react';
+import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom';
 import Home from './pages/Home';
 
 import Card from './components/Cards/Cards'
@@ -32,22 +33,21 @@ function App() {
 
   
     return (
+
         <div className='App'>
           <Header/>
-          <LoginSignup/>
-            {/* <Navbar/> */}
-          
-          {/* <Home/>  */}
-          {/* <Card/>  */}
-           {/* <Profile/> */}
-          {user.map((name) => {
+            <LoginSignup/>
+          {/* <Navbar/>  */}
+          {/* <Home/> 
+          <Profile/>
+          <Card/>   */}
+          {/* {user.map((name) => {
             return (
               <ul>
                 <li>{name.title}</li>
-              </ul>
-             
+              </ul> 
             )
-          })}
+          })} */}
           {/* <DemoPage/> */}
           <Footer/>
         </div>
