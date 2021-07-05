@@ -8,8 +8,8 @@ module.exports = {
             //find all post's comment with post_id passed into url
             .find({post_id: req.params.id})
             .then(dbModel => {
-                console.log(dbModel, 'comment controller')
-                res.json(dbModel)
+                console.log(dbModel, 'comment controller');
+                res.json(dbModel);
             })
             .catch(err => {
                 console.log(err);
