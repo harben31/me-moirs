@@ -10,7 +10,8 @@ import Banner from '../components/Banner/Banner';
 import CarouselSlides from '../components/Carousel/CarouselSlides'
 
 
-export default function Profile() {
+export default function Profile(props) {
+    console.log(props)
     const [cardInfo, setCardInfo] = useState([]);
     const [coverImage, setCoverImage] = useState([]);
     const [profileImage, setProfileImage] = useState([]);
