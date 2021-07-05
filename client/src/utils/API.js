@@ -7,9 +7,20 @@ export default {
         return axios.get('/api/users')
     },
 
+    userLogin: function(loginInfo){
+        console.log(loginInfo);
+       return axios.post('/api/users/login', loginInfo)
+    },
 
-    getUser: function(id) {
-        return axios.get('/api/users/me')
+    getUser: async function(loginInfo) {
+        let resData = await this.userLogin(loginInfo);
+        let config = {
+            headers: {
+                token: resData.data.token
+            }
+        }
+        console.log(resData.data.token);
+        return axios.get('/api/users/me', config)
     },
 
     // getUser: function(id) {
@@ -31,9 +42,9 @@ export default {
         return axios.get('/api/tabs')
     },
 
-    getTab: function(id) {
-        return axios.get('/api/tabs' + id)
-    },
+    // getTab: function(id) {
+    //     return axios.get(    '/api/tabs' + id)
+    // },
 
     deleteTab: function(id) {
         return axios.delete('/api/tabs/' + id)

@@ -9,7 +9,7 @@ import {
 } from './common';
 import { Marginer } from './marginer';
 import { AccountContext } from './accountContext';
-import API from '../../Utils/API';
+import API from '../../utils/API';
 
 export default function LoginForm(props) {
     const  {switchToSignup}  = useContext(AccountContext);
@@ -19,16 +19,22 @@ export default function LoginForm(props) {
 
     const loginUser = (e) => {
         e.preventDefault();
+        console.log('loginuser fn')
         API.getUser({
             email: emailLogin,
             password: passwordLogin,
         }).then((res) => {
             if(res.data.message){
+                console.log(res.data)
                 setLoginStatus(res.data.message);
-            }else
-            setLoginStatus(res.data[0].username);
+            }else{
+                console.log(res.data)
+                setLoginStatus(res.data.username);
+        }})
+        .catch(err => {
+            console.log(err)
         })
-    }
+    };
 
     return(
         <BoxContainer>

@@ -2,9 +2,7 @@ const db = require('../models');
 const mongoose = require('mongoose');
     
 module.exports = {
-    createUserPost: function(req, res) {
-       
-        console.log(req.body, 'creater post route');
+    createPost: function(req, res) {
         db.Post
             .create(req.body)
             .then(dbModel => res.json(dbModel))
@@ -13,7 +11,7 @@ module.exports = {
                 res.status(422).json(err);
             });
     },
-    findUserPosts: function(req, res) {
+    findPosts: function(req, res) {
         console.log('get tabs postws');
         let idToSearch = mongoose.Types.ObjectId(req.body.id);
         db.Post
@@ -25,7 +23,7 @@ module.exports = {
             });
     },
     //when would we call by id? how would id get to FE api
-    findUserPostById: function(req, res) {
+    findPostById: function(req, res) {
         db.Post
             .findById(req.params.id)
             .then(dbModel => res.json(dbModel))
@@ -35,7 +33,7 @@ module.exports = {
             });
     },
     //editing posts
-    updateUserPost: function(req, res) {
+    updatePost: function(req, res) {
         db.Post
             .findOneAndUpdate({_id: req.params.id}, req.body)
             .then(dbModel => res.json(dbModel))
@@ -43,6 +41,17 @@ module.exports = {
                 console.log(err);
                 res.status(422).json(err);
             });
+    },
+    //will need to delete all comments. Can we 'cascade'?
+    deletePost: function(req, res) {
+        db.Post
+            .findById(req.params.id)
+            .then(dbModel => dbModel.remove())
+            .then(deModel => res.json(dbModel))
+            .catch(err => {
+                console.log(err);
+                res.json(err);
+            })
     }
 };
 
