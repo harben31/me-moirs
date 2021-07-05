@@ -5,8 +5,8 @@ import Card from './components/Cards/Cards'
 import DemoPage from './pages/DemoPage';
 
 
-import Header from './components/Header/Header';
-import Footer from './components/Footer/Footer';
+import Header from './components/header/Header';
+import Footer from './components/footer/Footer';
 import LoginSignup from './pages/LoginSignup';
 
 import "./App.css";
@@ -34,12 +34,12 @@ function App() {
     return (
         <div className='App'>
           <Header/>
-          <LoginSignup/>
+          {/* <LoginSignup/> */}
             {/* <Navbar/> */}
           
           {/* <Home/>  */}
           {/* <Card/>  */}
-           {/* <Profile/> */}
+           <Profile/>
           {user.map((name) => {
             return (
               <ul>
