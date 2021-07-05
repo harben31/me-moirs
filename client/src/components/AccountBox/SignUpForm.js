@@ -7,9 +7,19 @@ import {
     MutedLink, 
     BoldLink 
 } from './common';
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link,
+    Redirect,
+    useHistory,
+    useLocation
+  } from "react-router-dom";
+  
 import { Marginer } from './marginer';
 import {AccountContext}  from './accountContext';
-import API from '../../utils/API';
+import API from '../../Utils/API';
 export default function SignupForm(props) {
     const { switchToLogin } = useContext(AccountContext);
     const [userNameSignup, setUserNameSignup] = useState('');
@@ -69,6 +79,7 @@ export default function SignupForm(props) {
             <MutedLink href='#'>
             Already have an account?
             <BoldLink href='#' onClick={switchToLogin}>
+            
                 Login
             </BoldLink>
             </MutedLink>
