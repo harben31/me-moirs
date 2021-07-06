@@ -1,4 +1,4 @@
-import React, { useContext, createContext, useState } from 'react';
+import React, { Component, useContext, createContext, useState, setState } from 'react';
 import { 
     BoxContainer, 
     FormContainer, 
@@ -19,86 +19,87 @@ import {
 
 import { Marginer } from './marginer';
 import { AccountContext } from './accountContext';
-import API from '../../Utils/API';
+import API from '../../utils/API';
 
-export default function LoginForm(props) {
-    const {switchToSignup} = useContext(AccountContext);
-    const [emailLogin, setEmailLogin] = useState('');
-    const [passwordLogin, setPasswordLogin] = useState('');
-    const [loginStatus, setLoginStatus] = useState('');
-    const [redirect, setRedirect] = useState(false);
-    const [user, setUser] = useState('');
 
-    const loginUser = (e) => {
-        // e.preventDefault();
-        console.log('loginuser fn')
+class LoginForm extends Component {
+    state = {
+        email: '',
+        password: '',
+        redirect: false,
+        user: [],
+    };
+
+    switchToSignup = () => {
+        useContext(AccountContext);
+    };
+
+    loginUser = (e) => {
+        e.preventDefault();
         API.getUser({
-            email: emailLogin,
-            password: passwordLogin,
+            email: this.state.email,
+            password: this.state.password,
         }).then((res) => {
-           
-            // handleSubmit();
-            if(res.data.message){
-                // setUser(res.data);
-                // console.log(user);
-                console.log("1111111",res.data)
-                setLoginStatus(res.data.message);
-            }else{
-                // setUser(res.data);
-                // console.log(user);
-                console.log("Hi",res.data)
-                setLoginStatus(res.data.username);
-        }})
+            console.log(res.data);
+            this.setState({user: res.data})
+            this.handleSubmit();
+        })
         .catch(err => {
             console.log(err)
         })
     };
-    console.log(user);
-    const handleSubmit = async (e) => {
-        // e.preventDefault();
-        await loginUser();
-        setRedirect(true);
-        // setUser();
-    } 
-    if (redirect)
-            return <Redirect to={{ pathname: '/profile', data: {emailLogin} }} />
 
-    return(
-        <Route>
-            <BoxContainer>
-                <FormContainer onSubmit={loginUser}>
-                    <Input 
-                    type='email' 
-                    placeholder='Email'
-                    onChange={(e) => {
-                        setEmailLogin(e.target.value);
-                    }}
-                    required
-                    />
+    handleSubmit = () => {
+        this.setState({redirect: true});
+    }; 
+    
 
-                    <Input 
-                    type='password' 
-                    placeholder='Password'
-                    onChange={(e) => {
-                        setPasswordLogin(e.target.value);
-                    }}
-                    required
-                    />
-                
-                <Marginer direction="vertical" margin={10} />
-                <SubmitButton type="submit" onClick={handleSubmit} >
-                    Login
-                </SubmitButton>
-                </FormContainer>
-                <Marginer direction="vertical" margin="1em" />
-                <MutedLink href='#'>
-                Don't have an account?
-                <BoldLink href='#' onClick={switchToSignup}>
-                    Signup
-                </BoldLink>
-                </MutedLink>
-                <h1>{loginStatus}</h1>
-            </BoxContainer>
-        </Route>
-    );  
-}
+    render() {
+        if (this.state.redirect) {
+            console.log(this.state.user);
+            
+            return <Redirect to={{ pathname: '/profile', data: (this.state.user) }} />
+        }
+
+        return(
+            <Route>
+                <BoxContainer>
+                    <FormContainer onSubmit={this.loginUser}>
+                        <Input 
+                        type='email' 
+                        placeholder='Email'
+                        onChange={(e) => {
+                            this.setState({email: e.target.value});
+                        }}
+                        required
+                        />
+
+                        <Input 
+                        type='password' 
+                        placeholder='Password'
+                        onChange={(e) => {
+                            this.setState({password: e.target.value});
+                        }}
+                        required
+                        />
+                    <Marginer direction="vertical" margin={10} />
+                    <SubmitButton type="submit"  >
+                        Login
+                    </SubmitButton>
+                    </FormContainer>
+                    <Marginer direction="vertical" margin="1em" />
+                    <MutedLink href='#'>
+                    Don't have an account?
+                    <BoldLink href='#' onClick={this.switchToSignup}>
+                        Signup
+                    </BoldLink>
+                    </MutedLink>
+                    {/* <h1>{loginStatus}</h1> */}
+                </BoxContainer>
+            </Route>
+        );  
+    }
+    
+};
+
+export default LoginForm;
