@@ -16,10 +16,16 @@ module.exports = {
                 res.json(err);
             });
     },
-    createComment: function(req, res) {
+    createComment:  function(req, res) {
         db.Comment
             .create(req.body)
-            .then((dbModel => res.json(dbModel)))
+            .then(async dbModel => {
+                console.log(req.body.post_id);
+                await db.Post
+                    .findOneAndUpdate({_id: req.body.post_id},
+                        {$push: {comments: dbModel._id}})
+                res.json(dbModel);
+            })
             .catch(err => {
                 console.log(err);
                 res.json(err);

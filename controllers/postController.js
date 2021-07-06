@@ -5,7 +5,13 @@ module.exports = {
     createPost: function(req, res) {
         db.Post
             .create(req.body)
-            .then(dbModel => res.json(dbModel))
+            .then(async dbModel => {
+                console.log(req.body.tab_id);
+                await db.Tab
+                    .findOneAndUpdate({_id: req.body.tab_id},
+                        {$push: {posts: dbModel._id}})
+                res.json(dbModel);
+            })
             .catch(err => {
                 console.log(err);
                 res.status(422).json(err);

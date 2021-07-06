@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const Post = require('./Post');
 
 
 //how are post connected to tabs and how are tabs connected to user. 
@@ -29,6 +30,20 @@ const tabSchema = new Schema({
         }
     ]
 });
+
+tabSchema.pre('remove', async function(next) {
+    try {
+        await Post.remove({
+            '_id': {
+                $in: this.posts
+            }
+        });
+        next()
+    } catch (err) {
+        console.log(err);
+        next(err);
+    }
+    });
 
 const Tab = mongoose.model('Tab', tabSchema);
 

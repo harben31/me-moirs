@@ -8,6 +8,7 @@ router.route('/')
 
 router.route('/:id')
     .put(tabController.updateTab)
+    .delete(tabController.deleteTab)
 
     //adds a new tab and stores that rab's id in the User schema at shortTabInfo's array
     .post(auth, async (req, res) => {
