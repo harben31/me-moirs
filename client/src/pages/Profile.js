@@ -11,20 +11,14 @@ import CarouselSlides from '../components/Carousel/CarouselSlides'
 
 
 export default function Profile(props) {
-    console.log(props)
+    console.log(props);
     const [cardInfo, setCardInfo] = useState([]);
     const [coverImage, setCoverImage] = useState([]);
     const [profileImage, setProfileImage] = useState([]);
+    const [userInfo, setUserInfo] = useState([])
 
 
-//   useEffect (() => {
-    
-//     setCardInfo([
-//     {
-//      name: 'Ben',
-//      title: 'Project 3',
-//      description: 'testing the profile page',
-//     },
+    // useEffect (() => {
 //     {
 //      name: 'Cassandra',
 //      title: 'Project 3',
@@ -91,7 +85,7 @@ export default function Profile(props) {
                 return <Cards key={card.id} name={card.name}
                 title={card.title}
                 description={card.description}/>})} */} 
-                <Banner/>
+                <Banner username={props.location.data.username}/>
                  {/* <Cards/> */}
 
                 {/* <CarouselSlides slides={SliderData}/> */}
