@@ -3,9 +3,9 @@ import axios from 'axios';
 
 export default {
 
-    getUser: function() {
-        return axios.get('/api/users')
-    },
+    // getUser: function() {
+    //     return axios.get('/api/users/me')
+    // },
 
     userLogin: function(loginInfo){
         console.log(loginInfo);
@@ -42,9 +42,9 @@ export default {
         return axios.get('/api/tabs')
     },
 
-    // getTab: function(id) {
-    //     return axios.get(    '/api/tabs' + id)
-    // },
+    getTab: function(id) {
+        return axios.get(    '/api/tabs' + id)
+    },
 
     deleteTab: function(id) {
         return axios.delete('/api/tabs/' + id)

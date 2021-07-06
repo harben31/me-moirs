@@ -8,6 +8,7 @@ import Navbar from '../components/Navbar/Navbar'
 import Header from '../components/header/Header';
 import Banner from '../components/Banner/Banner';
 import CarouselSlides from '../components/Carousel/CarouselSlides'
+import API from '../utils/API'
 
 
 export default function Profile() {
@@ -16,51 +17,9 @@ export default function Profile() {
     const [profileImage, setProfileImage] = useState([]);
 
 
-//   useEffect (() => {
-    
-//     setCardInfo([
-//     {
-//      name: 'Ben',
-//      title: 'Project 3',
-//      description: 'testing the profile page',
-//     },
-//     {
-//      name: 'Cassandra',
-//      title: 'Project 3',
-//      description: 'testing the profile page',
-//     },
-//     {
-//      name: 'Asia',
-//      title: 'Project 3',
-//      description: 'testing the profile page',
-//     },
-//     {
-//      name: 'Marisa',
-//      title: 'Project 3',
-//      description: 'testing the profile page',
-//     },
-//     {
-//       name: 'Jen',
-//       title: 'Project 3',
-//       description: 'testing the profile page',
-//      },
-//      {
-//       name: 'Bill',
-//       title: 'Project 3',
-//       description: 'testing the profile page',
-//      },
-//      {
-//       name: 'Tom',
-//       title: 'Project 3',
-//       description: 'testing the profile page',
-//      },
-//      {
-//       name: 'Jane',
-//       title: 'Project 3',
-//       description: 'testing the profile page. Hoping it works well!',
-//      },
-//    ])
-//   }, []);
+    useEffect(() => {
+        API.getUser()
+    })
 
     useEffect(() => {
         setCoverImage(

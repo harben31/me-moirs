@@ -34,12 +34,12 @@ function App() {
     return (
         <div className='App'>
           <Header/>
-          {/* <LoginSignup/> */}
+          <LoginSignup/>
             {/* <Navbar/> */}
           
           {/* <Home/>  */}
           {/* <Card/>  */}
-           <Profile/>
+           {/* <Profile/>
           {user.map((name) => {
             return (
               <ul>
@@ -47,7 +47,7 @@ function App() {
               </ul>
              
             )
-          })}
+          })} */}
           {/* <DemoPage/> */}
           <Footer/>
         </div>
