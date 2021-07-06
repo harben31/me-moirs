@@ -5,7 +5,13 @@ module.exports = {
     createPost: function(req, res) {
         db.Post
             .create(req.body)
-            .then(dbModel => res.json(dbModel))
+            .then(async dbModel => {
+                console.log(req.body.tab_id);
+                await db.Tab
+                    .findOneAndUpdate({_id: req.body.tab_id},
+                        {$push: {posts: dbModel._id}})
+                res.json(dbModel);
+            })
             .catch(err => {
                 console.log(err);
                 res.status(422).json(err);
@@ -46,8 +52,14 @@ module.exports = {
     deletePost: function(req, res) {
         db.Post
             .findById(req.params.id)
-            .then(dbModel => dbModel.remove())
-            .then(deModel => res.json(dbModel))
+            .then(async dbModel => {
+                console.log(dbModel)
+                await db.Tab
+                    .findOneAndUpdate({_id: dbModel.tab_id},
+                        {$pull: {posts: dbModel.id}})
+                dbModel.remove();
+            })
+            .then(dbModel => res.json(dbModel))
             .catch(err => {
                 console.log(err);
                 res.json(err);

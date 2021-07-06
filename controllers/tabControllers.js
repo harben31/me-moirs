@@ -28,7 +28,12 @@ module.exports = {
     deleteTab: function(req, res) {
         db.Tab
             .findById(req.params.id)
-            .then(dbModel => dbModel.remove())
+            .then(async dbModel => {
+                await db.User
+                    .findOneAndUpdate({_id: dbModel.user_id},
+                        {$pull: {shortTabInfo: dbModel.id}})
+                dbModel.remove();
+            })
             .then(deModel => res.json(dbModel))
             .catch(err => {
                 console.log(err);
