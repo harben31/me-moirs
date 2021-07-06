@@ -39,7 +39,7 @@ try {
     await Comment.remove({
         '_id': {
             $in: this.comments
-        }
+        },    
     });
     next()
 } catch (err) {

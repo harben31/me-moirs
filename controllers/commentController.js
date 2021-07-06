@@ -42,8 +42,13 @@ module.exports = {
     },
     deleteComment: function(req, res) {
         db.Comment
-            .find({_id: req.params.id})
-            .then(dbModel => dbModel.remove())
+            .findById(req.params.id)
+            .then(async dbModel => {
+                await db.Post
+                    .findOneAndUpdate({_id: dbModel.post_id},
+                        {$pull: {comments: dbModel.id}})
+                dbModel.remove();
+            })
             .then(dbModel => res.json(dbModel))
             .catch(err => {
                 console.log(err);

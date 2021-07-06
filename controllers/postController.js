@@ -52,8 +52,14 @@ module.exports = {
     deletePost: function(req, res) {
         db.Post
             .findById(req.params.id)
-            .then(dbModel => dbModel.remove())
-            .then(deModel => res.json(dbModel))
+            .then(async dbModel => {
+                console.log(dbModel)
+                await db.Tab
+                    .findOneAndUpdate({_id: dbModel.tab_id},
+                        {$pull: {posts: dbModel.id}})
+                dbModel.remove();
+            })
+            .then(dbModel => res.json(dbModel))
             .catch(err => {
                 console.log(err);
                 res.json(err);
