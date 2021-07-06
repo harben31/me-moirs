@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const Tab = require('./Tab');
 
 const userSchema = new Schema({
     username: {
@@ -47,6 +48,20 @@ const userSchema = new Schema({
 }, {
     timestamps: true
 });
+
+userSchema.pre('remove', async function(next) {
+    try {
+        await Tab.remove({
+            '_id': {
+                $in: this.shortTabInfo
+            }
+        });
+        next()
+    } catch (err) {
+        console.log(err);
+        next(err);
+    }
+    });
 
 const User = mongoose.model('User', userSchema);
 

@@ -110,6 +110,7 @@ export function AccountBox(props) {
           setExpanded(false);
         }, expandingTransition.duration * 1000 - 1500);
       };
+
     const switchToSignup = () => {
         playExpandingAnimation();
         setTimeout(() => {
@@ -148,7 +149,8 @@ export function AccountBox(props) {
                 </HeaderContainer>}
             </TopContainer>
             <InnerContainer>
-
+            {/* <LoginForm/>
+            <SignupForm/> */}
                 {active === 'login' && <LoginForm/>}
                 {active === 'signup' && <SignupForm/>}
             </InnerContainer>

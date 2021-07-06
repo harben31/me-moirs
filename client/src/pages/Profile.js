@@ -11,15 +11,52 @@ import CarouselSlides from '../components/Carousel/CarouselSlides'
 import API from '../utils/API'
 
 
-export default function Profile() {
+export default function Profile(props) {
+    console.log(props);
     const [cardInfo, setCardInfo] = useState([]);
     const [coverImage, setCoverImage] = useState([]);
     const [profileImage, setProfileImage] = useState([]);
+    const [userInfo, setUserInfo] = useState([])
 
 
-    useEffect(() => {
-        API.getUser()
-    })
+    // useEffect (() => {
+//     {
+//      name: 'Cassandra',
+//      title: 'Project 3',
+//      description: 'testing the profile page',
+//     },
+//     {
+//      name: 'Asia',
+//      title: 'Project 3',
+//      description: 'testing the profile page',
+//     },
+//     {
+//      name: 'Marisa',
+//      title: 'Project 3',
+//      description: 'testing the profile page',
+//     },
+//     {
+//       name: 'Jen',
+//       title: 'Project 3',
+//       description: 'testing the profile page',
+//      },
+//      {
+//       name: 'Bill',
+//       title: 'Project 3',
+//       description: 'testing the profile page',
+//      },
+//      {
+//       name: 'Tom',
+//       title: 'Project 3',
+//       description: 'testing the profile page',
+//      },
+//      {
+//       name: 'Jane',
+//       title: 'Project 3',
+//       description: 'testing the profile page. Hoping it works well!',
+//      },
+//    ])
+//   }, []);
 
     useEffect(() => {
         setCoverImage(
@@ -49,7 +86,7 @@ export default function Profile() {
                 return <Cards key={card.id} name={card.name}
                 title={card.title}
                 description={card.description}/>})} */} 
-                <Banner/>
+                <Banner username={props.location.data.username}/>
                  {/* <Cards/> */}
 
                 {/* <CarouselSlides slides={SliderData}/> */}

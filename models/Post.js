@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const Comment = require('./Comment');
 
 //user_id as well?
 const postSchema = new Schema({
@@ -31,6 +32,20 @@ const postSchema = new Schema({
             ref: 'Comment'
         }
     ]
+});
+
+postSchema.pre('remove', async function(next) {
+try {
+    await Comment.remove({
+        '_id': {
+            $in: this.comments
+        },    
+    });
+    next()
+} catch (err) {
+    console.log(err);
+    next(err);
+}
 });
 
 const Post = mongoose.model('Post', postSchema);
