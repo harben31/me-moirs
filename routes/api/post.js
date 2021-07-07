@@ -3,9 +3,9 @@ const postController = require('../../controllers/postController');
 
 router.route('/')
     .get(postController.findPosts)
-    .post(postController.createPost);
-
-router.route('/:id')
+    .post(postController.createPost)
+    
+    router.route('/:id')
     .put(postController.updatePost)
     .delete(postController.deletePost)
     .get(postController.findPosts);
