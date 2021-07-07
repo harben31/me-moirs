@@ -8,7 +8,6 @@ export default {
     // },
 
     userLogin: function(loginInfo){
-        console.log(loginInfo);
        return axios.post('/api/users/login', loginInfo)
     },
 

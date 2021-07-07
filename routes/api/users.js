@@ -32,7 +32,6 @@ router.route('/signup').post(
         bcrypt.genSalt(10, await function (err, salt) {
             bcrypt.hash(password, salt, function(err, hash) {
                 password = hash;
-                console.log('line 37:', password);
                 return password;
             })
         })
@@ -153,13 +152,10 @@ router.route('/me')
 
 router.route('/info')
     .get((req, res) => {
-        console.log(res);
         db.User.findById(req.session.user)
             .populate({
-                path: 'tabs',
-                populate: {
-                    path: 'posts'
-                }
+                path: 'shortTabInfo',
+                select: {title: 1}
             })
             .then(dbModel => res.json(dbModel))
             .catch(err => console.log(err));
