@@ -1,14 +1,13 @@
 const router = require('express').Router();
 const tabController = require('../../controllers/tabControllers');
-const auth = require('../../utils/auth');
+// const auth = require('../../utils/auth');
 const db = require('../../models');
 
 router.route('/')
     .get(tabController.findAllTabs)
     //adds a new tab and stores that rab's id in the User schema at shortTabInfo's array
-    //REMOVED AUTH for route testing
     .post(async (req, res) => {
-        console.log('body', req.body.id);
+        console.log('body', req.user.id);
         await db.Tab
             .create(req.body)
             .then(async dbModel => {
