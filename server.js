@@ -1,5 +1,6 @@
 const express = require("express");
 const path = require("path");
+const session = require('express-session');
 const app = express();
 const mongoose = require('mongoose');
 // const bodyParser = require('body-parser');
@@ -11,6 +12,12 @@ const PORT = process.env.PORT || 3001;
 // app.use(bodyParser.urlencoded({ extended: true}));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(session({
+  secret: 'goober',
+  resave: false,
+  saveUninitialized: true,
+  cookie: { secure: false}
+}))
 // Serve up static assets (usually on heroku)
 // if (process.env.NODE_ENV === "production") {
 //   app.use(express.static("client/build"));
@@ -18,6 +25,8 @@ app.use(express.json());
 
 // Define API routes here
 app.use(routes);
+// app.use(passport.initialize());
+// require('./config/passport')(passport);
 // Send every other request to the React app
 // Define any API routes before this runs
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/project_three_db', {
