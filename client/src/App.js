@@ -31,8 +31,6 @@ function App() {
   useEffect(() => {
     API.getUser()
     .then(res => {
-      console.log(res);
-      // console.log(AuthApi);
       if(res.data.auth) {
         setAuth(true);
       }

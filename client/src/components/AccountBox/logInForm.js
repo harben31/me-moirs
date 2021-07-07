@@ -35,7 +35,6 @@ export default function LoginForm() {
                 email: emailLogin,
                 password: passwordLogin,
             }).then((res) => {
-                console.log(res.data);
                 if(res.data.auth) {
                     authApi.setAuth(true);
                 }

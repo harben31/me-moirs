@@ -34,7 +34,6 @@ export default function Profile(props) {
         API.userInfo()
             .then(res => {
                 if(res) {
-                    console.log(res.data);
                     const data = res.data;
                     setUser(data);
                     
@@ -46,7 +45,6 @@ export default function Profile(props) {
     }, []);
 
 
-    console.log('data', user);
     // useEffect(() => {
     //     setUser(data);
     // }, [data])
@@ -105,7 +103,7 @@ export default function Profile(props) {
         )
 
     }, [])
-   
+    
     return (
        
           <div>

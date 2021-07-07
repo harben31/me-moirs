@@ -42,7 +42,6 @@ export default function SignupForm(props) {
             if(res.data.auth) {
                 authApi.setAuth(true);
             }
-            console.log(res);
         })
     }
 
