@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from 'react';
+import React, { useState, useEffect, Component} from 'react';
 import {
   BrowserRouter as Router,
   Switch,
@@ -24,11 +24,13 @@ import Demo from './pages/DemoPage';
 import { AccountBox } from './components/AccountBox/index';
 import Navbar from './components/Navbar/Navbar';
 import API from './utils/API';
+import AuthApi from './utils/AuthApi';
 
 
 function App() {
 
   const [user, setUser] = useState([]);
+  const [auth, setAuth] = useState(false);
 
   useEffect(() => {
     API.getTab()
@@ -41,29 +43,42 @@ function App() {
 
   
     return (
-        <Router>
-            <div className='App'>
-              <Header/>
-              <Route exact path='/' component= {LoginSignup}/>
-             
-    
-               
-              {/* <Navbar/>  */}
-              {/* <Home/>  */}
-              <Route exact path='/profile'component={Profile}/>
-              {/* <Card/>   */}
-              {/* {user.map((name) => {
-                return (
-                  <ul>
-                    <li>{name.title}</li>
-                  </ul> 
-                )
-              })} */}
-              {/* <DemoPage/> */}
-              <Footer/>
-            </div>
-        </Router>
+      <AuthApi.Provider value={{ auth, setAuth }}>
+          <Router>
+              <div className='App'>
+                <Header/>
+                <RouteRegistration exact path='/' component= {LoginSignup}/>
+              
+      
+                
+                {/* <Navbar/>  */}
+                {/* <Home/>  */}
+                <RouteProtected exact path='/profile'component={Profile}/>
+                {/* <Card/>   */}
+                {/* {user.map((name) => {
+                  return (
+                    <ul>
+                      <li>{name.title}</li>
+                    </ul> 
+                  )
+                })} */}
+                {/* <DemoPage/> */}
+                <Footer/>
+              </div>
+          </Router>
+        </AuthApi.Provider>
     );
+};
+
+const RouteRegistration = ({ component: Component, ...rest }) => {
+  const authApi = React.useContext(AuthApi);
+  return <Route {...rest} render={props => 
+    !authApi.auth ? <Component {...props} /> : <Redirect to='/profile' />} />;
+};
+
+const RouteProtected = ({ component: Component, ...rest }) => {
+  const authApi = React.useContext(AuthApi);
+  return <Route {...rest} render={props => authApi.auth ? <Component {...props} /> : <Redirect to='/' />} />;
 };
 
 export default App;

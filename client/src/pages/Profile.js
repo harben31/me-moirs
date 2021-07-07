@@ -85,7 +85,7 @@ export default function Profile(props) {
                 return <Cards key={card.id} name={card.name}
                 title={card.title}
                 description={card.description}/>})} */} 
-                <Banner username={props.location.data.username}/>
+                <Banner />
                  {/* <Cards/> */}
 
                 {/* <CarouselSlides slides={SliderData}/> */}

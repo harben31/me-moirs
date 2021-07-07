@@ -5,6 +5,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const db = require('../../models');
 const auth = require('../../utils/auth');
+const keys = require('../../config/keys');
 
 router.route('/signup').post(
     [
@@ -140,14 +141,15 @@ router.route('/login').post(
                 console.log(payload);
                 jwt.sign(
                     payload,
-                    'secret',
+                    keys.secretOfKey,
                     {
                         expiresIn: 10000
                     },
                     (err, token) => {
                         if (err) throw err;
                         res.status(200).json({
-                            token
+                            success: true,
+                            token: 'Bearer' + token
                         });
                     }
                 );

@@ -18,6 +18,8 @@ app.use(express.json());
 
 // Define API routes here
 app.use(routes);
+// app.use(passport.initialize());
+// require('./config/passport')(passport);
 // Send every other request to the React app
 // Define any API routes before this runs
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/project_three_db', {
