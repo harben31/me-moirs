@@ -1,57 +1,84 @@
-import React, { useState, useEffect} from 'react';
-import Home from './pages/Home';
+import React, { useState, useEffect, useContext} from 'react';
+import {
+  BrowserRouter as Router,
+  Route,
+  Redirect,
+} from "react-router-dom";
 
-import Card from './components/Cards/Cards'
-import DemoPage from './pages/DemoPage';
+// import Home from './pages/Home';
 
-
-import Header from './components/Header/Header';
-import Footer from './components/Footer/Footer';
+// import Card from './components/Cards/Cards'
+// import DemoPage from './pages/DemoPage';
+ 
+import Header from './components/header/Header';
+import Footer from './components/footer/Footer';
 import LoginSignup from './pages/LoginSignup';
 
 import "./App.css";
 import Profile from './pages/Profile';
-import Demo from './pages/DemoPage';
-import { AccountBox } from './components/AccountBox/index';
-import Navbar from './components/Navbar/Navbar';
-import API from './Utils/API';
+// import Demo from './pages/DemoPage';
+// import { AccountBox } from './components/AccountBox/index';
+// import Navbar from './components/Navbar/Navbar';
+import API from './utils/API';
+import AuthApi from './utils/AuthApi';
 
 
 function App() {
-
-  const [user, setUser] = useState([]);
+  const [auth, setAuth] = useState(false);
+  const [user, setUser] = useState();
+  
 
   useEffect(() => {
-    API.getTab()
+    API.getUser()
     .then(res => {
-      setUser(res.data)
+      console.log(res);
+      // console.log(AuthApi);
+      if(res.data.auth) {
+        setAuth(true);
+      }
     }).catch(err => {
       console.log(err)
     })
-  }, [])
+  }, []);
 
   
     return (
-        <div className='App'>
-          <Header/>
-          <LoginSignup/>
-            {/* <Navbar/> */}
-          
-          {/* <Home/>  */}
-          {/* <Card/>  */}
-           {/* <Profile/> */}
-          {user.map((name) => {
-            return (
-              <ul>
-                <li>{name.title}</li>
-              </ul>
-             
-            )
-          })}
-          {/* <DemoPage/> */}
-          <Footer/>
-        </div>
+      <AuthApi.Provider value={{ auth, setAuth }}>
+          <Router>
+              <div className='App'>
+                <Header/>
+                <RouteRegistration exact path='/' component= {LoginSignup}/>
+              
+      
+                
+                {/* <Navbar/>  */}
+                {/* <Home/>  */}
+                <RouteProtected exact path='/profile'component={Profile}/>
+                {/* <Card/>   */}
+                {/* {user.map((name) => {
+                  return (
+                    <ul>
+                      <li>{name.title}</li>
+                    </ul> 
+                  )
+                })} */}
+                {/* <DemoPage/> */}
+                <Footer/>
+              </div>
+          </Router>
+        </AuthApi.Provider>
     );
+};
+
+const RouteRegistration = ({ component: Component, ...rest }) => {
+  const authApi = useContext(AuthApi);
+  return <Route {...rest} render={props => 
+    !authApi.auth ? <Component {...props} /> : <Redirect to='/profile' />} />;
+};
+
+const RouteProtected = ({ component: Component, ...rest }) => {
+  const authApi = useContext(AuthApi);
+  return <Route {...rest} render={props => authApi.auth ? <Component {...props} /> : <Redirect to='/' />} />;
 };
 
 export default App;

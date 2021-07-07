@@ -1,4 +1,4 @@
-import React, { useContext, createContext, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { 
     BoxContainer, 
     FormContainer, 
@@ -7,15 +7,29 @@ import {
     MutedLink, 
     BoldLink 
 } from './common';
+// import {
+//     BrowserRouter as Router,
+//     Switch,
+//     Route,
+//     Link,
+//     Redirect,
+//     useHistory,
+//     useLocation
+//   } from "react-router-dom";
+  
 import { Marginer } from './marginer';
 import {AccountContext}  from './accountContext';
-import API from '../../Utils/API';
+import API from '../../utils/API';
+import AuthApi from '../../utils/AuthApi';
+
+
 export default function SignupForm(props) {
     const { switchToLogin } = useContext(AccountContext);
     const [userNameSignup, setUserNameSignup] = useState('');
     const [emailSignup, setEmailSignup] = useState('');
     const [passwordSignup, setPasswordSignup] = useState('');
     
+    const authApi = useContext(AuthApi);
     //Create function that will post our data to a route in backend routes that will post that data in to the database
 
     const signupNewUser = (e) => {
@@ -25,6 +39,9 @@ export default function SignupForm(props) {
             email: emailSignup,
             password: passwordSignup,        
         }).then((res) => {
+            if(res.data.auth) {
+                authApi.setAuth(true);
+            }
             console.log(res);
         })
     }
@@ -69,6 +86,7 @@ export default function SignupForm(props) {
             <MutedLink href='#'>
             Already have an account?
             <BoldLink href='#' onClick={switchToLogin}>
+            
                 Login
             </BoldLink>
             </MutedLink>

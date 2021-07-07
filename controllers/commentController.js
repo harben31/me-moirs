@@ -8,18 +8,24 @@ module.exports = {
             //find all post's comment with post_id passed into url
             .find({post_id: req.params.id})
             .then(dbModel => {
-                console.log(dbModel, 'comment controller')
-                res.json(dbModel)
+                console.log(dbModel, 'comment controller');
+                res.json(dbModel);
             })
             .catch(err => {
                 console.log(err);
                 res.json(err);
             });
     },
-    createComment: function(req, res) {
+    createComment:  function(req, res) {
         db.Comment
             .create(req.body)
-            .then((dbModel => res.json(dbModel)))
+            .then(async dbModel => {
+                console.log(req.body.post_id);
+                await db.Post
+                    .findOneAndUpdate({_id: req.body.post_id},
+                        {$push: {comments: dbModel._id}})
+                res.json(dbModel);
+            })
             .catch(err => {
                 console.log(err);
                 res.json(err);
@@ -36,8 +42,13 @@ module.exports = {
     },
     deleteComment: function(req, res) {
         db.Comment
-            .find({_id: req.params.id})
-            .then(dbModel => dbModel.remove())
+            .findById(req.params.id)
+            .then(async dbModel => {
+                await db.Post
+                    .findOneAndUpdate({_id: dbModel.post_id},
+                        {$pull: {comments: dbModel.id}})
+                dbModel.remove();
+            })
             .then(dbModel => res.json(dbModel))
             .catch(err => {
                 console.log(err);
