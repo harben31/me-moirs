@@ -1,18 +1,14 @@
-import React, { useState, useEffect, Component} from 'react';
+import React, { useState, useEffect, useContext} from 'react';
 import {
   BrowserRouter as Router,
-  Switch,
   Route,
-  Link,
   Redirect,
-  useHistory,
-  useLocation
 } from "react-router-dom";
 
-import Home from './pages/Home';
+// import Home from './pages/Home';
 
-import Card from './components/Cards/Cards'
-import DemoPage from './pages/DemoPage';
+// import Card from './components/Cards/Cards'
+// import DemoPage from './pages/DemoPage';
  
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
@@ -20,26 +16,30 @@ import LoginSignup from './pages/LoginSignup';
 
 import "./App.css";
 import Profile from './pages/Profile';
-import Demo from './pages/DemoPage';
-import { AccountBox } from './components/AccountBox/index';
-import Navbar from './components/Navbar/Navbar';
+// import Demo from './pages/DemoPage';
+// import { AccountBox } from './components/AccountBox/index';
+// import Navbar from './components/Navbar/Navbar';
 import API from './utils/API';
 import AuthApi from './utils/AuthApi';
 
 
 function App() {
-
-  const [user, setUser] = useState([]);
   const [auth, setAuth] = useState(false);
+  const [user, setUser] = useState();
+  
 
   useEffect(() => {
-    API.getTab()
+    API.getUser()
     .then(res => {
-      setUser(res.data)
+      console.log(res);
+      // console.log(AuthApi);
+      if(res.data.auth) {
+        setAuth(true);
+      }
     }).catch(err => {
       console.log(err)
     })
-  }, [])
+  }, []);
 
   
     return (
@@ -71,13 +71,13 @@ function App() {
 };
 
 const RouteRegistration = ({ component: Component, ...rest }) => {
-  const authApi = React.useContext(AuthApi);
+  const authApi = useContext(AuthApi);
   return <Route {...rest} render={props => 
     !authApi.auth ? <Component {...props} /> : <Redirect to='/profile' />} />;
 };
 
 const RouteProtected = ({ component: Component, ...rest }) => {
-  const authApi = React.useContext(AuthApi);
+  const authApi = useContext(AuthApi);
   return <Route {...rest} render={props => authApi.auth ? <Component {...props} /> : <Redirect to='/' />} />;
 };
 

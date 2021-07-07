@@ -1,23 +1,55 @@
-import React, {useState, useEffect } from 'react';
-import Cards from '../components/Cards/Cards';
-import Carousel from '../components/Carousel/CarouselSlides';
+import React, {useState, useEffect, useContext } from 'react';
+// import Cards from '../components/Cards/Cards';
+// import Carousel from '../components/Carousel/CarouselSlides';
 import CoverPhoto from '../components/CoverPhoto/CoverPhoto';
 import ProfileImage from '../components/ProfileImage/ProfileImage';
-import { SliderData } from '../components/Demo';
-import Navbar from '../components/Navbar/Navbar'
-import Header from '../components/Header/Header';
+// import { SliderData } from '../components/Demo';
+// import Navbar from '../components/Navbar/Navbar'
+// import Header from '../components/Header/Header';
 import Banner from '../components/Banner/Banner';
-import CarouselSlides from '../components/Carousel/CarouselSlides'
+// import CarouselSlides from '../components/Carousel/CarouselSlides'
+import API from '../utils/API';
+import AuthApi from '../utils/AuthApi';
 
 
 export default function Profile(props) {
     console.log(props);
-    const [cardInfo, setCardInfo] = useState([]);
+    const [user, setUser] = useState([]);
+    const authApi = useContext(AuthApi);
+    // const [cardInfo, setCardInfo] = useState([]);
     const [coverImage, setCoverImage] = useState([]);
     const [profileImage, setProfileImage] = useState([]);
-    const [userInfo, setUserInfo] = useState([])
+    // const [userInfo, setUserInfo] = useState([])
+    
+
+    const handleLogout = () => {
+        API.logout()
+            .then(() => {
+                authApi.setAuth(false);
+            })
+            .catch(err => console.log(err));
+    };
+
+    useEffect(() => {
+        API.userInfo()
+            .then(res => {
+                if(res) {
+                    console.log(res.data);
+                    const data = res.data;
+                    setUser(data);
+                    
+                    
+                } 
+                // return data;
+            })
+            .catch(err => console.log(err));
+    }, []);
 
 
+    console.log('data', user);
+    // useEffect(() => {
+    //     setUser(data);
+    // }, [data])
     // useEffect (() => {
 //     {
 //      name: 'Cassandra',
@@ -85,7 +117,10 @@ export default function Profile(props) {
                 return <Cards key={card.id} name={card.name}
                 title={card.title}
                 description={card.description}/>})} */} 
-                <Banner />
+                <Banner username={user.username}/>
+                <button onClick={handleLogout}>
+                    Logout
+                </button>
                  {/* <Cards/> */}
 
                 {/* <CarouselSlides slides={SliderData}/> */}
