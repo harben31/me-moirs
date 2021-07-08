@@ -43,7 +43,7 @@ export default {
     },
 
     getTab: function(id) {
-        return axios.get(    '/api/tabs' + id)
+        return axios.get('/api/tabs' + id)
     },
 
     deleteTab: function(id) {
@@ -51,7 +51,7 @@ export default {
     },
 
     saveTab: function(userData) {
-        return axios.put('/api/tabs', userData)
+        return axios.post('/api/tabs', userData)
     },
 
 

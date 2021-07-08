@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState, useContext } from 'react';
+import { Marginer } from '../AccountBox/marginer';
 import { 
     BoxContainer, 
     FormContainer, 
@@ -6,25 +7,29 @@ import {
     SubmitButton, 
     MutedLink, 
     BoldLink 
-} from './common';
+} from '../AccountBox/common';
 
-const [title, setTitle] = useState('');
-const [description, setDescription] = useState('');
+import API from '../../utils/API';
+// import AuthApi from '../../utils/AuthApi';
 
-const CreateTab = (e) => {
-    e.preventDefault();
-}
 
-export default function TabForm() {
+export default function TabForm(props) {
+
+
+// const authApi = useContext(AuthApi);
+
     return (
-        <div>
+        <div style={{
+            marginTop:'200px'
+        }}>
+
             <BoxContainer>
-                <FormContainer onSubmit={CreateTab}>
+                <FormContainer onSubmit={props.CreateTab}>
                     <Input 
                     type='text' 
                     placeholder='Tab Name'
                     onChange={(e) => {
-                        setTitle(e.target.value);
+                        props.setTabTitle(e.target.value);
                     }}
                     required
                     />
@@ -32,7 +37,7 @@ export default function TabForm() {
                     type='text' 
                     placeholder='Description'
                     onChange={(e) => {
-                        setDescription(e.target.value);
+                        props.setTabDescription(e.target.value);
                     }}
                     required
                     />
@@ -42,6 +47,9 @@ export default function TabForm() {
                 </SubmitButton>
                 </FormContainer>
             </BoxContainer>
+
+            Testing
+            
         </div>
     )
 }

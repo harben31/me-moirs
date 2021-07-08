@@ -58,7 +58,7 @@ function App() {
                 {/* <Navbar/>  */}
                 {/* <Home/>  */}
                 <RouteProtected exact path='/profile' component={Profile}/>
-                <TabForm/>
+                {/* <TabForm/> */}
                 <RouteProtected exact path='/newtab' component={NewTab}/>
 
                 {/* <Card/>   */}
