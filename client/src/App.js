@@ -20,7 +20,11 @@ import Profile from './pages/Profile';
 // import { AccountBox } from './components/AccountBox/index';
 // import Navbar from './components/Navbar/Navbar';
 import API from './utils/API';
+
+import NewTab from './pages/NewTab';
+
 import AuthApi from './utils/AuthApi';
+
 
 
 function App() {
@@ -51,7 +55,9 @@ function App() {
                 
                 {/* <Navbar/>  */}
                 {/* <Home/>  */}
-                <RouteProtected exact path='/profile'component={Profile}/>
+                <RouteProtected exact path='/profile' component={Profile}/>
+                <RouteProtected exact path='/newtab' component={NewTab}/>
+
                 {/* <Card/>   */}
                 {/* {user.map((name) => {
                   return (

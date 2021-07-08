@@ -7,9 +7,13 @@ import ProfileImage from '../components/ProfileImage/ProfileImage';
 // import Navbar from '../components/Navbar/Navbar'
 // import Header from '../components/Header/Header';
 import Banner from '../components/Banner/Banner';
+
+import CarouselSlides from '../components/Carousel/CarouselSlides'
+
 // import CarouselSlides from '../components/Carousel/CarouselSlides'
 import API from '../utils/API';
 import AuthApi from '../utils/AuthApi';
+
 
 
 export default function Profile(props) {
