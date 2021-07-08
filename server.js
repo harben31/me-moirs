@@ -16,12 +16,12 @@ app.use(session({
   secret: 'goober',
   resave: false,
   saveUninitialized: true,
-  cookie: { secure: false}
+  cookie: { secure: false }
 }))
 // Serve up static assets (usually on heroku)
-// if (process.env.NODE_ENV === "production") {
-//   app.use(express.static("client/build"));
-// }
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build"));
+}
 
 // Define API routes here
 app.use(routes);
@@ -34,10 +34,11 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/project_three_d
 });
 
 app.get("*", (req, res) => {
+  // res.sendFile(path.join(__dirname, "client", "build", "index.html"));
   res.sendFile(path.join(__dirname, "./client/build/index.html"));
 });
 
-// app.get('/', (req, res) => {
+// app.get('*', (req, res) => {
 //   res.json({ message: 'API working'})
 // });
 
