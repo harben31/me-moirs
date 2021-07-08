@@ -2,7 +2,7 @@ import axios from 'axios';
 
 
 export default {
-
+    //--------------Users
     // getUser: function() {
     //     return axios.get('/api/users/me')
     // },
@@ -27,17 +27,16 @@ export default {
     //     return axios.get('/api/users' + id)
     // },
 
-
     deleteUser: function(id) {
         return axios.delete('/api/users/' + id)
     },
+
 
     saveUser: function(userData) {
         return axios.post('/api/users/signup', userData)
     },
 
-
-
+   //--------------Tabs
     getTabs: function() {
         return axios.get('/api/tabs')
     },
@@ -55,13 +54,13 @@ export default {
     },
 
 
-
+    //--------------Posts
     getPosts: function() {
         return axios.get('/api/posts')
     },
 
     getPost: function(id) {
-        return axios.get( '/api/posts' + id)
+        return axios.get('/api/posts' + id)
     },
 
     deletePost: function(id) {
@@ -69,7 +68,7 @@ export default {
     },
 
     savePost: function(userData) {
-        return axios.put('/api/posts', userData)
+        return axios.post('/api/posts', userData)
     },
 
 }
