@@ -8,19 +8,19 @@ export default {
     // },
 
     userLogin: function(loginInfo){
-        console.log(loginInfo);
        return axios.post('/api/users/login', loginInfo)
     },
 
-    getUser: async function(loginInfo) {
-        let resData = await this.userLogin(loginInfo);
-        let config = {
-            headers: {
-                token: resData.data.token
-            }
-        }
-        console.log(resData.data.token);
-        return axios.get('/api/users/me', config)
+    getUser: async function() {
+        return axios.get('/api/users/me')
+    },
+
+    logout: function() {
+        return axios.get('/api/users/logout')
+    },
+
+    userInfo: function() {
+        return axios.get('/api/users/info')
     },
 
     // getUser: function(id) {

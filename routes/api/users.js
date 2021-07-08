@@ -2,9 +2,8 @@ const router = require('express').Router();
 const userController = require('../../controllers/userControllers')
 const { body, validationResult } = require('express-validator');
 const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
+// const jwt = require('jsonwebtoken');
 const db = require('../../models');
-const auth = require('../../utils/auth');
 
 router.route('/signup').post(
     [
@@ -20,7 +19,8 @@ router.route('/signup').post(
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
             return res.status(400).json({
-                errors: errors.array()
+                errors: errors.array(),
+                auth: false
             });
         }
         let {
@@ -28,13 +28,31 @@ router.route('/signup').post(
             email,
             password
         } = req.body;
-
-        // const oldPassword = password;
         
         bcrypt.genSalt(10, await function (err, salt) {
-            bcrypt.hash(password, salt, function(err, hash) {
+            bcrypt.hash(password, salt, async function(err, hash) {
                 password = hash;
-                console.log('line 37:', password);
+                console.log('line 35 bbcrypt', password);
+                console.log('line 35 bbcrypt', username);
+                //moved this fn into this
+                await db.User.create({
+                    username: username,
+                    password: password,
+                    email: email
+                })
+                .then((userData) => {
+                    console.log(userData, 'line 57 then usercraete');
+                    const sessUser = userData._id ;
+                    req.session.user = sessUser;
+                    res.json({
+                        message: 'Successfully created!',
+                        auth: true,
+                        sessUser
+                    })})
+                .catch(err => {
+                    console.log(err.message);
+                    res.status(500).send('Error in saving!');
+                })
                 return password;
             })
         })
@@ -45,42 +63,14 @@ router.route('/signup').post(
     
         if (user) {
             return res.status(400).json({
-                msg: 'User Already Exists'
+                msg: 'User Already Exists',
+                auth: false
             });
-        }   
-       
-        await db.User.create({
-            username: username,
-            password: password,
-            email: email
-        })
-        .then(user => {
-            const payload = {
-                user: {
-                    id: user.id,
-                    // password: oldPassword
-                }
-            };
-            console.log('payload', payload);
-            jwt.sign(
-                payload,
-                'secret', {
-                    expiresIn: 10000
-                },
-                (err, token) => {
-                    if (err) throw err;
-                    console.log(token);
-                    res.status(200).json({
-                        token
-                    });
-                    
-                }
-            )
-            res.json(user)})
-        .catch(err => {
-            console.log(err.message);
-            res.status(500).send('Error in Saving');
-        })
+        }  
+        
+        //async damn you!!!!
+        console.log(password, 'password!!!!!!');
+        
     },
 );
 
@@ -93,6 +83,7 @@ router.route('/login').post(
         })
     ],
     async (req, res) => {
+        console.log('Gotcha');
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
             return res.status(400).json({
@@ -122,7 +113,7 @@ router.route('/login').post(
         .then((res) => {
             isMatch = res;
             console.log('inside', isMatch);
-            res.json(res)})
+        })
         .catch(err => console.log(err));
 
         console.log('before if', isMatch)
@@ -131,39 +122,62 @@ router.route('/login').post(
             return res.status(400).json({ message: 'Incorrect password!'})
         };
         if (isMatch) {
-                console.log(user.id);
-                const payload = { 
-                    user: {
-                        id: user.id
-                    }
-                };
-                console.log(payload);
-                jwt.sign(
-                    payload,
-                    'secret',
-                    {
-                        expiresIn: 10000
-                    },
-                    (err, token) => {
-                        if (err) throw err;
-                        res.status(200).json({
-                            token
-                        });
-                    }
-                );
-            }
+            console.log('Heya');
+            const sessUser = user._id;
+            req.session.user = sessUser;
+            res.json({
+                message: 'You are successfully logged in!',
+                auth: true, 
+                sessUser
+            })
+        } else {
+            res.json({
+                message: 'Unable to log in!',
+                auth: false
+            })
+        }
     }
 );
 
 router.route('/me')
-    .get(auth, async (req, res) => {
-        try {
-            const user = await db.User.findById(req.user.id);
-            res.json(user);
-        } catch (err) {
-            res.send({ message: 'Error in fetching User'});
-        }
+    .get((req, res) => {
+        // console.log('session', req.session.user);
+            if(req.session.user) {
+                // console.log('User session', req.session.user);
+                // const sessUser = req.session.user;
+                return res.json({
+                    message: 'You are signed in!',
+                    auth:true
+                });
+            } else {
+                return res.json({
+                    message: 'You are not logged in!',
+                    auth: false
+                })
+            }
     });
+
+router.route('/info')
+    .get((req, res) => {
+        db.User.findById(req.session.user)
+            .populate({
+                path: 'shortTabInfo',
+                select: {title: 1}
+            })
+            .then(dbModel => res.json(dbModel))
+            .catch(err => console.log(err));
+        // db.User.findOne(req.session.user)
+        //     .then(dbModel => res.json(dbModel))
+        //     .catch(err => res.status(422).json(err));
+    });
+
+router.route('/logout')
+.get((req, res) => {
+    req.session.destroy();
+    return res.json({
+        auth: false
+    })
+})
 
 router.route('/:id')
     .get(userController.findUserById)
