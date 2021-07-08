@@ -7,13 +7,17 @@ import ProfileImage from '../components/ProfileImage/ProfileImage';
 // import Navbar from '../components/Navbar/Navbar'
 // import Header from '../components/Header/Header';
 import Banner from '../components/Banner/Banner';
+
+import CarouselSlides from '../components/Carousel/CarouselSlides'
+
 // import CarouselSlides from '../components/Carousel/CarouselSlides'
 import API from '../utils/API';
 import AuthApi from '../utils/AuthApi';
 
 
+
 export default function Profile(props) {
-    console.log(props);
+    // console.log(props);
     const [user, setUser] = useState([]);
     const authApi = useContext(AuthApi);
     // const [cardInfo, setCardInfo] = useState([]);
@@ -34,7 +38,6 @@ export default function Profile(props) {
         API.userInfo()
             .then(res => {
                 if(res) {
-                    console.log(res.data);
                     const data = res.data;
                     setUser(data);
                     
@@ -46,7 +49,6 @@ export default function Profile(props) {
     }, []);
 
 
-    console.log('data', user);
     // useEffect(() => {
     //     setUser(data);
     // }, [data])
@@ -105,7 +107,7 @@ export default function Profile(props) {
         )
 
     }, [])
-   
+    
     return (
        
           <div>

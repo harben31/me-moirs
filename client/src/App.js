@@ -20,7 +20,13 @@ import Profile from './pages/Profile';
 // import { AccountBox } from './components/AccountBox/index';
 // import Navbar from './components/Navbar/Navbar';
 import API from './utils/API';
+
+import NewTab from './pages/NewTab';
+
 import AuthApi from './utils/AuthApi';
+
+import TabForm from './components/TabForm/TabForm';
+
 
 
 function App() {
@@ -31,8 +37,6 @@ function App() {
   useEffect(() => {
     API.getUser()
     .then(res => {
-      console.log(res);
-      // console.log(AuthApi);
       if(res.data.auth) {
         setAuth(true);
       }
@@ -53,7 +57,10 @@ function App() {
                 
                 {/* <Navbar/>  */}
                 {/* <Home/>  */}
-                <RouteProtected exact path='/profile'component={Profile}/>
+                <RouteProtected exact path='/profile' component={Profile}/>
+                <TabForm/>
+                <RouteProtected exact path='/newtab' component={NewTab}/>
+
                 {/* <Card/>   */}
                 {/* {user.map((name) => {
                   return (

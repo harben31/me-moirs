@@ -6,7 +6,6 @@ module.exports = {
         db.Post
             .create(req.body)
             .then(async dbModel => {
-                console.log(req.body.tab_id);
                 await db.Tab
                     .findOneAndUpdate({_id: req.body.tab_id},
                         {$push: {posts: dbModel._id}})
@@ -18,7 +17,6 @@ module.exports = {
             });
     },
     findPosts: function(req, res) {
-        console.log('get tabs postws');
         let idToSearch = mongoose.Types.ObjectId(req.body.id);
         db.Post
             .find({tab_id: req.params.id})
@@ -53,7 +51,6 @@ module.exports = {
         db.Post
             .findById(req.params.id)
             .then(async dbModel => {
-                console.log(dbModel)
                 await db.Tab
                     .findOneAndUpdate({_id: dbModel.tab_id},
                         {$pull: {posts: dbModel.id}})
