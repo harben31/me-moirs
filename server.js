@@ -33,13 +33,13 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/project_three_d
   useNewUrlParser: true
 });
 
-// app.get("*", (req, res) => {
-//   res.sendFile(path.join(__dirname, "./client/build/index.html"));
-// });
-
-app.get('/', (req, res) => {
-  res.json({ message: 'API working'})
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "./client/build/index.html"));
 });
+
+// app.get('/', (req, res) => {
+//   res.json({ message: 'API working'})
+// });
 
 app.listen(PORT, () => {
   console.log(`🌎 ==> API server now on port ${PORT}!`);
