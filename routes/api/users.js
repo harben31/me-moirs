@@ -47,7 +47,7 @@ router.route('/signup').post(
                 auth: false
             });
         }  
-       
+       console.log(password," Hikkk");
         await db.User.create({
             username: username,
             password: password,
