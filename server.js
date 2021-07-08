@@ -33,7 +33,7 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/project_three_d
   useNewUrlParser: true
 });
 
-app.get("*", (req, res) => {
+app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "./client/build/index.html"));
 });
 
