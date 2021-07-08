@@ -61,7 +61,7 @@ export default {
     },
 
     getPost: function(id) {
-        return axios.get('/api/posts' + id)
+        return axios.get( '/api/posts' + id)
     },
 
     deletePost: function(id) {
