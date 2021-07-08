@@ -13,7 +13,7 @@ import AuthApi from '../utils/AuthApi';
 
 
 export default function Profile(props) {
-    console.log(props);
+    // console.log(props);
     const [user, setUser] = useState([]);
     const authApi = useContext(AuthApi);
     // const [cardInfo, setCardInfo] = useState([]);

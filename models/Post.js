@@ -36,6 +36,7 @@ const postSchema = new Schema({
 
 postSchema.pre('remove', async function(next) {
 try {
+    //model.remove vs query.remove
     await Comment.remove({
         '_id': {
             $in: this.comments
