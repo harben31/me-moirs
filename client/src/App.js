@@ -24,6 +24,7 @@ import Demo from './pages/DemoPage';
 import { AccountBox } from './components/AccountBox/index';
 import Navbar from './components/Navbar/Navbar';
 import API from './utils/API';
+import NewTab from './pages/NewTab';
 
 
 function App() {
@@ -45,7 +46,7 @@ function App() {
             <div className='App'>
               <Header/>
               <Route exact path='/' component= {LoginSignup}/>
-             
+              <Route exact path='/newtab' component={NewTab}/>
     
                
               {/* <Navbar/>  */}

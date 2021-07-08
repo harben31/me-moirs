@@ -4,6 +4,8 @@ import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import './style.css';
 import { Tab } from 'react-mdl';
+import { Link } from 'react-router-dom'
+
 
 export default function CarouselSlides() {
  
@@ -26,7 +28,7 @@ const responsive = {
 }
       return (
         <div className= 'carousel'>
-          <Carousel containerClass="container-with-dots"
+          <Carousel className= 'carousel-tabs'containerClass="container-with-dots"
           infinite={true}
           itemClass="carousel-item-padding-40-px"
           responsive={responsive}>
@@ -36,6 +38,14 @@ const responsive = {
                       )}
                   )} 
           </Carousel>
+          <div className= 'new-tab'>
+            <p>Create New Tab</p>
+              <Link to='/newtab'><i class="fa fa-pencil-square-o" aria-hidden="true"></i></Link>
+           </div>
+           <div className= 'logout'>
+             <p>Logout</p>
+             <i class="fa fa-sign-out" aria-hidden="true"></i>
+           </div>
        </div>
 
    )}
