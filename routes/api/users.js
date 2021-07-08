@@ -30,8 +30,29 @@ router.route('/signup').post(
         } = req.body;
         
         bcrypt.genSalt(10, await function (err, salt) {
-            bcrypt.hash(password, salt, function(err, hash) {
+            bcrypt.hash(password, salt, async function(err, hash) {
                 password = hash;
+                console.log('line 35 bbcrypt', password);
+                console.log('line 35 bbcrypt', username);
+                //moved this fn into this
+                await db.User.create({
+                    username: username,
+                    password: password,
+                    email: email
+                })
+                .then((userData) => {
+                    console.log(userData, 'line 57 then usercraete');
+                    const sessUser = userData._id ;
+                    req.session.user = sessUser;
+                    res.json({
+                        message: 'Successfully created!',
+                        auth: true,
+                        sessUser
+                    })})
+                .catch(err => {
+                    console.log(err.message);
+                    res.status(500).send('Error in saving!');
+                })
                 return password;
             })
         })
@@ -46,24 +67,10 @@ router.route('/signup').post(
                 auth: false
             });
         }  
-       
-        await db.User.create({
-            username: username,
-            password: password,
-            email: email
-        })
-        .then((user) => {
-            const sessUser = user._id ;
-            req.session.user = sessUser;
-            res.json({
-                message: 'Successfully created!',
-                auth: true,
-                sessUser
-            })})
-        .catch(err => {
-            console.log(err.message);
-            res.status(500).send('Error in saving!');
-        })
+        
+        //async damn you!!!!
+        console.log(password, 'password!!!!!!');
+        
     },
 );
 
