@@ -10,8 +10,8 @@ import {
 // import Card from './components/Cards/Cards'
 // import DemoPage from './pages/DemoPage';
  
-import Header from './components/header/Header';
-import Footer from './components/footer/Footer';
+import Header from './components/Header/Header';
+import Footer from './components/Footer/Footer';
 import LoginSignup from './pages/LoginSignup';
 
 import "./App.css";
