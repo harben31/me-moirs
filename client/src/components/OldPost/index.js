@@ -1,9 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Likes from '../Likes';
 import CommentButton from '../CommentButton';
+import CommentBox from '../CommentBox';
 import './style.css';
 
 export default function OldPost() {
+    const [commentActivated, setCommentActivated] = useState(false);
+
+    const CreateComment = () => {
+        setCommentActivated(true);
+    }
 
     return (
         <div className='oldPost'>
@@ -19,7 +25,16 @@ export default function OldPost() {
                     Deadlights jack lad schooner scallywag dance the hempen jig carouser broadside cable strike colors. Bring a spring upon her cable holystone blow the man down spanker Shiver me timbers to go on account lookout wherry doubloon chase. Belay yo-ho-ho keelhaul squiffy black spot yardarm spyglass sheet transom heave to.
                 </p>
                 <Likes />
-                <CommentButton />
+                <CommentButton createComment={CreateComment} />
+                {commentActivated ? 
+                    (
+                        <div>
+                            <CommentBox />
+                        </div>
+                    ) : 
+                        null
+                }
+                
             </div>
         </div>
     )

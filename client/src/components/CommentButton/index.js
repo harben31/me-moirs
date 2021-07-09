@@ -1,14 +1,10 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './style.css';
 
-class CommentButton extends Component {
-    render() {
-        return (
-            <span class="chat material-icons">
-                chat
-            </span>     
-        )
-    }
+export default function CommentButton({createComment}) {
+    return (
+        <span class="chat material-icons" onClick={createComment}>
+            add_comment
+        </span>     
+    )
 };
-
-export default CommentButton;

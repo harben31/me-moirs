@@ -45,18 +45,18 @@ import TabForm from '../components/TabForm/TabForm';
                         </aside>
                         <section className='postSection'>
                             {/* <PostForm /> */}
-                            {tabInfo.posts.length ? (tabInfo.posts.map((post) => {
-                                return (
+                            {/* {tabInfo.posts.length ? (tabInfo.posts.map((post) => {
+                                return ( */}
                                     <OldPost 
-                                        key={post.id}
-                                        {...post}    
+                                        // key={post.id}
+                                        // {...post}    
                                     />
-                                )
+                                {/* )
                                 
                             }))
                                  : 
                                 <h4>Create Your First Post Above!</h4>
-                            }
+                            } */}
                         </section> 
                     </div>) : (<TabForm 
                     CreateTab={CreateTab}
