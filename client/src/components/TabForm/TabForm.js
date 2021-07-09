@@ -51,7 +51,8 @@ const BackDrop = styled.div`
 `;
 const HeaderContainer = styled.div`
     // background-color: black;
-    left: 28px;
+    left: 15px;
+    padding: 10px;
     transform: rotate(-127deg);
     width: 100%;
     display: flex;
@@ -71,7 +72,7 @@ const HeaderText = styled.h2`
 const SmallText = styled.h5`
     color: #fff;
     font-weight: 500;
-    font-size: 13px;
+    font-size: 16px;
     z-index: 1000;
     margin: 0;
     margin-top: 7px;
@@ -111,6 +112,10 @@ const Input = styled.input`
     }
 `;
 
+const Span = styled.span`
+    color:red;
+`;
+
 
 export default function TabForm(props) {
     return (
@@ -120,7 +125,7 @@ export default function TabForm(props) {
                     <BackDrop>
                     <HeaderContainer>
                     <HeaderText>Create Your Tab!</HeaderText>
-                    <SmallText>Add Title & Description</SmallText>
+                    <SmallText>Give Your Tab <Span>Title</Span> & Description</SmallText>
                     </HeaderContainer>
                     </BackDrop>
                 </TopContainer>
