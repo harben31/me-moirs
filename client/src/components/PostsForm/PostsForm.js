@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 // import './style.css';
-
+import MovingText from 'react-moving-text'
 import { init } from 'ityped'
 
 import { Marginer } from '../AccountBox/marginer';
@@ -25,10 +25,20 @@ const BoxContainer = styled.div`
 const FormContainer = styled.form`
     width: 90%;
     margin: auto;
-    top:40px;
+    // top:30px;
     display: flex;
     flex-direction: column;
     // box-shadow: 0px 0px 2.5px rgba(15, 15, 15, 0.19);
+`;
+
+const HeaderText = styled.h1`
+    font-size: 27px;
+    font-weight: 600;
+    text-align: center;
+    // line-height: 1.24;
+    color: rgb(42, 157, 143);
+    // z-index: 0;
+    margin: 10px;
 `;
 const Input = styled.input`
     width: 100%;
@@ -85,6 +95,16 @@ export default function PostsForm() {
     return (
         <BoxContainer>
             <FormContainer>
+                <MovingText
+                    type="flip"
+                    duration="2000ms"
+                    delay="0s"
+                    direction="normal"
+                    timing="ease"
+                    iteration="infinite"
+                    fillMode="none">
+                    <HeaderText>Add New Post!</HeaderText>
+                </MovingText>
                 <Input 
                     type='text' 
                     placeholder='Give your Post title!'
