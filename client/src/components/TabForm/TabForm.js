@@ -1,15 +1,11 @@
 import React, { useState, useContext, useEffect, useRef } from 'react';
 import styled from 'styled-components';
+import './style.css';
 
 import { init } from 'ityped'
 
-
 import { Marginer } from '../AccountBox/marginer';
-import {  
-    SubmitButton, 
-    MutedLink, 
-    BoldLink 
-} from '../AccountBox/common';
+import { SubmitButton } from '../AccountBox/common';
 
 const BoxContainer = styled.div`
     width: 380px;
@@ -119,7 +115,7 @@ const Span = styled.span`
     color:#ffb305;
     font-size: 20px;
     font-weight: 600;
-
+    
 `;
 
 
