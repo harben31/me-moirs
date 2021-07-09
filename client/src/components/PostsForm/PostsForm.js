@@ -1,8 +1,7 @@
-import React, { useState, useContext, useEffect, useRef } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
-// import './style.css';
-import MovingText from 'react-moving-text'
-import { init } from 'ityped'
+import MovingText from 'react-moving-text';
+import API from '../../utils/API'
 
 import { Marginer } from '../AccountBox/marginer';
 import { SubmitButton } from '../AccountBox/common';
@@ -10,7 +9,7 @@ import { SubmitButton } from '../AccountBox/common';
 const BoxContainer = styled.div`
     width:100%;
     min-height: 350px;
-    bottom: 12px;
+    bottom: 15px;
     margin: auto;
     display: flex;
     flex-direction: column;
@@ -92,9 +91,30 @@ const Textarea = styled.textarea`
 `;
 
 export default function PostsForm() {
+
+    const [postTitle, setPostTitle] = useState('');
+    const [postContent, setPostContent] = useState('');
+    const [postInfo, setPostInfo] = useState();
+
+    const CreatePost = (e) => {
+        e.preventDefault();
+        API.savePost({
+            title: postTitle,
+            content: postContent,
+        })
+        .then((res) => {
+            console.log(res);
+            setPostInfo(res.data)
+        })
+        .catch(err => {
+            console.log(err)
+        })
+    };
+
+
     return (
         <BoxContainer>
-            <FormContainer>
+            <FormContainer onSubmit={CreatePost}>
                 <MovingText
                     type="flip"
                     duration="2000ms"
@@ -109,11 +129,17 @@ export default function PostsForm() {
                     type='text' 
                     placeholder='Give your Post title!'
                     required
+                    onChange={(e) => {
+                       setPostTitle(e.target.value);
+                    }}
                 />
                 <Textarea
                     type='text' 
                     placeholder='Write Your post here!'
                     required
+                    onChange={(e) => {
+                        setPostContent(e.target.value);
+                    }}
                 />
                 <Marginer direction='vertical' margin={10} />
                 <SubmitButton type='submit'>Post</SubmitButton>
