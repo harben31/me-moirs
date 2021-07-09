@@ -18,3 +18,8 @@
 .oldPostTitle {
     font-size: 40px;
 }
+
+.commentBox {
+    display: flex;
+    flex-direction: row;
+}
