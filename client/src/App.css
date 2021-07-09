@@ -45,9 +45,24 @@
   background: black;
 }
 
-.new-tabs h1 {
-  margin-top: 40%;
-  font-size: 100px;
+.tabBody {
+  display: flex;
+  flex-direction: row;
+}
+
+.description {
+  margin-top: 145px;
+  padding: 20px;
+  width: 30%;
+  text-align: center;
+  box-shadow: 6px 0 4px -4px rgba(0, 0, 0, 0.7);
+  /* font-size: 100px; */
+}
+
+.postSection {
+  margin-top: 160px;
+  padding: 20px;
+  width: 90%;
 }
 
 
