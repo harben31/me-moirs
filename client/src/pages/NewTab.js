@@ -24,7 +24,7 @@ import TabForm from '../components/TabForm/TabForm';
     })
     .then((res) => {
         console.log(res);
-        setTabInfo(res.data)
+        setTabInfo(res.data);
         setShow(!show)
     })
     .catch(err => {
@@ -35,23 +35,37 @@ import TabForm from '../components/TabForm/TabForm';
     return (
         <div className= 'new-tabs'>
             {
-                show ? ( <div className='tabBody'>
-                <aside className='description'>
-                <h5>About {tabInfo.title}</h5>
-                <p>
-                    {tabInfo.description}
-                </p>
-                </aside>
-                <section className='postSection'>
-                {/* <PostForm /> */}
-                <OldPost />
-                </section> </div>) : (<TabForm 
+                show ? ( 
+                    <div className='tabBody'>
+                        <aside className='description'>
+                            <h3>About {tabInfo.title}</h3>
+                            <p>
+                                {tabInfo.description}
+                            </p>
+                        </aside>
+                        <section className='postSection'>
+                            {/* <PostForm /> */}
+                            {tabInfo.posts.length ? (tabInfo.posts.map((post) => {
+                                return (
+                                    <OldPost 
+                                        key={post.id}
+                                        {...post}    
+                                    />
+                                )
+                                
+                            }))
+                                 : 
+                                <h4>Create Your First Post Above!</h4>
+                            }
+                        </section> 
+                    </div>) : (<TabForm 
                     CreateTab={CreateTab}
                     setTabTitle={setTabTitle} 
                     setTabDescription={setTabDescription}
                     show={show}
                     setShow={setShow}
-                />)
+                    />
+                )
             } 
         </div>
     )
