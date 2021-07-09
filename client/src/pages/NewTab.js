@@ -1,4 +1,4 @@
-// import PostForm from '../components/PostForm';
+import PostsForm from '../components/PostsForm/PostsForm';
 import OldPost from '../components/OldPost';
 import React, { useState, useContext } from 'react';
 import API from '../utils/API';
@@ -42,7 +42,7 @@ import TabForm from '../components/TabForm/TabForm';
                 </p>
                 </aside>
                 <section className='postSection'>
-                {/* <PostForm /> */}
+                <PostsForm />
                 <OldPost />
                 </section> </div>) : (<TabForm 
                     CreateTab={CreateTab}
