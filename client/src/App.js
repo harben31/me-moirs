@@ -57,7 +57,7 @@ function App() {
                 
                 {/* <Navbar/>  */}
                 {/* <Home/>  */}
-                <RouteProtected exact path='/profile' component={Profile}/>
+                <RouteProtected exact path='/profile' component={Profile} /*render={(props)=> <Profile setUser={setUser}/>}*//>
                 {/* <TabForm/> */}
                 <RouteProtected exact path='/newtab' component={NewTab}/>
 

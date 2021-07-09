@@ -140,8 +140,8 @@ router.route('/login').post(
             return res.status(400).json({ message: 'Incorrect password!'})
         };
         if (isMatch) {
-            console.log('Heya');
             const sessUser = user._id;
+            console.log('Heya', sessUser);
             req.session.user = sessUser;
             res.json({
                 message: 'You are successfully logged in!',
@@ -161,7 +161,7 @@ router.route('/me')
     .get((req, res) => {
         // console.log('session', req.session.user);
             if(req.session.user) {
-                // console.log('User session', req.session.user);
+                console.log('User session', req.session.user);
                 // const sessUser = req.session.user;
                 return res.json({
                     message: 'You are signed in!',
@@ -182,7 +182,10 @@ router.route('/info')
                 path: 'shortTabInfo',
                 select: {title: 1}
             })
-            .then(dbModel => res.json(dbModel))
+            .then(dbModel => {
+                console.log('routes>users.js', dbModel);
+                res.json(dbModel);
+            })
             .catch(err => console.log(err));
         // db.User.findOne(req.session.user)
         //     .then(dbModel => res.json(dbModel))
