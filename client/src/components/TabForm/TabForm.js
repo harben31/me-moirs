@@ -161,7 +161,7 @@ export default function TabForm(props) {
                     required
                     />
                 <Marginer direction="vertical" margin={10} />
-                <SubmitButton type="submit" onClick={()=>props.setShow(!props.show)}>
+                <SubmitButton type="submit">
                     Create
                 </SubmitButton>
                 </FormContainer>
