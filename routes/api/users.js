@@ -67,6 +67,24 @@ router.route('/signup').post(
                 auth: false
             });
         }  
+    //    console.log(password," Hikkk");
+    //     await db.User.create({
+    //         username: username,
+    //         password: password,
+    //         email: email
+    //     })
+    //     .then((user) => {
+    //         const sessUser = user._id ;
+    //         req.session.user = sessUser;
+    //         res.json({
+    //             message: 'Successfully created!',
+    //             auth: true,
+    //             sessUser
+    //         })})
+    //     .catch(err => {
+    //         console.log(err.message);
+    //         res.status(500).send('Error in saving!');
+    //     })
         
         //async damn you!!!!
         console.log(password, 'password!!!!!!');
