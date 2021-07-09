@@ -25,6 +25,8 @@ import NewTab from './pages/NewTab';
 
 import AuthApi from './utils/AuthApi';
 
+import TabForm from './components/TabForm/TabForm';
+
 
 
 function App() {
@@ -56,6 +58,7 @@ function App() {
                 {/* <Navbar/>  */}
                 {/* <Home/>  */}
                 <RouteProtected exact path='/profile' component={Profile}/>
+                {/* <TabForm/> */}
                 <RouteProtected exact path='/newtab' component={NewTab}/>
 
                 {/* <Card/>   */}
