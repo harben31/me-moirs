@@ -1,5 +1,4 @@
-
-// import PostForm from '../components/PostForm';
+import PostsForm from '../components/PostsForm/PostsForm';
 import OldPost from '../components/OldPost';
 import React, { useState, useContext } from 'react';
 import API from '../utils/API';

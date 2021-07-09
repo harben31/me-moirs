@@ -4,6 +4,7 @@ import CommentButton from '../CommentButton';
 import CommentBox from '../CommentBox';
 import './style.css';
 
+
 export default function OldPost() {
     const [commentActivated, setCommentActivated] = useState(false);
 
