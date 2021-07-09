@@ -160,8 +160,8 @@ export default function TabForm(props) {
                     }}
                     required
                     />
-                <Marginer direction="vertical" margin={10} />
-                <SubmitButton type="submit">
+                <Marginer direction='vertical' margin={10} />
+                <SubmitButton type='submit'>
                     Create
                 </SubmitButton>
                 </FormContainer>

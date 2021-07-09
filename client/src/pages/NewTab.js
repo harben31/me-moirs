@@ -1,4 +1,3 @@
-
 // import PostForm from '../components/PostForm';
 import OldPost from '../components/OldPost';
 import React, { useState, useContext } from 'react';
