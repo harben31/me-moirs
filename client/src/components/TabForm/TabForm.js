@@ -1,5 +1,8 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect, useRef } from 'react';
 import styled from 'styled-components';
+
+import { init } from 'ityped'
+
 
 import { Marginer } from '../AccountBox/marginer';
 import {  
@@ -113,11 +116,26 @@ const Input = styled.input`
 `;
 
 const Span = styled.span`
-    color:red;
+    color:#ffb305;
+    font-size: 20px;
+    font-weight: 600;
+
 `;
 
 
 export default function TabForm(props) {
+    const textRef = useRef();
+
+    useEffect(() => {
+              init(textRef.current, {
+                showCursor: true,
+                backDelay:  1500,
+                backSpeed:60,
+                strings: ['Title', 'Description' ] 
+            })
+        },
+    [])
+
     return (
         <div>
             <BoxContainer>
@@ -125,7 +143,7 @@ export default function TabForm(props) {
                     <BackDrop>
                     <HeaderContainer>
                     <HeaderText>Create Your Tab!</HeaderText>
-                    <SmallText>Give Your Tab <Span>Title</Span> & Description</SmallText>
+                    <SmallText>Give Your Tab <Span ref={textRef}></Span> </SmallText>
                     </HeaderContainer>
                     </BackDrop>
                 </TopContainer>
