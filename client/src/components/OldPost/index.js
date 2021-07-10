@@ -5,10 +5,10 @@ import CommentBox from '../CommentBox';
 import './style.css';
 
 
-export default function OldPost(props, {title, content}) {
+export default function OldPost(props) {
     const [commentActivated, setCommentActivated] = useState(false);
 
-    const CreateComment = (props) => {
+    const CreateComment = () => {
         if(!commentActivated) {
             setCommentActivated(true);
         } else {
@@ -35,6 +35,7 @@ export default function OldPost(props, {title, content}) {
                     (
                         <div>
                             <CommentBox
+                            userId={props.userId}
                             postId={props.postId}
                             username={props.username}/>
                         </div>

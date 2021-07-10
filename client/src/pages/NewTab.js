@@ -34,7 +34,7 @@ import TabForm from '../components/TabForm/TabForm';
             content: postContent,
         })
         .then((res) => {
-            // console.log(res.data);
+            console.log(res.data);
             setPostId(res.data._id);
             setPostInfo(res.data);
             setPostTop(res.data.title);
@@ -89,6 +89,7 @@ import TabForm from '../components/TabForm/TabForm';
                                         title={postTitle}
                                         content={postContent}
                                         username={props.username}
+                                        userId={props.userId}
                                     />
                             ) : (
                                 <h4>Create Your First Post Above!</h4>

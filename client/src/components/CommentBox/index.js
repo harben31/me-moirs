@@ -33,19 +33,21 @@ const Input = styled.input`
 
 export default function CommentBox(props) {
     const [commentContent, setCommentContent] = useState('');
-    console.log(commentContent);
 
     const createComment = (e) => {
         e.preventDefault();
         API.saveComment({
             content: commentContent,
             username: props.username,
-            post_id: props.postId
+            post_id: props.postId,
+            user_id: props.userId
         })
         .then(res => {
             console.log(res);
         })
         .catch(err => console.log(err));
+
+        document.querySelector('#commentInput').value = '';
     }
     return (
         <div className='commentBox'>
@@ -53,6 +55,7 @@ export default function CommentBox(props) {
                 chat
             </span> 
             <Input
+            id='commentInput'
             type='text'
             placeholder='Add a comment...'
             onChange={(e) => setCommentContent(e.target.value)}
