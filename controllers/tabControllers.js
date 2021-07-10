@@ -43,7 +43,7 @@ module.exports = {
     //find any public tab by their 'tag' or category.
     // findTabByTag: function(req, res) {
     //     db.Tab
-    //         .find({}, {user_id: req.params.id})
+    //         .findById(req.params.id)
     //         .then(dbModel => res.json(dbModel))
     //         .catch(err => {
     //             console.log(err);

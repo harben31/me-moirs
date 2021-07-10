@@ -90,31 +90,31 @@ const Textarea = styled.textarea`
     }
 `;
 
-export default function PostsForm() {
+export default function PostsForm({setPostContent, setPostTitle, createPost}) {
 
-    const [postTitle, setPostTitle] = useState('');
-    const [postContent, setPostContent] = useState('');
-    const [postInfo, setPostInfo] = useState();
+    // const [postTitle, setPostTitle] = useState('');
+    // const [postContent, setPostContent] = useState('');
+    // const [postInfo, setPostInfo] = useState();
 
-    const CreatePost = (e) => {
-        e.preventDefault();
-        API.savePost({
-            title: postTitle,
-            content: postContent,
-        })
-        .then((res) => {
-            console.log(res);
-            setPostInfo(res.data)
-        })
-        .catch(err => {
-            console.log(err)
-        })
-    };
+    // const CreatePost = (e) => {
+    //     e.preventDefault();
+    //     API.savePost({
+    //         title: postTitle,
+    //         content: postContent,
+    //     })
+    //     .then((res) => {
+    //         console.log(res);
+    //         setPostInfo(res.data)
+    //     })
+    //     .catch(err => {
+    //         console.log(err)
+    //     })
+    // };
 
 
     return (
         <BoxContainer>
-            <FormContainer onSubmit={CreatePost}>
+            <FormContainer onSubmit={createPost}>
                 <MovingText
                     type="flip"
                     duration="2000ms"

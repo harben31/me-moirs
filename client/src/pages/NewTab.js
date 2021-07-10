@@ -1,19 +1,48 @@
 import PostsForm from '../components/PostsForm/PostsForm';
 import OldPost from '../components/OldPost';
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import API from '../utils/API';
-import AuthApi from '../utils/AuthApi';
-
 import TabForm from '../components/TabForm/TabForm';
 
 
  export default function NewTab(props) {
    
-    const [show, setShow] = useState(false)
+    const [show, setShow] = useState(false);
+    const [tabId, setTabId] = useState('');
     const [tabTitle, setTabTitle] = useState('');
     const [tabDescription, setTabDescription] = useState('');
     const [tabInfo, setTabInfo] = useState();
-    const authApi = useContext(AuthApi);
+    const [postTitle, setPostTitle] = useState('');
+    const [postContent, setPostContent] = useState('');
+    const [postInfo, setPostInfo] = useState();
+    const [postTop, setPostTop] = useState('');
+    const [postBottom, setPostBottom] = useState('');
+
+    // useEffect(() => {
+    //     API.getTab(tabId)
+    //         .then(res => {
+    //             setTabInfo(res.data);
+    //         })
+    //         .catch(err => console.log(err));
+    // }, []);
+
+    const CreatePost = (e) => {
+        e.preventDefault();
+        API.savePost({
+            title: postTitle,
+            content: postContent,
+        })
+        .then((res) => {
+            setTabId(res.data._id)
+            console.log(res.data);
+            setPostInfo(res.data)
+            setPostTop(res.data.title);
+            setPostBottom(res.data.content);
+        })
+        .catch(err => {
+            console.log(err)
+        })
+    };
 
     const CreateTab = (e) => {
         e.preventDefault();
@@ -32,8 +61,6 @@ import TabForm from '../components/TabForm/TabForm';
             console.log(err)
         })
     };
-
-    console.log('props!!!!', props);
     return (
         <div className= 'new-tabs'>
             {
@@ -46,13 +73,20 @@ import TabForm from '../components/TabForm/TabForm';
                             </p>
                         </aside>
                         <section className='postSection'>
-                            {/* <PostForm /> */}
+                            <PostsForm setPostContent={setPostContent} setPostTitle={setPostTitle} createPost={CreatePost} />
                             {/* {tabInfo.posts.length ? (tabInfo.posts.map((post) => {
                                 return ( */}
-                                    <OldPost 
+                            {postTop && postBottom ? (
+                                <OldPost 
                                         // key={post.id}
-                                        // {...post}    
+                                        // {...post}
+                                        title={postTitle}
+                                        content={postContent}    
                                     />
+                            ) : (
+                                <h4>Create Your First Post Above!</h4>
+                            )}
+                                    
                                 {/* )
                                 
                             }))
