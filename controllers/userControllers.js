@@ -39,11 +39,9 @@ module.exports = {
         db.User
             .findOneAndRemove({_id: req.params.id})
             .then(dbModel => {
-                console.log(dbModel, '!!! deleteUSer');
                 dbModel.remove();
             })
             .then(dbModel => {
-                console.log(dbModel)
                 res.json(dbModel);
             })
             .catch(err => {

@@ -43,7 +43,6 @@ postSchema.pre('remove', function(next) {
         },
         })
         .then( dbModel => {
-            console.log(dbModel);
             dbModel.map(comment => {
                 comment.remove()
             })

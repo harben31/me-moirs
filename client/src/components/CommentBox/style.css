@@ -2,5 +2,6 @@ input {
     border-style: hidden;
 }
 span{
+    cursor: pointer;
     padding: 17px 6px;
 }
