@@ -15,6 +15,8 @@ import TabForm from '../components/TabForm/TabForm';
     const [postTitle, setPostTitle] = useState('');
     const [postContent, setPostContent] = useState('');
     const [postInfo, setPostInfo] = useState();
+    const [postTop, setPostTop] = useState('');
+    const [postBottom, setPostBottom] = useState('');
 
     // useEffect(() => {
     //     API.getTab(tabId)
@@ -32,8 +34,10 @@ import TabForm from '../components/TabForm/TabForm';
         })
         .then((res) => {
             setTabId(res.data._id)
-            console.log(res);
+            console.log(res.data);
             setPostInfo(res.data)
+            setPostTop(res.data.title);
+            setPostBottom(res.data.content);
         })
         .catch(err => {
             console.log(err)
@@ -57,8 +61,6 @@ import TabForm from '../components/TabForm/TabForm';
             console.log(err)
         })
     };
-
-    console.log('props!!!!', props);
     return (
         <div className= 'new-tabs'>
             {
@@ -74,7 +76,7 @@ import TabForm from '../components/TabForm/TabForm';
                             <PostsForm setPostContent={setPostContent} setPostTitle={setPostTitle} createPost={CreatePost} />
                             {/* {tabInfo.posts.length ? (tabInfo.posts.map((post) => {
                                 return ( */}
-                            {postTitle && postContent ? (
+                            {postTop && postBottom ? (
                                 <OldPost 
                                         // key={post.id}
                                         // {...post}

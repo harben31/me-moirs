@@ -2,14 +2,29 @@ import React, { Component } from 'react';
 
 class Likes extends Component {
     state = {
-        likes: 0
+        likes: 0,
+        liked: false
     };
 
     addLike = () => {
-        let newCount = this.state.likes + 1;
-        this.setState({
-            likes: newCount
-        });
+        if(!this.state.liked) {
+            this.setState({
+                liked: true
+            });
+            let newCount = this.state.likes + 1;
+            this.setState({
+                likes: newCount
+            });
+        } else {
+            this.setState({
+                liked: false
+            });
+            let newCount = this.state.likes - 1;
+            this.setState({
+                likes: newCount
+            }); 
+        }
+        
     };
 
     render() {

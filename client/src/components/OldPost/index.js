@@ -9,16 +9,20 @@ export default function OldPost({title, content}) {
     const [commentActivated, setCommentActivated] = useState(false);
 
     const CreateComment = () => {
-        setCommentActivated(true);
+        if(!commentActivated) {
+            setCommentActivated(true);
+        } else {
+            setCommentActivated(false);
+        }
     }
 
     return (
         <div className='oldPost'>
             <img className='oldPostImage' src='https://images.unsplash.com/photo-1611162616475-46b635cb6868?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8dGh1bWJuYWlsfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&w=1000&q=80' alt=''/>
             <div className='oldPostContent'>
-                <p>
+                {/* <p>
                     01/21/2023
-                </p>
+                </p> */}
                 <p className='oldPostTitle'>
                     {title}
                 </p>
