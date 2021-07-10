@@ -1,4 +1,35 @@
 
+.slide.active {
+  opacity: 1;
+  transition-duration: 1s;
+  transform: scale(1.08);
+}
+
+
+.navbar {
+  background: black;
+}
+
+.tabBody {
+  display: flex;
+  flex-direction: row;
+}
+
+.description {
+  margin-top: 145px;
+  padding: 20px;
+  width: 30%;
+  text-align: center;
+  box-shadow: 6px 6px 4px -4px rgba(0, 0, 0, 0.7);
+  /* font-size: 100px; */
+}
+
+.postSection {
+  margin-top: 160px;
+  padding: 20px;
+  width: 90%;
+}
+
 
 
 
