@@ -42,7 +42,7 @@ export default function Profile(props) {
                     const data = res.data;
                     console.log('userINfo', data, 'props: ', props)
                     //setting the state (on App.js) to user id
-                    props.setUserState(data._id)
+                    props.setUserState(data._id);
                     setUser(data);
                     
                     

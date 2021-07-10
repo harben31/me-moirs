@@ -49,18 +49,29 @@ const userSchema = new Schema({
     timestamps: true
 });
 
-userSchema.pre('remove', async function(next) {
-    try {
-        await Tab.remove({
-            '_id': {
-                $in: this.shortTabInfo
-            }
-        });
-        next()
-    } catch (err) {
-        console.log(err);
-        next(err);
-    }
+userSchema.pre('remove', function(next) {
+    Tab.find({
+        '_id': {
+            $in: this.shortTabInfo
+        }
+    })
+    .then(dbModel => {
+        dbModel.map(tab => {
+            tab.remove()
+        })
+    })
+    .catch(err => console.log(err));
+    // try {
+    //     await Tab.remove({
+    //         '_id': {
+    //             $in: this.shortTabInfo
+    //         }
+    //     });
+    //     next()
+    // } catch (err) {
+    //     console.log(err);
+    //     next(err);
+    // }
     });
 
 const User = mongoose.model('User', userSchema);
