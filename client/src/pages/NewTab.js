@@ -16,13 +16,13 @@ import TabForm from '../components/TabForm/TabForm';
     const [postContent, setPostContent] = useState('');
     const [postInfo, setPostInfo] = useState();
 
-    useEffect(() => {
-        API.getTab(tabId)
-            .then(res => {
-                setTabInfo(res.data);
-            })
-            .catch(err => console.log(err));
-    }, []);
+    // useEffect(() => {
+    //     API.getTab(tabId)
+    //         .then(res => {
+    //             setTabInfo(res.data);
+    //         })
+    //         .catch(err => console.log(err));
+    // }, []);
 
     const CreatePost = (e) => {
         e.preventDefault();
@@ -50,7 +50,7 @@ import TabForm from '../components/TabForm/TabForm';
         })
         .then((res) => {
         
-            // setTabInfo(res.data);
+            setTabInfo(res.data);
             setShow(!show)
         })
         .catch(err => {
@@ -74,10 +74,17 @@ import TabForm from '../components/TabForm/TabForm';
                             <PostsForm setPostContent={setPostContent} setPostTitle={setPostTitle} createPost={CreatePost} />
                             {/* {tabInfo.posts.length ? (tabInfo.posts.map((post) => {
                                 return ( */}
-                                    <OldPost 
+                            {postTitle && postContent ? (
+                                <OldPost 
                                         // key={post.id}
-                                        // {...post}    
+                                        // {...post}
+                                        title={postTitle}
+                                        content={postContent}    
                                     />
+                            ) : (
+                                <h4>Create Your First Post Above!</h4>
+                            )}
+                                    
                                 {/* )
                                 
                             }))

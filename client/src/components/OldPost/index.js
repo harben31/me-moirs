@@ -5,7 +5,7 @@ import CommentBox from '../CommentBox';
 import './style.css';
 
 
-export default function OldPost() {
+export default function OldPost({title, content}) {
     const [commentActivated, setCommentActivated] = useState(false);
 
     const CreateComment = () => {
@@ -20,10 +20,10 @@ export default function OldPost() {
                     01/21/2023
                 </p>
                 <p className='oldPostTitle'>
-                    Title
+                    {title}
                 </p>
                 <p>
-                    Deadlights jack lad schooner scallywag dance the hempen jig carouser broadside cable strike colors. Bring a spring upon her cable holystone blow the man down spanker Shiver me timbers to go on account lookout wherry doubloon chase. Belay yo-ho-ho keelhaul squiffy black spot yardarm spyglass sheet transom heave to.
+                    {content}
                 </p>
                 <Likes />
                 <CommentButton createComment={CreateComment} />
