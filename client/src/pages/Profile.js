@@ -18,6 +18,7 @@ import AuthApi from '../utils/AuthApi';
 
 export default function Profile(props) {
     // console.log(props);
+    //we have user at app.js do we need both? can we do one at top level?
     const [user, setUser] = useState([]);
     const authApi = useContext(AuthApi);
     // const [cardInfo, setCardInfo] = useState([]);
@@ -39,6 +40,9 @@ export default function Profile(props) {
             .then(res => {
                 if(res) {
                     const data = res.data;
+                    console.log('userINfo', data, 'props: ', props)
+                    //setting the state (on App.js) to user id
+                    props.setUserState(data._id)
                     setUser(data);
                     
                     
