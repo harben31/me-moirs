@@ -34,7 +34,7 @@ module.exports = {
                         {$pull: {shortTabInfo: dbModel.id}})
                 dbModel.remove();
             })
-            .then(deModel => res.json(dbModel))
+            .then(dbModel => res.json(dbModel))
             .catch(err => {
                 console.log(err);
                 res.json(err);

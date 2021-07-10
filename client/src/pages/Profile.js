@@ -9,7 +9,9 @@ import ProfileImage from '../components/ProfileImage/ProfileImage';
 import Banner from '../components/Banner/Banner';
 import API from '../utils/API';
 // import CarouselSlides from '../components/Carousel/CarouselSlides';
+
 // import { SliderData } from '../components/Demo';
+
 import '../App.css'
 
 // import CarouselSlides from '../components/Carousel/CarouselSlides'
@@ -35,7 +37,7 @@ export default function Profile(props) {
                     const data = res.data;
                     console.log('userINfo', data, 'props: ', props)
                     //setting the state (on App.js) to user id
-                    props.setUserState(data._id)
+                    props.setUserState(data._id);
                     setUser(data);
                     console.log(data)
                     

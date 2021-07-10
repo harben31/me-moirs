@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const Comment = require('./Comment');
+const db = require('../models');
 
 //user_id as well?
 const postSchema = new Schema({
@@ -34,19 +35,37 @@ const postSchema = new Schema({
     ]
 });
 
-postSchema.pre('remove', async function(next) {
-try {
-    //model.remove vs query.remove
-    await Comment.remove({
-        '_id': {
+postSchema.pre('remove', function(next) {
+    Comment
+        .find({
+            '_id': {
             $in: this.comments
-        },    
-    });
-    next()
-} catch (err) {
-    console.log(err);
-    next(err);
-}
+        },
+        })
+        .then( dbModel => {
+            console.log(dbModel);
+            dbModel.map(comment => {
+                comment.remove()
+            })
+            next();
+        })
+        .catch(err => console.log(err));
+
+
+
+// try {
+//     //model.remove vs query.remove
+//     let data = await Comment.find({
+//         '_id': {
+//             $in: this.comments
+//         },    
+//     }).remove();
+//     console.log(data)
+    // next()
+// } catch (err) {
+//     console.log(err);
+//     next(err);
+// }
 });
 
 const Post = mongoose.model('Post', postSchema);

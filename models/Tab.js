@@ -31,18 +31,30 @@ const tabSchema = new Schema({
     ]
 });
 
-tabSchema.pre('remove', async function(next) {
-    try {
-        await Post.remove({
-            '_id': {
-                $in: this.posts
-            }
-        });
-        next()
-    } catch (err) {
-        console.log(err);
-        next(err);
-    }
+tabSchema.pre('remove', function(next) {
+    Post.find({
+        '_id': {
+            $in: this.posts
+        }
+    })
+    .then(dbModel => {
+        dbModel.map(post => {
+            post.remove()
+        })
+        next();
+    })
+    .catch(err => console.log(err));
+    // try {
+    //     await Post.remove({
+    //         '_id': {
+    //             $in: this.posts
+    //         }
+    //     });
+    //     next()
+    // } catch (err) {
+    //     console.log(err);
+    //     next(err);
+    // }
     });
 
 const Tab = mongoose.model('Tab', tabSchema);

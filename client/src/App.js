@@ -68,7 +68,9 @@ function App() {
                 <RouteProtected exact path='/profile' component={Profile}/>
                 {/* <TabForm/> */}
                 <RouteProtected exact path='/newtab' component={NewTab} />
+
                 <Footer/>
+
               </div>
           </Router>
         </AuthApi.Provider>

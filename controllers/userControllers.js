@@ -34,5 +34,21 @@ module.exports = {
                 console.log(err);
                 res.status(422).json(err);
             });
+    },
+    deleteUser: function(req, res) {
+        db.User
+            .findOneAndRemove({_id: req.params.id})
+            .then(dbModel => {
+                console.log(dbModel, '!!! deleteUSer');
+                dbModel.remove();
+            })
+            .then(dbModel => {
+                console.log(dbModel)
+                res.json(dbModel);
+            })
+            .catch(err => {
+                console.log(err);
+                res.json(err);
+            });
     }
 };
