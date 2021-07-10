@@ -7,12 +7,13 @@ import ProfileImage from '../components/ProfileImage/ProfileImage';
 // import Navbar from '../components/Navbar/Navbar'
 // import Header from '../components/Header/Header';
 import Banner from '../components/Banner/Banner';
-
-import CarouselSlides from '../components/Carousel/CarouselSlides'
+import API from '../utils/API';
+import CarouselSlides from '../components/Carousel/CarouselSlides';
+import { SliderData } from '../components/Demo';
+import '../App.css'
 
 // import CarouselSlides from '../components/Carousel/CarouselSlides'
-import API from '../utils/API';
-import AuthApi from '../utils/AuthApi';
+
 
 
 
@@ -20,20 +21,12 @@ export default function Profile(props) {
     // console.log(props);
     //we have user at app.js do we need both? can we do one at top level?
     const [user, setUser] = useState([]);
-    const authApi = useContext(AuthApi);
+   
     // const [cardInfo, setCardInfo] = useState([]);
     const [coverImage, setCoverImage] = useState([]);
     const [profileImage, setProfileImage] = useState([]);
-    // const [userInfo, setUserInfo] = useState([])
+   
     
-
-    const handleLogout = () => {
-        API.logout()
-            .then(() => {
-                authApi.setAuth(false);
-            })
-            .catch(err => console.log(err));
-    };
 
     useEffect(() => {
         API.userInfo()
@@ -44,6 +37,7 @@ export default function Profile(props) {
                     //setting the state (on App.js) to user id
                     props.setUserState(data._id);
                     setUser(data);
+                    console.log(data)
                     
                     
                 } 
@@ -53,47 +47,7 @@ export default function Profile(props) {
     }, []);
 
 
-    // useEffect(() => {
-    //     setUser(data);
-    // }, [data])
-    // useEffect (() => {
-//     {
-//      name: 'Cassandra',
-//      title: 'Project 3',
-//      description: 'testing the profile page',
-//     },
-//     {
-//      name: 'Asia',
-//      title: 'Project 3',
-//      description: 'testing the profile page',
-//     },
-//     {
-//      name: 'Marisa',
-//      title: 'Project 3',
-//      description: 'testing the profile page',
-//     },
-//     {
-//       name: 'Jen',
-//       title: 'Project 3',
-//       description: 'testing the profile page',
-//      },
-//      {
-//       name: 'Bill',
-//       title: 'Project 3',
-//       description: 'testing the profile page',
-//      },
-//      {
-//       name: 'Tom',
-//       title: 'Project 3',
-//       description: 'testing the profile page',
-//      },
-//      {
-//       name: 'Jane',
-//       title: 'Project 3',
-//       description: 'testing the profile page. Hoping it works well!',
-//      },
-//    ])
-//   }, []);
+
 
     useEffect(() => {
         setCoverImage(
@@ -117,6 +71,9 @@ export default function Profile(props) {
           <div>
               {/* <Header/>
                 <Navbar /> */}
+                
+                 {/* <CarouselSlides tabs={SliderData}/> */}
+                
                 <CoverPhoto image={coverImage.cover_image}/>
                  <ProfileImage image={profileImage.profile_image}/>
              {/* {cardInfo.map(card => { 
@@ -124,9 +81,6 @@ export default function Profile(props) {
                 title={card.title}
                 description={card.description}/>})} */} 
                 <Banner username={user.username}/>
-                <button onClick={handleLogout}>
-                    Logout
-                </button>
                  {/* <Cards/> */}
 
                 {/* <CarouselSlides slides={SliderData}/> */}
