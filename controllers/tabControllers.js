@@ -17,8 +17,15 @@ module.exports = {
     findAllTabs: function(req, res) {
         //find all of one users tabs. search/sort by user id
         db.Tab
-            .find({user_id: req.params.id})
-            .then(dbModel => res.json(dbModel))
+            .find({_id: req.params.id})
+            .populate({
+                path: 'posts',
+                populate: {path: 'comments'}
+            })
+            .then(dbModel => {
+                console.log(dbModel);
+                res.json(dbModel);
+            })
             .catch(err => {
                 console.log(err);
                 res.status(422).json(err);

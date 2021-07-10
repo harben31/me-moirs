@@ -22,7 +22,7 @@ router.route('/')
     });
 
 router.route('/:id')
-    // .get(tabController.getTabById)
+    .get(tabController.findAllTabs)
     .put(tabController.updateTab)
     .delete(tabController.deleteTab)
 
