@@ -41,15 +41,15 @@ module.exports = {
             })
     },
     //find any public tab by their 'tag' or category.
-    // findTabByTag: function(req, res) {
-    //     db.Tab
-    //         .find({}, {user_id: req.params.id})
-    //         .then(dbModel => res.json(dbModel))
-    //         .catch(err => {
-    //             console.log(err);
-    //             res.status(422).json(err);
-    //         });
-    // }
+    findTabByTag: function(req, res) {
+        db.Tab
+            .find({}, {user_id: req.params.id})
+            .then(dbModel => res.json(dbModel))
+            .catch(err => {
+                console.log(err);
+                res.status(422).json(err);
+            });
+    }
 };
 
 //find update to following tabs
