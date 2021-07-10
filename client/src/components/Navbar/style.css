@@ -1,4 +1,4 @@
-.navbar-menu {
+/* .navbar-menu {
     height: 60px;
     width: 100vw;
     display: flex;
@@ -7,12 +7,63 @@
 
 .navbar-menu h5 {
     margin-left: 2%;
-   /* margin-top: 1%; */
+   margin-top: 1%;
     color: rgb(255, 255, 255);
 }
 
-.category-btn{
+/* .category-btn{
     margin-top: 18px;
     color: rgb(255, 255, 255) ;
+}  */
+
+.carousel {
+    padding:1%;
+    display: flex;
+    justify-content: space-between;
+    /* margin-top: 70px; */
+    background: rgb(0, 0, 0);
 }
 
+.carousel-tabs {
+    width: 50%;
+}
+
+.new-tab {
+    text-align: center;
+}
+
+.new-tab p, .logout p {
+    color: rgb(255, 255, 255);
+}
+
+.new-tab i, .logout i{
+    font-size: 25px;
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+}
+
+
+.logout{
+    margin-right: 2%;
+    text-align: center;
+}
+
+
+.tabs {
+    font-size: 15px;
+    margin-left: 39%;
+    color: rgb(255, 255, 255)
+}
+
+
+@media screen and (max-width: 500px ){
+    
+.new-tab i, .logout i {
+    font-size: 20px;
+}
+
+.new-tab p, .logout p, .tabs{
+    font-size: 10px;
+}
+
+}

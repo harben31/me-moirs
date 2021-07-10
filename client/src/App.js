@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext} from 'react';
 import {
   BrowserRouter as Router,
   Route,
-  Redirect,
+  Redirect, withRouter
 } from "react-router-dom";
 
 // import Home from './pages/Home';
@@ -29,7 +29,7 @@ import TabForm from './components/TabForm/TabForm';
 
 
 
-function App() {
+function App () {
   const [auth, setAuth] = useState(false);
   const [user, setUser] = useState();
   
@@ -50,9 +50,12 @@ function App() {
       <AuthApi.Provider value={{ auth, setAuth }}>
           <Router>
               <div className='App'>
-                <Header/>
+               
+                <Header loggedIn={auth}/>
                 <RouteRegistration exact path='/' component= {LoginSignup}/>
-              
+               
+                  
+               
       
                 
                 {/* <Navbar/>  */}
@@ -61,16 +64,8 @@ function App() {
                 {/* <TabForm/> */}
                 <RouteProtected exact path='/newtab' component={NewTab}/>
 
-                {/* <Card/>   */}
-                {/* {user.map((name) => {
-                  return (
-                    <ul>
-                      <li>{name.title}</li>
-                    </ul> 
-                  )
-                })} */}
-                {/* <DemoPage/> */}
                 <Footer/>
+               
               </div>
           </Router>
         </AuthApi.Provider>

@@ -4,11 +4,11 @@ import './style.css';
 
 
 
-export default function ProfileImage(props) {
+export default function ProfileImage({image}) {
      return (
         <div className= 'wrapper'>
             <div className= 'profile'>
-              <img className= 'profile-image' src={props.image} alt= 'profile image'/>
+              <img className= 'profile-image' src={image} alt= 'profile image'/>
             <div className= 'add-image'>
             <div style={{position: 'relative'}}>
              <IconButton name="more_vert" id="demo-menu-lower-right" />
