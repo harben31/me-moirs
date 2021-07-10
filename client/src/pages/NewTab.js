@@ -1,11 +1,13 @@
 import PostsForm from '../components/PostsForm/PostsForm';
 import OldPost from '../components/OldPost';
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext, useEffect, useParams } from 'react';
 import API from '../utils/API';
 import TabForm from '../components/TabForm/TabForm';
 
 
  export default function NewTab(props) {
+    //  console.log(props);
+    console.log(props.location.state);
    
     const [show, setShow] = useState(false);
     const [tabId, setTabId] = useState('');
