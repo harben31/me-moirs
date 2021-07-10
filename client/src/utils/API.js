@@ -11,12 +11,13 @@ export default {
        return axios.post('/api/users/login', loginInfo)
     },
 
-    getUser: async function() {
-        return axios.get('/api/users/me')
-    },
-
     logout: function() {
         return axios.get('/api/users/logout')
+    },
+
+    //do we need both of these calls? Aren't they doing the same thing?
+    getUser: async function() {
+        return axios.get('/api/users/me')
     },
 
     userInfo: function() {

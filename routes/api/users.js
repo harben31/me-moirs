@@ -164,6 +164,7 @@ router.route('/me')
                 console.log('User session', req.session.user);
                 // const sessUser = req.session.user;
                 return res.json({
+                    user_id: req.session.user,
                     message: 'You are signed in!',
                     auth:true
                 });
