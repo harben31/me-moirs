@@ -75,7 +75,7 @@ function App() {
                 {/* <TabForm/> */}
                 <RouteProtected exact path='/newtab' component={NewTab} />
 
-                <Footer/>
+                {/* <Footer/> */}
                
               </div>
           </Router>
