@@ -24,14 +24,12 @@ import TabForm from '../components/TabForm/TabForm';
 
 
     useEffect(() => {
-    //    await setTabId(props.location.state);
         const Id = props.location.state;
-         API.getTab(Id)
+        API.getTab(Id)
             .then(res => {
                 setTabInfo(res.data);
             })
             .catch(err => console.log(err));
-        console.log(tabInfo);
     }, []);
 
     const CreatePost = (e) => {
@@ -40,49 +38,24 @@ import TabForm from '../components/TabForm/TabForm';
             title: postTitle,
             content: postContent,
         })
-        .then((res) => {
-
-            // setTabId(res.data._id)
-            // console.log(res.data);
-            // setPostInfo(res.data)
-            // setPostTop(res.data.title);
-            // setPostBottom(res.data.content);
-
-        })
         .catch(err => {
             console.log(err)
-        })
+        });
     };
 
-
-    // const CreateTab = (e) => {
-    //     e.preventDefault();
-    //     API.saveTab({
-    //         title: tabTitle,
-    //         description: tabDescription,
-    //         //added this so the id stored in state is passed up as user_id
-    //         user_id: props.user
-    //     })
-    //     .then((res) => {
-        
-    //         setTabInfo(res.data);
-    //         setShow(!show)
-    //     })
-    //     .catch(err => {
-    //         console.log(err)
-    //     })
-    // };
     console.log(tabInfo);
     return (
         <div className= 'new-tabs'>
-            {/* {
-                show ? (  */}
                     <div className='tabBody'>
                         <aside className='description'>
-                            {/* <h3>About {tabInfo.title}</h3>
+                            {tabInfo ? (
+                                <div>
+                                    <h3>About <b>{tabInfo.title}</b></h3>
                             <p>
                                 {tabInfo.description}
-                            </p> */}
+                            </p> 
+                                </div>
+                            ) : null}
                         </aside>
                         <section className='postSection'>
                             <PostsForm
