@@ -20,9 +20,8 @@ import '../App.css'
 
 
 export default function Profile(props) {
-    // console.log(props);
     //we have user at app.js do we need both? can we do one at top level?
-    const [user, setUser] = useState([]);
+    // const [user, setUser] = useState([]);
    
     // const [cardInfo, setCardInfo] = useState([]);
     const [coverImage, setCoverImage] = useState([]);
@@ -35,13 +34,13 @@ export default function Profile(props) {
             .then(res => {
                 if(res) {
                     const data = res.data;
-                    console.log('userINfo', data, 'props: ', props)
-                    //setting the state (on App.js) to user id
-                    props.setUserState(data._id);
-                    setUser(data);
-                    console.log(data)
-                    
-                    
+                    // console.log('userINfo', data, 'props: ', props)
+                    // console.log('testing !!!!!!!!!!!!!!')
+                    // //setting the state (on App.js) to user id
+                    props.setUserId(data._id);
+                    // let userData = {...props.user}
+                    props.setUsername(data.username);
+                    // props.setUser('name');               
                 } 
                 // return data;
             })
@@ -82,7 +81,7 @@ export default function Profile(props) {
                 return <Cards key={card.id} name={card.name}
                 title={card.title}
                 description={card.description}/>})} */} 
-                <Banner username={user.username}/>
+                <Banner username={props.username}/>
                  {/* <Cards/> */}
 
                 {/* <CarouselSlides slides={SliderData}/> */}

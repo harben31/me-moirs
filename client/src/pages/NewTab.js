@@ -16,9 +16,11 @@ import TabForm from '../components/TabForm/TabForm';
     const [tabInfo, setTabInfo] = useState();
     const [postTitle, setPostTitle] = useState('');
     const [postContent, setPostContent] = useState('');
+
     // const [postInfo, setPostInfo] = useState();
     // const [postTop, setPostTop] = useState('');
     // const [postBottom, setPostBottom] = useState('');
+
 
 
     useEffect(() => {
@@ -39,16 +41,19 @@ import TabForm from '../components/TabForm/TabForm';
             content: postContent,
         })
         .then((res) => {
+
             // setTabId(res.data._id)
             // console.log(res.data);
             // setPostInfo(res.data)
             // setPostTop(res.data.title);
             // setPostBottom(res.data.content);
+
         })
         .catch(err => {
             console.log(err)
         })
     };
+
 
     // const CreateTab = (e) => {
     //     e.preventDefault();
@@ -80,8 +85,13 @@ import TabForm from '../components/TabForm/TabForm';
                             </p> */}
                         </aside>
                         <section className='postSection'>
-                            <PostsForm setPostContent={setPostContent} setPostTitle={setPostTitle} createPost={CreatePost} />
+                            <PostsForm
+                            setPostContent={setPostContent}
+                            setPostTitle={setPostTitle}
+                            createPost={CreatePost}
+                            />
                             {/* {tabInfo.posts.length ? (tabInfo.posts.map((post) => {
+
                                 return (
                             {tabInfo.shortTabInfo.length ? (
                                 tabInfo.shortTabInfo.map((post, i) => {
@@ -95,6 +105,7 @@ import TabForm from '../components/TabForm/TabForm';
                                     )
                                 })
                             ) : ( */}
+
                                 <h4>Create Your First Post Above!</h4>
                             {/* )} */}
                                     

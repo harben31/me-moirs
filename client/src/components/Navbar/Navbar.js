@@ -87,7 +87,7 @@ export default function Navbar() {
                </div>
                <div className= 'logout'>
                 <p>Logout</p>
-                    <i class="fa fa-sign-out" aria-hidden="true" onClick={handleLogout}></i>
+                    <i className="fa fa-sign-out" aria-hidden="true" onClick={handleLogout}></i>
                </div>
                </div>)
 )}

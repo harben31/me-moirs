@@ -22,6 +22,9 @@ module.exports = {
                 await db.Post
                     .findOneAndUpdate({_id: req.body.post_id},
                         {$push: {comments: dbModel._id}})
+                await db.User
+                    .findOneAndUpdate({_id: req.body.user_id},
+                        {$push: {comments: dbModel._id}})
                 res.json(dbModel);
             })
             .catch(err => {

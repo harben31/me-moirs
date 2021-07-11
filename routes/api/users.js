@@ -31,8 +31,6 @@ router.route('/signup').post(
         bcrypt.genSalt(10, await function (err, salt) {
             bcrypt.hash(password, salt, async function(err, hash) {
                 password = hash;
-                console.log('line 35 bbcrypt', password);
-                console.log('line 35 bbcrypt', username);
                 //moved this fn into this
                 await db.User.create({
                     username: username,
@@ -40,7 +38,6 @@ router.route('/signup').post(
                     email: email
                 })
                 .then((userData) => {
-                    console.log(userData, 'line 57 then usercraete');
                     const sessUser = userData._id ;
                     req.session.user = sessUser;
                     res.json({
@@ -85,9 +82,6 @@ router.route('/signup').post(
     //         res.status(500).send('Error in saving!');
     //     })
         
-        //async damn you!!!!
-        console.log(password, 'password!!!!!!');
-        
     },
 );
 
@@ -123,24 +117,22 @@ router.route('/login').post(
             });
         }
 
-        console.log('user', user.password);
-        console.log('password', password);
         let isMatch;
         await bcrypt.compare(password, user.password)
         .then((res) => {
             isMatch = res;
-            console.log('inside', isMatch);
+            // console.log('inside', isMatch);
         })
         .catch(err => console.log(err));
 
-        console.log('before if', isMatch)
+        // console.log('before if', isMatch)
         if (!isMatch) {
             console.log('gotcha')
             return res.status(400).json({ message: 'Incorrect password!'})
         };
         if (isMatch) {
             const sessUser = user._id;
-            console.log('Heya', sessUser);
+            // console.log('Heya', sessUser);
             req.session.user = sessUser;
             res.json({
                 message: 'You are successfully logged in!',
@@ -158,10 +150,7 @@ router.route('/login').post(
 
 router.route('/me')
     .get((req, res) => {
-        // console.log('session', req.session.user);
             if(req.session.user) {
-                console.log('User session', req.session.user);
-                // const sessUser = req.session.user;
                 return res.json({
                     user_id: req.session.user,
                     message: 'You are signed in!',
@@ -183,7 +172,6 @@ router.route('/info')
                 select: {title: 1}
             })
             .then(dbModel => {
-                console.log('routes>users.js', dbModel);
                 res.json(dbModel);
             })
             .catch(err => console.log(err));
