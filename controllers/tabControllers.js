@@ -47,15 +47,22 @@ module.exports = {
             })
     },
     //find any public tab by their 'tag' or category.
-    // findTabByTag: function(req, res) {
-    //     db.Tab
-    //         .findById(req.params.id)
-    //         .then(dbModel => res.json(dbModel))
-    //         .catch(err => {
-    //             console.log(err);
-    //             res.status(422).json(err);
-    //         });
-    // }
+    findTabById: function(req, res) {
+        console.log('You hit me!!!!');
+        db.Tab
+            .findById(req.params.id)
+            .populate({ 
+                path: 'posts',
+                populate: {
+                    path: 'comments'
+                }    
+            })
+            .then(dbModel => res.json(dbModel))
+            .catch(err => {
+                console.log(err);
+                res.status(422).json(err);
+            });
+    }
 };
 
 //find update to following tabs
