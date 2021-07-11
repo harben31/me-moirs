@@ -20,7 +20,7 @@ import AuthApi from '../../utils/AuthApi';
 
 export default function LoginForm() {
     // const [redirect, setRedirect] = useState(false);
-    const [user, setUser] = useState();
+    // const [user, setUser] = useState();
     const [emailLogin, setEmailLogin] = useState('');
     const [passwordLogin, setPasswordLogin] = useState('');
 

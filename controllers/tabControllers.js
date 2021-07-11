@@ -23,7 +23,6 @@ module.exports = {
                 populate: {path: 'comments'}
             })
             .then(dbModel => {
-                console.log(dbModel);
                 res.json(dbModel);
             })
             .catch(err => {

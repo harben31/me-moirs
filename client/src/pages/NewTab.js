@@ -15,6 +15,7 @@ import TabForm from '../components/TabForm/TabForm';
     const [postTitle, setPostTitle] = useState('');
     const [postContent, setPostContent] = useState('');
     const [postInfo, setPostInfo] = useState();
+    const [postId, setPostId] = useState();
     const [postTop, setPostTop] = useState('');
     const [postBottom, setPostBottom] = useState('');
 
@@ -33,9 +34,9 @@ import TabForm from '../components/TabForm/TabForm';
             content: postContent,
         })
         .then((res) => {
-            setTabId(res.data._id)
             console.log(res.data);
-            setPostInfo(res.data)
+            setPostId(res.data._id);
+            setPostInfo(res.data);
             setPostTop(res.data.title);
             setPostBottom(res.data.content);
         })
@@ -50,7 +51,7 @@ import TabForm from '../components/TabForm/TabForm';
             title: tabTitle,
             description: tabDescription,
             //added this so the id stored in state is passed up as user_id
-            user_id: props.user
+            user_id: props.userId
         })
         .then((res) => {
         
@@ -73,15 +74,22 @@ import TabForm from '../components/TabForm/TabForm';
                             </p>
                         </aside>
                         <section className='postSection'>
-                            <PostsForm setPostContent={setPostContent} setPostTitle={setPostTitle} createPost={CreatePost} />
+                            <PostsForm
+                            setPostContent={setPostContent}
+                            setPostTitle={setPostTitle}
+                            createPost={CreatePost}
+                            />
                             {/* {tabInfo.posts.length ? (tabInfo.posts.map((post) => {
                                 return ( */}
                             {postTop && postBottom ? (
                                 <OldPost 
                                         // key={post.id}
                                         // {...post}
+                                        postId={postId}
                                         title={postTitle}
-                                        content={postContent}    
+                                        content={postContent}
+                                        username={props.username}
+                                        userId={props.userId}
                                     />
                             ) : (
                                 <h4>Create Your First Post Above!</h4>

@@ -68,22 +68,22 @@ export default function Navbar({tabs}) {
                   
                <div className= 'new-tab'>
                 <p>New Tab</p>
-                    <Link to='/newtab'><i class="fa fa-pencil-square-o" aria-hidden="true"></i></Link>
+                    <Link to='/newtab'><i className="fa fa-pencil-square-o" aria-hidden="true"></i></Link>
                </div>
                <div className= 'logout'>
                 <p>Logout</p>
-                    <i class="fa fa-sign-out" aria-hidden="true" onClick={handleLogout}></i>
+                    <i className="fa fa-sign-out" aria-hidden="true" onClick={handleLogout}></i>
                </div>
                </div>) : ( 
 
                <div className= 'carousel'>
                <div className= 'new-tab'>
                 <p>New Tab</p>
-                    <Link to='/newtab'><i class="fa fa-pencil-square-o" aria-hidden="true"></i></Link>
+                    <Link to='/newtab'><i className="fa fa-pencil-square-o" aria-hidden="true"></i></Link>
                </div>
                <div className= 'logout'>
                 <p>Logout</p>
-                    <i class="fa fa-sign-out" aria-hidden="true" onClick={handleLogout}></i>
+                    <i className="fa fa-sign-out" aria-hidden="true" onClick={handleLogout}></i>
                </div>
                </div>)
 )}

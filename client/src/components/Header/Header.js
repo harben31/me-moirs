@@ -7,15 +7,15 @@ import API from '../../utils/API';
 
 
 export default function Header({loggedIn}) {
-    const [user, setUser] = useState([]);
+    // const [user, setUser] = useState([]);
 
     useEffect(() => {
         API.userInfo()
             .then(res => {
                 if(res) {
                     const data = res.data;
-                    setUser(data);
-                    console.log(data)
+                    // setUser(data);
+                    // console.log(data)
                  } 
                
             })

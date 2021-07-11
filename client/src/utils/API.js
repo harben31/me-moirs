@@ -72,4 +72,9 @@ export default {
         return axios.post('/api/posts', userData)
     },
 
+    //---------------Comments
+    saveComment: function(commentData) {
+        return axios.post('/api/comments', commentData)
+    }
+
 }
