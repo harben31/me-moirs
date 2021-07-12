@@ -27,9 +27,13 @@ module.exports = {
     },
 
     findUserByUsername: function(req, res) {
-        console.log('FIND USER BY USERNAME', req.params.username)
+        console.log('FIND USER BY USERNAME', req.params.username);
+        function escapeRegex(text) {
+            return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
+        };
+        const regex = new RegExp(escapeRegex(req.params.username))
         db.User
-            .find({username: req.params.username})
+            .find({username: regex})
             .then(dbModel => {
                 console.log('WRONG SEARCH', dbModel)
                 if(dbModel.length) {
@@ -45,8 +49,12 @@ module.exports = {
     },
 
     findUserByEmail: function(req, res) {
+        function escapeRegex(text) {
+            return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
+        };
+        const regex = new RegExp(escapeRegex(req.params.email))
         db.User
-            .find({email: req.params.email})
+            .find({email: regex})
             .then(dbModel => {
                 if(dbModel.length) {
                     res.json(dbModel);
