@@ -3,9 +3,10 @@ import axios from 'axios';
 
 export default {
     //--------------Users
-    // getUser: function() {
-    //     return axios.get('/api/users/me')
-    // },
+
+    saveUser: function(userData) {
+        return axios.post('/api/users/signup', userData)
+    },
 
     userLogin: function(loginInfo){
        return axios.post('/api/users/login', loginInfo)
@@ -26,6 +27,7 @@ export default {
     // getUser: function(id) {
     //     return axios.get('/api/users' + id)
     // },
+    //----search for other users-----
     userByUsername: function(username){
         return axios.get('/api/username/' + username)
     },
@@ -34,13 +36,17 @@ export default {
         return axios.get('/api/email/' + email)
     },
 
-    deleteUser: function(id) {
-        return axios.delete('/api/users/' + id)
+    //need to put friends id in req.body under friendId
+    addToUsersFriends: function(userId){
+        axios.put('/api/friends' + userId)
     },
 
+    getUsersFriends: function(userId){
+        return axios.get('/api/friends' + userId)
+    },
 
-    saveUser: function(userData) {
-        return axios.post('/api/users/signup', userData)
+    deleteUser: function(id) {
+        return axios.delete('/api/users/' + id)
     },
 
    //--------------Tabs
