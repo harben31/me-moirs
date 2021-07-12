@@ -32,6 +32,7 @@ import TabForm from '../components/TabForm/TabForm';
         API.savePost({
             title: postTitle,
             content: postContent,
+            tab_id: tabInfo._id
         })
         .then((res) => {
             console.log(res.data);
@@ -62,12 +63,27 @@ import TabForm from '../components/TabForm/TabForm';
             console.log(err)
         })
     };
+
+    const deleteTab = () => {
+        API.deleteTab(tabInfo._id)
+        .then(res => console.log(res))
+        .catch(err => console.log(err));
+    };
+
     return (
         <div className= 'new-tabs'>
             {
                 show ? ( 
                     <div className='tabBody'>
                         <aside className='description'>
+                            <div className='delTabWrap'>
+                                <button
+                                className='delTabBtn'
+                                onClick={deleteTab}
+                                >
+                                    Delete
+                                </button>
+                            </div>
                             <h3>About {tabInfo.title}</h3>
                             <p>
                                 {tabInfo.description}

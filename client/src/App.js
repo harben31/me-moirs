@@ -70,7 +70,7 @@ function App() {
           <Router>
               <div className='App'>
                 <Header loggedIn={auth}/>
-                <RouteRegistration exact path='/' component= {LoginSignup}/>
+                <RouteRegistration exact path='/' component={LoginSignup}/>
                 {/* <Navbar/>  */}
                 {/* <Home/>  */}
                 <RouteProtected exact path='/profile' component={Profile}/>
