@@ -15,12 +15,12 @@ const Background = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    // z-index: 100;
+    z-index: 100;
 `; 
 const BoxContainer = styled.div`
     width: 380px;
     min-height: 450px;
-    top:280px;
+    // top:280px;
     margin: auto;
     display: flex;
     flex-direction: column;
@@ -143,43 +143,43 @@ export default function TabModal({showModal,setShowModal}) {
     // [])
 
     return (
-        <div>
-            {showModal ? 
-                (<Background>
-                    <BoxContainer>
-                        <TopContainer>
-                            <BackDrop>
-                            <HeaderContainer>
-                            <HeaderText>Create Your Tab!</HeaderText>
-                            {/* <SmallText>Give Your Tab <Span ref={textRef}></Span> </SmallText> */}
-                            </HeaderContainer>
-                            </BackDrop>
-                        </TopContainer>
-                        <FormContainer >
-                            <Input 
-                            type='text' 
-                            placeholder='Tab Name'
-                            // onChange={(e) => {
-                            //     props.setTabTitle(e.target.value);
-                            // }}
-                            required
-                            />
-                            <Input 
-                            type='text' 
-                            placeholder='Description'
-                            // onChange={(e) => {
-                            //     props.setTabDescription(e.target.value);
-                            // }}
-                            required
-                            />
-                        <Marginer direction='vertical' margin={10} />
-                        <SubmitButton type='submit'>
-                            Create
-                        </SubmitButton>
-                        </FormContainer>
-                    </BoxContainer>
-                </Background>) : null }   
-        </div>
+        <>
+        {showModal ? 
+            (<Background>
+                <BoxContainer>
+                    <TopContainer>
+                        <BackDrop>
+                        <HeaderContainer>
+                        <HeaderText>Create Your Tab!</HeaderText>
+                        {/* <SmallText>Give Your Tab <Span ref={textRef}></Span> </SmallText> */}
+                        </HeaderContainer>
+                        </BackDrop>
+                    </TopContainer>
+                    <FormContainer >
+                        <Input 
+                        type='text' 
+                        placeholder='Tab Name'
+                        // onChange={(e) => {
+                        //     props.setTabTitle(e.target.value);
+                        // }}
+                        required
+                        />
+                        <Input 
+                        type='text' 
+                        placeholder='Description'
+                        // onChange={(e) => {
+                        //     props.setTabDescription(e.target.value);
+                        // }}
+                        required
+                        />
+                    <Marginer direction='vertical' margin={10} />
+                    <SubmitButton type='submit'>
+                        Create
+                    </SubmitButton>
+                    </FormContainer>
+                </BoxContainer>
+            </Background>) : null }   
+        </>
     )
 }
  

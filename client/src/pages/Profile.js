@@ -16,7 +16,7 @@ import '../App.css'
 
 // import CarouselSlides from '../components/Carousel/CarouselSlides'
 // import TabForm from '../components/TabForm/TabForm';
-import TabModal from '../components/TabModal/TabModal'
+import TabModal from '../components/TabModal/TabModal';
 
 
 
@@ -76,16 +76,13 @@ export default function Profile(props) {
     
     return (
        
-          <div>
-              <TabModal
-              showModal={showModal}
-              setShowModal={setShowModal}
-              />
+        <div>
+        <TabModal showModal={showModal} setShowModal={setShowModal}/>
+              
               {/* <Header/> */}
                 {/* <Navbar id={user.shortTabInfo}/> */}
                 
                  {/* <CarouselSlides tabs={SliderData}/> */}
-                
                 <CoverPhoto image={coverImage.cover_image}/>
                  <ProfileImage image={profileImage.profile_image}/>
              {/* {cardInfo.map(card => { 
@@ -94,10 +91,10 @@ export default function Profile(props) {
                 description={card.description}/>})} */} 
                 <Banner username={props.username}/>
                  {/* <Cards/> */}
-
+                 
                 {/* <CarouselSlides slides={SliderData}/> */}
+                <button onClick={OpenModal}>OpenModal</button>
     
-             <button onClick={OpenModal}>OpenModal</button>
           </div>
       )
     }     
