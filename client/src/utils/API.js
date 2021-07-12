@@ -43,7 +43,8 @@ export default {
     },
 
     getTab: function(id) {
-        return axios.get('/api/tabs' + id)
+        console.log('Hit me first!')
+        return axios.get('/api/tabs/' + id)
     },
 
     deleteTab: function(id) {

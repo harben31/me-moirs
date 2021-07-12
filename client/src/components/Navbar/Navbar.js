@@ -7,25 +7,25 @@ import { Link } from 'react-router-dom';
 import API from '../../utils/API';
 import AuthApi from '../../utils/AuthApi';
 
-export default function Navbar({tabs}) {
+
+export default function Navbar() {
 
      const authApi = useContext(AuthApi);
+     const [tabs, setTabs] = useState();
 
-     // const [sorted, setSorted] = useState([]);
+     useEffect(() => {
+      API.userInfo()
+          .then(res => {
+              if(res) {
+                  const data = res.data.shortTabInfo;
+                  setTabs(data);
+               } 
+             
+          })
+          .catch(err => console.log(err));
+    }, []);
 
-   
-
-     // useEffect(() => {
-     //     setSorted(tabs)
-   
-     // }, []) 
- 
- 
-     // const tabTitle = sorted.sort((a, b) => {
-     //     return a.title.localeCompare(b.title)
-     //  })
-
-   
+    console.log(tabs);
      const handleLogout = () => {
           API.logout()
               .then(() => {
@@ -61,7 +61,11 @@ export default function Navbar({tabs}) {
                 responsive={responsive}>
                             {tabs.map((tab, index) => {
                           return(
-                            <Tab key={index} className= 'tabs'>{tab.title}</Tab>
+                            <Link to={{
+                                key: index,
+                                pathname: '/newtab',
+                                state: tab._id
+                            }} className='tabs'>{tab.title}</Link>
                             )}
                         )} 
                 </Carousel>
