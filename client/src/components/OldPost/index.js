@@ -27,6 +27,7 @@ export default function OldPost(props) {
 
     //there is no comment el yet. so nothing to put a button on. 
     const deleteComment = () => {
+        //need to insert comment _id below in (_id)
         API.deleteComment()
         .then(res => console.log(res))
         .catch(err => console.log(err));
