@@ -15,7 +15,6 @@ export default {
         return axios.get('/api/users/logout')
     },
 
-    //do we need both of these calls? Aren't they doing the same thing?
     getUser: async function() {
         return axios.get('/api/users/me')
     },
@@ -27,6 +26,13 @@ export default {
     // getUser: function(id) {
     //     return axios.get('/api/users' + id)
     // },
+    userByUsername: function(username){
+        return axios.get('/api/username/' + username)
+    },
+
+    userByEmail: function(email){
+        return axios.get('/api/email/' + email)
+    },
 
     deleteUser: function(id) {
         return axios.delete('/api/users/' + id)
