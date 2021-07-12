@@ -7,6 +7,7 @@ import API from '../../utils/API';
 
 
 export default function OldPost(props) {
+    console.log('oldpost props', props);
     const [commentActivated, setCommentActivated] = useState(false);
 
     const CreateComment = () => {

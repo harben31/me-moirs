@@ -55,7 +55,6 @@ export default {
     },
 
     getTab: function(id) {
-        console.log('Hit me first!')
         return axios.get('/api/tabs/' + id)
     },
 
@@ -82,6 +81,7 @@ export default {
     },
 
     savePost: function(userData) {
+        console.log('saved post');
         return axios.post('/api/posts', userData)
     },
 

@@ -53,9 +53,9 @@ module.exports = {
             .findById(req.params.id)
             .populate({ 
                 path: 'posts',
-                populate: {
-                    path: 'comments'
-                }    
+                // populate: {
+                //     path: 'comments'
+                // }    
             })
             .then(dbModel => res.json(dbModel))
             .catch(err => {
