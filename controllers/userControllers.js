@@ -26,6 +26,40 @@ module.exports = {
             });
     },
 
+    findUserByUsername: function(req, res) {
+        console.log('FIND USER BY USERNAME', req.params.username)
+        db.User
+            .find({username: req.params.username})
+            .then(dbModel => {
+                console.log('WRONG SEARCH', dbModel)
+                if(dbModel.length) {
+                    res.json(dbModel)
+                } else {
+                    res.json({ message: 'username could not be found'})
+                }
+            })
+            .catch(err => {
+                console.log(err);
+                res.json(err);
+            })
+    },
+
+    findUserByEmail: function(req, res) {
+        db.User
+            .find({email: req.params.email})
+            .then(dbModel => {
+                if(dbModel.length) {
+                    res.json(dbModel);
+                } else {
+                    res.json({message: 'email could not be found'});
+                }
+            })
+            .catch(err => {
+                console.log(err);
+                res.json(err);
+            });
+    },
+
     updateUser: function (req, res) {
         db.User
             .findOneAndUpdate({_id: req.params.id}, req.body)
@@ -35,6 +69,7 @@ module.exports = {
                 res.status(422).json(err);
             });
     },
+
     deleteUser: function(req, res) {
         db.User
             .findOneAndRemove({_id: req.params.id})

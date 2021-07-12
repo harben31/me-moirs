@@ -196,4 +196,10 @@ router.route('/:id')
 router.route('/')
     .get(userController.findAllUsers)
 
+router.route('/username/:username')
+    .get(userController.findUserByUsername)
+
+router.route('/email/:email')
+    .get(userController.findUserByEmail)
+
 module.exports = router
