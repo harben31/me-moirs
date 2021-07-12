@@ -37,17 +37,37 @@ import TabForm from '../components/TabForm/TabForm';
             title: postTitle,
             content: postContent,
             tab_id: tabInfo._id
+
         })
         .catch(err => {
             console.log(err)
         });
     };
 
+
+    const deleteTab = () => {
+        API.deleteTab(tabInfo._id)
+        .then(res => console.log(res))
+        .catch(err => console.log(err));
+    };
+
+
     console.log(tabInfo);
+
     return (
         <div className= 'new-tabs'>
                     <div className='tabBody'>
                         <aside className='description'>
+
+                            <div className='delTabWrap'>
+                                <button
+                                className='delTabBtn'
+                                onClick={deleteTab}
+                                >
+                                    Delete
+                                </button>
+                            </div>
+                     
                             {tabInfo ? (
                                 <div>
                                     <h3>About <b>{tabInfo.title}</b></h3>

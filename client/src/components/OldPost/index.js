@@ -3,6 +3,7 @@ import Likes from '../Likes';
 import CommentButton from '../CommentButton';
 import CommentBox from '../CommentBox';
 import './style.css';
+import API from '../../utils/API';
 
 
 export default function OldPost(props) {
@@ -15,11 +16,32 @@ export default function OldPost(props) {
         } else {
             setCommentActivated(false);
         }
-    }
+    };
+
+    //deletes post and related comments in DB. Page does not refresh so post is still visible. I am not sure I should mess with that until the posts stay on tab page and nav is fixed.
+    const deletePost = () => {
+        API.deletePost(props.postId)
+        .then(res => console.log(res))
+        .catch(err => console.log(err));
+    };
+
+
+    //there is no comment el yet. so nothing to put a button on. 
+    const deleteComment = () => {
+        //need to insert comment _id below in (_id)
+        API.deleteComment()
+        .then(res => console.log(res))
+        .catch(err => console.log(err));
+    };
 
     return (
         <div className='oldPost'>
             <img className='oldPostImage' src='https://images.unsplash.com/photo-1611162616475-46b635cb6868?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8dGh1bWJuYWlsfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&w=1000&q=80' alt=''/>
+            <button
+            className='postDelBtn'
+            onClick={deletePost}
+            >Delete Post</button>
+
             <div className='oldPostContent'>
                 {/* <p>
                     01/21/2023
