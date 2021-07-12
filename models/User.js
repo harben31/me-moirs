@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const Tab = require('./Tab');
+const Comment = require('./Comment');
 
 const userSchema = new Schema({
     username: {
@@ -61,10 +62,22 @@ userSchema.pre('remove', function(next) {
     })
     .then(dbModel => {
         dbModel.map(tab => {
-            tab.remove()
+            tab.remove();
+        });
+        Comment.find({
+            '_id': {
+                $in: this.comments
+            }
         })
+        .then(dbModel => {
+            dbModel.map(tab => {
+                tab.remove()
+            })
+        })
+        .catch(err => console.log(err));
     })
     .catch(err => console.log(err));
+    
     // try {
     //     await Tab.remove({
     //         '_id': {
