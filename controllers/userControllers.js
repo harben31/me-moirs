@@ -78,6 +78,33 @@ module.exports = {
             });
     },
 
+    addToFriends: function(req, res) {
+        db.User
+            .findOneAndUpdate({_id: req.params.id}, 
+                {$push: {friends: req.body.friendId}})
+            .then(dbModel => {
+                //doens't return the friend just added but we should already have that info on the FE
+                res.json(dbModel);
+            })
+            .catch(err => {
+                console.log(err);
+                res.json(err);
+            });
+    },
+
+    findAllUsersFriends: function(req, res) {
+        db.User
+            .findById(req.params.id)
+            .populate({
+                path: 'friends'
+            })
+            .then(dbModel => res.json(dbModel.friends))
+            .catch(err => {
+                console.log(err);
+                res.json(err);
+            });
+    },
+
     deleteUser: function(req, res) {
         db.User
             .findOneAndRemove({_id: req.params.id})

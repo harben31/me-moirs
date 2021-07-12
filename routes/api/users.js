@@ -202,4 +202,8 @@ router.route('/username/:username')
 router.route('/email/:email')
     .get(userController.findUserByEmail)
 
+router.route('/friends/:id')
+    .get(userController.findAllUsersFriends)
+    .put(userController.addToFriends)
+
 module.exports = router
