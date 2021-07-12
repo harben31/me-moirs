@@ -3,28 +3,25 @@ import OldPost from '../components/OldPost';
 import React, { useState, useContext, useEffect, useParams } from 'react';
 import API from '../utils/API';
 import TabForm from '../components/TabForm/TabForm';
+// import { updateTab } from '../../../controllers/tabControllers';
 
 
  export default function NewTab(props) {
-    //  console.log(props);
     console.log(props.location.state);
-   
-    // const [show, setShow] = useState(false);
-    const [tabId, setTabId] = useState('');
     // const [tabTitle, setTabTitle] = useState('');
     // const [tabDescription, setTabDescription] = useState('');
     const [tabInfo, setTabInfo] = useState();
     const [postTitle, setPostTitle] = useState('');
     const [postContent, setPostContent] = useState('');
-
     // const [postInfo, setPostInfo] = useState();
     // const [postTop, setPostTop] = useState('');
     // const [postBottom, setPostBottom] = useState('');
+    const [post, setPost] = useState();
 
-
+    let Id;
 
     useEffect(() => {
-        const Id = props.location.state;
+        Id = props.location.state;
         API.getTab(Id)
             .then(res => {
                 setTabInfo(res.data);
@@ -32,11 +29,14 @@ import TabForm from '../components/TabForm/TabForm';
             .catch(err => console.log(err));
     }, []);
 
+  
+
     const CreatePost = (e) => {
         e.preventDefault();
         API.savePost({
             title: postTitle,
             content: postContent,
+            tab_id: tabInfo._id
         })
         .catch(err => {
             console.log(err)
@@ -63,42 +63,20 @@ import TabForm from '../components/TabForm/TabForm';
                             setPostTitle={setPostTitle}
                             createPost={CreatePost}
                             />
-                            {/* {tabInfo.posts.length ? (tabInfo.posts.map((post) => {
-
-                                return (
-                            {tabInfo.shortTabInfo.length ? (
-                                tabInfo.shortTabInfo.map((post, i) => {
+                            {tabInfo ? (tabInfo.posts ? (tabInfo.posts.map((post, i) => {
                                     return (
                                         <OldPost 
                                             key={i}
-                                            // {...post}
-                                            title={post.title}
-                                            content={post.content}    
+                                            {...post}  
                                         />
                                     )
-                                })
-                            ) : ( */}
-
-                                <h4>Create Your First Post Above!</h4>
-                            {/* )} */}
-                                    
-                                {/* )
-                                
-                            }))
-                                 : 
-                                <h4>Create Your First Post Above!</h4>
-                            } */}
+                                })) : 
+                                null
+                            ) :
+                                null
+                            }
                         </section> 
-                        </div>
-                    {/* </div>) : (<TabForm 
-                    CreateTab={CreateTab}
-                    setTabTitle={setTabTitle} 
-                    setTabDescription={setTabDescription}
-                    show={show}
-                    setShow={setShow}
-                    />
-                ) */}
-             
+                    </div>
         </div>
     )
 }

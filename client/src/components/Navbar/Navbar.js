@@ -62,7 +62,6 @@ export default function Navbar() {
                             {tabs.map((tab, index) => {
                           return(
                             <Link to={{
-                                
                                 pathname: '/newtab',
                                 state: tab._id
                             }} key={index} className='tabs'>{tab.title}</Link>

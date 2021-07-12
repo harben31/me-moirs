@@ -6,6 +6,7 @@ import './style.css';
 
 
 export default function OldPost(props) {
+    console.log('oldpost props', props);
     const [commentActivated, setCommentActivated] = useState(false);
 
     const CreateComment = () => {
