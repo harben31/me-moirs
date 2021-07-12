@@ -129,7 +129,7 @@ const Span = styled.span`
 `;
 
 
-export default function TabForm({showModal,setShowModal}) {
+export default function TabModal({showModal,setShowModal}) {
     // const textRef = useRef();
 
     // useEffect(() => {
