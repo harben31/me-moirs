@@ -48,7 +48,19 @@ const userSchema = new Schema({
                 type: mongoose.Schema.Types.ObjectId,
                 ref: 'User'
             }
-        ]
+        ],
+    followedTabs: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'Tab'
+        }
+    ],
+    followedPosts: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'Post'
+        }
+    ]
 },
 {
     timestamps: true

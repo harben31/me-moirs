@@ -68,6 +68,7 @@ module.exports = {
             });
     },
 
+    //update user data. eg username or about
     updateUser: function (req, res) {
         db.User
             .findOneAndUpdate({_id: req.params.id}, req.body)
@@ -103,6 +104,29 @@ module.exports = {
                 console.log(err);
                 res.json(err);
             });
+    },
+
+    //----follow tabs and posts------
+    followTab: function(req, res) {
+        db.User
+            .findOneAndUpdate({_id: req.params.id},
+                {$push: {followedTabs: req.body.tab_id}})
+            .then(dbModel => res.json(dbModel))
+            .catch(err => {
+                console.log(err);
+                res.json(err);
+            })
+    },
+
+    followPost: function(req, res) {
+        db.User
+            .findOneAndUpdate({_id: req.params.id},
+                {$push: {followedPosts: req.body.post_id}})
+            .then(dbModel => res.json(dbModel))
+            .catch(err => {
+                console.log(err);
+                res.json(err);
+            })
     },
 
     deleteUser: function(req, res) {

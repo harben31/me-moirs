@@ -206,4 +206,10 @@ router.route('/friends/:id')
     .get(userController.findAllUsersFriends)
     .put(userController.addToFriends)
 
+router.route('/tabs/:id')
+    .put(userController.followTab)
+
+router.route('/posts/:id')
+    .put(userController.followPost)
+
 module.exports = router
