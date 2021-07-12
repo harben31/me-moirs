@@ -155,12 +155,12 @@ export default function TabModal({showModal, setShowModal}) {
     return (
         <div>
             {showModal ?
-            (<Background>
+            (<Background >
                 <BoxContainer>
                     <TopContainer>
                         <BackDrop>
                         <HeaderContainer>
-                        <ClosingButton>X</ClosingButton>
+                        <ClosingButton onClick={() => setShowModal(prev => !prev)}>X</ClosingButton>
                         <HeaderText>Create Your Tab!</HeaderText>
                         {/* <SmallText>Give Your Tab <Span ref={textRef}></Span> </SmallText> */}
                         </HeaderContainer>
