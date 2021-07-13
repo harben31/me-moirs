@@ -205,6 +205,9 @@ router.route('/:id')
     .put(userController.updateUser)
     .delete(userController.deleteUser)
 
+router.route('/image/:id')
+    .put(userController.addImage)    
+
 router.route('/')
     .get(userController.findAllUsers)
 

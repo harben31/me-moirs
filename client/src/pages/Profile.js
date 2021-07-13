@@ -77,7 +77,7 @@ export default function Profile(props) {
                  {/* <CarouselSlides tabs={SliderData}/> */}
                 
                 <CoverPhoto image={coverImage.cover_image}/>
-                 <ProfileImage image={profileImage.profile_image}/>
+                 <ProfileImage user={props.user} image={user.image}/>
              {/* {cardInfo.map(card => { 
                 return <Cards key={card.id} name={card.name}
                 title={card.title}

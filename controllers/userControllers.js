@@ -50,5 +50,16 @@ module.exports = {
                 console.log(err);
                 res.json(err);
             });
+    },
+
+    addImage: function(req, res) {
+        console.log(req.body, 'image data')
+        db.User
+        .findOneAndUpdate({_id: req.params.id}, {image: req.body.imageData})
+        .then(dbModel => res.json(dbModel))
+        .catch(err => {
+            console.log(err);
+            res.status(422).json(err);
+        });
     }
 };

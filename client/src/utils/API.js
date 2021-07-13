@@ -24,6 +24,12 @@ export default {
         return axios.get('/api/users/info')
     },
 
+    addImage: function(id, data) {
+        console.log(id)
+        console.log(data)
+        return axios.put('api/users/image/' + id, {imageData: data })
+    }, 
+
     // getUser: function(id) {
     //     return axios.get('/api/users' + id)
     // },
