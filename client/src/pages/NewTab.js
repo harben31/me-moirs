@@ -5,6 +5,7 @@ import API from '../utils/API';
 
 
  export default function NewTab(props) {
+     console.log('is username here', props);
      console.log(props.match.params.id);
 
     const [tabInfo, setTabInfo] = useState();
@@ -69,7 +70,7 @@ import API from '../utils/API';
                      
                             {tabInfo ? (
                                 <div>
-                                    <h3>About <b>{tabInfo.title}</b></h3>
+                                    <h3>About <b className='tabTitle'>{tabInfo.title}</b></h3>
                             <p>
                                 {tabInfo.description}
                             </p> 
@@ -86,7 +87,9 @@ import API from '../utils/API';
                                     return (
                                         <OldPost 
                                             key={i}
-                                            {...post}  
+                                            {...post} 
+                                            user_id={props.user_id}
+                                            username={props.username} 
                                         />
                                     )
                                 })) : 

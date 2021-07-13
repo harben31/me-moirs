@@ -59,7 +59,7 @@ function App() {
     return <Route {...rest}
       render={props => authApi.auth
         ? <Component {...props} 
-        userId={userId} 
+        user_id={userId} 
         setUserId={setUserId}
         setUsername={setUsername}
         username={username}

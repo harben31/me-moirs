@@ -108,6 +108,7 @@ export default {
 
     //---------------Comments
     saveComment: function(commentData) {
+        console.log('is postid here', commentData);
         return axios.post('/api/comments', commentData)
     },
     deleteComment: function(id) {

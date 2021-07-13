@@ -39,8 +39,8 @@ export default function CommentBox(props) {
         API.saveComment({
             content: commentContent,
             username: props.username,
-            post_id: props.postId,
-            user_id: props.userId
+            post_id: props.post_id,
+            user_id: props.user_id
         })
         .then(res => {
             console.log(res);
