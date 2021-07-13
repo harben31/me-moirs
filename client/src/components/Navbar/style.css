@@ -17,7 +17,7 @@
 }  */
 
 .carousel {
-    padding:1%;
+    /* padding:1%; */
     display: flex;
     justify-content: space-between;
     /* margin-top: 70px; */
@@ -33,10 +33,12 @@
 }
 
 .new-tab p, .logout p {
+    padding: 5px 0px;
     color: rgb(255, 255, 255);
 }
 
 .new-tab i, .logout i{
+    padding: 0px 0px 8px 0px;
     font-size: 25px;
     color: rgb(255, 255, 255);
     cursor: pointer;

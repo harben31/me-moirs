@@ -19,7 +19,7 @@ import API from '../utils/API';
                 setTabInfo(res.data);
             })
             .catch(err => console.log(err));
-    }, []);
+    }, [props.match.params.id]);
 
     useEffect(() => {
         const Id = props.match.params.id;

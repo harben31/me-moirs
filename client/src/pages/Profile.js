@@ -29,10 +29,10 @@ export default function Profile(props) {
     const [coverImage, setCoverImage] = useState([]);
     const [profileImage, setProfileImage] = useState([]);
    
-    const [showModal, setShowModal] = useState(false);
-    const OpenModal = () => {
-        setShowModal(prev => !prev);
-    };
+    // const [showModal, setShowModal] = useState(false);
+    // const OpenModal = () => {
+    //     setShowModal(prev => !prev);
+    // };
 
     useEffect(() => {
         API.userInfo()
@@ -77,7 +77,7 @@ export default function Profile(props) {
     return (
        
         <div>
-        <TabModal showModal={showModal} setShowModal={setShowModal}/>
+        {/* <TabModal showModal={showModal} setShowModal={setShowModal}/> */}
               
               {/* <Header/> */}
                 {/* <Navbar id={user.shortTabInfo}/> */}
@@ -93,7 +93,7 @@ export default function Profile(props) {
                  {/* <Cards/> */}
                  
                 {/* <CarouselSlides slides={SliderData}/> */}
-                <button onClick={OpenModal}>OpenModal</button>
+                {/* <button onClick={OpenModal}>OpenModal</button> */}
     
           </div>
       )
