@@ -208,8 +208,10 @@ router.route('/friends/:id')
 
 router.route('/tabs/:id')
     .put(userController.followTab)
+    .get(userController.findFollowedTabs)
 
 router.route('/posts/:id')
     .put(userController.followPost)
+    .get(userController.findFollowedPosts)
 
 module.exports = router

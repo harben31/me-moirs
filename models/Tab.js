@@ -44,18 +44,7 @@ tabSchema.pre('remove', function(next) {
         next();
     })
     .catch(err => console.log(err));
-    // try {
-    //     await Post.remove({
-    //         '_id': {
-    //             $in: this.posts
-    //         }
-    //     });
-    //     next()
-    // } catch (err) {
-    //     console.log(err);
-    //     next(err);
-    // }
-    });
+});
 
 const Tab = mongoose.model('Tab', tabSchema);
 

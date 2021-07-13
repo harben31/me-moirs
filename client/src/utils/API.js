@@ -29,20 +29,28 @@ export default {
     // },
     //----search for other users-----
     userByUsername: function(username){
-        return axios.get('/api/username/' + username)
+        return axios.get('/api/users/username/' + username)
     },
 
     userByEmail: function(email){
-        return axios.get('/api/email/' + email)
+        return axios.get('/api/users/email/' + email)
     },
 
     //need to put friends id in req.body under friendId
     addToUsersFriends: function(userId){
-        axios.put('/api/friends' + userId)
+        axios.put('/api/friends/' + userId)
     },
 
     getUsersFriends: function(userId){
-        return axios.get('/api/friends' + userId)
+        return axios.get('/api/users/friends/' + userId)
+    },
+
+    getFollowedTabs: function(userId) {
+        return axios.get('/api/users/tabs/' + id)
+    },
+
+    getFollowedTabs: function(userId) {
+        return axios.get('/api/users/posts/' + id)
     },
 
     deleteUser: function(id) {
@@ -63,7 +71,7 @@ export default {
     },
 
     saveTab: function(userData) {
-        return axios.post('/api/tabs', userData)
+        return axios.post('/api/tabs/', userData)
     },
 
 

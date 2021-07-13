@@ -129,6 +129,32 @@ module.exports = {
             })
     },
 
+    findFollowedTabs: function(req, res) {
+        db.User
+            .findById(req.params.id)
+            .populate({
+                path: 'followedTabs'
+            })
+            .then(dbModel => res.json(dbModel.followedTabs))
+            .catch(err => {
+                console.log(res);
+                res.json(err);
+            })
+    },
+
+    findFollowedPosts: function(req, res) {
+        db.User
+            .findById(req.params.id)
+            .populate({
+                path: 'followedPosts'
+            })
+            .then(dbModel => res.json(dbModel.followedPosts))
+            .catch(err => {
+                console.log(res);
+                res.json(err);
+            })
+    },
+
     deleteUser: function(req, res) {
         db.User
             .findOneAndRemove({_id: req.params.id})
