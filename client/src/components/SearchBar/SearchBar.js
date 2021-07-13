@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import API from '../../utils/API'
 import './style.css';
 
 export default function(props) {
     const [searchBy, setSearchBy] = useState('username');
     const [searchVal, setSearchVal] =useState('');
+    const [searchResults, setSearchResults] = useState([]);
 
     const handleSearchByChange = (e) => {
         setSearchBy(e.target.value);
@@ -29,12 +30,16 @@ export default function(props) {
 
         apiCall
             .then(res => {
-                //search results component goes here
-                console.log(res);
+                setSearchResults(res);
             })
             .catch(err => console.log(err));
-
+        
+        document.querySelector('.searchBar').value = '';
     };
+
+    useEffect(() => {
+        console.log('!!! searchResults', searchResults)
+    }, [searchResults])
 
     return (
         <form className='searchWrap'>
