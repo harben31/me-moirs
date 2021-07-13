@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const Tab = require('./Tab');
+const Comment = require('./Comment');
 
 const userSchema = new Schema({
     username: {
@@ -42,14 +43,26 @@ const userSchema = new Schema({
             ref: 'Tab'
         }
     ],
-    //CURRENTLY NOT USING THIS FOR USERS
-    // friends: [
-    //     {
-    //         type: mongoose.Schema.Types.ObjectId,
-    //         ref: 'User'
-    //     }
-    // ]
-}, {
+    friends: [
+            {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: 'User'
+            }
+        ],
+    followedTabs: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'Tab'
+        }
+    ],
+    followedPosts: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'Post'
+        }
+    ]
+},
+{
     timestamps: true
 });
 
@@ -61,10 +74,22 @@ userSchema.pre('remove', function(next) {
     })
     .then(dbModel => {
         dbModel.map(tab => {
-            tab.remove()
+            tab.remove();
+        });
+        Comment.find({
+            '_id': {
+                $in: this.comments
+            }
         })
+        .then(dbModel => {
+            dbModel.map(tab => {
+                tab.remove()
+            })
+        })
+        .catch(err => console.log(err));
     })
     .catch(err => console.log(err));
+    
     // try {
     //     await Tab.remove({
     //         '_id': {

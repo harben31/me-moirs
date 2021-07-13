@@ -3,9 +3,10 @@ import axios from 'axios';
 
 export default {
     //--------------Users
-    // getUser: function() {
-    //     return axios.get('/api/users/me')
-    // },
+
+    saveUser: function(userData) {
+        return axios.post('/api/users/signup', userData)
+    },
 
     userLogin: function(loginInfo){
        return axios.post('/api/users/login', loginInfo)
@@ -15,7 +16,6 @@ export default {
         return axios.get('/api/users/logout')
     },
 
-    //do we need both of these calls? Aren't they doing the same thing?
     getUser: async function() {
         return axios.get('/api/users/me')
     },
@@ -27,14 +27,26 @@ export default {
     // getUser: function(id) {
     //     return axios.get('/api/users' + id)
     // },
+    //----search for other users-----
+    userByUsername: function(username){
+        return axios.get('/api/username/' + username)
+    },
+
+    userByEmail: function(email){
+        return axios.get('/api/email/' + email)
+    },
+
+    //need to put friends id in req.body under friendId
+    addToUsersFriends: function(userId){
+        axios.put('/api/friends' + userId)
+    },
+
+    getUsersFriends: function(userId){
+        return axios.get('/api/friends' + userId)
+    },
 
     deleteUser: function(id) {
         return axios.delete('/api/users/' + id)
-    },
-
-
-    saveUser: function(userData) {
-        return axios.post('/api/users/signup', userData)
     },
 
    //--------------Tabs
@@ -43,7 +55,6 @@ export default {
     },
 
     getTab: function(id) {
-        console.log('Hit me first!')
         return axios.get('/api/tabs/' + id)
     },
 
@@ -70,12 +81,16 @@ export default {
     },
 
     savePost: function(userData) {
+        console.log('saved post');
         return axios.post('/api/posts', userData)
     },
 
     //---------------Comments
     saveComment: function(commentData) {
         return axios.post('/api/comments', commentData)
-    }
+    },
+    deleteComment: function(id) {
+        return axios.delete('/api/comments/' + id)
+    },
 
 }

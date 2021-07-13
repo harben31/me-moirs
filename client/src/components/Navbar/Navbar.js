@@ -62,10 +62,9 @@ export default function Navbar() {
                             {tabs.map((tab, index) => {
                           return(
                             <Link to={{
-                                key: index,
                                 pathname: '/newtab',
                                 state: tab._id
-                            }} className='tabs'>{tab.title}</Link>
+                            }} key={index} className='tabs'>{tab.title}</Link>
                             )}
                         )} 
                 </Carousel>
