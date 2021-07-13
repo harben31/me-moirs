@@ -34,11 +34,11 @@ export default function OldPost(props) {
         .catch(err => console.log(err));
     };
 
-    // formatDate = (date) => {
-    //     date = new Date(date);
-    //     let dob = date.toLocaleDateString();
-    //     return dob;
-    //   }
+    const formatDate = (dated) => {
+        let postDate = new Date(dated);
+        let date = postDate.toLocaleDateString();
+        return date;
+      }
 
 
     return (
@@ -48,7 +48,7 @@ export default function OldPost(props) {
             <div className='oldPostContent'>
                 <p>
                     {/* month day and year */}
-                    {props.date}
+                    {formatDate(props.date)}
                 </p>
                 <p className='oldPostTitle'>
                     <b>{props.title}</b>
@@ -79,7 +79,7 @@ export default function OldPost(props) {
                             />
                         </div>
                         <div>
-                            <Comment />
+                            <Comment formatDate={formatDate}/>
                         </div>
                     </div>
                     ) : 
