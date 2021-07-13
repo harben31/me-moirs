@@ -1,43 +1,35 @@
 import PostsForm from '../components/PostsForm/PostsForm';
 import OldPost from '../components/OldPost';
-import React, { useState, useContext, useEffect, useParams } from 'react';
+import React, { useState, useEffect } from 'react';
 import API from '../utils/API';
-import TabForm from '../components/TabForm/TabForm';
-// import { updateTab } from '../../../controllers/tabControllers';
 
 
  export default function NewTab(props) {
      console.log(props.match.params.id);
-    // console.log(props.location.state);
-   
-    // const [show, setShow] = useState(false);
-    const [tabId, setTabId] = useState('');
-    // console.log(props.location.state);
-    // const [tabTitle, setTabTitle] = useState('');
-    // const [tabDescription, setTabDescription] = useState('');
+
     const [tabInfo, setTabInfo] = useState();
     const [postTitle, setPostTitle] = useState('');
     const [postContent, setPostContent] = useState('');
-    // const [postInfo, setPostInfo] = useState();
-    // const [postTop, setPostTop] = useState('');
-    // const [postBottom, setPostBottom] = useState('');
-    const [post, setPost] = useState();
-
-    let Id;
+    const [post, setPost] = useState(false);
 
     useEffect(() => {
-    //    await setTabId(props.location.state);
         const Id = props.match.params.id;
          API.getTab(Id)
-        // Id = props.location.state;
-        // API.getTab(Id)
             .then(res => {
                 setTabInfo(res.data);
             })
             .catch(err => console.log(err));
     }, []);
 
-  
+    useEffect(() => {
+        const Id = props.match.params.id;
+         API.getTab(Id)
+            .then(res => {
+                setTabInfo(res.data);
+            })
+            .catch(err => console.log(err));
+    }, [post]);
+
 
     const CreatePost = (e) => {
         e.preventDefault();
@@ -45,8 +37,8 @@ import TabForm from '../components/TabForm/TabForm';
             title: postTitle,
             content: postContent,
             tab_id: tabInfo._id
-
         })
+        .then(() => setPost(true))
         .catch(err => {
             console.log(err)
         });
@@ -59,9 +51,8 @@ import TabForm from '../components/TabForm/TabForm';
         .catch(err => console.log(err));
     };
 
-
     console.log(tabInfo);
-
+    console.log(post);
     return (
         <div className= 'new-tabs'>
                     <div className='tabBody'>
@@ -91,7 +82,7 @@ import TabForm from '../components/TabForm/TabForm';
                             setPostTitle={setPostTitle}
                             createPost={CreatePost}
                             />
-                            {tabInfo ? (tabInfo.posts ? (tabInfo.posts.map((post, i) => {
+                            {tabInfo ? (tabInfo.posts ? (tabInfo.posts.slice(0).reverse().map((post, i) => {
                                     return (
                                         <OldPost 
                                             key={i}
