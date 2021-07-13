@@ -53,6 +53,10 @@ export default {
         return axios.get('/api/users/posts/' + userId)
     },
 
+    getFollowedAll: function(userId) {
+        return axios.get('/api/users/all/' + userId)
+    },
+
     deleteUser: function(userId) {
         return axios.delete('/api/users/' + userId)
     },
