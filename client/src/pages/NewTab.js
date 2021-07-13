@@ -6,8 +6,8 @@ import TabForm from '../components/TabForm/TabForm';
 
 
  export default function NewTab(props) {
-    //  console.log(props);
-    console.log(props.location.state);
+     console.log(props.match.params.id);
+    // console.log(props.location.state);
    
     // const [show, setShow] = useState(false);
     const [tabId, setTabId] = useState('');
@@ -25,7 +25,7 @@ import TabForm from '../components/TabForm/TabForm';
 
     useEffect(() => {
     //    await setTabId(props.location.state);
-        const Id = props.location.state;
+        const Id = props.match.params.id;
          API.getTab(Id)
             .then(res => {
                 setTabInfo(res.data);
