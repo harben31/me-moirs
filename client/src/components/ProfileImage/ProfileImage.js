@@ -16,7 +16,7 @@ export default function ProfileImage(props) {
       if (images) {
       API.addImage(props.user, images)
       .then ((data) => {
-          console.log(data)
+          window.location.reload()
       })
     }
     }, [images])
