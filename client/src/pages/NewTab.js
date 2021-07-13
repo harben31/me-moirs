@@ -35,7 +35,7 @@ import TabForm from '../components/TabForm/TabForm';
                 setTabInfo(res.data);
             })
             .catch(err => console.log(err));
-    }, []);
+    }, [props.match.params.id]);
 
   
 

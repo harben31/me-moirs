@@ -6,12 +6,21 @@ import { Tab } from 'react-mdl';
 import { Link } from 'react-router-dom';
 import API from '../../utils/API';
 import AuthApi from '../../utils/AuthApi';
+import TabModal from '../TabModal/TabModal';
+// import AcountContect from '../AccountBox/accountContext'
 
 
 export default function Navbar() {
+    // const { OpenModal } = useContext(AccountContext);
 
      const authApi = useContext(AuthApi);
      const [tabs, setTabs] = useState();
+
+    const [showModal, setShowModal] = useState(false);
+    const OpenModal = () => {
+        setShowModal(prev => !prev);
+        
+      };
 
      useEffect(() => {
       API.userInfo()
@@ -54,7 +63,8 @@ export default function Navbar() {
             return (
               
               tabs ? (
-              <div className= 'carousel'>
+                <div className= 'carousel'>
+                <TabModal showModal={showModal} setShowModal={setShowModal}/>
                <Carousel className= 'carousel-tabs'containerClass="container-with-dots"
                 infinite={true}
                 itemClass="carousel-item-padding-0-px"
@@ -71,8 +81,10 @@ export default function Navbar() {
                   
                <div className= 'new-tab'>
                 <p>New Tab</p>
-                    <Link to='/newtab'><i className="fa fa-pencil-square-o" aria-hidden="true"></i></Link>
+                    {/* <Link to='/newtab'><i className="fa fa-pencil-square-o" aria-hidden="true"></i></Link> */}
+                    <i className="fa fa-pencil-square-o" aria-hidden="true" onClick={OpenModal}></i>
                </div>
+
                <div className= 'logout'>
                 <p>Logout</p>
                     <i className="fa fa-sign-out" aria-hidden="true" onClick={handleLogout}></i>
@@ -82,7 +94,8 @@ export default function Navbar() {
                <div className= 'carousel'>
                <div className= 'new-tab'>
                 <p>New Tab</p>
-                    <Link to='/newtab'><i className="fa fa-pencil-square-o" aria-hidden="true"></i></Link>
+                    {/* <Link to='/newtab'><i className="fa fa-pencil-square-o" aria-hidden="true"></i></Link> */}
+                    <i className="fa fa-pencil-square-o" aria-hidden="true" onClick={OpenModal}></i>
                </div>
                <div className= 'logout'>
                 <p>Logout</p>

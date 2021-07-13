@@ -1,10 +1,10 @@
-import React, { useState, useContext, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import './style.css';
-import { Link, Redirect, history, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 import API from '../../utils/API';
-import { init } from 'ityped'
+import { init } from 'ityped';
 
 import { Marginer } from '../AccountBox/marginer';
 import { SubmitButton } from '../AccountBox/common';
@@ -93,7 +93,7 @@ const SmallText = styled.h5`
 const FormContainer = styled.form`
     width: 90%;
     margin: auto;
-    top:40px;
+    top:0px;
     display: flex;
     flex-direction: column;
     // box-shadow: 0px 0px 2.5px rgba(15, 15, 15, 0.19);
@@ -144,10 +144,20 @@ const ClosingButton = styled.span`
 export default function TabModal({showModal, setShowModal}) {
     const [tabTitle, setTabTitle] = useState('');
     const [tabDescription, setTabDescription] = useState('');
-    const [tab, setTab] = useState();
 
     const modalRef = useRef();
-    const textRef = useRef();
+
+//     const textRef = useRef();
+//     useEffect(() => {
+//         init(textRef.current, {
+//           showCursor: true,
+//           backDelay:  1500,
+//           backSpeed:60,
+//           strings: ['Title', 'Description' ] 
+//       })
+//   },
+// [])
+
     const history = useHistory()
     const CreateTab = (e) => {
         e.preventDefault();
@@ -156,13 +166,14 @@ export default function TabModal({showModal, setShowModal}) {
             description: tabDescription,   
         }).then((res) => {
         console.log(res, "res");
-        history.push('/newtab/' + res.data._id);       
+        history.push('/newtab/' + res.data._id);
+        setShowModal(false)
+           
         })
         .catch(err => {
             console.log(err)
         })
     };
-    console.log(tab,"Tab");
 
     
 
@@ -171,18 +182,6 @@ export default function TabModal({showModal, setShowModal}) {
             setShowModal(false);
         }
     }
-
-    // useEffect(() => {
-    //           init(textRef.current, {
-    //             showCursor: true,
-    //             backDelay:  1500,
-    //             backSpeed:60,
-    //             strings: ['Title', 'Description' ] 
-    //         })
-    //     },
-    // [])
-
-   
 
     return (
         <div>
