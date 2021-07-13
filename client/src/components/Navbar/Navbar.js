@@ -7,20 +7,20 @@ import { Link } from 'react-router-dom';
 import API from '../../utils/API';
 import AuthApi from '../../utils/AuthApi';
 import TabModal from '../TabModal/TabModal';
+import SearchBar from '../SearchBar/SearchBar';
 // import AcountContect from '../AccountBox/accountContext'
 
 
 export default function Navbar(props) {
     // const { OpenModal } = useContext(AccountContext);
 
-     const authApi = useContext(AuthApi);
-     const [tabs, setTabs] = useState();
+    const authApi = useContext(AuthApi);
+    const [tabs, setTabs] = useState();
 
     const [showModal, setShowModal] = useState(false);
     const OpenModal = () => {
         setShowModal(prev => !prev);
-        
-      };
+    };
 
      useEffect(() => {
       API.userInfo()
@@ -34,7 +34,6 @@ export default function Navbar(props) {
           .catch(err => console.log(err));
     }, []);
 
-    console.log(tabs, props);
      const handleLogout = () => {
           API.logout()
               .then(() => {
@@ -80,7 +79,8 @@ export default function Navbar(props) {
                             )}
                         )} 
                 </Carousel>
-                  
+                
+                <SearchBar/>            
                <div className= 'new-tab'>
                 <p>New Tab</p>
                     {/* <Link to='/newtab'><i className="fa fa-pencil-square-o" aria-hidden="true"></i></Link> */}
