@@ -37,29 +37,29 @@ export default {
     },
 
     //need to put friends id in req.body under friendId
-    addToUsersFriends: function(userId){
-        axios.put('/api/friends/' + userId)
+    addToUsersFriends: function(userId, friendId){
+        axios.put('/api/friends/' + userId, friendId)
     },
 
     getUsersFriends: function(userId){
         return axios.get('/api/users/friends/' + userId)
     },
 
-    //needs tab_id in req.body
-    followTab: function(userId){
-        return axios.put('/api/users/tabs/' + userId)
+    //needs post_id in req.body
+    followPost: function(userId, post_id){
+        return axios.put('/api/users/posts/' + userId, post_id)
     },
 
-    //needs post_id in req.body
-    followTab: function(userId){
-        return axios.put('/api/users/posts/' + userId)
+    //needs tab_id in req.body
+    followTab: function(userId, tab_id){
+        return axios.put('/api/users/tabs/' + userId, tab_id)
     },
 
     getFollowedTabs: function(userId) {
         return axios.get('/api/users/tabs/' + userId)
     },
 
-    getFollowedTabs: function(userId) {
+    getFollowedPosts: function(userId) {
         return axios.get('/api/users/posts/' + userId)
     },
 
@@ -107,9 +107,13 @@ export default {
         return axios.post('/api/posts', postData)
     },
 
+    addLike: function(postId, userId) {
+        return axios.put('/api/posts/likes/' + postId, userId)
+    },
+
     //---------------Comments
     saveComment: function(commentData) {
-        return axios.post('/api/comments', commentData)
+        return axios.post('/api/comments/', commentData)
     },
     deleteComment: function(id) {
         return axios.delete('/api/comments/' + id)
