@@ -1,7 +1,9 @@
 import React, { useState, useContext, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import './style.css';
+import { Link, Redirect, history, useHistory } from 'react-router-dom';
 
+import API from '../../utils/API';
 import { init } from 'ityped'
 
 import { Marginer } from '../AccountBox/marginer';
@@ -10,24 +12,25 @@ import { SubmitButton } from '../AccountBox/common';
 const Background = styled.div`
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.7);
-    postion: fixed;
-    display: flex;
+    background: rgb(0, 0, 0, 0.7);
+    position: fixed;
+    display:flex;
     justify-content: center;
     align-items: center;
-    // z-index: 100;
-`; 
+    z-index: 10;
+`;
+
 const BoxContainer = styled.div`
     width: 380px;
     min-height: 450px;
-    top:280px;
+    // top:280px;
     margin: auto;
     display: flex;
     flex-direction: column;
     border-radius: 19px;
     background-color: #fff;
     box-shadow: 0 0 2px rgba(15, 15, 15, 0.28);
-    position: relative;
+    // position: relative;
     overflow: hidden;
 `;
 const TopContainer = styled.div`
@@ -127,10 +130,47 @@ const Span = styled.span`
     font-weight: 600;
     
 `;
+const ClosingButton = styled.span`
+    color:#fff;
+    width: 350px;
+    font-size: 20px;
+    font-weight: 600;
+    font-weight: 600;
+    display: flex;
+    justify-content: flex-end;  
+`;
 
 
-export default function TabForm({showModal,setShowModal}) {
-    // const textRef = useRef();
+export default function TabModal({showModal, setShowModal}) {
+    const [tabTitle, setTabTitle] = useState('');
+    const [tabDescription, setTabDescription] = useState('');
+    const [tab, setTab] = useState();
+
+    const modalRef = useRef();
+    const textRef = useRef();
+    const history = useHistory()
+    const CreateTab = (e) => {
+        e.preventDefault();
+        API.saveTab({
+            title: tabTitle,
+            description: tabDescription,   
+        }).then((res) => {
+        console.log(res, "res");
+        history.push('/newtab/' + res.data._id);       
+        })
+        .catch(err => {
+            console.log(err)
+        })
+    };
+    console.log(tab,"Tab");
+
+    
+
+    const CloseModal = e => {
+        if (modalRef.current === e.target) {
+            setShowModal(false);
+        }
+    }
 
     // useEffect(() => {
     //           init(textRef.current, {
@@ -142,44 +182,46 @@ export default function TabForm({showModal,setShowModal}) {
     //     },
     // [])
 
+   
+
     return (
         <div>
-            {showModal ? 
-                (<Background>
-                    <BoxContainer>
-                        <TopContainer>
-                            <BackDrop>
-                            <HeaderContainer>
-                            <HeaderText>Create Your Tab!</HeaderText>
-                            {/* <SmallText>Give Your Tab <Span ref={textRef}></Span> </SmallText> */}
-                            </HeaderContainer>
-                            </BackDrop>
-                        </TopContainer>
-                        <FormContainer >
-                            <Input 
-                            type='text' 
-                            placeholder='Tab Name'
-                            // onChange={(e) => {
-                            //     props.setTabTitle(e.target.value);
-                            // }}
-                            required
-                            />
-                            <Input 
-                            type='text' 
-                            placeholder='Description'
-                            // onChange={(e) => {
-                            //     props.setTabDescription(e.target.value);
-                            // }}
-                            required
-                            />
-                        <Marginer direction='vertical' margin={10} />
-                        <SubmitButton type='submit'>
-                            Create
-                        </SubmitButton>
-                        </FormContainer>
-                    </BoxContainer>
-                </Background>) : null }   
+            {showModal ?
+            (<Background ref={modalRef} onClick={CloseModal} >
+                <BoxContainer>
+                    <TopContainer>
+                        <BackDrop>
+                        <HeaderContainer>
+                        <ClosingButton onClick={() => setShowModal(prev => !prev)}>X</ClosingButton>
+                        <HeaderText>Create Your Tab!</HeaderText>
+                        {/* <SmallText>Give Your Tab <Span ref={textRef}></Span> </SmallText> */}
+                        </HeaderContainer>
+                        </BackDrop>
+                    </TopContainer>
+                    <FormContainer onSubmit={CreateTab} >
+                        <Input 
+                        type='text' 
+                        placeholder='Tab Name'
+                        onChange={(e) => {
+                            setTabTitle(e.target.value);
+                        }}
+                        required
+                        />
+                        <Input 
+                        type='text' 
+                        placeholder='Description'
+                        onChange={(e) => {
+                            setTabDescription(e.target.value);
+                        }}
+                        required
+                        />
+                    <Marginer direction='vertical' margin={10} />
+                    <SubmitButton type='submit' >
+                        Create
+                    </SubmitButton>
+                    </FormContainer>
+                </BoxContainer>
+            </Background>) : null}   
         </div>
     )
 }
- 
