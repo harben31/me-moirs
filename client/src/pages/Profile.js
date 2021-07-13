@@ -29,7 +29,7 @@ export default function Profile(props) {
     const [coverImage, setCoverImage] = useState([]);
     const [profileImage, setProfileImage] = useState([]);
    
-    // const [showModal, setShowModal] = useState(false);
+    const [showModal, setShowModal] = useState(false);
     // const OpenModal = () => {
     //     setShowModal(prev => !prev);
     // };
@@ -77,7 +77,11 @@ export default function Profile(props) {
     return (
        
         <div>
-        {/* <TabModal showModal={showModal} setShowModal={setShowModal}/> */}
+        <TabModal
+        showModal={showModal}
+        setShowModal={setShowModal}
+        userId={props.userId}
+        />
               
               {/* <Header/> */}
                 {/* <Navbar id={user.shortTabInfo}/> */}

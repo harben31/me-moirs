@@ -46,15 +46,15 @@ module.exports = {
                 res.json(err);
             })
     },
-    //find any public tab by their 'tag' or category.
     findTabById: function(req, res) {
+        console.log(req.params.id, '!!!!req.params.id')
         db.Tab
             .findById(req.params.id)
             .populate({ 
                 path: 'posts',
-                // populate: {
-                //     path: 'comments'
-                // }    
+                populate: {
+                    path: 'comments'
+                }    
             })
             .then(dbModel => res.json(dbModel))
             .catch(err => {

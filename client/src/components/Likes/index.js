@@ -30,7 +30,7 @@ class Likes extends Component {
     render() {
         return (
             <span>
-                <span class="likes material-icons" onClick={this.addLike}>
+                <span className="likes material-icons" onClick={this.addLike}>
                     favorite
                 </span>
                 <span>{this.state.likes}</span>

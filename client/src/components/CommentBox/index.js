@@ -51,7 +51,7 @@ export default function CommentBox(props) {
     }
     return (
         <div className='commentBox'>
-            <span class="material-icons">
+            <span className="material-icons">
                 chat
             </span> 
             <Input

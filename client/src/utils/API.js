@@ -27,6 +27,7 @@ export default {
     // getUser: function(id) {
     //     return axios.get('/api/users' + id)
     // },
+    
     //----search for other users-----
     userByUsername: function(username){
         return axios.get('/api/users/username/' + username)
@@ -37,29 +38,29 @@ export default {
     },
 
     //need to put friends id in req.body under friendId
-    addToUsersFriends: function(userId){
-        axios.put('/api/friends/' + userId)
+    addToUsersFriends: function(userId, friendId){
+        axios.put('/api/friends/' + userId, friendId)
     },
 
     getUsersFriends: function(userId){
         return axios.get('/api/users/friends/' + userId)
     },
 
-    //needs tab_id in req.body
-    followTab: function(userId){
-        return axios.put('/api/users/tabs/' + userId)
+    //needs post_id in req.body
+    followPost: function(userId, post_id){
+        return axios.put('/api/users/posts/' + userId, post_id)
     },
 
-    //needs post_id in req.body
-    followTab: function(userId){
-        return axios.put('/api/users/posts/' + userId)
+    //needs tab_id in req.body
+    followTab: function(userId, tab_id){
+        return axios.put('/api/users/tabs/' + userId, tab_id)
     },
 
     getFollowedTabs: function(userId) {
         return axios.get('/api/users/tabs/' + userId)
     },
 
-    getFollowedTabs: function(userId) {
+    getFollowedPosts: function(userId) {
         return axios.get('/api/users/posts/' + userId)
     },
 
@@ -77,6 +78,7 @@ export default {
     },
 
     getTab: function(id) {
+        console.log(id)
         return axios.get('/api/tabs/' + id)
     },
 
@@ -84,8 +86,8 @@ export default {
         return axios.delete('/api/tabs/' + id)
     },
 
-    saveTab: function(userData) {
-        return axios.post('/api/tabs/', userData)
+    saveTab: function(tabData) {
+        return axios.post('/api/tabs/', tabData)
     },
 
 
@@ -102,14 +104,17 @@ export default {
         return axios.delete('/api/posts/' + id)
     },
 
-    savePost: function(userData) {
-        return axios.post('/api/posts', userData)
+    savePost: function(postData) {
+        return axios.post('/api/posts', postData)
+    },
+
+    addLike: function(postId, userId) {
+        return axios.put('/api/posts/likes/' + postId, userId)
     },
 
     //---------------Comments
     saveComment: function(commentData) {
-        console.log('is postid here', commentData);
-        return axios.post('/api/comments', commentData)
+        return axios.post('/api/comments/', commentData)
     },
     deleteComment: function(id) {
         return axios.delete('/api/comments/' + id)
