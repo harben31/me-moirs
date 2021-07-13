@@ -27,6 +27,7 @@ export default {
     // getUser: function(id) {
     //     return axios.get('/api/users' + id)
     // },
+    
     //----search for other users-----
     userByUsername: function(username){
         return axios.get('/api/users/username/' + username)
