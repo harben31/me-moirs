@@ -63,7 +63,6 @@ router.route('/signup').post(
                 auth: false
             });
         }  
-    //    console.log(password," Hikkk");
     //     await db.User.create({
     //         username: username,
     //         password: password,
@@ -94,7 +93,6 @@ router.route('/login').post(
         })
     ],
     async (req, res) => {
-        console.log('Gotcha');
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
             return res.status(400).json({
@@ -121,18 +119,14 @@ router.route('/login').post(
         await bcrypt.compare(password, user.password)
         .then((res) => {
             isMatch = res;
-            // console.log('inside', isMatch);
         })
         .catch(err => console.log(err));
 
-        // console.log('before if', isMatch)
         if (!isMatch) {
-            console.log('gotcha')
             return res.status(400).json({ message: 'Incorrect password!'})
         };
         if (isMatch) {
             const sessUser = user._id;
-            // console.log('Heya', sessUser);
             req.session.user = sessUser;
             res.json({
                 message: 'You are successfully logged in!',
@@ -174,10 +168,10 @@ router.route('/info')
             .then(dbModel => {
                 res.json(dbModel);
             })
-            .catch(err => console.log(err));
-        // db.User.findOne(req.session.user)
-        //     .then(dbModel => res.json(dbModel))
-        //     .catch(err => res.status(422).json(err));
+            .catch(err => {
+                console.log(err);
+                res.json(err);
+            });
     });
 
 router.route('/logout')
@@ -208,8 +202,13 @@ router.route('/friends/:id')
 
 router.route('/tabs/:id')
     .put(userController.followTab)
+    .get(userController.findFollowedTabs)
 
 router.route('/posts/:id')
     .put(userController.followPost)
+    .get(userController.findFollowedPosts)
+
+router.route('/all/:id')
+    .get(userController.findFollowedAll)
 
 module.exports = router

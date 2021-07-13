@@ -49,22 +49,6 @@ postSchema.pre('remove', function(next) {
             next();
         })
         .catch(err => console.log(err));
-
-
-
-// try {
-//     //model.remove vs query.remove
-//     let data = await Comment.find({
-//         '_id': {
-//             $in: this.comments
-//         },    
-//     }).remove();
-//     console.log(data)
-    // next()
-// } catch (err) {
-//     console.log(err);
-//     next(err);
-// }
 });
 
 const Post = mongoose.model('Post', postSchema);

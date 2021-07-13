@@ -29,24 +29,46 @@ export default {
     // },
     //----search for other users-----
     userByUsername: function(username){
-        return axios.get('/api/username/' + username)
+        return axios.get('/api/users/username/' + username)
     },
 
     userByEmail: function(email){
-        return axios.get('/api/email/' + email)
+        return axios.get('/api/users/email/' + email)
     },
 
     //need to put friends id in req.body under friendId
     addToUsersFriends: function(userId){
-        axios.put('/api/friends' + userId)
+        axios.put('/api/friends/' + userId)
     },
 
     getUsersFriends: function(userId){
-        return axios.get('/api/friends' + userId)
+        return axios.get('/api/users/friends/' + userId)
     },
 
-    deleteUser: function(id) {
-        return axios.delete('/api/users/' + id)
+    //needs tab_id in req.body
+    followTab: function(userId){
+        return axios.put('/api/users/tabs/' + userId)
+    },
+
+    //needs post_id in req.body
+    followTab: function(userId){
+        return axios.put('/api/users/posts/' + userId)
+    },
+
+    getFollowedTabs: function(userId) {
+        return axios.get('/api/users/tabs/' + userId)
+    },
+
+    getFollowedTabs: function(userId) {
+        return axios.get('/api/users/posts/' + userId)
+    },
+
+    getFollowedAll: function(userId) {
+        return axios.get('/api/users/all/' + userId)
+    },
+
+    deleteUser: function(userId) {
+        return axios.delete('/api/users/' + userId)
     },
 
    //--------------Tabs
@@ -63,7 +85,7 @@ export default {
     },
 
     saveTab: function(userData) {
-        return axios.post('/api/tabs', userData)
+        return axios.post('/api/tabs/', userData)
     },
 
 
@@ -81,7 +103,6 @@ export default {
     },
 
     savePost: function(userData) {
-        console.log('saved post');
         return axios.post('/api/posts', userData)
     },
 

@@ -3,7 +3,6 @@ const mongoose = require('mongoose');
     
 module.exports = {
     createPost: function(req, res) {
-        console.log('is tab_id here', req.body);
         db.Post
             .create(req.body)
             .then(async dbModel => {
