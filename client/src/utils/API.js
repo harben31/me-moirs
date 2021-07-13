@@ -45,6 +45,16 @@ export default {
         return axios.get('/api/users/friends/' + userId)
     },
 
+    //needs tab_id in req.body
+    followTab: function(userId){
+        return axios.put('/api/users/tabs/' + userId)
+    },
+
+    //needs post_id in req.body
+    followTab: function(userId){
+        return axios.put('/api/users/posts/' + userId)
+    },
+
     getFollowedTabs: function(userId) {
         return axios.get('/api/users/tabs/' + userId)
     },
