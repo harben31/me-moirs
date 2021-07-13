@@ -48,7 +48,6 @@ module.exports = {
     },
     //find any public tab by their 'tag' or category.
     findTabById: function(req, res) {
-        console.log('You hit me!!!!');
         db.Tab
             .findById(req.params.id)
             .populate({ 

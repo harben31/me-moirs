@@ -89,19 +89,7 @@ userSchema.pre('remove', function(next) {
         .catch(err => console.log(err));
     })
     .catch(err => console.log(err));
-    
-    // try {
-    //     await Tab.remove({
-    //         '_id': {
-    //             $in: this.shortTabInfo
-    //         }
-    //     });
-    //     next()
-    // } catch (err) {
-    //     console.log(err);
-    //     next(err);
-    // }
-    });
+});
 
 const User = mongoose.model('User', userSchema);
 

@@ -27,7 +27,6 @@ module.exports = {
     },
 
     findUserByUsername: function(req, res) {
-        console.log('FIND USER BY USERNAME', req.params.username);
         function escapeRegex(text) {
             return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
         };
@@ -35,7 +34,6 @@ module.exports = {
         db.User
             .find({username: regex})
             .then(dbModel => {
-                console.log('WRONG SEARCH', dbModel)
                 if(dbModel.length) {
                     res.json(dbModel)
                 } else {
@@ -139,7 +137,7 @@ module.exports = {
             .catch(err => {
                 console.log(res);
                 res.json(err);
-            })
+            });
     },
 
     findFollowedPosts: function(req, res) {
@@ -152,7 +150,25 @@ module.exports = {
             .catch(err => {
                 console.log(res);
                 res.json(err);
-            })
+            });
+    },
+
+    findFollowedAll: function(req, res) {
+        db.User
+            .findById(req.params.id)
+            .populate('followedTabs')
+            .populate('followedPosts')
+            .then(dbModel => {
+                console.log('!!!!!', dbModel);
+                res.json({
+                    tabs: dbModel.followedTabs,
+                    posts: dbModel.followedPosts
+                });
+        })
+            .catch(err => {
+                console.log(res);
+                res.json(err);
+            });
     },
 
     deleteUser: function(req, res) {

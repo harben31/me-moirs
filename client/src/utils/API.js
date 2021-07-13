@@ -46,15 +46,15 @@ export default {
     },
 
     getFollowedTabs: function(userId) {
-        return axios.get('/api/users/tabs/' + id)
+        return axios.get('/api/users/tabs/' + userId)
     },
 
     getFollowedTabs: function(userId) {
-        return axios.get('/api/users/posts/' + id)
+        return axios.get('/api/users/posts/' + userId)
     },
 
-    deleteUser: function(id) {
-        return axios.delete('/api/users/' + id)
+    deleteUser: function(userId) {
+        return axios.delete('/api/users/' + userId)
     },
 
    //--------------Tabs
@@ -89,7 +89,6 @@ export default {
     },
 
     savePost: function(userData) {
-        console.log('saved post');
         return axios.post('/api/posts', userData)
     },
 
