@@ -46,7 +46,7 @@ module.exports = {
                 res.status(422).json(err);
             });
     },
-    //will need to delete all comments. Can we 'cascade'?
+    
     deletePost: function(req, res) {
         db.Post
             .findById(req.params.id)
