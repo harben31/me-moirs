@@ -7,7 +7,12 @@ import TabForm from '../components/TabForm/TabForm';
 
 
  export default function NewTab(props) {
-    console.log(props.location.state);
+     console.log(props.match.params.id);
+    // console.log(props.location.state);
+   
+    // const [show, setShow] = useState(false);
+    const [tabId, setTabId] = useState('');
+    // console.log(props.location.state);
     // const [tabTitle, setTabTitle] = useState('');
     // const [tabDescription, setTabDescription] = useState('');
     const [tabInfo, setTabInfo] = useState();
@@ -21,8 +26,11 @@ import TabForm from '../components/TabForm/TabForm';
     let Id;
 
     useEffect(() => {
-        Id = props.location.state;
-        API.getTab(Id)
+    //    await setTabId(props.location.state);
+        const Id = props.match.params.id;
+         API.getTab(Id)
+        // Id = props.location.state;
+        // API.getTab(Id)
             .then(res => {
                 setTabInfo(res.data);
             })
