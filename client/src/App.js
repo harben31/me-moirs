@@ -71,14 +71,9 @@ function App() {
               <div className='App'>
                 <Header loggedIn={auth}/>
                 <RouteRegistration exact path='/' component={LoginSignup}/>
-                {/* <Navbar/>  */}
-                {/* <Home/>  */}
                 <RouteProtected exact path='/profile' component={Profile}/>
-                {/* <TabForm/> */}
-                <RouteProtected exact path='/newtab' component={NewTab} />
-
+                <RouteProtected exact path='/newtab/:id' component={NewTab} />
                 <Footer/>
-
               </div>
           </Router>
         </AuthApi.Provider>
