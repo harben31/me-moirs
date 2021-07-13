@@ -146,11 +146,6 @@ export default function TabModal(/*{showModal, setShowModal, user_id}*/ props) {
     const [tabDescription, setTabDescription] = useState('');
 
     const modalRef = useRef();
-<<<<<<< HEAD
-    const textRef = useRef();
-    const history = useHistory();
-
-=======
 
 //     const textRef = useRef();
 //     useEffect(() => {
@@ -164,7 +159,6 @@ export default function TabModal(/*{showModal, setShowModal, user_id}*/ props) {
 // [])
 
     const history = useHistory()
->>>>>>> 6a7b9e3a84c210024c74ded4f0a3cfd8adbb5293
     const CreateTab = (e) => {
         e.preventDefault();
         API.saveTab({
@@ -181,10 +175,6 @@ export default function TabModal(/*{showModal, setShowModal, user_id}*/ props) {
             console.log(err)
         })
     };
-<<<<<<< HEAD
-    // console.log(tab,"Tab");
-=======
->>>>>>> 6a7b9e3a84c210024c74ded4f0a3cfd8adbb5293
 
     
 
