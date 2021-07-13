@@ -10,8 +10,11 @@ router.route('/:id')
     .delete(postController.deletePost)
     .get(postController.findPosts);
 
-router.route('/likes/:id')
+router.route('/like/:id')
     .put(postController.addLike)
+
+router.route('/unlike/:id')
+    .put(postController.unLike)
     
 
 module.exports = router;

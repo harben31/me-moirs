@@ -5,8 +5,6 @@ import API from '../utils/API';
 
 
  export default function NewTab(props) {
-     console.log('is username here', props);
-     console.log(props.match.params.id);
 
     const [tabInfo, setTabInfo] = useState();
     const [postTitle, setPostTitle] = useState('');
@@ -40,7 +38,7 @@ import API from '../utils/API';
         })
         .then(() => setPost(true))
         .catch(err => {
-            console.log(err)
+            console.log(err);
         });
     };
 
@@ -51,8 +49,6 @@ import API from '../utils/API';
         .catch(err => console.log(err));
     };
 
-    console.log(tabInfo);
-    console.log(post);
     return (
         <div className= 'new-tabs'>
                     <div className='tabBody'>
@@ -88,7 +84,8 @@ import API from '../utils/API';
                                             key={i}
                                             {...post} 
                                             user_id={props.user_id}
-                                            username={props.username} 
+                                            username={props.username}
+                                            posts={tabInfo.posts} 
                                         />
                                     )
                                 })) : 

@@ -8,7 +8,6 @@ import API from '../../utils/API';
 
 
 export default function OldPost(props) {
-   
     const [commentActivated, setCommentActivated] = useState(false);
 
     const CreateComment = () => {
@@ -57,7 +56,11 @@ export default function OldPost(props) {
                 <p>
                     {props.content}
                 </p>
-                <Likes />
+                <Likes
+                likes={props.likes}
+                user_id={props.user_id}
+                post_id={props._id}
+                />
                 <CommentButton createComment={CreateComment} />
                 <button
                     className='postDelBtn'
@@ -72,7 +75,8 @@ export default function OldPost(props) {
                             <CommentBox
                             user_id={props.user_id}
                             post_id={props._id}
-                            username={props.username}/>
+                            username={props.username}
+                            />
                         </div>
                         <div>
                             <Comment />

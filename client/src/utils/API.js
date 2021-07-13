@@ -109,7 +109,11 @@ export default {
     },
 
     addLike: function(postId, userId) {
-        return axios.put('/api/posts/likes/' + postId, userId)
+        return axios.put('/api/posts/like/' + postId, userId)
+    },
+
+    unLike: function(postId, userId) {
+        return axios.put('/api/posts/unlike/' + postId, userId)
     },
 
     //---------------Comments

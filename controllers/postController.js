@@ -66,6 +66,18 @@ module.exports = {
                 res.json(err);
             })
     },
+
+    unLike: function(req, res) {
+        console.log('!!!removelike', req.body)
+        db.Post
+            .findOneAndUpdate({_id: req.params.id},
+                {$pull: {likes: req.body.user_id}})
+            .then(dbModel => res.json(dbModel))
+            .catch(err => {
+                console.log(err);
+                res.json(err);
+            });
+    },
     
     deletePost: function(req, res) {
         db.Post
