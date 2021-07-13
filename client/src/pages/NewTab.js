@@ -30,7 +30,6 @@ import API from '../utils/API';
             .catch(err => console.log(err));
     }, [post]);
 
-
     const CreatePost = (e) => {
         e.preventDefault();
         API.savePost({

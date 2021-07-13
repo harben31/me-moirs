@@ -10,7 +10,7 @@ import TabModal from '../TabModal/TabModal';
 // import AcountContect from '../AccountBox/accountContext'
 
 
-export default function Navbar() {
+export default function Navbar(props) {
     // const { OpenModal } = useContext(AccountContext);
 
      const authApi = useContext(AuthApi);
@@ -34,7 +34,7 @@ export default function Navbar() {
           .catch(err => console.log(err));
     }, []);
 
-    console.log(tabs);
+    console.log(tabs, props);
      const handleLogout = () => {
           API.logout()
               .then(() => {
@@ -64,7 +64,10 @@ export default function Navbar() {
               
               tabs ? (
                 <div className= 'carousel'>
-                <TabModal showModal={showModal} setShowModal={setShowModal}/>
+                <TabModal 
+                showModal={showModal}
+                setShowModal={setShowModal}
+                userId={props.userId}/>
                <Carousel className= 'carousel-tabs'containerClass="container-with-dots"
                 infinite={true}
                 itemClass="carousel-item-padding-0-px"

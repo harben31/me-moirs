@@ -141,7 +141,7 @@ const ClosingButton = styled.span`
 `;
 
 
-export default function TabModal({showModal, setShowModal}) {
+export default function TabModal(/*{showModal, setShowModal, user_id}*/ props) {
     const [tabTitle, setTabTitle] = useState('');
     const [tabDescription, setTabDescription] = useState('');
 
@@ -158,16 +158,19 @@ export default function TabModal({showModal, setShowModal}) {
 //   },
 // [])
 
-    const history = useHistory()
+    const history = useHistory();
+
     const CreateTab = (e) => {
+        console.log(props, '!!!!!!!!')
         e.preventDefault();
         API.saveTab({
             title: tabTitle,
-            description: tabDescription,   
+            description: tabDescription,
+            user_id: props.userId
         }).then((res) => {
         console.log(res, "res");
         history.push('/newtab/' + res.data._id);
-        setShowModal(false)
+        props.setShowModal(false)
            
         })
         .catch(err => {
@@ -179,19 +182,19 @@ export default function TabModal({showModal, setShowModal}) {
 
     const CloseModal = e => {
         if (modalRef.current === e.target) {
-            setShowModal(false);
+            props.setShowModal(false);
         }
     }
 
     return (
         <div>
-            {showModal ?
+            {props.showModal ?
             (<Background ref={modalRef} onClick={CloseModal} >
                 <BoxContainer>
                     <TopContainer>
                         <BackDrop>
                         <HeaderContainer>
-                        <ClosingButton onClick={() => setShowModal(prev => !prev)}>X</ClosingButton>
+                        <ClosingButton onClick={() => props.setShowModal(prev => !prev)}>X</ClosingButton>
                         <HeaderText>Create Your Tab!</HeaderText>
                         {/* <SmallText>Give Your Tab <Span ref={textRef}></Span> </SmallText> */}
                         </HeaderContainer>

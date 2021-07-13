@@ -39,8 +39,9 @@ export default function OldPost(props) {
             <img className='oldPostImage' src='https://images.unsplash.com/photo-1611162616475-46b635cb6868?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8dGh1bWJuYWlsfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&w=1000&q=80' alt=''/>
             <button
             className='postDelBtn'
-            onClick={deletePost}
-            >Delete Post</button>
+            onClick={deletePost}>
+                Delete Post
+            </button>
 
             <div className='oldPostContent'>
                 {/* <p>

@@ -54,11 +54,9 @@ function App() {
   //moved this fn inside of the App fn so I could get access to the setUser hook
   const RouteProtected = ({ component: Component, ...rest }) => {
     const authApi = useContext(AuthApi);
-    console.log("Auth",authApi.auth);
-
     return <Route {...rest}
       render={props => authApi.auth
-        ? <Component {...props} 
+      ? <Component {...props} 
         userId={userId} 
         setUserId={setUserId}
         setUsername={setUsername}
@@ -67,12 +65,14 @@ function App() {
       : <Redirect to='/' />} />;
   };
   
-
     return (
       <AuthApi.Provider value={{ auth, setAuth }}>
           <Router>
               <div className='App'>
-                <Header loggedIn={auth}/>
+                <Header
+                loggedIn={auth}
+                userId={userId}
+                />
                 <RouteRegistration exact path='/' component={LoginSignup}/>
                 <RouteProtected exact path='/profile' component={Profile}/>
                 <RouteProtected exact path='/newtab/:id' component={NewTab} />
