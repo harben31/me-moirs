@@ -77,6 +77,7 @@ export default {
     },
 
     getTab: function(id) {
+        console.log(id)
         return axios.get('/api/tabs/' + id)
     },
 
@@ -84,8 +85,8 @@ export default {
         return axios.delete('/api/tabs/' + id)
     },
 
-    saveTab: function(userData) {
-        return axios.post('/api/tabs/', userData)
+    saveTab: function(tabData) {
+        return axios.post('/api/tabs/', tabData)
     },
 
 
@@ -102,8 +103,8 @@ export default {
         return axios.delete('/api/posts/' + id)
     },
 
-    savePost: function(userData) {
-        return axios.post('/api/posts', userData)
+    savePost: function(postData) {
+        return axios.post('/api/posts', postData)
     },
 
     //---------------Comments

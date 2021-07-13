@@ -24,7 +24,7 @@ import TabForm from '../components/TabForm/TabForm';
     const [post, setPost] = useState();
 
     let Id;
-
+    console.log(props)
     useEffect(() => {
     //    await setTabId(props.location.state);
         const Id = props.match.params.id;
@@ -36,8 +36,6 @@ import TabForm from '../components/TabForm/TabForm';
             })
             .catch(err => console.log(err));
     }, []);
-
-  
 
     const CreatePost = (e) => {
         e.preventDefault();

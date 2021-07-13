@@ -77,7 +77,11 @@ export default function Profile(props) {
     return (
        
         <div>
-        <TabModal showModal={showModal} setShowModal={setShowModal}/>
+        <TabModal
+        showModal={showModal}
+        setShowModal={setShowModal}
+        user_id={props.userId}
+        />
               
               {/* <Header/> */}
                 {/* <Navbar id={user.shortTabInfo}/> */}
