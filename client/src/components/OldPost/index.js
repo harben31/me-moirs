@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Likes from '../Likes';
+import Comment from '../Comment';
 import CommentButton from '../CommentButton';
 import CommentBox from '../CommentBox';
 import './style.css';
@@ -7,7 +8,7 @@ import API from '../../utils/API';
 
 
 export default function OldPost(props) {
-    console.log('oldpost props', props);
+   
     const [commentActivated, setCommentActivated] = useState(false);
 
     const CreateComment = () => {
@@ -34,35 +35,49 @@ export default function OldPost(props) {
         .catch(err => console.log(err));
     };
 
+    // formatDate = (date) => {
+    //     date = new Date(date);
+    //     let dob = date.toLocaleDateString();
+    //     return dob;
+    //   }
+
+
     return (
         <div className='oldPost'>
             <img className='oldPostImage' src='https://images.unsplash.com/photo-1611162616475-46b635cb6868?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8dGh1bWJuYWlsfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&w=1000&q=80' alt=''/>
-            <button
-            className='postDelBtn'
-            onClick={deletePost}>
-                Delete Post
-            </button>
 
             <div className='oldPostContent'>
-                {/* <p>
-                    01/21/2023
-                </p> */}
+                <p>
+                    {/* month day and year */}
+                    {props.date}
+                </p>
                 <p className='oldPostTitle'>
-                    {props.title}
+                    <b>{props.title}</b>
                 </p>
                 <p>
                     {props.content}
                 </p>
                 <Likes />
                 <CommentButton createComment={CreateComment} />
+                <button
+                    className='postDelBtn'
+                    onClick={deletePost}
+                    >
+                        Delete Post
+                </button>
                 {commentActivated ? 
                     (
+                    <div>
                         <div>
                             <CommentBox
-                            userId={props.userId}
-                            postId={props.postId}
+                            user_id={props.user_id}
+                            post_id={props._id}
                             username={props.username}/>
                         </div>
+                        <div>
+                            <Comment />
+                        </div>
+                    </div>
                     ) : 
                         null
                 }
