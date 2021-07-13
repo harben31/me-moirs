@@ -6,7 +6,7 @@ import API from '../../utils/API';
 //import image from '../../../public/logo.png';
 
 
-export default function Header({loggedIn}) {
+export default function Header({loggedIn, userId}) {
     // const [user, setUser] = useState([]);
 
 
@@ -44,7 +44,7 @@ export default function Header({loggedIn}) {
                        {/* <img src={image} height={100} width={100} /> */}
                    </div>
                </div>
-               <Navbar />
+               <Navbar userId={userId}/>
            </div></header>)
     )
 }

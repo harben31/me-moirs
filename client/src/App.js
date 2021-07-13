@@ -69,7 +69,10 @@ function App() {
       <AuthApi.Provider value={{ auth, setAuth }}>
           <Router>
               <div className='App'>
-                <Header loggedIn={auth}/>
+                <Header
+                loggedIn={auth}
+                userId={userId}
+                />
                 <RouteRegistration exact path='/' component={LoginSignup}/>
                 <RouteProtected exact path='/profile' component={Profile}/>
                 <RouteProtected exact path='/newtab/:id' component={NewTab} />
