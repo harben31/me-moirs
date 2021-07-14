@@ -40,6 +40,7 @@ export default function(props) {
     };
 
     useEffect(() => {
+        // need to make modal go away
         console.log('!!! searchResults', searchResults)
     }, [searchResults])
 
@@ -69,7 +70,7 @@ export default function(props) {
             <SearchReturn
             searchResults={searchResults}
             user_id={props.user_id}/>
-        : null}
+            : null}
         </>
     );
 };
