@@ -30,16 +30,18 @@ export default {
     
     //----search for other users-----
     userByUsername: function(username){
-        return axios.get('/api/users/username/' + username)
+        console.log(username.username);
+        return axios.get('/api/users/username/' + username.username)
     },
 
     userByEmail: function(email){
-        return axios.get('/api/users/email/' + email)
+        return axios.get('/api/users/email/' + email.email)
     },
 
     //need to put friends id in req.body under friendId
     addToUsersFriends: function(userId, friendId){
-        axios.put('/api/friends/' + userId, friendId)
+        console.log('user_id:', userId, 'friendId:', friendId)
+        return axios.put('/api/users/friends/' + userId, friendId)
     },
 
     getUsersFriends: function(userId){

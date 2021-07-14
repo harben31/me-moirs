@@ -1,0 +1,15 @@
+.userCard{
+    display: flex;
+    /* flex-direction: column; */
+    padding: 10px
+}
+
+.imgStandIn {
+    background: chartreuse;
+    height: 60px;
+    min-width: 60px;
+}
+
+.username{
+    padding-left: 10px;
+}

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import API from '../../utils/API';
 import styled from 'styled-components';
+import SearchReturn from '../SearchReturn/SearchReturn';
+import API from '../../utils/API'
 import './style.css';
 
 const Input = styled.input`
@@ -75,6 +76,7 @@ export default function(props) {
                 'email': searchVal
             })
         } else {
+            console.log('USERNAME')
             apiCall = API.userByUsername({ 
                 'username': searchVal
             })
@@ -82,7 +84,7 @@ export default function(props) {
 
         apiCall
             .then(res => {
-                setSearchResults(res);
+                setSearchResults(res.data);
             })
             .catch(err => console.log(err));
         
@@ -90,11 +92,14 @@ export default function(props) {
     };
 
     useEffect(() => {
+        // need to make modal go away
         console.log('!!! searchResults', searchResults)
     }, [searchResults])
 
     return (
-        <form className='searchWrap'>
+
+       <>
+          <form className='searchWrap'>
             {/* <label for='searchBy'>Search</label> */}
             {/* <select
             onChange={handleSearchByChange}
@@ -121,6 +126,41 @@ export default function(props) {
             onClick={handleSearch}
             class="material-icons"
             >search</span>
-        </form>
+          </form>
+          {searchResults.length?
+          <SearchReturn
+          searchResults={searchResults}
+          user_id={props.user_id}/>
+          : null}
+        </>
+
+//         <>
+//             <form className='searchWrap'>
+//                 <label for='searchBy'>Search</label>
+//                 <select
+//                 onChange={handleSearchByChange}
+//                 name='searchBy'
+//                 id='searchBy'>
+//                     <option value='username'>Username</option>
+//                     <option value='email'>E-mail</option>
+//                 </select>
+//                 <input
+//                 onChange={handleSearchValChange}
+//                 type='text'
+//                 className='searchBar'
+//                 placeholder='find your friends'
+//                 />
+//                 <button
+//                 id='searchSubBtn'
+//                 onClick={handleSearch}
+//                 >Search</button>
+//             </form>
+//             {searchResults.length?
+//             <SearchReturn
+//             searchResults={searchResults}
+//             user_id={props.user_id}/>
+//             : null}
+//         </>
+// >>>>>>> main
     );
 };
