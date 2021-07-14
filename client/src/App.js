@@ -69,6 +69,7 @@ function App() {
   
     return (
       <AnimatePresence>
+         <motion.div>
       <AuthApi.Provider value={{ auth, setAuth }}>
           <Router>
               <div className='App'>
@@ -76,13 +77,16 @@ function App() {
                 loggedIn={auth}
                 userId={userId}
                 />
+               
                 <RouteRegistration exact path='/' component={LoginSignup}/>
+                
                 <RouteProtected exact path='/profile' component={Profile}/>
                 <RouteProtected exact path='/newtab/:id' component={NewTab} />
                 <Footer/>
               </div>
           </Router>
         </AuthApi.Provider>
+        </motion.div>
         </AnimatePresence>
     );
 };

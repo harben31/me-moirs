@@ -62,14 +62,13 @@ export default function Navbar(props) {
         }
       }
             return (
-              // <AnimatePresence>
               <motion.div
               initial={{opacity: 0, y: -7}}
               animate={{opacity: 1, y: 0}}
               transition={{
                 ease:'easeInOut',
                 duration: 1,
-                delay:1
+                delay:.5
 
               }}
               >
@@ -119,5 +118,4 @@ export default function Navbar(props) {
                </div>
                </div>)}
               </motion.div>
-              //  {/* </AnimatePresence> */}
 )}
