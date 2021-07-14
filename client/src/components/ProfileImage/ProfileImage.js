@@ -3,6 +3,7 @@ import { IconButton, MenuItem, Menu } from 'react-mdl';
 import './style.css';
 import API from '../../utils/API';
 import { version } from 'mongoose';
+import  coverImage  from '../CoverPhoto/CoverPhoto'
 
 
 
@@ -10,6 +11,7 @@ export default function ProfileImage(props) {
 
   const [images, setImages] = useState('');
   const [profile, setProfile] = useState('');
+ 
 
 
     useEffect(() => {
@@ -53,7 +55,6 @@ export default function ProfileImage(props) {
   
   }
 
-    
      return (
         <div className= 'wrapper'>
             <div className= 'profile'>
@@ -63,7 +64,7 @@ export default function ProfileImage(props) {
              <IconButton name="more_vert" id="demo-menu-lower-right" />
              <Menu target="demo-menu-lower-right" align="right">
              <MenuItem><input type='file' name='file' onChange={uploadImage}/>Add A New Profile Image</MenuItem>
-             <MenuItem><input type='file' name='coverPhoto' onChange={uploadImage}/>Add A New Cover Photo</MenuItem>
+             <MenuItem><input type='file' name='file' onChange={props.backgroundImage}/>Add A New Cover Photo</MenuItem>
             </Menu>
           </div>
          </div>
