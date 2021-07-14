@@ -6,12 +6,16 @@ export default function(props) {
     const friend = props.friendInfo;
 
     const handleFollowReq = (e) => {
+        e.persist()
         //mneed to filter out friends already in list
         e.preventDefault();
         API.addToUsersFriends(props.user_id, {
             friendId: friend._id
         })
-        .then(res => console.log(res))
+        .then(res => {
+            e.target.parentNode.setAttribute('style', 'display: none')
+            console.log(res)
+        })
         .catch(err => console.log(err))
     };
 

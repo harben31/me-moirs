@@ -38,6 +38,7 @@ module.exports = {
             .find({username: regex})
             .then(dbModel => {
                 if(dbModel.length) {
+                    //need to filter out friends in friends list
                     //trim res to username, email, image, 
                     res.json(dbModel)
                 } else {
