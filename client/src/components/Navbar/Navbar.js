@@ -67,16 +67,19 @@ export default function Navbar(props) {
                 showModal={showModal}
                 setShowModal={setShowModal}
                 userId={props.userId}/>
-               <Carousel className= 'carousel-tabs'containerClass="container-with-dots"
+               <Carousel
+                className= 'carousel-tabs'
+                containerClass="container-with-dots"
                 infinite={true}
                 itemClass="carousel-item-padding-0-px"
                 responsive={responsive}>
-                            {tabs.map((tab, index) => {
-                          return(
-                            <Link to={{
-                                pathname: '/newtab/' + tab._id,
-                            }} key={index} className='tabs'>{tab.title}</Link>
-                            )}
+                        {tabs.map((tab, index) => {
+                            return(
+                              <Link to={{
+                                  pathname: '/newtab/' + tab._id,
+                              }} key={index} className='tabs'>{tab.title}</Link>
+                            );
+                          }
                         )} 
                 </Carousel>
                 
