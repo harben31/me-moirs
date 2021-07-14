@@ -26,6 +26,8 @@ import NewTab from './pages/NewTab';
 import AuthApi from './utils/AuthApi';
 
 import TabForm from './components/TabForm/TabForm';
+import { motion, AnimatePresence } from 'framer-motion';
+
 
 
 
@@ -66,6 +68,7 @@ function App() {
   };
   
     return (
+      <AnimatePresence>
       <AuthApi.Provider value={{ auth, setAuth }}>
           <Router>
               <div className='App'>
@@ -80,6 +83,7 @@ function App() {
               </div>
           </Router>
         </AuthApi.Provider>
+        </AnimatePresence>
     );
 };
 
