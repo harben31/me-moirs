@@ -19,13 +19,16 @@ module.exports = {
     findUserById: function (req, res) {
         db.User
             .findById(req.params.id)
-            .then(dbModel => res.json(dbModel))
+            .then(dbModel => {
+                res.json(dbModel)
+            })
             .catch(err => {
                 console.log(err);
                 res.json(err);
             });
     },
 
+    //need to handle case sensativity. second username all lowercase?
     findUserByUsername: function(req, res) {
         function escapeRegex(text) {
             return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
@@ -35,6 +38,7 @@ module.exports = {
             .find({username: regex})
             .then(dbModel => {
                 if(dbModel.length) {
+                    //trim res to username, email, image, 
                     res.json(dbModel)
                 } else {
                     res.json({ message: 'username could not be found'})
@@ -47,6 +51,7 @@ module.exports = {
     },
 
     findUserByEmail: function(req, res) {
+        console.log('findByEmail', req.params.email);
         function escapeRegex(text) {
             return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
         };
@@ -78,6 +83,7 @@ module.exports = {
     },
 
     addToFriends: function(req, res) {
+        console.log('addToFriends:', req.body)
         db.User
             .findOneAndUpdate({_id: req.params.id}, 
                 {$push: {friends: req.body.friendId}})

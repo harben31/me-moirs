@@ -1,0 +1,8 @@
+.resultsContainer{
+    background: gray;
+    display: flex;
+    flex-direction: column;
+    left: 30%;
+    position: fixed;
+    top: 20%;
+}
