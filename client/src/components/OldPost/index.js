@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { IconButton, MenuItem, Menu } from 'react-mdl';
 import Likes from '../Likes';
 import Comment from '../Comment';
 import CommentButton from '../CommentButton';
@@ -46,10 +47,19 @@ export default function OldPost(props) {
             <img className='oldPostImage' src='https://images.unsplash.com/photo-1611162616475-46b635cb6868?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8dGh1bWJuYWlsfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&w=1000&q=80' alt=''/>
 
             <div className='oldPostContent'>
-                <p className='postDate'>
-                    {/* month day and year */}
-                    {formatDate(props.date)}
-                </p>
+                <div className='postTop'>
+                    <p className='postDate'>
+                        {formatDate(props.date)}
+                    </p>
+                    <span className='dotIcon'>
+                        <IconButton name="more_vert" id="demo-menu-lower-right" />
+                        <Menu target="demo-menu-lower-right" align="right">
+                            <MenuItem>Edit</MenuItem>
+                            <MenuItem>Delete</MenuItem>
+                        </Menu>
+                    </span>
+                    
+                </div>
                 <p className='oldPostTitle'>
                     <b>{props.title}</b>
                 </p>
