@@ -76,6 +76,7 @@ export default function OldPost(props) {
                             user_id={props.user_id}
                             post_id={props._id}
                             username={props.username}
+                            setComment={props.setComment} 
                             />
                         </div>
                         <div>
@@ -84,7 +85,8 @@ export default function OldPost(props) {
                                     <Comment 
                                         key={i}
                                         formatDate={formatDate}
-                                        {...comment}    
+                                        {...comment}
+                                           
                                     />  
                                 )
                             })}

@@ -44,6 +44,7 @@ export default function CommentBox(props) {
         })
         .then(res => {
             console.log(res);
+            props.setComment(true);
         })
         .catch(err => console.log(err));
 
