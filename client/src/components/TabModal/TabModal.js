@@ -149,7 +149,7 @@ const modalAnimation = {
     visible: {
         y:'60px',
         opacity:1,
-        transition:{ delay: 0.2}
+        transition:{ delay: 0.1}
     },
     transition : {
         type: "spring",
