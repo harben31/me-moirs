@@ -5,15 +5,17 @@ import './style.css';
 
 const Input = styled.input`
     width: 50%;
-    height: 42px;
+    height: 30px;
     outline: none;
-    margin-top: 10px;
-    border: 1px solid rgba(200, 200, 200, 0.3);
+    // margin-top: 10px;
+    margin: 5px;
+    border: 10px solid white;
     padding: 0px 10px;
     border-radius: 9px;
-    border-bottom: 1.4px solid #0000001f;
+    border-bottom: 2px solid #0000001f;
     transition: all 200ms ease-in-out;
     font-size: 12px;
+    text-align: center;
 
     &::placeholder {
         color: rgba(200, 200, 200, 1);
@@ -30,20 +32,17 @@ const Input = styled.input`
 `;
 
 const Select = styled.select`
-    width: 30%;
-    height: 42px;
+    width: 25%;
+    height: 30px;
     outline: none;
     margin-top: 10px;
-    border: 1px solid rgba(200, 200, 200, 0.3);
+    color: rgba(200, 200, 200, 1);
+    border: 8px solid white;
     padding: 0px 10px;
     border-radius: 9px;
-    border-bottom: 1.4px solid #0000001f;
+    border-bottom: 2px solid #0000001f;
     transition: all 200ms ease-in-out;
-    font-size: 12px;
-
-    &::placeholder {
-        color: rgba(200, 200, 200, 1);
-    }
+    font-size: 11px;
 
     &:not(:last-of-type) {
         border-bottom: 1.5px solid rgba(200, 200, 200, 0.4);
