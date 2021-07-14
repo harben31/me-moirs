@@ -5,6 +5,7 @@ import { useHistory } from 'react-router-dom';
 
 import API from '../../utils/API';
 import { init } from 'ityped';
+import { motion, AnimatePresence } from 'framer-motion';
 
 import { Marginer } from '../AccountBox/marginer';
 import { SubmitButton } from '../AccountBox/common';
@@ -24,7 +25,7 @@ const BoxContainer = styled.div`
     width: 380px;
     min-height: 450px;
     // top:280px;
-    margin: auto;
+    margin: 0 auto;
     display: flex;
     flex-direction: column;
     border-radius: 19px;
@@ -140,6 +141,30 @@ const ClosingButton = styled.span`
     justify-content: flex-end;  
 `;
 
+const modalAnimation = {
+    hidden: {
+        y:'-200',
+        opacity:0
+    },
+    visible: {
+        y:'0px',
+        opacity:1,
+        transition:{
+            ease: [.6, .01, -.5, .95],
+            duration: 1.6
+        }
+        // { delay: 0.1}
+    },
+    exit: {
+        y:'200',
+        opacity:0,
+        transition:{
+            ease: [.6, .01, -.5, .95],
+            duration: .4,
+        }
+    }   
+}
+
 
 export default function TabModal(/*{showModal, setShowModal, user_id}*/ props) {
     const [tabTitle, setTabTitle] = useState('');
@@ -188,42 +213,53 @@ export default function TabModal(/*{showModal, setShowModal, user_id}*/ props) {
 
     return (
         <div>
+            <AnimatePresence>
             {props.showModal ?
-            (<Background ref={modalRef} onClick={CloseModal} >
-                <BoxContainer>
-                    <TopContainer>
-                        <BackDrop>
-                        <HeaderContainer>
-                        <ClosingButton onClick={() => props.setShowModal(prev => !prev)}>X</ClosingButton>
-                        <HeaderText>Create Your Tab!</HeaderText>
-                        {/* <SmallText>Give Your Tab <Span ref={textRef}></Span> </SmallText> */}
-                        </HeaderContainer>
-                        </BackDrop>
-                    </TopContainer>
-                    <FormContainer onSubmit={CreateTab} >
-                        <Input 
-                        type='text' 
-                        placeholder='Tab Name'
-                        onChange={(e) => {
-                            setTabTitle(e.target.value);
-                        }}
-                        required
-                        />
-                        <Input 
-                        type='text' 
-                        placeholder='Description'
-                        onChange={(e) => {
-                            setTabDescription(e.target.value);
-                        }}
-                        required
-                        />
-                    <Marginer direction='vertical' margin={10} />
-                    <SubmitButton type='submit' >
-                        Create
-                    </SubmitButton>
-                    </FormContainer>
-                </BoxContainer>
-            </Background>) : null}   
+            (
+                <Background ref={modalRef} onClick={CloseModal} >
+                    <motion.div 
+                    variants={modalAnimation}
+                    initial='hidden'
+                    animate='visible'
+                    exit='exit'
+                    >
+                        <BoxContainer>
+                            <TopContainer>
+                                <BackDrop>
+                                <HeaderContainer>
+                                <ClosingButton onClick={() => props.setShowModal(prev => !prev)}>X</ClosingButton>
+                                <HeaderText>Create Your Tab!</HeaderText>
+                                {/* <SmallText>Give Your Tab <Span ref={textRef}></Span> </SmallText> */}
+                                </HeaderContainer>
+                                </BackDrop>
+                            </TopContainer>
+                            <FormContainer onSubmit={CreateTab} >
+                                <Input 
+                                type='text' 
+                                placeholder='Tab Name'
+                                onChange={(e) => {
+                                    setTabTitle(e.target.value);
+                                }}
+                                required
+                                />
+                                <Input 
+                                type='text' 
+                                placeholder='Description'
+                                onChange={(e) => {
+                                    setTabDescription(e.target.value);
+                                }}
+                                required
+                                />
+                            <Marginer direction='vertical' margin={10} />
+                            <SubmitButton type='submit' >
+                                Create
+                            </SubmitButton>
+                            </FormContainer>
+                        </BoxContainer>
+                    </motion.div>
+                </Background>
+            ) : null}  
+            </AnimatePresence>
         </div>
     )
 }

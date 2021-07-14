@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import LoginForm  from './logInForm';
 import SignupForm  from './SignUpForm';
 import { AccountContext } from './accountContext';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const BoxContainer = styled.div`
     width: 280px;
@@ -100,6 +100,30 @@ const backdropVariants = {
     stiffness: 30,
   };
 
+  const formAnimation = {
+    hidden: {
+        y:'200',
+        opacity:0
+    },
+    visible: {
+        y:'0px',
+        opacity:1,
+        transition:{
+            ease: [.6, .01, -.5, .95],
+            duration: 1.4
+        }
+    },
+    exit: {
+        y:'-200',
+        opacity:0,
+        transition:{
+            ease: 'easeInOut',
+            duration: 1,
+            delay:1
+
+        }
+    }   
+}
 export function AccountBox(props) {
     const [isExpanded, setExpanded] = useState(false);
     const [active, setActive] = useState('login');
@@ -127,37 +151,41 @@ export function AccountBox(props) {
 
     const contextValue = {switchToSignup, switchToLogin}
     return (
-    // <div style={{position: 'relative'}}>
-    <AccountContext.Provider value={contextValue}>
-        <BoxContainer>
-            <TopContainer>
-                <BackDrop 
-                initial={false}
-                animate={isExpanded ? 'expanded' : 'collapsed'} 
-                variants={backdropVariants}
-                transition={expandingTransition}
-                />
-                {active === 'login' && <HeaderContainer>
-                    <HeaderText>Hello!</HeaderText>
-                    <HeaderText>Welcome Back</HeaderText>
-                    <SmallText>Please Log-in to continue!</SmallText>
-                </HeaderContainer>}
-                {active === 'signup' && <HeaderContainer>
-                    <HeaderText>Create</HeaderText>
-                    <HeaderText>New Account</HeaderText>
-                    <SmallText>Please Sign-up to continue!</SmallText>
-                </HeaderContainer>}
-            </TopContainer>
-            <InnerContainer>
-            {/* <LoginForm/>
-            <SignupForm/> */}
-                {active === 'login' && <LoginForm/>}
-                {active === 'signup' && <SignupForm/>}
-            </InnerContainer>
-        </BoxContainer>
-    </AccountContext.Provider>
-
-    // </div>
+        <motion.div 
+            variants={formAnimation}
+            initial='hidden'
+            animate='visible'
+            exit='exit'
+            >
+            <AccountContext.Provider value={contextValue}>
+                <BoxContainer>
+                    <TopContainer>
+                        <BackDrop 
+                        initial={false}
+                        animate={isExpanded ? 'expanded' : 'collapsed'} 
+                        variants={backdropVariants}
+                        transition={expandingTransition}
+                        />
+                        {active === 'login' && <HeaderContainer>
+                            <HeaderText>Hello!</HeaderText>
+                            <HeaderText>Welcome Back</HeaderText>
+                            <SmallText>Please Log-in to continue!</SmallText>
+                        </HeaderContainer>}
+                        {active === 'signup' && <HeaderContainer>
+                            <HeaderText>Create</HeaderText>
+                            <HeaderText>New Account</HeaderText>
+                            <SmallText>Please Sign-up to continue!</SmallText>
+                        </HeaderContainer>}
+                    </TopContainer>
+                    <InnerContainer>
+                    {/* <LoginForm/>
+                    <SignupForm/> */}
+                        {active === 'login' && <LoginForm/>}
+                        {active === 'signup' && <SignupForm/>}
+                    </InnerContainer>
+                </BoxContainer>
+            </AccountContext.Provider>
+        </motion.div>
     )
 
 }

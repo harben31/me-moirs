@@ -9,6 +9,8 @@ import AuthApi from '../../utils/AuthApi';
 import TabModal from '../TabModal/TabModal';
 import SearchBar from '../SearchBar/SearchBar';
 // import AcountContect from '../AccountBox/accountContext'
+import { motion, AnimatePresence } from 'framer-motion';
+
 
 
 export default function Navbar(props) {
@@ -60,9 +62,19 @@ export default function Navbar(props) {
         }
       }
             return (
-              
-              tabs ? (
+              <motion.div
+              initial={{opacity: 0, y: -7}}
+              animate={{opacity: 1, y: 0}}
+              transition={{
+                ease:'easeInOut',
+                duration: 1,
+                delay:.5
+
+              }}
+              >
+              {tabs ? (
                 <div className= 'carousel'>
+                
                 <TabModal 
                 showModal={showModal}
                 setShowModal={setShowModal}
@@ -106,5 +118,6 @@ export default function Navbar(props) {
                 <p>Logout</p>
                     <i className="fa fa-sign-out" aria-hidden="true" onClick={handleLogout}></i>
                </div>
-               </div>)
+               </div>)}
+              </motion.div>
 )}
