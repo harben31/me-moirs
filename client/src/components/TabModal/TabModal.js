@@ -5,6 +5,7 @@ import { useHistory } from 'react-router-dom';
 
 import API from '../../utils/API';
 import { init } from 'ityped';
+import { motion } from 'framer-motion';
 
 import { Marginer } from '../AccountBox/marginer';
 import { SubmitButton } from '../AccountBox/common';
@@ -140,6 +141,22 @@ const ClosingButton = styled.span`
     justify-content: flex-end;  
 `;
 
+const modalAnimation = {
+    hidden: {
+        y:'-80vh',
+        opacity:0
+    },
+    visible: {
+        y:'60px',
+        opacity:1,
+        transition:{ delay: 0.2}
+    },
+    transition : {
+        type: "spring",
+        stiffness: 30
+    }
+}
+
 
 export default function TabModal(/*{showModal, setShowModal, user_id}*/ props) {
     const [tabTitle, setTabTitle] = useState('');
@@ -190,6 +207,12 @@ export default function TabModal(/*{showModal, setShowModal, user_id}*/ props) {
         <div>
             {props.showModal ?
             (<Background ref={modalRef} onClick={CloseModal} >
+                <motion.div 
+                variants={modalAnimation}
+                initial='hidden'
+                animate='visible'
+                transition='transition' 
+                >
                 <BoxContainer>
                     <TopContainer>
                         <BackDrop>
@@ -223,6 +246,7 @@ export default function TabModal(/*{showModal, setShowModal, user_id}*/ props) {
                     </SubmitButton>
                     </FormContainer>
                 </BoxContainer>
+                </motion.div>
             </Background>) : null}   
         </div>
     )
