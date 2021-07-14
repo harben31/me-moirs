@@ -13,8 +13,13 @@
     border-radius: 15px 0 0 15px;
 }
 
+.postDate {
+    color: rgb(42, 157, 143);
+}
+
 .oldPostContent {
     padding: 15px 20px;
+    width: 100%;
 }
 
 .oldPostTitle {

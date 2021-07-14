@@ -34,11 +34,11 @@ export default function OldPost(props) {
         .catch(err => console.log(err));
     };
 
-    // formatDate = (date) => {
-    //     date = new Date(date);
-    //     let dob = date.toLocaleDateString();
-    //     return dob;
-    //   }
+    const formatDate = (dated) => {
+        let postDate = new Date(dated);
+        let date = postDate.toLocaleDateString();
+        return date;
+      }
 
 
     return (
@@ -46,9 +46,9 @@ export default function OldPost(props) {
             <img className='oldPostImage' src='https://images.unsplash.com/photo-1611162616475-46b635cb6868?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8dGh1bWJuYWlsfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&w=1000&q=80' alt=''/>
 
             <div className='oldPostContent'>
-                <p>
+                <p className='postDate'>
                     {/* month day and year */}
-                    {props.date}
+                    {formatDate(props.date)}
                 </p>
                 <p className='oldPostTitle'>
                     <b>{props.title}</b>
@@ -76,10 +76,21 @@ export default function OldPost(props) {
                             user_id={props.user_id}
                             post_id={props._id}
                             username={props.username}
+                            setComment={props.setComment} 
                             />
                         </div>
                         <div>
-                            <Comment />
+                            {props.comments.slice(0).reverse().map((comment, i) => {
+                                return (
+                                    <Comment 
+                                        key={i}
+                                        formatDate={formatDate}
+                                        {...comment}
+                                           
+                                    />  
+                                )
+                            })}
+                            
                         </div>
                     </div>
                     ) : 

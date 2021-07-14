@@ -10,6 +10,7 @@ import API from '../utils/API';
     const [postTitle, setPostTitle] = useState('');
     const [postContent, setPostContent] = useState('');
     const [post, setPost] = useState(false);
+    const [comment, setComment] = useState(false);
 
     useEffect(() => {
         const Id = props.match.params.id;
@@ -18,16 +19,7 @@ import API from '../utils/API';
                 setTabInfo(res.data);
             })
             .catch(err => console.log(err));
-    }, [props.match.params.id]);
-
-    useEffect(() => {
-        const Id = props.match.params.id;
-         API.getTab(Id)
-            .then(res => {
-                setTabInfo(res.data);
-            })
-            .catch(err => console.log(err));
-    }, [post]);
+    }, [props.match.params.id, post, comment]);
 
     const CreatePost = (e) => {
         e.preventDefault();
@@ -86,6 +78,7 @@ import API from '../utils/API';
                                             user_id={props.user_id}
                                             username={props.username}
                                             posts={tabInfo.posts} 
+                                            setComment={setComment}
                                         />
                                     )
                                 })) : 
