@@ -62,12 +62,18 @@ export default function OldPost(props) {
                 post_id={props._id}
                 />
                 <CommentButton createComment={CreateComment} />
-                <button
+                <span className='postDelBtn delPostBtn'
+                    onClick={deletePost}
+                    class="material-icons"
+                >
+                    delete_forever
+                </span>
+                {/* <button
                     className='postDelBtn'
                     onClick={deletePost}
                     >
                         Delete Post
-                </button>
+                </button> */}
                 {commentActivated ? 
                     (
                     <div>
