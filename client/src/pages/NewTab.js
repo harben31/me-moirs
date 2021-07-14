@@ -47,12 +47,16 @@ import API from '../utils/API';
                         <aside className='description'>
 
                             <div className='delTabWrap'>
-                                <button
+                                <span className='delTabBtn'
+                                onClick={deleteTab} class="material-icons">
+                                    delete_forever
+                                </span>
+                                {/* <button
                                 className='delTabBtn'
                                 onClick={deleteTab}
                                 >
                                     Delete
-                                </button>
+                                </button> */}
                             </div>
                      
                             {tabInfo ? (
