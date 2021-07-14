@@ -27,7 +27,7 @@ export default function Profile(props) {
     // const [cardInfo, setCardInfo] = useState([]);
     const [coverImage, setCoverImage] = useState([]);
     const [profileImage, setProfileImage] = useState([]);
-    const [coverPhoto, setCoverPhoto] = useState('');
+    const [background, setBackground] = useState('');
    
     
 
@@ -50,24 +50,24 @@ export default function Profile(props) {
     }, []);
 
 
-    // useEffect(() => {
-    //     if (coverPhoto) {
-    //     API.addImage(props.user, coverPhoto)
-    //     .then ((data) => {
-    //         window.location.reload()
-    //     })
-    //   }
-    //   }, [coverPhoto])
+    useEffect(() => {
+        if (background) {
+        API.coverPhoto(props.user, background)
+        .then ((data) => {
+            window.location.reload()
+        })
+      }
+      }, [background])
   
   
-    //   useEffect(() => {
-    //     API.userInfo()
-    //     .then((res) => {
-    //       setCoverImage(res.data.image)
-    //     }).catch(err => {
-    //       console.log(err)
-    //     })
-    //   }, [])
+      useEffect(() => {
+        API.userInfo()
+        .then((res) => {
+          setCoverImage(res.data.background)
+        }).catch(err => {
+          console.log(err)
+        })
+      }, [])
 
     const backgroundImage = async e => {
         const files = e.target.files;
@@ -84,7 +84,7 @@ export default function Profile(props) {
         const file = await res.json();
         console.log(file);
     
-        setCoverPhoto(file.url);
+        setBackground(file.url);
     
       } 
 

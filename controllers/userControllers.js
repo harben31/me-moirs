@@ -61,5 +61,16 @@ module.exports = {
             console.log(err);
             res.status(422).json(err);
         });
+    },
+
+    coverPhoto: function(req, res) {
+        console.log(req.body, 'image data')
+        db.User
+        .findOneAndUpdate({_id: req.params.id}, {background: req.body.coverImage})
+        .then(dbModel => res.json(dbModel))
+        .catch(err => {
+            console.log(err);
+            res.status(422).json(err);
+        });
     }
 };

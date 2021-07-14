@@ -206,7 +206,11 @@ router.route('/:id')
     .delete(userController.deleteUser)
 
 router.route('/image/:id')
-    .put(userController.addImage)    
+    .put(userController.addImage) 
+    
+
+router.route('/background/:id')
+    .put(userController.coverPhoto)
 
 router.route('/')
     .get(userController.findAllUsers)
