@@ -1,0 +1,15 @@
+.commentCard {
+    border-bottom: 1.5px solid rgba(200, 200, 200, 0.3);
+    margin-top:10px;
+    width: 100%;
+}
+
+.commentDate {
+    color: rgb(42, 157, 143);
+    margin-bottom: 0 !important;
+}
+
+.commentTitle {
+    font-size: 20px;
+    margin-bottom: 0 !important;
+}

@@ -46,7 +46,7 @@ export default function OldPost(props) {
             <img className='oldPostImage' src='https://images.unsplash.com/photo-1611162616475-46b635cb6868?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8dGh1bWJuYWlsfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&w=1000&q=80' alt=''/>
 
             <div className='oldPostContent'>
-                <p>
+                <p className='postDate'>
                     {/* month day and year */}
                     {formatDate(props.date)}
                 </p>
@@ -79,7 +79,16 @@ export default function OldPost(props) {
                             />
                         </div>
                         <div>
-                            <Comment formatDate={formatDate}/>
+                            {props.comments.slice(0).reverse().map((comment, i) => {
+                                return (
+                                    <Comment 
+                                        key={i}
+                                        formatDate={formatDate}
+                                        {...comment}    
+                                    />  
+                                )
+                            })}
+                            
                         </div>
                     </div>
                     ) : 
