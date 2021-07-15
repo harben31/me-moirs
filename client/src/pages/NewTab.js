@@ -3,14 +3,15 @@ import OldPost from '../components/OldPost';
 import React, { useState, useEffect } from 'react';
 import API from '../utils/API';
 
-
- export default function NewTab(props) {
+export default function NewTab(props) {
 
     const [tabInfo, setTabInfo] = useState();
     const [postTitle, setPostTitle] = useState('');
     const [postContent, setPostContent] = useState('');
     const [post, setPost] = useState(false);
     const [comment, setComment] = useState(false);
+    const [update, setUpdate] = useState(false);
+    const [updateComment, setUpdateComment] = useState(false);
 
     useEffect(() => {
         const Id = props.match.params.id;
@@ -19,7 +20,7 @@ import API from '../utils/API';
                 setTabInfo(res.data);
             })
             .catch(err => console.log(err));
-    }, [props.match.params.id, post, comment]);
+    }, [props.match.params.id, post, comment, update, updateComment]);
 
     const CreatePost = (e) => {
         e.preventDefault();
@@ -33,7 +34,6 @@ import API from '../utils/API';
             console.log(err);
         });
     };
-
 
     const deleteTab = () => {
         API.deleteTab(tabInfo._id)
@@ -92,6 +92,10 @@ import API from '../utils/API';
                                             username={props.username}
                                             posts={tabInfo.posts} 
                                             setComment={setComment}
+                                            update={update}
+                                            setUpdate={setUpdate}
+                                            updateComment={updateComment}
+                                            setUpdateComment= {setUpdateComment}
                                         />
                                     )
                                 })) : 
@@ -103,5 +107,4 @@ import API from '../utils/API';
                     </div>
         </div>
     )
-}
-
+};

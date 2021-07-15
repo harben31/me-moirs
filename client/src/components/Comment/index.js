@@ -1,21 +1,15 @@
 import React from 'react';
-import { IconButton, MenuItem, Menu } from 'react-mdl';
+import CommentDotIcon from '../CommentDotIcon';
 import './style.css';
 
-export default function Comment({formatDate, username, content, date}) {
+export default function Comment({formatDate, username, content, date, _id, handleCommentToggle, commentMenu, updateComment, setUpdateComment }) {
     return (
         <div className='commentCard'>
-            <div classame='commentTop'>
+            <div className='commentTop'>
                 <p className='commentDate'>
                     {formatDate(date)}
                 </p>
-                <span className='dotIcon'>
-                    <IconButton name="more_vert" id="demo-menu-lower-right" />
-                    <Menu target="demo-menu-lower-right" align="right">
-                        <MenuItem>Edit</MenuItem>
-                        <MenuItem>Delete</MenuItem>
-                    </Menu>
-                </span>
+                <CommentDotIcon _id={_id} handleCommentToggle={handleCommentToggle} commentMenu={commentMenu} updateComment={updateComment} setUpdateComment={setUpdateComment}/>
             </div>
             <p className='commentTitle'>
                 <b>{username}</b>

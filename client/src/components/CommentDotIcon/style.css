@@ -1,13 +1,13 @@
-.menuIcon {
+.commentMenuIcon {
     position: relative;
 }
 
-.dotIcon {
+.commentDotIcon {
     z-index: 3;
     cursor: pointer;
 }
 
-.menu {
+.commentMenu {
     border: 2px solid rgba(200, 200, 200, 0.3);
     color: black;
     padding: 5px;
