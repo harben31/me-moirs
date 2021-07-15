@@ -183,7 +183,7 @@ router.route('/logout')
 })
 
 router.route('/:id')
-    .get(userController.findUserById)
+    // .get(userController.findUserById)
     .put(userController.updateUser)
     .delete(userController.deleteUser)
 
@@ -197,8 +197,10 @@ router.route('/background/:id')
 router.route('/')
     .get(userController.findAllUsers)
 
-// router.route('/username/:username')
-//     .get(userController.findUserByUsername)
+
+router.route('/username/')
+    .get(userController.findUserByUsername)
+
 
 // router.route('/email/:email')
 //     .get(userController.findUserByEmail)

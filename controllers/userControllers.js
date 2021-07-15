@@ -16,15 +16,71 @@ module.exports = {
             });
     },
 
-    findUserById: function (req, res) {
+
+    // findUserById: function (req, res) {
+    //     console.log('findUserById')
+    //     db.User
+    //         .findById(req.params.id)
+    //         .then(dbModel => {
+    //             res.json(dbModel)
+    //         })
+    //         .catch(err => {
+    //             console.log(err);
+    //             res.json(err);
+    //         });
+    // },
+
+    //need to handle case sensativity. second username all lowercase?
+    findUserByUsername: function(req, res) {
+        function escapeRegex(text) {
+            return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
+        };
+        const regex = new RegExp(escapeRegex(req.query.search))
+        console.log(req.query)
         db.User
-            .findById(req.params.id)
-            .then(dbModel => res.json(dbModel))
+            .findById(req.query.id)
+            .then(dbModel => {
+               const idsToFilter = dbModel.friends;
+               idsToFilter.push(dbModel._id)
+               console.log(idsToFilter);
+
+               db.User
+                .find({username: regex})
+                .then(dbModel => {
+                    if(dbModel.length) {
+                        //trim res to username, email, image, 
+                        let filteredSearch = dbModel.filter(user => {
+                            return !idsToFilter.includes(user._id)
+                        })
+                        res.json(filteredSearch);
+                    } else {
+                        res.json({ message: 'username could not be found'})
+                    }
+                })
+            })
+
+        
             .catch(err => {
                 console.log(err);
                 res.json(err);
-            });
+            })
     },
+
+    findUserByEmail: function(req, res) {
+        console.log('findByEmail', req.params.email);
+        function escapeRegex(text) {
+            return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
+        };
+        const regex = new RegExp(escapeRegex(req.params.email))
+        db.User
+            .find({email: regex})
+            .then(dbModel => {
+                if(dbModel.length) {
+                    res.json(dbModel);
+                } else {
+                    res.json({message: 'email could not be found'});
+                }
+            })
 
     updateUser: function (req, res) {
         db.User

@@ -35,6 +35,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 function App() {
   const [userId, setUserId] = useState({});
   const [username, setUsername] = useState('');
+  const [friends, setFriends] = useState([]);
   const [auth, setAuth] = useState(false);
   
 
@@ -61,8 +62,10 @@ function App() {
         ? <Component {...props} 
         user_id={userId} 
         setUserId={setUserId}
-        setUsername={setUsername}
         username={username}
+        setUsername={setUsername}
+        friends={friends}
+        setFriends={setFriends}
         />
       : <Redirect to='/' />} />;
   };
@@ -76,6 +79,7 @@ function App() {
                 <Header
                 loggedIn={auth}
                 userId={userId}
+                friends={friends}
                 />
                
                 <RouteRegistration exact path='/' component={LoginSignup}/>
