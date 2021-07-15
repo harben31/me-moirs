@@ -17,10 +17,18 @@ module.exports = {
             });
     },
     findPosts: function(req, res) {
-        let idToSearch = mongoose.Types.ObjectId(req.body.id);
+        console.log('!!! findposts')
+        // let idToSearch = mongoose.Types.ObjectId(req.body.id);
         db.Post
             .find({tab_id: req.params.id})
-            .then(dbModel => res.json(dbModel))
+            .populate({
+                path: 'likes',
+                select: {username: 1}
+            })
+            .then(dbModel => {
+                console.log(dbModel);
+                res.json(dbModel);
+            })
             .catch(err => {
                 console.log(err);
                 res.status(422).json(err);
@@ -46,7 +54,31 @@ module.exports = {
                 res.status(422).json(err);
             });
     },
-    //will need to delete all comments. Can we 'cascade'?
+
+    addLike: function(req, res) {
+        console.log('!!!addlike', req.body)
+        db.Post
+            .findOneAndUpdate({_id: req.params.id},
+                {$push: {likes: req.body.user_id}})
+            .then(dbModel => res.json(dbModel))
+            .catch(err => {
+                console.log(err);
+                res.json(err);
+            })
+    },
+
+    unLike: function(req, res) {
+        console.log('!!!removelike', req.body)
+        db.Post
+            .findOneAndUpdate({_id: req.params.id},
+                {$pull: {likes: req.body.user_id}})
+            .then(dbModel => res.json(dbModel))
+            .catch(err => {
+                console.log(err);
+                res.json(err);
+            });
+    },
+    
     deletePost: function(req, res) {
         db.Post
             .findById(req.params.id)

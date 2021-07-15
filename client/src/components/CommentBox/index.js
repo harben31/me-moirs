@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import './style.css';
+import API from '../../utils/API';
 
 
 const Input = styled.input`
@@ -30,14 +31,37 @@ const Input = styled.input`
 `;
 
 
-export default function CommentBox() {
+export default function CommentBox(props) {
+    const [commentContent, setCommentContent] = useState('');
+
+    const createComment = (e) => {
+        e.preventDefault();
+        API.saveComment({
+            content: commentContent,
+            username: props.username,
+            post_id: props.post_id,
+            user_id: props.user_id
+        })
+        .then(res => {
+            console.log(res);
+            props.setComment(true);
+        })
+        .catch(err => console.log(err));
+
+        document.querySelector('#commentInput').value = '';
+    }
     return (
         <div className='commentBox'>
-            <span class="material-icons">
+            <span className="material-icons">
                 chat
             </span> 
-            <Input type='text' placeholder='Add a comment...'/>
-            <span class="material-icons">
+            <Input
+            id='commentInput'
+            type='text'
+            placeholder='Add a comment...'
+            onChange={(e) => setCommentContent(e.target.value)}
+            />
+            <span onClick={createComment} class="material-icons">
                 send
             </span>
         </div>

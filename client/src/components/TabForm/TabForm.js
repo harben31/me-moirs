@@ -7,6 +7,16 @@ import { init } from 'ityped'
 import { Marginer } from '../AccountBox/marginer';
 import { SubmitButton } from '../AccountBox/common';
 
+const Background = styled.div`
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    postion: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    // z-index: 100;
+`; 
 const BoxContainer = styled.div`
     width: 380px;
     min-height: 450px;
@@ -119,53 +129,56 @@ const Span = styled.span`
 `;
 
 
-export default function TabForm(props) {
-    const textRef = useRef();
+export default function TabForm({showModal,setShowModal}) {
+    // const textRef = useRef();
 
-    useEffect(() => {
-              init(textRef.current, {
-                showCursor: true,
-                backDelay:  1500,
-                backSpeed:60,
-                strings: ['Title', 'Description' ] 
-            })
-        },
-    [])
+    // useEffect(() => {
+    //           init(textRef.current, {
+    //             showCursor: true,
+    //             backDelay:  1500,
+    //             backSpeed:60,
+    //             strings: ['Title', 'Description' ] 
+    //         })
+    //     },
+    // [])
 
     return (
         <div>
-            <BoxContainer>
-                <TopContainer>
-                    <BackDrop>
-                    <HeaderContainer>
-                    <HeaderText>Create Your Tab!</HeaderText>
-                    <SmallText>Give Your Tab <Span ref={textRef}></Span> </SmallText>
-                    </HeaderContainer>
-                    </BackDrop>
-                </TopContainer>
-                <FormContainer onSubmit={props.CreateTab}>
-                    <Input 
-                    type='text' 
-                    placeholder='Tab Name'
-                    onChange={(e) => {
-                        props.setTabTitle(e.target.value);
-                    }}
-                    required
-                    />
-                    <Input 
-                    type='text' 
-                    placeholder='Description'
-                    onChange={(e) => {
-                        props.setTabDescription(e.target.value);
-                    }}
-                    required
-                    />
-                <Marginer direction='vertical' margin={10} />
-                <SubmitButton type='submit'>
-                    Create
-                </SubmitButton>
-                </FormContainer>
-            </BoxContainer>   
+            {showModal ? 
+                (<Background>
+                    <BoxContainer>
+                        <TopContainer>
+                            <BackDrop>
+                            <HeaderContainer>
+                            <HeaderText>Create Your Tab!</HeaderText>
+                            {/* <SmallText>Give Your Tab <Span ref={textRef}></Span> </SmallText> */}
+                            </HeaderContainer>
+                            </BackDrop>
+                        </TopContainer>
+                        <FormContainer >
+                            <Input 
+                            type='text' 
+                            placeholder='Tab Name'
+                            // onChange={(e) => {
+                            //     props.setTabTitle(e.target.value);
+                            // }}
+                            required
+                            />
+                            <Input 
+                            type='text' 
+                            placeholder='Description'
+                            // onChange={(e) => {
+                            //     props.setTabDescription(e.target.value);
+                            // }}
+                            required
+                            />
+                        <Marginer direction='vertical' margin={10} />
+                        <SubmitButton type='submit'>
+                            Create
+                        </SubmitButton>
+                        </FormContainer>
+                    </BoxContainer>
+                </Background>) : null }   
         </div>
     )
 }

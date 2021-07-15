@@ -26,13 +26,15 @@ import NewTab from './pages/NewTab';
 import AuthApi from './utils/AuthApi';
 
 import TabForm from './components/TabForm/TabForm';
+import { motion, AnimatePresence } from 'framer-motion';
+
 
 
 
 
 function App() {
-  const [user, setUser] = useState({});
-
+  const [userId, setUserId] = useState({});
+  const [username, setUsername] = useState('');
   const [auth, setAuth] = useState(false);
   
 
@@ -41,9 +43,9 @@ function App() {
     API.getUser()
     .then(res => {
       if(res.data.auth) {
-        console.log(res.data, '!!!!res data');
+        // console.log(user, '!!!USER APP.JS' );
         //setting user the user id to be passed up on api calls
-        setUser(res.data.user_id)
+        setUserId(res.data.user_id)
         setAuth(true);
       }
     }).catch(err => {
@@ -54,26 +56,38 @@ function App() {
   //moved this fn inside of the App fn so I could get access to the setUser hook
   const RouteProtected = ({ component: Component, ...rest }) => {
     const authApi = useContext(AuthApi);
-    return <Route {...rest} render={props => authApi.auth ? <Component {...props} user={user} setUserState={setUser} /> : <Redirect to='/' />} />;
+    return <Route {...rest}
+      render={props => authApi.auth
+        ? <Component {...props} 
+        user_id={userId} 
+        setUserId={setUserId}
+        setUsername={setUsername}
+        username={username}
+        />
+      : <Redirect to='/' />} />;
   };
   
     return (
+      <AnimatePresence>
+         <motion.div>
       <AuthApi.Provider value={{ auth, setAuth }}>
           <Router>
               <div className='App'>
-                <Header loggedIn={auth}/>
-                <RouteRegistration exact path='/' component= {LoginSignup}/>
-                {/* <Navbar/>  */}
-                {/* <Home/>  */}
+                <Header
+                loggedIn={auth}
+                userId={userId}
+                />
+               
+                <RouteRegistration exact path='/' component={LoginSignup}/>
+                
                 <RouteProtected exact path='/profile' component={Profile}/>
-                {/* <TabForm/> */}
-                <RouteProtected exact path='/newtab' component={NewTab} />
-
+                <RouteProtected exact path='/newtab/:id' component={NewTab} />
                 <Footer/>
-
               </div>
           </Router>
         </AuthApi.Provider>
+        </motion.div>
+        </AnimatePresence>
     );
 };
 

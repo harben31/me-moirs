@@ -1,108 +1,97 @@
 import PostsForm from '../components/PostsForm/PostsForm';
 import OldPost from '../components/OldPost';
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import API from '../utils/API';
-import TabForm from '../components/TabForm/TabForm';
 
 
  export default function NewTab(props) {
-   
-    const [show, setShow] = useState(false);
-    const [tabId, setTabId] = useState('');
-    const [tabTitle, setTabTitle] = useState('');
-    const [tabDescription, setTabDescription] = useState('');
+
     const [tabInfo, setTabInfo] = useState();
     const [postTitle, setPostTitle] = useState('');
     const [postContent, setPostContent] = useState('');
-    const [postInfo, setPostInfo] = useState();
-    const [postTop, setPostTop] = useState('');
-    const [postBottom, setPostBottom] = useState('');
+    const [post, setPost] = useState(false);
+    const [comment, setComment] = useState(false);
 
-    // useEffect(() => {
-    //     API.getTab(tabId)
-    //         .then(res => {
-    //             setTabInfo(res.data);
-    //         })
-    //         .catch(err => console.log(err));
-    // }, []);
+    useEffect(() => {
+        const Id = props.match.params.id;
+         API.getTab(Id)
+            .then(res => {
+                setTabInfo(res.data);
+            })
+            .catch(err => console.log(err));
+    }, [props.match.params.id, post, comment]);
 
     const CreatePost = (e) => {
         e.preventDefault();
         API.savePost({
             title: postTitle,
             content: postContent,
+            tab_id: tabInfo._id
         })
-        .then((res) => {
-            setTabId(res.data._id)
-            console.log(res.data);
-            setPostInfo(res.data)
-            setPostTop(res.data.title);
-            setPostBottom(res.data.content);
-        })
+        .then(() => setPost(true))
         .catch(err => {
-            console.log(err)
-        })
+            console.log(err);
+        });
     };
 
-    const CreateTab = (e) => {
-        e.preventDefault();
-        API.saveTab({
-            title: tabTitle,
-            description: tabDescription,
-            //added this so the id stored in state is passed up as user_id
-            user_id: props.user
-        })
-        .then((res) => {
-        
-            setTabInfo(res.data);
-            setShow(!show)
-        })
-        .catch(err => {
-            console.log(err)
-        })
+
+    const deleteTab = () => {
+        API.deleteTab(tabInfo._id)
+        .then(res => console.log(res))
+        .catch(err => console.log(err));
     };
+
     return (
         <div className= 'new-tabs'>
-            {
-                show ? ( 
                     <div className='tabBody'>
                         <aside className='description'>
-                            <h3>About {tabInfo.title}</h3>
+
+                            <div className='delTabWrap'>
+                                <span className='delTabBtn'
+                                onClick={deleteTab} class="material-icons">
+                                    delete_forever
+                                </span>
+                                {/* <button
+                                className='delTabBtn'
+                                onClick={deleteTab}
+                                >
+                                    Delete
+                                </button> */}
+                            </div>
+                     
+                            {tabInfo ? (
+                                <div>
+                                    <h3>About <b className='tabTitle'>{tabInfo.title}</b></h3>
                             <p>
                                 {tabInfo.description}
-                            </p>
+                            </p> 
+                                </div>
+                            ) : null}
                         </aside>
                         <section className='postSection'>
-                            <PostsForm setPostContent={setPostContent} setPostTitle={setPostTitle} createPost={CreatePost} />
-                            {/* {tabInfo.posts.length ? (tabInfo.posts.map((post) => {
-                                return ( */}
-                            {postTop && postBottom ? (
-                                <OldPost 
-                                        // key={post.id}
-                                        // {...post}
-                                        title={postTitle}
-                                        content={postContent}    
-                                    />
-                            ) : (
-                                <h4>Create Your First Post Above!</h4>
-                            )}
-                                    
-                                {/* )
-                                
-                            }))
-                                 : 
-                                <h4>Create Your First Post Above!</h4>
-                            } */}
+                            <PostsForm
+                            setPostContent={setPostContent}
+                            setPostTitle={setPostTitle}
+                            createPost={CreatePost}
+                            />
+                            {tabInfo ? (tabInfo.posts ? (tabInfo.posts.slice(0).reverse().map((post, i) => {
+                                    return (
+                                        <OldPost 
+                                            key={i}
+                                            {...post} 
+                                            user_id={props.user_id}
+                                            username={props.username}
+                                            posts={tabInfo.posts} 
+                                            setComment={setComment}
+                                        />
+                                    )
+                                })) : 
+                                null
+                            ) :
+                                null
+                            }
                         </section> 
-                    </div>) : (<TabForm 
-                    CreateTab={CreateTab}
-                    setTabTitle={setTabTitle} 
-                    setTabDescription={setTabDescription}
-                    show={show}
-                    setShow={setShow}
-                    />
-                )
-            } 
+                    </div>
         </div>
     )
 }

@@ -23,7 +23,6 @@ module.exports = {
                 populate: {path: 'comments'}
             })
             .then(dbModel => {
-                console.log(dbModel);
                 res.json(dbModel);
             })
             .catch(err => {
@@ -47,16 +46,22 @@ module.exports = {
                 res.json(err);
             })
     },
-    //find any public tab by their 'tag' or category.
-    // findTabByTag: function(req, res) {
-    //     db.Tab
-    //         .findById(req.params.id)
-    //         .then(dbModel => res.json(dbModel))
-    //         .catch(err => {
-    //             console.log(err);
-    //             res.status(422).json(err);
-    //         });
-    // }
+    findTabById: function(req, res) {
+        console.log(req.params.id, '!!!!req.params.id')
+        db.Tab
+            .findById(req.params.id)
+            .populate({ 
+                path: 'posts',
+                populate: {
+                    path: 'comments'
+                }    
+            })
+            .then(dbModel => res.json(dbModel))
+            .catch(err => {
+                console.log(err);
+                res.status(422).json(err);
+            });
+    }
 };
 
 //find update to following tabs

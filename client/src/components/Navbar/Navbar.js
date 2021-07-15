@@ -6,26 +6,36 @@ import { Tab } from 'react-mdl';
 import { Link } from 'react-router-dom';
 import API from '../../utils/API';
 import AuthApi from '../../utils/AuthApi';
+import TabModal from '../TabModal/TabModal';
+import SearchBar from '../SearchBar/SearchBar';
+// import AcountContect from '../AccountBox/accountContext'
+import { motion, AnimatePresence } from 'framer-motion';
 
-export default function Navbar({tabs}) {
 
-     const authApi = useContext(AuthApi);
 
-     // const [sorted, setSorted] = useState([]);
+export default function Navbar(props) {
+    // const { OpenModal } = useContext(AccountContext);
 
-   
+    const authApi = useContext(AuthApi);
+    const [tabs, setTabs] = useState();
 
-     // useEffect(() => {
-     //     setSorted(tabs)
-   
-     // }, []) 
- 
- 
-     // const tabTitle = sorted.sort((a, b) => {
-     //     return a.title.localeCompare(b.title)
-     //  })
+    const [showModal, setShowModal] = useState(false);
+    const OpenModal = () => {
+        setShowModal(prev => !prev);
+    };
 
-   
+     useEffect(() => {
+      API.userInfo()
+          .then(res => {
+              if(res) {
+                  const data = res.data.shortTabInfo;
+                  setTabs(data);
+               } 
+             
+          })
+          .catch(err => console.log(err));
+    }, []);
+
      const handleLogout = () => {
           API.logout()
               .then(() => {
@@ -52,38 +62,60 @@ export default function Navbar({tabs}) {
         }
       }
             return (
-              
-              tabs ? (
-              <div className= 'carousel'>
+              <motion.div
+              initial={{opacity: 0, y: -7}}
+              animate={{opacity: 1, y: 0}}
+              transition={{
+                ease:'easeInOut',
+                duration: 1,
+                delay:.5
+
+              }}
+              >
+              {tabs ? (
+                <div className= 'carousel'>
+                
+                <TabModal 
+                showModal={showModal}
+                setShowModal={setShowModal}
+                userId={props.userId}/>
+               
                <Carousel className= 'carousel-tabs'containerClass="container-with-dots"
                 infinite={true}
                 itemClass="carousel-item-padding-0-px"
                 responsive={responsive}>
                             {tabs.map((tab, index) => {
                           return(
-                            <Tab key={index} className= 'tabs'>{tab.title}</Tab>
+                            <Link to={{
+                                pathname: '/newtab/' + tab._id,
+                            }} key={index} className='tabs'>{tab.title}</Link>
                             )}
                         )} 
                 </Carousel>
-                  
+                
+                <SearchBar user_id={props.userId}/>            
                <div className= 'new-tab'>
                 <p>New Tab</p>
-                    <Link to='/newtab'><i class="fa fa-pencil-square-o" aria-hidden="true"></i></Link>
+                    {/* <Link to='/newtab'><i className="fa fa-pencil-square-o" aria-hidden="true"></i></Link> */}
+                    <i className="fa fa-pencil-square-o" aria-hidden="true" onClick={OpenModal}></i>
                </div>
+
                <div className= 'logout'>
                 <p>Logout</p>
-                    <i class="fa fa-sign-out" aria-hidden="true" onClick={handleLogout}></i>
+                    <i className="fa fa-sign-out" aria-hidden="true" onClick={handleLogout}></i>
                </div>
                </div>) : ( 
 
                <div className= 'carousel'>
                <div className= 'new-tab'>
                 <p>New Tab</p>
-                    <Link to='/newtab'><i class="fa fa-pencil-square-o" aria-hidden="true"></i></Link>
+                    {/* <Link to='/newtab'><i className="fa fa-pencil-square-o" aria-hidden="true"></i></Link> */}
+                    <i className="fa fa-pencil-square-o" aria-hidden="true" onClick={OpenModal}></i>
                </div>
                <div className= 'logout'>
                 <p>Logout</p>
-                    <i class="fa fa-sign-out" aria-hidden="true" onClick={handleLogout}></i>
+                    <i className="fa fa-sign-out" aria-hidden="true" onClick={handleLogout}></i>
                </div>
-               </div>)
+               </div>)}
+              </motion.div>
 )}

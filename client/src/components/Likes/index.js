@@ -1,42 +1,57 @@
-import React, { Component } from 'react';
+import React, { useEffect, useState } from 'react';
+import API from '../../utils/API';
 
-class Likes extends Component {
-    state = {
-        likes: 0,
-        liked: false
-    };
+export default function Likes(props) {
+    // state = {
+    //     likes: 0,
+    //     liked: false
+    // };
 
-    addLike = () => {
-        if(!this.state.liked) {
-            this.setState({
-                liked: true
-            });
-            let newCount = this.state.likes + 1;
-            this.setState({
-                likes: newCount
-            });
+    const [likes, setLikes] = useState(0);
+    const [liked, setLiked] = useState(false);
+
+    useEffect(() => {
+        setLikes(props.likes.length)
+    }, [])
+
+    useEffect(() => {
+        props.likes.forEach(user_id => {
+            if(user_id===props.user_id){
+                setLiked(true)
+            }
+        });
+        console.log('props:', props, 'likes', likes)
+    }, [])
+
+    const addLike = () => {
+        if(!liked) {
+            setLiked(true);
+            let newCount = likes + 1;
+            setLikes(newCount);
+            API.addLike(props.post_id, {
+                user_id: props.user_id
+            })
+            .then(res => console.log(res))
+            .catch(err => console.log(err));
         } else {
-            this.setState({
-                liked: false
-            });
-            let newCount = this.state.likes - 1;
-            this.setState({
-                likes: newCount
-            }); 
-        }
-        
+            setLiked(false);
+            let newCount = likes - 1;
+            setLikes(newCount); 
+            API.unLike(props.post_id, {
+                user_id: props.user_id
+            })
+            .then(res => console.log(res))
+            .catch(err => console.log(err));
+        } 
     };
 
-    render() {
-        return (
-            <span>
-                <span class="likes material-icons" onClick={this.addLike}>
-                    favorite
-                </span>
-                <span>{this.state.likes}</span>
-            </span>
-        )
-    }
-};
 
-export default Likes;
+    return (
+        <span>
+            <span className="likes material-icons" onClick={addLike}>
+                favorite
+            </span>
+            <span>{likes}</span>
+        </span>
+    );
+};

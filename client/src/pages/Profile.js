@@ -4,7 +4,7 @@ import React, {useState, useEffect, useContext } from 'react';
 import CoverPhoto from '../components/CoverPhoto/CoverPhoto';
 import ProfileImage from '../components/ProfileImage/ProfileImage';
 // import { SliderData } from '../components/Demo';
-// import Navbar from '../components/Navbar/Navbar'
+import Navbar from '../components/Navbar/Navbar'
 // import Header from '../components/Header/Header';
 import Banner from '../components/Banner/Banner';
 import API from '../utils/API';
@@ -15,34 +15,38 @@ import API from '../utils/API';
 import '../App.css'
 
 // import CarouselSlides from '../components/Carousel/CarouselSlides'
+// import TabForm from '../components/TabForm/TabForm';
+import TabModal from '../components/TabModal/TabModal';
 
 
 
 
 export default function Profile(props) {
-    // console.log(props);
     //we have user at app.js do we need both? can we do one at top level?
-    const [user, setUser] = useState([]);
+    // const [user, setUser] = useState([]);
    
     // const [cardInfo, setCardInfo] = useState([]);
     const [coverImage, setCoverImage] = useState([]);
     const [profileImage, setProfileImage] = useState([]);
     const [background, setBackground] = useState('');
    
-    
+    const [showModal, setShowModal] = useState(false);
+    // const OpenModal = () => {
+    //     setShowModal(prev => !prev);
+    // };
 
     useEffect(() => {
         API.userInfo()
             .then(res => {
                 if(res) {
                     const data = res.data;
-                    console.log('userINfo', data, 'props: ', props)
-                    //setting the state (on App.js) to user id
-                    props.setUserState(data._id);
-                    setUser(data);
-                    console.log(data)
-                    
-                    
+                    // console.log('userINfo', data, 'props: ', props)
+                    // console.log('testing !!!!!!!!!!!!!!')
+                    // //setting the state (on App.js) to user id
+                    props.setUserId(data._id);
+                    // let userData = {...props.user}
+                    props.setUsername(data.username);
+                    // props.setUser('name');               
                 } 
                 // return data;
             })
@@ -91,28 +95,21 @@ export default function Profile(props) {
 
 
 
-    // useEffect(() => {
-    //     setCoverImage(
-    //        { 
-    //         cover_image:'https://images.unsplash.com/photo-1447069387593-a5de0862481e?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8b2xkJTIwam91cm5hbHN8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60'
-    //        } 
-    //     )
-    // }, [])
+  
 
-    // useEffect(() => {
-    //     setProfileImage(
-    //         {
-    //             profile_image:'https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cHJvZmlsZSUyMHBpY3R1cmV8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60'
-    //         }
-    //     )
-
-    // }, [])
+    
     
     return (
        
-          <div>
-              {/* <Header/>
-                <Navbar /> */}
+        <div>
+        <TabModal
+        showModal={showModal}
+        setShowModal={setShowModal}
+        userId={props.userId}
+        />
+              
+              {/* <Header/> */}
+                {/* <Navbar id={user.shortTabInfo}/> */}
                 
                  {/* <CarouselSlides tabs={SliderData}/> */}
                 
@@ -122,11 +119,12 @@ export default function Profile(props) {
                 return <Cards key={card.id} name={card.name}
                 title={card.title}
                 description={card.description}/>})} */} 
-                <Banner username={user.username}/>
+                <Banner username={props.username}/>
                  {/* <Cards/> */}
-
+                 
                 {/* <CarouselSlides slides={SliderData}/> */}
-             
+                {/* <button onClick={OpenModal}>OpenModal</button> */}
+    
           </div>
       )
     }     

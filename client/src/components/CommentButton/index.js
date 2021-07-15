@@ -3,7 +3,7 @@ import './style.css';
 
 export default function CommentButton({createComment}) {
     return (
-        <span class="chat material-icons" onClick={createComment}>
+        <span className="chat material-icons" onClick={createComment}>
             add_comment
         </span>     
     )

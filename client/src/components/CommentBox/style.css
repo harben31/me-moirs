@@ -1,6 +1,13 @@
+.commentBox {
+    border-top: 1.5px solid rgba(200, 200, 200, 0.3);
+    border-bottom: 1.5px solid rgba(200, 200, 200, 0.3);
+    padding-bottom: 5px;
+}
+
 input {
     border-style: hidden;
 }
 span{
+    cursor: pointer;
     padding: 17px 6px;
 }

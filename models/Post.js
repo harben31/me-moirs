@@ -27,6 +27,12 @@ const postSchema = new Schema({
         type: Date,
         default: Date.now
     },
+    likes: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'User'
+        }
+    ],
     comments: [
         {
             type: Schema.Types.ObjectId,
@@ -43,29 +49,12 @@ postSchema.pre('remove', function(next) {
         },
         })
         .then( dbModel => {
-            console.log(dbModel);
             dbModel.map(comment => {
                 comment.remove()
             })
             next();
         })
         .catch(err => console.log(err));
-
-
-
-// try {
-//     //model.remove vs query.remove
-//     let data = await Comment.find({
-//         '_id': {
-//             $in: this.comments
-//         },    
-//     }).remove();
-//     console.log(data)
-    // next()
-// } catch (err) {
-//     console.log(err);
-//     next(err);
-// }
 });
 
 const Post = mongoose.model('Post', postSchema);

@@ -63,8 +63,8 @@ export default function ProfileImage(props) {
             <div style={{position: 'relative'}}>
              <IconButton name="more_vert" id="demo-menu-lower-right" />
              <Menu target="demo-menu-lower-right" align="right">
-             <MenuItem className='profile-img'><input className='img-btn'type='file' name='file' onChange={uploadImage}/>Profile Image</MenuItem>
-             <MenuItem className='cover'><input className='img-btn'type='file' name='file' onChange={props.backgroundImage}/>Cover Photo</MenuItem>
+             <MenuItem className='profile-img'><input type='file' name='file' onChange={uploadImage}/>Profile Image</MenuItem>
+             <MenuItem className='cover'><input type='file' name='file' onChange={props.backgroundImage}/>Cover Photo</MenuItem>
             </Menu>
           </div>
          </div>
