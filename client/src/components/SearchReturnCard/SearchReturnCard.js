@@ -11,7 +11,7 @@ export default function(props) {
         e.preventDefault();
         API.addToUsersFriends(props.user_id, {
             friendId: friend._id,
-            follow: false
+            follow: true
         })
         .then(res => {
             e.target.parentNode.setAttribute('style', 'display: none')
