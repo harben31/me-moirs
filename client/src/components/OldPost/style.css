@@ -13,6 +13,16 @@
     border-radius: 15px 0 0 15px;
 }
 
+.postTop {
+    display: flex;
+    flex-direction: row;
+}
+
+.menuIcon {
+    margin-left: auto;
+    padding: 0 !important;
+}
+
 .postDate {
     color: rgb(42, 157, 143);
 }

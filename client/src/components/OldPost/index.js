@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import DotIcon from '../DotIcon';
 import Likes from '../Likes';
 import Comment from '../Comment';
 import CommentButton from '../CommentButton';
@@ -9,6 +10,7 @@ import API from '../../utils/API';
 
 export default function OldPost(props) {
     const [commentActivated, setCommentActivated] = useState(false);
+    const [menu, setMenu] = useState(false);
 
     const CreateComment = () => {
         if(!commentActivated) {
@@ -18,9 +20,17 @@ export default function OldPost(props) {
         }
     };
 
+    const handleToggle = () => {
+        if (!menu) {
+            setMenu(true);
+        } else {
+            setMenu(false);
+        }
+    }
+
     //deletes post and related comments in DB. Page does not refresh so post is still visible. I am not sure I should mess with that until the posts stay on tab page and nav is fixed.
     const deletePost = () => {
-        API.deletePost(props.postId)
+        API.deletePost(props._id)
         .then(res => console.log(res))
         .catch(err => console.log(err));
     };
@@ -39,17 +49,19 @@ export default function OldPost(props) {
         let date = postDate.toLocaleDateString();
         return date;
       }
-
+// handleToggle={handleToggle}
 
     return (
         <div className='oldPost'>
             <img className='oldPostImage' src='https://images.unsplash.com/photo-1611162616475-46b635cb6868?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8dGh1bWJuYWlsfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&w=1000&q=80' alt=''/>
 
             <div className='oldPostContent'>
-                <p className='postDate'>
-                    {/* month day and year */}
-                    {formatDate(props.date)}
-                </p>
+                <div className='postTop'>
+                    <p className='postDate'>
+                        {formatDate(props.date)}
+                    </p>
+                    <DotIcon  handleToggle={handleToggle} menu={menu} _id={props._id}/>
+                </div>
                 <p className='oldPostTitle'>
                     <b>{props.title}</b>
                 </p>

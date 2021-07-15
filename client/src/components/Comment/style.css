@@ -4,9 +4,19 @@
     width: 100%;
 }
 
+.commentTop {
+    display: flex;
+    flex-direction: row;
+}
+
 .commentDate {
     color: rgb(42, 157, 143);
     margin-bottom: 0 !important;
+}
+
+.dotIcon {
+    margin-left: auto;
+    padding: 0 !important;
 }
 
 .commentTitle {
