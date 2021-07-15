@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import DeleteModal from '../DeleteModal';
 import DotIcon from '../DotIcon';
 import Likes from '../Likes';
-import Comment from '../Comment';
-import CommentButton from '../CommentButton';
-import CommentBox from '../CommentBox';
+import Comment from '../Comments/Comment';
+import CommentButton from '../Comments/CommentButton';
+import CommentBox from '../Comments/CommentBox';
 import './style.css';
-import API from '../../utils/API';
+// import API from '../../utils/API';
 
 
 export default function OldPost(props) {
