@@ -187,14 +187,23 @@ router.route('/:id')
     .put(userController.updateUser)
     .delete(userController.deleteUser)
 
+router.route('/image/:id')
+    .put(userController.addImage) 
+    
+
+router.route('/background/:id')
+    .put(userController.coverPhoto)
+
 router.route('/')
     .get(userController.findAllUsers)
+
 
 router.route('/username/')
     .get(userController.findUserByUsername)
 
-router.route('/email/:email')
-    .get(userController.findUserByEmail)
+
+// router.route('/email/:email')
+//     .get(userController.findUserByEmail)
 
 router.route('/friends/:id')
     .get(userController.findAllUsersFriends)

@@ -37,7 +37,9 @@
   width: 90%;
 }
 
-
+span {
+  padding: 0 !important;
+}
 
 
 
