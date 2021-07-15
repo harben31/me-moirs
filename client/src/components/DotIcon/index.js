@@ -3,7 +3,7 @@ import DeleteModal from '../DeleteModal';
 import API from '../../utils/API';
 import './style.css';
 
-export default function DotIcon({ handleToggle, menu, _id }) {
+export default function DotIcon({ handleToggle, menu, _id, update, setUpdate }) {
     const [showDelete, setShowDelete] = useState(false);
 
     const showDeleteModal = () => {
@@ -29,8 +29,7 @@ export default function DotIcon({ handleToggle, menu, _id }) {
                     <li onClick={() => showDeleteModal()}>Delete</li>
                 </ul>
             ) : null}
-            <DeleteModal  showDelete={showDelete} _id={_id} deletePost={deletePost}/>
+            <DeleteModal  showDelete={showDelete} _id={_id} deletePost={deletePost} setUpdate={setUpdate} update={update}/>
         </div>
-        
     )
 };

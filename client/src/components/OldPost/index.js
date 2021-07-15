@@ -29,14 +29,6 @@ export default function OldPost(props) {
         }
     }
 
-    //deletes post and related comments in DB. Page does not refresh so post is still visible. I am not sure I should mess with that until the posts stay on tab page and nav is fixed.
-    const deletePost = () => {
-        API.deletePost(props._id)
-        .then(res => console.log(res))
-        .catch(err => console.log(err));
-    };
-
-
     //there is no comment el yet. so nothing to put a button on. 
     const deleteComment = () => {
         //need to insert comment _id below in (_id)
@@ -60,7 +52,7 @@ export default function OldPost(props) {
                     <p className='postDate'>
                         {formatDate(props.date)}
                     </p>
-                    <DotIcon  handleToggle={handleToggle} menu={menu} _id={props._id} />
+                    <DotIcon  handleToggle={handleToggle} menu={menu} _id={props._id} setUpdate={props.setUpdate} update={props.update}/>
                 </div>
                 <p className='oldPostTitle'>
                     <b>{props.title}</b>
@@ -74,18 +66,6 @@ export default function OldPost(props) {
                 post_id={props._id}
                 />
                 <CommentButton createComment={CreateComment} />
-                <span className='postDelBtn delPostBtn'
-                    onClick={deletePost}
-                    class="material-icons"
-                >
-                    delete_forever
-                </span>
-                {/* <button
-                    className='postDelBtn'
-                    onClick={deletePost}
-                    >
-                        Delete Post
-                </button> */}
                 {commentActivated ? 
                     (
                     <div>

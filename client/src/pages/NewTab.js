@@ -12,7 +12,7 @@ import API from '../utils/API';
     const [postContent, setPostContent] = useState('');
     const [post, setPost] = useState(false);
     const [comment, setComment] = useState(false);
-    // const [showDelete, setShowDelete] = useState(false);
+    const [update, setUpdate] = useState(false);
 
     useEffect(() => {
         const Id = props.match.params.id;
@@ -21,7 +21,7 @@ import API from '../utils/API';
                 setTabInfo(res.data);
             })
             .catch(err => console.log(err));
-    }, [props.match.params.id, post, comment]);
+    }, [props.match.params.id, post, comment, update]);
 
     const CreatePost = (e) => {
         e.preventDefault();
@@ -35,10 +35,6 @@ import API from '../utils/API';
             console.log(err);
         });
     };
-    // const showDeleteModal = () => {
-    //     showDelete ? setShowDelete(false) : setShowDelete(true);
-    // }
-
 
     const deleteTab = () => {
         API.deleteTab(tabInfo._id)
@@ -82,7 +78,6 @@ import API from '../utils/API';
                                 </div>
                             ) : null}
                         </aside>
-                        {/* <DeleteModal showDelete={showDelete}/> */}
                         <section className='postSection'>
                             <PostsForm
                             setPostContent={setPostContent}
@@ -98,8 +93,8 @@ import API from '../utils/API';
                                             username={props.username}
                                             posts={tabInfo.posts} 
                                             setComment={setComment}
-                                            // showDelete={showDelete}
-                                            // setShowDelete={setShowDelete}
+                                            update={update}
+                                            setUpdate={setUpdate}
                                         />
                                     )
                                 })) : 
@@ -111,5 +106,4 @@ import API from '../utils/API';
                     </div>
         </div>
     )
-}
-
+};
