@@ -197,11 +197,11 @@ router.route('/background/:id')
 router.route('/')
     .get(userController.findAllUsers)
 
-router.route('/username/:username')
-    .get(userController.findUserByUsername)
+// router.route('/username/:username')
+//     .get(userController.findUserByUsername)
 
-router.route('/email/:email')
-    .get(userController.findUserByEmail)
+// router.route('/email/:email')
+//     .get(userController.findUserByEmail)
 
 router.route('/friends/:id')
     .get(userController.findAllUsersFriends)

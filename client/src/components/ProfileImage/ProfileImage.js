@@ -16,7 +16,7 @@ export default function ProfileImage(props) {
 
     useEffect(() => {
       if (images) {
-      API.addImage(props.user, images)
+      API.addImage(props.user_id, images)
       .then ((data) => {
           window.location.reload()
       })
@@ -25,6 +25,7 @@ export default function ProfileImage(props) {
 
 
     useEffect(() => {
+      console.log(props)
       API.userInfo()
       .then((res) => {
         setProfile(res.data.image)
