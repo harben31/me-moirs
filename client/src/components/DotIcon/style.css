@@ -3,7 +3,7 @@
 }
 
 .dotIcon {
-    z-index: 9;
+    z-index: 3;
     cursor: pointer;
 }
 
@@ -17,5 +17,35 @@
     list-style: none;
     top: 0px;
     left: -60px ;
-    z-index: 10;
+    z-index: 4;
+}
+
+.modal {
+    position: absolute;
+    z-index: 5;
+    top: 0;
+    left: -100vh;
+    padding: 20px;
+    width: 500px;
+    background: white;
+    border: 2px solid rgb(42, 157, 143);
+    border-radius: 10px;
+    filter: blur(0);
+    text-align: center;
+}
+
+.content {
+    margin: 10px 0 !important;
+    text-align: center;
+}
+
+.alert {
+    color: rgb(42, 157, 143);
+}
+
+.deleteBtn {
+    background: rgb(42, 157, 143);
+    color: white;
+    padding: 5px 15px;
+    border-radius: 10px;
 }

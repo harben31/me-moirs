@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import DeleteModal from '../DeleteModal';
 import DotIcon from '../DotIcon';
 import Likes from '../Likes';
 import Comment from '../Comment';
@@ -49,18 +50,17 @@ export default function OldPost(props) {
         let date = postDate.toLocaleDateString();
         return date;
       }
-// handleToggle={handleToggle}
 
     return (
         <div className='oldPost'>
             <img className='oldPostImage' src='https://images.unsplash.com/photo-1611162616475-46b635cb6868?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8dGh1bWJuYWlsfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&w=1000&q=80' alt=''/>
-
+            <DeleteModal showDelete={props.showDelete}/>
             <div className='oldPostContent'>
                 <div className='postTop'>
                     <p className='postDate'>
                         {formatDate(props.date)}
                     </p>
-                    <DotIcon  handleToggle={handleToggle} menu={menu} _id={props._id}/>
+                    <DotIcon  handleToggle={handleToggle} menu={menu} _id={props._id} />
                 </div>
                 <p className='oldPostTitle'>
                     <b>{props.title}</b>

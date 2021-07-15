@@ -1,4 +1,5 @@
 import PostsForm from '../components/PostsForm/PostsForm';
+import DeleteModal from '../components/DeleteModal';
 import OldPost from '../components/OldPost';
 import React, { useState, useEffect } from 'react';
 import API from '../utils/API';
@@ -11,6 +12,7 @@ import API from '../utils/API';
     const [postContent, setPostContent] = useState('');
     const [post, setPost] = useState(false);
     const [comment, setComment] = useState(false);
+    // const [showDelete, setShowDelete] = useState(false);
 
     useEffect(() => {
         const Id = props.match.params.id;
@@ -33,6 +35,9 @@ import API from '../utils/API';
             console.log(err);
         });
     };
+    // const showDeleteModal = () => {
+    //     showDelete ? setShowDelete(false) : setShowDelete(true);
+    // }
 
 
     const deleteTab = () => {
@@ -77,6 +82,7 @@ import API from '../utils/API';
                                 </div>
                             ) : null}
                         </aside>
+                        {/* <DeleteModal showDelete={showDelete}/> */}
                         <section className='postSection'>
                             <PostsForm
                             setPostContent={setPostContent}
@@ -92,6 +98,8 @@ import API from '../utils/API';
                                             username={props.username}
                                             posts={tabInfo.posts} 
                                             setComment={setComment}
+                                            // showDelete={showDelete}
+                                            // setShowDelete={setShowDelete}
                                         />
                                     )
                                 })) : 
