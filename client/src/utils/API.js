@@ -29,13 +29,13 @@ export default {
     // },
     
     //----search for other users-----
-    userByUsername: function(username){
-        console.log(username.username);
-        return axios.get('/api/users/username/' + username.username)
+    userByUsername: function(_id, username){
+        console.log(_id, username);
+        return axios.get(`/api/users/username?id=${_id}&search=${username}`)
     },
 
     userByEmail: function(email){
-        return axios.get('/api/users/email/' + email.email)
+        return axios.get('/api/users/email/' + email)
     },
 
     //need to put friends id in req.body under friendId

@@ -183,14 +183,14 @@ router.route('/logout')
 })
 
 router.route('/:id')
-    .get(userController.findUserById)
+    // .get(userController.findUserById)
     .put(userController.updateUser)
     .delete(userController.deleteUser)
 
 router.route('/')
     .get(userController.findAllUsers)
 
-router.route('/username/:username')
+router.route('/username/')
     .get(userController.findUserByUsername)
 
 router.route('/email/:email')

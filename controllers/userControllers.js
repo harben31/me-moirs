@@ -16,35 +16,49 @@ module.exports = {
             });
     },
 
-    findUserById: function (req, res) {
-        db.User
-            .findById(req.params.id)
-            .then(dbModel => {
-                res.json(dbModel)
-            })
-            .catch(err => {
-                console.log(err);
-                res.json(err);
-            });
-    },
+    // findUserById: function (req, res) {
+    //     console.log('findUserById')
+    //     db.User
+    //         .findById(req.params.id)
+    //         .then(dbModel => {
+    //             res.json(dbModel)
+    //         })
+    //         .catch(err => {
+    //             console.log(err);
+    //             res.json(err);
+    //         });
+    // },
 
     //need to handle case sensativity. second username all lowercase?
     findUserByUsername: function(req, res) {
         function escapeRegex(text) {
             return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
         };
-        const regex = new RegExp(escapeRegex(req.params.username))
+        const regex = new RegExp(escapeRegex(req.query.search))
+        console.log(req.query)
         db.User
-            .find({username: regex})
+            .findById(req.query.id)
             .then(dbModel => {
-                if(dbModel.length) {
-                    //need to filter out friends in friends list
-                    //trim res to username, email, image, 
-                    res.json(dbModel)
-                } else {
-                    res.json({ message: 'username could not be found'})
-                }
+               const idsToFilter = dbModel.friends;
+               idsToFilter.push(dbModel._id)
+               console.log(idsToFilter);
+
+               db.User
+                .find({username: regex})
+                .then(dbModel => {
+                    if(dbModel.length) {
+                        //trim res to username, email, image, 
+                        let filteredSearch = dbModel.filter(user => {
+                            return !idsToFilter.includes(user._id)
+                        })
+                        res.json(filteredSearch);
+                    } else {
+                        res.json({ message: 'username could not be found'})
+                    }
+                })
             })
+
+        
             .catch(err => {
                 console.log(err);
                 res.json(err);
