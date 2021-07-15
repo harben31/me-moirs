@@ -10,7 +10,8 @@ export default function(props) {
         //mneed to filter out friends already in list
         e.preventDefault();
         API.addToUsersFriends(props.user_id, {
-            friendId: friend._id
+            friendId: friend._id,
+            follow: false
         })
         .then(res => {
             e.target.parentNode.setAttribute('style', 'display: none')

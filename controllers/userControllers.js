@@ -84,16 +84,30 @@ module.exports = {
     },
 
     addToFriends: function(req, res) {
-        console.log('addToFriends:', req.body)
+        let action;
+        let friendAction;
+
+        if(req.body.follow){
+            console.log('follow user true');
+            action = {$push: {friends: req.body.friendId}};
+            friendAction={$push: {usersFollowing: req.params.id}};
+        } else if (!req.body.follow) {
+            console.log('follow user false');
+            action = {$pull: {friends: req.body.friendId}};
+            friendAction = {$pull: {usersFollowing: req.params.id}}
+        } else {
+            action = null;
+        }
+
         db.User
         //add conditional for add or remove
             .findOneAndUpdate({_id: req.params.id}, 
-                {$push: {friends: req.body.friendId}})
+                action)
             .then(dbModel => {
                 //doesn't return the friend just added but we should already have that info on the FE
                 db.User
                     .findByIdAndUpdate({_id: req.body.friendId}, 
-                        {$push: {usersFollowing: req.params.id}})
+                        friendAction)
                     .then(dbModel => console.log('adding to usersfollowing', dbModel))
                 res.json(dbModel);
             })
