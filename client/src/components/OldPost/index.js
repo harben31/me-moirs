@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { IconButton, MenuItem, Menu } from 'react-mdl';
+import DotIcon from '../DotIcon';
 import Likes from '../Likes';
 import Comment from '../Comment';
 import CommentButton from '../CommentButton';
@@ -10,6 +10,7 @@ import API from '../../utils/API';
 
 export default function OldPost(props) {
     const [commentActivated, setCommentActivated] = useState(false);
+    const [menu, setMenu] = useState(false);
 
     const CreateComment = () => {
         if(!commentActivated) {
@@ -19,9 +20,17 @@ export default function OldPost(props) {
         }
     };
 
+    const handleToggle = () => {
+        if (!menu) {
+            setMenu(true);
+        } else {
+            setMenu(false);
+        }
+    }
+
     //deletes post and related comments in DB. Page does not refresh so post is still visible. I am not sure I should mess with that until the posts stay on tab page and nav is fixed.
     const deletePost = () => {
-        API.deletePost(props.postId)
+        API.deletePost(props._id)
         .then(res => console.log(res))
         .catch(err => console.log(err));
     };
@@ -40,7 +49,7 @@ export default function OldPost(props) {
         let date = postDate.toLocaleDateString();
         return date;
       }
-
+// handleToggle={handleToggle}
 
     return (
         <div className='oldPost'>
@@ -51,14 +60,7 @@ export default function OldPost(props) {
                     <p className='postDate'>
                         {formatDate(props.date)}
                     </p>
-                    <span className='dotIcon'>
-                        <IconButton name="more_vert" id="demo-menu-lower-right" />
-                        <Menu target="demo-menu-lower-right" align="right">
-                            <MenuItem>Edit</MenuItem>
-                            <MenuItem>Delete</MenuItem>
-                        </Menu>
-                    </span>
-                    
+                    <DotIcon  handleToggle={handleToggle} menu={menu} _id={props._id}/>
                 </div>
                 <p className='oldPostTitle'>
                     <b>{props.title}</b>

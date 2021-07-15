@@ -1,0 +1,22 @@
+.menuIcon {
+    position: relative;
+}
+
+.dotIcon {
+    z-index: 9;
+    cursor: pointer;
+}
+
+.menu {
+    border: 1.5px solid rgba(200, 200, 200, 0.3);
+    color: white;
+    padding: 5px;
+    border-radius: 10px;
+    background: rgb(42, 157, 143);
+    position: absolute;
+    list-style: none;
+    top: 0px;
+    left: -60px ;
+    /* bottom: 0; */
+    z-index: 10;
+}
