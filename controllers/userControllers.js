@@ -84,12 +84,30 @@ module.exports = {
     },
 
     addToFriends: function(req, res) {
-        console.log('addToFriends:', req.body)
+        let action;
+        let friendAction;
+
+        if(req.body.follow){
+            console.log('follow user true');
+            action = {$push: {friends: req.body.friendId}};
+            friendAction={$push: {usersFollowing: req.params.id}};
+        } else if (!req.body.follow) {
+            console.log('follow user false');
+            action = {$pull: {friends: req.body.friendId}};
+            friendAction = {$pull: {usersFollowing: req.params.id}}
+        } else {
+            action = null;
+        }
+
         db.User
             .findOneAndUpdate({_id: req.params.id}, 
-                {$push: {friends: req.body.friendId}})
+                action)
             .then(dbModel => {
-                //doens't return the friend just added but we should already have that info on the FE
+                //doesn't return the friend just added but we should already have that info on the FE
+                db.User
+                    .findByIdAndUpdate({_id: req.body.friendId}, 
+                        friendAction)
+                    .then(dbModel => console.log('adding to usersfollowing', dbModel))
                 res.json(dbModel);
             })
             .catch(err => {
@@ -113,28 +131,51 @@ module.exports = {
 
     //----follow tabs and posts------
     followTab: function(req, res) {
+        let action;
+        let tabAction;
+
+        if(req.body.follow){
+            console.log('follow tab true');
+            action = {$push: {followedTabs: req.body.tab_id}};
+            tabAction={$push: {usersFollowing: req.params.id}};
+        } else if (!req.body.follow) {
+            console.log('follow tab false');
+            action = {$pull: {followedTabs: req.body.tab_id}};
+            tabAction = {$pull: {usersFollowing: req.params.id}}
+        } else {
+            action = null;
+        }
+
         db.User
             .findOneAndUpdate({_id: req.params.id},
-                {$push: {followedTabs: req.body.tab_id}})
-            .then(dbModel => res.json(dbModel))
+                action
+            )
+            .then(dbModel => {
+                db.Tab
+                    .findByIdAndUpdate({_id: req.body.tab_id}, 
+                        tabAction)
+                    .then(dbModel => console.log('adding to TAB usersfollowing'))
+                res.json(dbModel);
+            })
             .catch(err => {
                 console.log(err);
                 res.json(err);
             })
     },
 
-    followPost: function(req, res) {
-        db.User
-            .findOneAndUpdate({_id: req.params.id},
-                {$push: {followedPosts: req.body.post_id}})
-            .then(dbModel => res.json(dbModel))
-            .catch(err => {
-                console.log(err);
-                res.json(err);
-            })
-    },
+    // followPost: function(req, res) {
+    //     db.User
+    //         .findOneAndUpdate({_id: req.params.id},
+    //             {$push: {followedPosts: req.body.post_id}})
+    //         .then(dbModel => res.json(dbModel))
+    //         .catch(err => {
+    //             console.log(err);
+    //             res.json(err);
+    //         })
+    // },
 
     findFollowedTabs: function(req, res) {
+        //add a call to add user_id to tab 
         db.User
             .findById(req.params.id)
             .populate({
@@ -147,36 +188,36 @@ module.exports = {
             });
     },
 
-    findFollowedPosts: function(req, res) {
-        db.User
-            .findById(req.params.id)
-            .populate({
-                path: 'followedPosts'
-            })
-            .then(dbModel => res.json(dbModel.followedPosts))
-            .catch(err => {
-                console.log(res);
-                res.json(err);
-            });
-    },
+    // findFollowedPosts: function(req, res) {
+    //     db.User
+    //         .findById(req.params.id)
+    //         .populate({
+    //             path: 'followedPosts'
+    //         })
+    //         .then(dbModel => res.json(dbModel.followedPosts))
+    //         .catch(err => {
+    //             console.log(res);
+    //             res.json(err);
+    //         });
+    // },
 
-    findFollowedAll: function(req, res) {
-        db.User
-            .findById(req.params.id)
-            .populate('followedTabs')
-            .populate('followedPosts')
-            .then(dbModel => {
-                console.log('!!!!!', dbModel);
-                res.json({
-                    tabs: dbModel.followedTabs,
-                    posts: dbModel.followedPosts
-                });
-        })
-            .catch(err => {
-                console.log(res);
-                res.json(err);
-            });
-    },
+    // findFollowedAll: function(req, res) {
+    //     db.User
+    //         .findById(req.params.id)
+    //         .populate('followedTabs')
+    //         .populate('followedPosts')
+    //         .then(dbModel => {
+    //             console.log('!!!!!', dbModel);
+    //             res.json({
+    //                 tabs: dbModel.followedTabs,
+    //                 posts: dbModel.followedPosts
+    //             });
+    //     })
+    //         .catch(err => {
+    //             console.log(res);
+    //             res.json(err);
+    //         });
+    // },
 
     deleteUser: function(req, res) {
         db.User

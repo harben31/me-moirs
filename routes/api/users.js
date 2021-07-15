@@ -204,11 +204,11 @@ router.route('/tabs/:id')
     .put(userController.followTab)
     .get(userController.findFollowedTabs)
 
-router.route('/posts/:id')
-    .put(userController.followPost)
-    .get(userController.findFollowedPosts)
+// router.route('/posts/:id')
+//     .put(userController.followPost)
+//     .get(userController.findFollowedPosts)
 
-router.route('/all/:id')
-    .get(userController.findFollowedAll)
+// router.route('/all/:id')
+//     .get(userController.findFollowedAll)
 
 module.exports = router
