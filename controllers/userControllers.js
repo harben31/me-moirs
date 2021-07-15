@@ -100,7 +100,6 @@ module.exports = {
         }
 
         db.User
-        //add conditional for add or remove
             .findOneAndUpdate({_id: req.params.id}, 
                 action)
             .then(dbModel => {
@@ -148,8 +147,7 @@ module.exports = {
         }
 
         db.User
-            .findOneAndUpdate({_id: req.params.id}, //find user to update
-                //add conditional for un follow
+            .findOneAndUpdate({_id: req.params.id},
                 action
             )
             .then(dbModel => {
