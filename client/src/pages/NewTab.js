@@ -41,6 +41,14 @@ import API from '../utils/API';
         .catch(err => console.log(err));
     };
 
+    const followTab = () => {
+        API.followTab(props.user_id, {
+            tab_id: tabInfo._id
+        })
+        .then(res => console.log(res))
+        .catch(err => console.log(err));
+    };
+
     return (
         <div className= 'new-tabs'>
                     <div className='tabBody'>
@@ -51,12 +59,12 @@ import API from '../utils/API';
                                 onClick={deleteTab} class="material-icons">
                                     delete_forever
                                 </span>
-                                {/* <button
-                                className='delTabBtn'
-                                onClick={deleteTab}
+                                <button
+                                className='followTabBtn'
+                                onClick={followTab}
                                 >
-                                    Delete
-                                </button> */}
+                                    follow
+                                </button>
                             </div>
                      
                             {tabInfo ? (
