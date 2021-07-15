@@ -124,11 +124,11 @@ export default function(props) {
             <span
             id='searchSubBtn'
             onClick={handleSearch}
-            class="material-icons"
+            className="material-icons"
             >search</span>
           </form>
-          {searchResults.length?
-          <SearchReturn
+          {searchResults.length
+          ?<SearchReturn
           searchResults={searchResults}
           user_id={props.user_id}/>
           : null}

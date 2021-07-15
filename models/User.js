@@ -47,6 +47,12 @@ const userSchema = new Schema({
             ref: 'Tab'
         }
     ],
+    usersFollowing: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'User'
+        }
+    ],
     friends: [
             {
                 type: mongoose.Schema.Types.ObjectId,
