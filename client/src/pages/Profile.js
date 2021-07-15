@@ -28,6 +28,7 @@ export default function Profile(props) {
     // const [cardInfo, setCardInfo] = useState([]);
     const [coverImage, setCoverImage] = useState([]);
     const [profileImage, setProfileImage] = useState([]);
+    const [background, setBackground] = useState('');
    
     const [showModal, setShowModal] = useState(false);
     // const OpenModal = () => {
@@ -53,24 +54,48 @@ export default function Profile(props) {
     }, []);
 
 
-
-
     useEffect(() => {
-        setCoverImage(
-           { 
-            cover_image:'https://images.unsplash.com/photo-1447069387593-a5de0862481e?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8b2xkJTIwam91cm5hbHN8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60'
-           } 
-        )
-    }, [])
+        if (background) {
+        API.coverPhoto(props.user, background)
+        .then ((data) => {
+            window.location.reload()
+        })
+      }
+      }, [background])
+  
+  
+      useEffect(() => {
+        API.userInfo()
+        .then((res) => {
+          setCoverImage(res.data.background)
+        }).catch(err => {
+          console.log(err)
+        })
+      }, [])
 
-    useEffect(() => {
-        setProfileImage(
-            {
-                profile_image:'https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cHJvZmlsZSUyMHBpY3R1cmV8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60'
-            }
-        )
+    const backgroundImage = async e => {
+        const files = e.target.files;
+        const data = new FormData();
+        data.append('file', files[0]);
+        data.append('upload_preset', 'cover_photo');
+    
+        const res = await fetch("https://api.cloudinary.com/v1_1/ddahipzkn/image/upload", 
+        {
+            method: 'POST',
+            body: data
+        });
+    
+        const file = await res.json();
+        console.log(file);
+    
+        setBackground(file.url);
+    
+      } 
 
-    }, [])
+
+
+
+  
 
     
     
@@ -87,8 +112,9 @@ export default function Profile(props) {
                 {/* <Navbar id={user.shortTabInfo}/> */}
                 
                  {/* <CarouselSlides tabs={SliderData}/> */}
-                <CoverPhoto image={coverImage.cover_image}/>
-                 <ProfileImage image={profileImage.profile_image}/>
+                
+                <CoverPhoto image={coverImage} />
+                 <ProfileImage user={props.user} backgroundImage={backgroundImage}/>
              {/* {cardInfo.map(card => { 
                 return <Cards key={card.id} name={card.name}
                 title={card.title}

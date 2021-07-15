@@ -27,6 +27,10 @@ const userSchema = new Schema({
         contentType: String,
         data: Buffer
     },
+    background: {
+        contentType: String,
+        data: Buffer
+    },
     about: {
         type: String,
         maxLength: 500

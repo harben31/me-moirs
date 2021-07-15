@@ -19,60 +19,13 @@ module.exports = {
     findUserById: function (req, res) {
         db.User
             .findById(req.params.id)
-            .then(dbModel => {
-                res.json(dbModel)
-            })
+            .then(dbModel => res.json(dbModel))
             .catch(err => {
                 console.log(err);
                 res.json(err);
             });
     },
 
-    //need to handle case sensativity. second username all lowercase?
-    findUserByUsername: function(req, res) {
-        function escapeRegex(text) {
-            return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
-        };
-        const regex = new RegExp(escapeRegex(req.params.username))
-        db.User
-            .find({username: regex})
-            .then(dbModel => {
-                if(dbModel.length) {
-                    //need to filter out friends in friends list
-                    //trim res to username, email, image, 
-                    res.json(dbModel)
-                } else {
-                    res.json({ message: 'username could not be found'})
-                }
-            })
-            .catch(err => {
-                console.log(err);
-                res.json(err);
-            })
-    },
-
-    findUserByEmail: function(req, res) {
-        console.log('findByEmail', req.params.email);
-        function escapeRegex(text) {
-            return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
-        };
-        const regex = new RegExp(escapeRegex(req.params.email))
-        db.User
-            .find({email: regex})
-            .then(dbModel => {
-                if(dbModel.length) {
-                    res.json(dbModel);
-                } else {
-                    res.json({message: 'email could not be found'});
-                }
-            })
-            .catch(err => {
-                console.log(err);
-                res.json(err);
-            });
-    },
-
-    //update user data. eg username or about
     updateUser: function (req, res) {
         db.User
             .findOneAndUpdate({_id: req.params.id}, req.body)
@@ -82,7 +35,19 @@ module.exports = {
                 res.status(422).json(err);
             });
     },
-
+    
+    deleteUser: function(req, res) {
+        db.User
+            .findOneAndRemove({_id: req.params.id})
+            .then(dbModel => {
+                console.log(dbModel, '!!! deleteUSer');
+                dbModel.remove();
+            })
+            .then(dbModel => {
+                console.log(dbModel)
+            })
+        }, 
+       
     addToFriends: function(req, res) {
         let action;
         let friendAction;
@@ -160,8 +125,21 @@ module.exports = {
             .catch(err => {
                 console.log(err);
                 res.json(err);
-            })
+            });
     },
+
+    addImage: function(req, res) {
+        console.log(req.body, 'image data')
+        db.User
+        .findOneAndUpdate({_id: req.params.id}, {image: req.body.imageData})
+        .then(dbModel => res.json(dbModel))
+        .catch(err => {
+            console.log(err);
+            res.status(422).json(err);
+        });
+    },
+            
+   
 
     // followPost: function(req, res) {
     //     db.User
@@ -219,18 +197,14 @@ module.exports = {
     //         });
     // },
 
-    deleteUser: function(req, res) {
+    coverPhoto: function(req, res) {
+        console.log(req.body, 'image data')
         db.User
-            .findOneAndRemove({_id: req.params.id})
-            .then(dbModel => {
-                dbModel.remove();
-            })
-            .then(dbModel => {
-                res.json(dbModel);
-            })
-            .catch(err => {
-                console.log(err);
-                res.json(err);
-            });
+        .findOneAndUpdate({_id: req.params.id}, {background: req.body.coverImage})
+        .then(dbModel => res.json(dbModel))
+        .catch(err => {
+            console.log(err);
+            res.status(422).json(err);
+        });
     }
 };
