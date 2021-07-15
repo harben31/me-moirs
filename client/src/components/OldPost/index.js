@@ -12,6 +12,7 @@ import API from '../../utils/API';
 export default function OldPost(props) {
     const [commentActivated, setCommentActivated] = useState(false);
     const [menu, setMenu] = useState(false);
+    const [commentMenu, setCommentMenu] = useState(false);
 
     const CreateComment = () => {
         if(!commentActivated) {
@@ -29,13 +30,21 @@ export default function OldPost(props) {
         }
     }
 
+    const handleCommentToggle =() => {
+        if (!commentMenu) {
+            setCommentMenu(true);
+        } else {
+            setCommentMenu(false);
+        }
+    }
+
     //there is no comment el yet. so nothing to put a button on. 
-    const deleteComment = () => {
-        //need to insert comment _id below in (_id)
-        API.deleteComment()
-        .then(res => console.log(res))
-        .catch(err => console.log(err));
-    };
+    // const deleteComment = () => {
+    //     //need to insert comment _id below in (_id)
+    //     API.deleteComment()
+    //     .then(res => console.log(res))
+    //     .catch(err => console.log(err));
+    // };
 
     const formatDate = (dated) => {
         let postDate = new Date(dated);
@@ -75,6 +84,7 @@ export default function OldPost(props) {
                             post_id={props._id}
                             username={props.username}
                             setComment={props.setComment} 
+                            commentMenu={commentMenu}
                             />
                         </div>
                         <div>
@@ -84,7 +94,11 @@ export default function OldPost(props) {
                                         key={i}
                                         formatDate={formatDate}
                                         {...comment}
-                                           
+                                        handleCommentToggle={handleCommentToggle}
+                                        commentMenu={commentMenu}
+                                        setCommentMenu={setCommentMenu}
+                                        updateComment={props.updateComment} 
+                                        setUpdateComment={props.setUpdateComment}
                                     />  
                                 )
                             })}
