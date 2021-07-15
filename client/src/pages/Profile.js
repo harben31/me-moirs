@@ -56,7 +56,7 @@ export default function Profile(props) {
 
     useEffect(() => {
         if (background) {
-        API.coverPhoto(props.user, background)
+        API.coverPhoto(props.user_id, background)
         .then ((data) => {
             window.location.reload()
         })
@@ -114,7 +114,7 @@ export default function Profile(props) {
                  {/* <CarouselSlides tabs={SliderData}/> */}
                 
                 <CoverPhoto image={coverImage} />
-                 <ProfileImage user={props.user} backgroundImage={backgroundImage}/>
+                 <ProfileImage user_id={props.user_id} backgroundImage={backgroundImage}/>
              {/* {cardInfo.map(card => { 
                 return <Cards key={card.id} name={card.name}
                 title={card.title}

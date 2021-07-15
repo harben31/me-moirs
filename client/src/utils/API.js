@@ -27,11 +27,11 @@ export default {
     addImage: function(id, data) {
         console.log(id)
         console.log(data)
-        return axios.put('api/users/image/' + id, {imageData: data })
+        return axios.put('/api/users/image/' + id, {imageData: data })
     },
     
     coverPhoto: function(id, data) {
-        return axios.put('api/users/background/' + id, {coverImage: data})
+        return axios.put('/api/users/background/' + id, {coverImage: data})
     },
 
     // getUser: function(id) {
