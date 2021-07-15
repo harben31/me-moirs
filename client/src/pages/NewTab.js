@@ -43,7 +43,8 @@ import API from '../utils/API';
 
     const followTab = () => {
         API.followTab(props.user_id, {
-            tab_id: tabInfo._id
+            tab_id: tabInfo._id,
+            follow: false
         })
         .then(res => console.log(res))
         .catch(err => console.log(err));

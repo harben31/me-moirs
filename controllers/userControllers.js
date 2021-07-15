@@ -118,15 +118,31 @@ module.exports = {
 
     //----follow tabs and posts------
     followTab: function(req, res) {
+        let action;
+        let tabAction;
+
+        if(req.body.follow){
+            console.log('follow tab true');
+            action = {$push: {followedTabs: req.body.tab_id}};
+            tabAction={$push: {usersFollowing: req.params.id}};
+        } else if (!req.body.follow) {
+            console.log('follow tab false');
+            action = {$pull: {followedTabs: req.body.tab_id}};
+            tabAction = {$pull: {usersFollowing: req.params.id}}
+        } else {
+            action = null;
+        }
+
         db.User
-            .findOneAndUpdate({_id: req.params.id},
+            .findOneAndUpdate({_id: req.params.id}, //find user to update
                 //add conditional for un follow
-                {$push: {followedTabs: req.body.tab_id}})
+                action
+            )
             .then(dbModel => {
                 db.Tab
                     .findByIdAndUpdate({_id: req.body.tab_id}, 
-                        {$push: {usersFollowing: req.params.id}})
-                    .then(dbModel => console.log('adding to TAB usersfollowing', dbModel))
+                        tabAction)
+                    .then(dbModel => console.log('adding to TAB usersfollowing'))
                 res.json(dbModel);
             })
             .catch(err => {
