@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import DeleteModal from '../DeleteModal';
+import UpdatePostModal from '../UpdatePostModal/UpdatePostModal';
 import API from '../../utils/API';
 import './style.css';
 
@@ -8,11 +9,12 @@ export default function DotIcon({ handleToggle, menu, _id, update, setUpdate}) {
     const [showUpdateModal, setShowUpdateModal] = useState(false);
 
     const showDeleteModal = () => {
-        showDelete ? setShowUpdateModal(false) : setShowUpdateModal(true);
+        showDelete ? setShowDelete(false) : setShowDelete(true);
     }
 
     const openUpdateModal = () => {
-        showUpdateModal ? setShowDelete(false) : setShowDelete(true);
+        showUpdateModal ? setShowUpdateModal(false) : setShowUpdateModal(true);
+
 
     }
 
@@ -32,11 +34,17 @@ export default function DotIcon({ handleToggle, menu, _id, update, setUpdate}) {
             </span> 
             {menu ? (
                 <ul className='menu'>
-                    <li>Edit</li>
+                    <li onClick={() => openUpdateModal()}>Edit</li>
                     <li onClick={() => showDeleteModal()}>Delete</li>
                 </ul>
             ) : null}
             <DeleteModal  showDelete={showDelete} _id={_id} deletePost={deletePost} setUpdate={setUpdate} update={update} />
+
+            <UpdatePostModal 
+            showUpdateModal={showUpdateModal}
+            setUpdate={setUpdate} 
+            update={update}
+            />
         </div>
     )
 };

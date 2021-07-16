@@ -7,17 +7,21 @@ import { Marginer } from '../AccountBox/marginer';
 import { SubmitButton } from '../AccountBox/common';
 
 const BoxContainer = styled.div`
-    width:100%;
-    min-height: 350px;
-    bottom: 15px;
+    position: absolute;
+    z-index: 5;
+    top: 0;
+    left: -73vh;
+    padding: 20px;
+    width: 500px;
+    filter: blur(0);
+    text-align: center;
+    min-height: 300px;
     margin: auto;
     display: flex;
     flex-direction: column;
     border-radius: 19px;
     background-color: #fff;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
-    // box-shadow: 0 0 2px rgba(15, 15, 15, 0.28);
-    position: relative;
     overflow: hidden;
 `;
 
@@ -90,40 +94,43 @@ const Textarea = styled.textarea`
     }
 `;
 
-export default function UpdatePostModal({setPostContent, setPostTitle, createPost}) {
+export default function UpdatePostModal({setPostContent, setPostTitle, createPost,showUpdateModal}) {
 
     return (
-        <BoxContainer>
+        <>
+        {showUpdateModal ? (<BoxContainer>
             <FormContainer onSubmit={createPost}>
-                <MovingText
+                {/* <MovingText
                     type="flip"
                     duration="2000ms"
                     delay="0s"
                     direction="normal"
                     timing="ease"
                     iteration="infinite"
-                    fillMode="none">
+                    fillMode="none"> */}
                     <HeaderText>Update your Post!</HeaderText>
-                </MovingText>
+                {/* </MovingText> */}
                 <Input 
                     type='text' 
-                    placeholder='Give your Post title!'
+                    placeholder='Update your Post title!'
                     required
-                    onChange={(e) => {
-                       setPostTitle(e.target.value);
-                    }}
+                    // onChange={(e) => {
+                    //    setPostTitle(e.target.value);
+                    // }}
                 />
                 <Textarea
                     type='text' 
-                    placeholder='Write Your post here!'
+                    placeholder='Update your Post Content!'
                     required
-                    onChange={(e) => {
-                        setPostContent(e.target.value);
-                    }}
+                    // onChange={(e) => {
+                    //     setPostContent(e.target.value);
+                    // }}
                 />
                 <Marginer direction='vertical' margin={10} />
                 <SubmitButton type='submit'>Update!</SubmitButton>
             </FormContainer>
-        </BoxContainer>
+        </BoxContainer> ) : null
+    }
+    </>
     )
 }
