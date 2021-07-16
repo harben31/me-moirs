@@ -15,6 +15,9 @@ router.route('/like/:id')
 
 router.route('/unlike/:id')
     .put(postController.unLike)
+
+router.route('/image/:id')
+    .put(postController.addPostImage)    
     
 
 module.exports = router;

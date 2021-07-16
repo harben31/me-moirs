@@ -47,7 +47,7 @@ module.exports = {
             })
     },
     findTabById: function(req, res) {
-        console.log(req.params.id, '!!!!req.params.id')
+       
         db.Tab
             .findById(req.params.id)
             .populate({ 
