@@ -90,7 +90,20 @@ const Textarea = styled.textarea`
     }
 `;
 
-export default function PostsForm({setPostContent, setPostTitle, createPost}) {
+export default function PostsForm({setPostContent, setPostTitle, createPost, postImages}) {
+
+    const [showInput, setShowInput] = useState(false);
+
+
+    const handleChange = e => {
+        e.preventDefault();
+
+        setShowInput({showInput: !showInput});
+    };
+
+    const x = showInput;
+
+
 
     // const [postTitle, setPostTitle] = useState('');
     // const [postContent, setPostContent] = useState('');
@@ -143,6 +156,18 @@ export default function PostsForm({setPostContent, setPostTitle, createPost}) {
                 />
                 <Marginer direction='vertical' margin={10} />
                 <SubmitButton type='submit'>Post</SubmitButton>
+                 {/* <hr/>
+                <SubmitButton onClick={handleChange}>Add Photo</SubmitButton>
+                {
+                    x && (
+                        <div>
+                        <input type='file' 
+                        name='file' 
+                        onChange={postImages}/>
+                        </div>
+                    )
+                } */}
+              
             </FormContainer>
         </BoxContainer>
     )
