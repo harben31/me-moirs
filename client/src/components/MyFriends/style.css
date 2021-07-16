@@ -1,43 +1,26 @@
-.user-card {
+.my-friends {
     width: 95%;
     border-radius: 15px;
-    color: black;
     margin: 25px;
     padding:10px;
     background-color: white;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
-    z-index: 2;
 }
 
-.user-image {
+.my-friend-image {
     width: 100px;
     height: 100px;
     border-radius: 50%;
 }
 
-.user-info{
+.friend-info{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
 }
-.user-name, .user-email, .view-profile, .follow-btn {
+.friend-name, .friend-email, .view-profile, .unfollow-btn {
     width: 100px;
     height: 40px;
     border-radius: 10px;
     margin: 35px 20px 0;
 }
-/* .userCard{
-    display: flex;
-    flex-direction: column;
-    padding: 10px
-}
-
-.imgStandIn {
-    background: chartreuse;
-    height: 60px;
-    min-width: 60px;
-}
-
-.username{
-    padding-left: 10px;
-} */
