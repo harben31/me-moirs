@@ -5,10 +5,17 @@ import './style.css';
 
 export default function DotIcon({ handleToggle, menu, _id, update, setUpdate}) {
     const [showDelete, setShowDelete] = useState(false);
+    const [showUpdateModal, setShowUpdateModal] = useState(false);
 
     const showDeleteModal = () => {
-        showDelete ? setShowDelete(false) : setShowDelete(true);
+        showDelete ? setShowUpdateModal(false) : setShowUpdateModal(true);
     }
+
+    const openUpdateModal = () => {
+        showUpdateModal ? setShowDelete(false) : setShowDelete(true);
+
+    }
+
 
     const deletePost = (id) => {
         handleToggle();

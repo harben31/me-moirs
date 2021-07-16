@@ -3,6 +3,8 @@ import './style.css';
 import API from '../../utils/API'
 
 export default function MyFriends(props) {
+    // const friend = props.friendInfo;
+
     // const [friendInfos, setFriendInfos] = 
     // useState([]);
     // const friend = props.friendInfo;
@@ -21,13 +23,34 @@ export default function MyFriends(props) {
     //         .catch(err => console.log(err));
     //     }
     // }
-
+    useEffect(() => {
+        API.userInfo()
+            .then(res => {
+                if(res) {
+                    const data = res.data;
+                    // console.log('userINfo', data, 'props: ', props)
+                    // console.log('testing !!!!!!!!!!!!!!')
+                    // //setting the state (on App.js) to user id
+                    // props.setUserId(data._id);
+                    // let userData = {...props.user}
+                    props.setUsername(data.username);
+                    console.log('!!!!friends', data.friends)
+                    // props.setFriends(data.friends);
+                    // props.setUser('name');               
+                } 
+                // return data;
+            })
+            .catch(err => console.log(err));
+    }, []);
     // useEffect(() => {
-    //     // const friend = props.friendInfo;
-    //      API.getUsersFriends(friendInfos)
-    //      .then(res => {
-    //             setFriendInfos({username:res.data,
-    //                 email:res.data});
+    //     console.log('friend',friend)
+    //     API.getUsersFriends()
+    //     .then(res => {
+    //         console.log('friendId',res.data.friends.usersFollowing)
+    //         const friendId = res.data.friends
+    //         props.setFriendInfo({username:res.data,
+    //             email:res.data});
+    //             console.log('friendId',friendId)
         
     //         })
     //         .catch(err => console.log(err));
@@ -59,11 +82,11 @@ export default function MyFriends(props) {
           
                         <p className='friend-name'>
                             Sara
-                            {/* {props.username} */}
+                            {props.username}
                         </p>
                         <p className='friend-email'>
                             sara@gmail.com
-                            {/* {props.email} */}
+                            {props.email}
                         </p>
                         <button className='view-profile'>
                             View Profile 
