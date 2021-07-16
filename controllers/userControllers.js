@@ -81,6 +81,7 @@ module.exports = {
                     res.json({message: 'email could not be found'});
                 }
             })
+    },
 
     updateUser: function (req, res) {
         db.User
