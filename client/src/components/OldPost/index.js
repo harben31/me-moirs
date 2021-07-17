@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import DeleteModal from '../DeleteModal';
 import DotIcon from '../DotIcon';
 import Likes from '../Likes';
@@ -14,6 +14,8 @@ export default function OldPost(props) {
     const [commentActivated, setCommentActivated] = useState(false);
     const [menu, setMenu] = useState(false);
     const [commentMenu, setCommentMenu] = useState(false);
+    const [postImage, setpostImage] = useState('');
+    const [updateImage, setUpdateImage] = useState(props.image);
 
     const CreateComment = () => {
         if(!commentActivated) {
@@ -52,17 +54,56 @@ export default function OldPost(props) {
         let date = postDate.toLocaleDateString();
         return date;
       }
+      
+      useEffect(() => {
+        console.log(props._id, postImage)
+        if (postImage) {
+        API.addPostImage(props._id, postImage)
+        .then ((data) => {
+         API.getPost(props._id) 
+        .then((res) => {
+            console.log(res.data[0].image)
+            setUpdateImage(res.data[0].image)
+            // window.location.reload()
+        }).catch(err => console.log(err))   
+        
+        }).catch(err => console.log(err)) 
+      }
+
+    }, [postImage, updateImage]);
+
+    
+
+    console.log(props)
+    const postImages = async e => {
+        const files = e.target.files;
+        const data = new FormData();
+        data.append('file', files[0]);
+        data.append('upload_preset', 'postpics');
+    
+        const res = await fetch("https://api.cloudinary.com/v1_1/ddahipzkn/image/upload", 
+        {
+            method: 'POST',
+            body: data
+        });
+    
+        const file = await res.json();
+        console.log(file);
+    
+        setpostImage(file.url);
+    
+      }
 
     return (
         <div className='oldPost'>
-            <img className='oldPostImage' src='https://images.unsplash.com/photo-1611162616475-46b635cb6868?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8dGh1bWJuYWlsfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&w=1000&q=80' alt=''/>
+            <img className='oldPostImage' src={updateImage} alt=''/>
             <DeleteModal showDelete={props.showDelete}/>
             <div className='oldPostContent'>
                 <div className='postTop'>
                     <p className='postDate'>
                         {formatDate(props.date)}
                     </p>
-                    <DotIcon  handleToggle={handleToggle} menu={menu} _id={props._id} setUpdate={props.setUpdate} update={props.update}/>
+                    <DotIcon handleToggle={handleToggle} menu={menu} _id={props._id} setUpdate={props.setUpdate} update={props.update} postImages={postImages}/>
                 </div>
                 <p className='oldPostTitle'>
                     <b>{props.title}</b>
