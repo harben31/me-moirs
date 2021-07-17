@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect } from 'react';
 import './style.css';
 import API from '../../utils/API';
 
@@ -14,12 +14,23 @@ export default function(props) {
             friendId: friend._id,
             follow: true
         })
-        .then(res => {
-            e.target.parentNode.setAttribute('style', 'display: none')
-            console.log("Follow:",res.user_id,'2',props.user_id,'friends',friend)
+        .then(res => { 
+            let newFriendsArray = props.friendsArray;
+            newFriendsArray.push(friend)
+            props.setFriendsArray(newFriendsArray);
+            e.target.parentNode.parentNode.setAttribute('style', 'display: none')
+            // console.log('New friend',newFriendsArray)
         })
         .catch(err => console.log(err))
     };
+
+    // useEffect(() => {
+    //     let newFriendsArray = props.friendsArray;
+    //     newFriendsArray.push(friend)
+    //     props.setFriendsArray(newFriendsArray);
+    //          console.log('New friend',newFriendsArray)
+
+    // }, [props.friendsArray])
 
     return (
          <div className='user-card'>

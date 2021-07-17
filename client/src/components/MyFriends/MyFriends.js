@@ -3,6 +3,7 @@ import './style.css';
 import API from '../../utils/API'
 
 export default function MyFriends(props) {
+    console.log('line6 my frirnds',props.friendId)
     // const friend = props.friendInfo;
 
     // const [friendInfos, setFriendInfos] = 
@@ -23,20 +24,7 @@ export default function MyFriends(props) {
     //         .catch(err => console.log(err));
     //     }
     // }
-    // useEffect(() => {
-    //     API.getUsersFriends(props.user_id)
-    //     .then(res => {
-    //         if(res) {
 
-    //         console.log('Props', props)
-    //             console.log('26 My friends',res)
-    //                 const data = res.data;
-    //                 console.log('!!!!My Friends', data)          
-    //             } 
-    //             // return data;
-    //         })
-    //         .catch(err => console.log(err));
-    // }, []);
     // useEffect(() => {
     //     console.log('friend',friend)
     //     API.getUsersFriends()
@@ -73,14 +61,18 @@ export default function MyFriends(props) {
            {/* friendInfo.map((friend) => { */}
                 {/* return( */}
                 <div className='friend-info'>
-                    <img className='my-friend-image' src='https://images.pexels.com/photos/852793/pexels-photo-852793.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940' alt='photo'/>
-          
+                    {props.image ? 
+                    <img className='my-friend-image' src={props.image} alt={props.username}/>
+                    :
+                    <img className='my-friend-image' src='https://images.pexels.com/photos/761963/pexels-photo-761963.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940' alt='default'/>
+
+                    }
                         <p className='friend-name'>
-                            Sara
+                            
                             {props.username}
                         </p>
                         <p className='friend-email'>
-                            sara@gmail.com
+                         
                             {props.email}
                         </p>
                         <button className='view-profile'>

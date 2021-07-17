@@ -25,8 +25,6 @@
     margin: 35px 20px 0;
 }
 .view-profile, .unfollow-btn{
-/* width: 100%; */
-/* padding: 11px 40%; */
 color: #fff;
 font-size: 15px;
 font-weight: 600;
@@ -39,9 +37,5 @@ background: linear-gradient(
     58deg,
     rgba(42, 157, 143, 1) 20%,
     rgba(44, 132, 146, 1) 100%
-);
-}
-/* hover {
-    filter: brightness(1.03);
-} */
+);}
 
