@@ -17,9 +17,6 @@ import '../App.css'
 // import CarouselSlides from '../components/Carousel/CarouselSlides'
 // import TabForm from '../components/TabForm/TabForm';
 import TabModal from '../components/TabModal/TabModal';
-import MyFriends from '../components/MyFriends/MyFriends';
-
-
 
 
 export default function Profile(props) {
@@ -96,12 +93,6 @@ export default function Profile(props) {
       } 
 
 
-
-
-  
-
-    
-    
     return (
        
         <div>
@@ -122,7 +113,6 @@ export default function Profile(props) {
                title={card.title}
               description={card.description}/>})} */} 
                 <Banner username={props.username}/>
-              {/* <MyFriends/> */}
                  {/* <Cards/> */}
                  
                 {/* <CarouselSlides slides={SliderData}/> */}
