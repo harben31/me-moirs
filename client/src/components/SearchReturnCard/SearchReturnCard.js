@@ -1,6 +1,7 @@
 import React, {useEffect } from 'react';
 import './style.css';
 import API from '../../utils/API';
+import userImage from '../../user.png'
 
 
 export default function(props) {
@@ -36,7 +37,7 @@ export default function(props) {
                 {props.image ? 
                 <img className='my-friend-image' src={props.image} alt={props.username}/>
                 :
-                <img className='my-friend-image' src='https://images.pexels.com/photos/761963/pexels-photo-761963.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940' alt='default'/>
+                <img className='my-friend-image' src={userImage} alt='default'/>
                 }
                 {/* <img className='user-image' src={props.image} alt={props.username}/> */}
 

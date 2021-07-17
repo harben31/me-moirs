@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './style.css';
+import userImage from '../../user.png'
+
 
 export default function MyFriends(props) {
     return (
@@ -8,7 +10,7 @@ export default function MyFriends(props) {
                 {props.image ? 
                 <img className='my-friend-image' src={props.image} alt={props.username}/>
                 :
-                <img className='my-friend-image' src='https://images.pexels.com/photos/761963/pexels-photo-761963.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940' alt='default'/>
+                <img className='my-friend-image' src={userImage} alt='default'/>
 
                 }
                     <p className='friend-name'>
