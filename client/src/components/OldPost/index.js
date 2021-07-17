@@ -10,6 +10,7 @@ import API from '../../utils/API';
 
 
 export default function OldPost(props) {
+    console.log(props, '!!!!!!!!!!!!!!!!!')
     const [commentActivated, setCommentActivated] = useState(false);
     const [menu, setMenu] = useState(false);
     const [commentMenu, setCommentMenu] = useState(false);

@@ -4,7 +4,6 @@ import './style.css';
 
 
 export default function(props) {
-    console.log('!!props', props.searchResults)
     return (
         <div className='resultsContainer'>
             {props.searchResults.map((friend) => {
