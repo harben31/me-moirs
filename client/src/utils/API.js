@@ -105,11 +105,11 @@ export default {
 
     //--------------Posts
     getPosts: function() {
-        return axios.get('/api/posts')
+        return axios.get('/api/posts/')
     },
 
     getPost: function(id) {
-        return axios.get('/api/posts' + id)
+        return axios.get('/api/posts/' + id)
     },
 
     deletePost: function(id) {
@@ -126,6 +126,11 @@ export default {
 
     unLike: function(postId, userId) {
         return axios.put('/api/posts/unlike/' + postId, userId)
+    },
+
+    addPostImage: function(id, data) {
+        console.log('addPostImage', id, data)
+        return axios.put('/api/posts/image/' + id,  {addPostImage: data})
     },
 
     //---------------Comments

@@ -36,13 +36,13 @@ module.exports = {
             return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
         };
         const regex = new RegExp(escapeRegex(req.query.search))
-        console.log(req.query)
+       
         db.User
             .findById(req.query.id)
             .then(dbModel => {
                const idsToFilter = dbModel.friends;
                idsToFilter.push(dbModel._id)
-               console.log(idsToFilter);
+               
 
                db.User
                 .find({username: regex})
@@ -67,7 +67,7 @@ module.exports = {
     },
 
     findUserByEmail: function(req, res) {
-        console.log('findByEmail', req.params.email);
+      
         function escapeRegex(text) {
             return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
         };
@@ -91,29 +91,30 @@ module.exports = {
     //             res.status(422).json(err);
     //         });
     // },
+
     
     deleteUser: function(req, res) {
         db.User
             .findOneAndRemove({_id: req.params.id})
             .then(dbModel => {
-                console.log(dbModel, '!!! deleteUSer');
+                
                 dbModel.remove();
             })
             .then(dbModel => {
                 console.log(dbModel)
             })
-        }, 
+    }, 
        
     addToFriends: function(req, res) {
         let action;
         let friendAction;
 
         if(req.body.follow){
-            console.log('follow user true');
+            
             action = {$push: {friends: req.body.friendId}};
             friendAction={$push: {usersFollowing: req.params.id}};
         } else if (!req.body.follow) {
-            console.log('follow user false');
+           
             action = {$pull: {friends: req.body.friendId}};
             friendAction = {$pull: {usersFollowing: req.params.id}}
         } else {
@@ -156,11 +157,11 @@ module.exports = {
         let tabAction;
 
         if(req.body.follow){
-            console.log('follow tab true');
+            
             action = {$push: {followedTabs: req.body.tab_id}};
             tabAction={$push: {usersFollowing: req.params.id}};
         } else if (!req.body.follow) {
-            console.log('follow tab false');
+           
             action = {$pull: {followedTabs: req.body.tab_id}};
             tabAction = {$pull: {usersFollowing: req.params.id}}
         } else {

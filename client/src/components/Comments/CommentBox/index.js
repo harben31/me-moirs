@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import './style.css';
-import API from '../../utils/API';
+import API from '../../../utils/API';
 
 
 const Input = styled.input`
