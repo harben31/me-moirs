@@ -15,9 +15,15 @@ export default function(props) {
             follow: true
         })
         .then(res => { 
+            // props.setNewFollow(true)
             let newFriendsArray = props.friendsArray;
             newFriendsArray.push(friend)
             props.setFriendsArray(newFriendsArray);
+            if(!props.newFollow){
+                props.setNewFollow(true)
+            } else{
+                props.setNewFollow(false)
+            }
             e.target.parentNode.parentNode.setAttribute('style', 'display: none')
             // console.log('New friend',newFriendsArray)
         })

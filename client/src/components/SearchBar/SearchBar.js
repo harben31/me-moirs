@@ -138,6 +138,8 @@ export default function(props) {
           setOpenSearchModal={setOpenSearchModal}
           setFriendsArray={props.setFriendsArray}
           friendsArray={props.friendsArray}
+          setNewFollow={props.setNewFollow}
+          newFollow={props.newFollow}
           searchResults={searchResults}
           user_id={props.user_id}/>
           : null}

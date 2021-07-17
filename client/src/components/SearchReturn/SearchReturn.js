@@ -18,6 +18,8 @@ export default function(props) {
                     user_id={props.user_id}
                     setFriendsArray={props.setFriendsArray}
                     friendsArray={props.friendsArray}
+                    setNewFollow={props.setNewFollow}
+                    newFollow={props.newFollow}
                     />
                 )
             })}

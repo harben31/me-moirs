@@ -6,8 +6,15 @@ import API from '../utils/API';
 export default function Friends(props) {
     // const friend = props.friendInfo;
 
-    const [friendsArray,setFriendsArray] = useState([]); 
+    const [friendsArray,setFriendsArray] = useState([]);
+    const [newFollow, setNewFollow] = useState(false);
 
+    let myFriendsRender = friendsArray;
+    useEffect(() => {
+        myFriendsRender = friendsArray;
+        
+    }, [friendsArray])
+    
     useEffect(() => {
         console.log('line 10 friends',props.user_id)
         API.getUsersFriends(props.user_id)
@@ -18,7 +25,7 @@ export default function Friends(props) {
             })
             
             .catch(err => console.log(err));
-    }, [friendsArray]);
+    }, [newFollow]);
 
     // useEffect(() => {
     //     console.log('FriendArray',friendsArray)
@@ -54,6 +61,8 @@ export default function Friends(props) {
                 friends={props.friends}
                 setFriendsArray={setFriendsArray}
                 friendsArray={friendsArray}
+                setNewFollow={setNewFollow}
+                newFollow={newFollow}
 
             />
             {/* {friendData.map((friend) => {
@@ -65,7 +74,7 @@ export default function Friends(props) {
                 )
             })} */}
             {friendsArray.length ?  
-            (friendsArray.map((friend, i) => { 
+            friendsArray.map((friend, i) => { 
                 return ( 
                     <MyFriends 
                     key={i}
@@ -77,10 +86,8 @@ export default function Friends(props) {
                     //    ref={modalRef} onClick={CloseResultModal}
                     /> 
                 )
-            })) : null }
-            {/* <MyFriends 
-            friendId={friendId}
-            /> */}
+            }) : null }
+            
         </div>
     )
 }
