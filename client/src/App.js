@@ -23,6 +23,7 @@ import Profile from './pages/Profile';
 import API from './utils/API';
 
 import NewTab from './pages/NewTab';
+import Friends from './pages/Friends';
 
 import AuthApi from './utils/AuthApi';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -92,6 +93,7 @@ function App() {
   };
   
     return (
+
       <TabContext.Provider value={{tabs, deleteTab}}> 
         <AnimatePresence>
           <motion.div>
@@ -101,10 +103,12 @@ function App() {
                   <Header
                     loggedIn={auth}
                     userId={userId}
+                     friends={friends}
                   />
                   <RouteRegistration exact path='/' component={LoginSignup}/>
                   <RouteProtected exact path='/profile' component={Profile}/>
                   <RouteProtected exact path='/newtab/:id' component={NewTab} />
+                  <RouteProtected exact path='/friends' component={Friends} />
                   <Footer/>
                 </div>
               </Router>

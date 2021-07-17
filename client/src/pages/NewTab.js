@@ -25,7 +25,6 @@ export default function NewTab(props) {
          API.getTab(Id)
             .then(res => {
                 setTabInfo(res.data);
-                console.log(res.data)
             })
             .catch(err => console.log(err));
     }, [props.match.params.id, post, comment, update, updateComment]);

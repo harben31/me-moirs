@@ -28,16 +28,12 @@
     width: 50%;
 }
 
-.new-tab {
-    text-align: center;
-}
-
-.new-tab p, .logout p {
+.new-tab p, .logout p, .friends-tab p {
     padding: 5px 0px;
     color: rgb(255, 255, 255);
 }
 
-.new-tab i, .logout i{
+.new-tab i, .logout i, .friends-tab span{
     padding: 0px 0px 8px 0px;
     font-size: 25px;
     color: rgb(255, 255, 255);
@@ -45,7 +41,7 @@
 }
 
 
-.logout{
+.logout, .friends-tab{
     margin-right: 2%;
     text-align: center;
 }
@@ -60,11 +56,11 @@
 
 @media screen and (max-width: 500px ){
     
-.new-tab i, .logout i {
+.new-tab i, .logout i, friends-tab span {
     font-size: 20px;
 }
 
-.new-tab p, .logout p, .tabs{
+.new-tab p, .logout p, .friends-tab p, .tabs{
     font-size: 10px;
 }
 

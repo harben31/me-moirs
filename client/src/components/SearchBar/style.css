@@ -1,5 +1,6 @@
-form {
+.searchWrap {
     margin: 11px;
+    left: 160px
 }
 span{
     cursor: pointer;

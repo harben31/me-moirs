@@ -59,6 +59,11 @@ export default function(props) {
     const [searchBy, setSearchBy] = useState('username');
     const [searchVal, setSearchVal] =useState('');
     const [searchResults, setSearchResults] = useState([]);
+    const [openSearchModal, setOpenSearchModal] = useState(false);
+
+    const searchModal = () => {
+        setOpenSearchModal(prev => !prev);
+    }
 
     const handleSearchByChange = (e) => {
         setSearchBy(e.target.value);
@@ -72,7 +77,7 @@ export default function(props) {
         e.preventDefault();
         console.log('EEEEEEEE', e)
         let apiCall;
-
+        
         //regex space replace?????
         if(searchBy === 'email') {
             apiCall = API.userByEmail(props.user_id, searchVal)
@@ -80,10 +85,11 @@ export default function(props) {
             console.log('USERNAME')
             apiCall = API.userByUsername(props.user_id, searchVal)
         }
-
+        
         apiCall
-            .then(res => {
-                setSearchResults(res.data);
+        .then(res => {
+            setSearchResults(res.data);
+            searchModal();
             })
             .catch(err => console.log(err));
         
@@ -128,6 +134,10 @@ export default function(props) {
           </form>
           {searchResults.length
           ?<SearchReturn
+          openSearchModal={openSearchModal}
+          setOpenSearchModal={setOpenSearchModal}
+          setFriendsArray={props.setFriendsArray}
+          friendsArray={props.friendsArray}
           searchResults={searchResults}
           user_id={props.user_id}/>
           : null}
