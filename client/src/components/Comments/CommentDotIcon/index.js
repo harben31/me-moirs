@@ -1,11 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './style.css';
-import API from '../../utils/API';
+import API from '../../../utils/API';
 import CommentDeleteModal from '../CommentDeleteModal';
 
-export default function CommentDotIcon({handleCommentToggle, commentMenu, _id, updateComment, setUpdateComment}) {
-    const [showCommentDelete, setShowCommentDelete] = useState(false);
-
+export default function CommentDotIcon({ showCommentDelete, setShowCommentDelete, handleCommentToggle, commentMenu, _id, updateComment, setUpdateComment}) {
     const showCommentDeleteModal = () => {
         showCommentDelete ? setShowCommentDelete(false) : setShowCommentDelete(true);
     }
@@ -29,7 +27,13 @@ export default function CommentDotIcon({handleCommentToggle, commentMenu, _id, u
                     <li onClick={() => showCommentDeleteModal()}>Delete</li>
                 </ul>
             ) : null}
-            <CommentDeleteModal  showCommentDelete={showCommentDelete} _id={_id} deleteComment={deleteComment} setUpdateComment={setUpdateComment} updateComment={updateComment} />
+            <CommentDeleteModal  
+                showCommentDelete={showCommentDelete} 
+                _id={_id} 
+                deleteComment={deleteComment} 
+                setUpdateComment={setUpdateComment} 
+                updateComment={updateComment} 
+            />
         </div>
     )
 };
