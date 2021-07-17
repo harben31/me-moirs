@@ -23,25 +23,20 @@ export default function MyFriends(props) {
     //         .catch(err => console.log(err));
     //     }
     // }
-    useEffect(() => {
-        API.userInfo()
-            .then(res => {
-                if(res) {
-                    const data = res.data;
-                    // console.log('userINfo', data, 'props: ', props)
-                    // console.log('testing !!!!!!!!!!!!!!')
-                    // //setting the state (on App.js) to user id
-                    // props.setUserId(data._id);
-                    // let userData = {...props.user}
-                    props.setUsername(data.username);
-                    console.log('!!!!friends', data.friends)
-                    // props.setFriends(data.friends);
-                    // props.setUser('name');               
-                } 
-                // return data;
-            })
-            .catch(err => console.log(err));
-    }, []);
+    // useEffect(() => {
+    //     API.getUsersFriends(props.user_id)
+    //     .then(res => {
+    //         if(res) {
+
+    //         console.log('Props', props)
+    //             console.log('26 My friends',res)
+    //                 const data = res.data;
+    //                 console.log('!!!!My Friends', data)          
+    //             } 
+    //             // return data;
+    //         })
+    //         .catch(err => console.log(err));
+    // }, []);
     // useEffect(() => {
     //     console.log('friend',friend)
     //     API.getUsersFriends()

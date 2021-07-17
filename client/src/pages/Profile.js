@@ -47,7 +47,7 @@ export default function Profile(props) {
                     props.setUserId(data._id);
                     // let userData = {...props.user}
                     props.setUsername(data.username);
-                    // console.log('!!!!friends', data.friends)
+                    console.log('!!!!friends', data.friends)
                     // props.setFriends(data.friends);
                     // props.setUser('name');               
                 } 
@@ -122,7 +122,7 @@ export default function Profile(props) {
                title={card.title}
               description={card.description}/>})} */} 
                 <Banner username={props.username}/>
-              <MyFriends/>
+              {/* <MyFriends/> */}
                  {/* <Cards/> */}
                  
                 {/* <CarouselSlides slides={SliderData}/> */}

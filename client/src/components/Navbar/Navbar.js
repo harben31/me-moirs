@@ -95,10 +95,18 @@ export default function Navbar(props) {
                         )} 
                 </Carousel>
                 
-                <SearchBar
+                {/* <SearchBar
                 user_id={props.userId}
                 friends={props.friends}
-                />            
+                />   */}
+                <div className= 'friends-tab'>
+                <p>Friends</p>
+                <Link to='/friends'>
+                  <span class="material-icons">
+                    people_outline
+                  </span>
+                </Link>
+                </div>          
                <div className= 'new-tab'>
                 <p>New Tab</p>
                     {/* <Link to='/newtab'><i className="fa fa-pencil-square-o" aria-hidden="true"></i></Link> */}

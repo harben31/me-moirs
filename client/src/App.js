@@ -22,6 +22,7 @@ import Profile from './pages/Profile';
 import API from './utils/API';
 
 import NewTab from './pages/NewTab';
+import Friends from './pages/Friends';
 
 import AuthApi from './utils/AuthApi';
 
@@ -86,6 +87,7 @@ function App() {
                 
                 <RouteProtected exact path='/profile' component={Profile}/>
                 <RouteProtected exact path='/newtab/:id' component={NewTab} />
+                <RouteProtected exact path='/friends' component={Friends} />
                 <Footer/>
               </div>
           </Router>

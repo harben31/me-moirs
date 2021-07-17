@@ -1,6 +1,7 @@
 import React from 'react';
 import './style.css';
-import API from '../../utils/API'
+import API from '../../utils/API';
+
 
 export default function(props) {
     const friend = props.friendInfo;
