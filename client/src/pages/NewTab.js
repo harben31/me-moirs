@@ -3,6 +3,7 @@ import OldPost from '../components/OldPost';
 import React, { useState, useEffect } from 'react';
 import API from '../utils/API';
 import TabDotIcon from '../components/TabDotIcon';
+import { Redirect } from 'react-router-dom';
 
 export default function NewTab(props) {
 
@@ -16,6 +17,14 @@ export default function NewTab(props) {
     const [showTabDelete, setShowTabDelete] = useState(false);
     const [tabMenu, setTabMenu] = useState(false);
     const [tabUpdate, setTabUpdate] = useState(false);
+    const [target, setTarget] = useState(false);
+
+    // useEffect(() => {
+    //     if(props.location.state.applied) {
+    //         setTarget(true);
+    //     }
+    // }, []);
+
 
     useEffect(() => {
         const Id = props.match.params.id;
@@ -25,6 +34,10 @@ export default function NewTab(props) {
             })
             .catch(err => console.log(err));
     }, [props.match.params.id, post, comment, update, updateComment]);
+
+    // useEffect(() => {(
+    //     <Redirect to='/profile'/>
+    // )}, [tabUpdate]);
 
     const CreatePost = (e) => {
         e.preventDefault();

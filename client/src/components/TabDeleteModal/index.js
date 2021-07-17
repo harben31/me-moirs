@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
+import TabContext from '../../utils/tabContext';
+// deleteTab,
+export default function TabDeleteModal({ showTabDelete, _id, setTabUpdate, tabUpdate }) {
+    const { deleteTab } = useContext(TabContext);
 
-export default function TabDeleteModal({ showTabDelete, _id, deleteTab, setTabUpdate, tabUpdate }) {
-    console.log('is it giving back aboolean', showTabDelete);
     return (
         <div>
             {showTabDelete ? (
@@ -14,7 +17,8 @@ export default function TabDeleteModal({ showTabDelete, _id, deleteTab, setTabUp
                                 setTabUpdate(false)
                             } else {
                                 setTabUpdate(true)
-                            }}}>Yes</button>
+                            };
+                        }}><Link to='/profile'>Yes</Link></button>
                 </div>
                 ) : null 
             }

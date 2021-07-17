@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import DeleteModal from '../DeleteModal';
 import API from '../../utils/API';
 import './style.css';
