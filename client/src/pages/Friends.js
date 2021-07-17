@@ -9,11 +9,10 @@ export default function Friends(props) {
     const [friendsArray,setFriendsArray] = useState([]);
     const [newFollow, setNewFollow] = useState(false);
 
-    let myFriendsRender = friendsArray;
-    useEffect(() => {
-        myFriendsRender = friendsArray;
-        
-    }, [friendsArray])
+    let myFriendsRender = friendsArray;//I am notsure if we need this or not
+    useEffect(() => {//I am notsure if we need this or not
+        myFriendsRender = friendsArray;//I am notsure if we need this or not    
+    }, [friendsArray])//I am notsure if we need this or not
     
     useEffect(() => {
         console.log('line 10 friends',props.user_id)
@@ -27,33 +26,6 @@ export default function Friends(props) {
             .catch(err => console.log(err));
     }, [newFollow]);
 
-    // useEffect(() => {
-    //     console.log('FriendArray',friendsArray)
-    // }, [friendsArray]);
-
-    // const handleFollowReq = (e) => {
-    //     e.persist()
-    //     //mneed to filter out friends already in list
-    //     e.preventDefault();
-    //     API.addToUsersFriends(props.user_id, {
-    //         friendId: friend._id,
-    //         follow: true
-    //     })
-    //     .then(res => {
-            
-    //         e.target.parentNode.setAttribute('style', 'display: none')
-    //         // console.log("Follow:",res.user_id,'2',props.user_id,'friends',friend)
-    //     })
-    //     .catch(err => console.log(err))
-    // };
-
-    // const modalRef = useRef();
-    // const CloseResultModal = e => {
-    //     if (modalRef.current === e.target) {
-    //         props.setShowResultModal(false);
-    //     }
-    // }
-
     return (
         <div className='friends'>
            <SearchBar
@@ -65,29 +37,17 @@ export default function Friends(props) {
                 newFollow={newFollow}
 
             />
-            {/* {friendData.map((friend) => {
-                return(
-                    <MyFriends
-                    key={friend._id}
-                    friendInfo={friend}
-                    user_id={props.user_id}/>
-                )
-            })} */}
             {friendsArray.length ?  
-            friendsArray.map((friend, i) => { 
-                return ( 
-                    <MyFriends 
-                    key={i}
-                    {...friend}
-                    user_id={props.user_id}
-                    // handleFollowReq={handleFollowReq}
-                    
-                    //    user_id={props.userId}
-                    //    ref={modalRef} onClick={CloseResultModal}
-                    /> 
-                )
-            }) : null }
-            
+                friendsArray.map((friend, i) => { 
+                    return ( 
+                        <MyFriends 
+                        key={i}
+                        {...friend}
+                        user_id={props.user_id}
+                        /> 
+                    )
+                }) : null
+            }    
         </div>
     )
 }

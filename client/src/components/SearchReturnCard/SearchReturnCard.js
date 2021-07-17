@@ -16,16 +16,16 @@ export default function(props) {
         })
         .then(res => { 
             // props.setNewFollow(true)
-            let newFriendsArray = props.friendsArray;
-            newFriendsArray.push(friend)
-            props.setFriendsArray(newFriendsArray);
+            let newFriendsArray = props.friendsArray;//I am notsure if we need this or not
+            newFriendsArray.push(friend)//I am notsure if we need this or not
+            props.setFriendsArray(newFriendsArray);//I am notsure if we need this or not
+
             if(!props.newFollow){
                 props.setNewFollow(true)
             } else{
                 props.setNewFollow(false)
             }
             e.target.parentNode.parentNode.setAttribute('style', 'display: none')
-            // console.log('New friend',newFriendsArray)
         })
         .catch(err => console.log(err))
     };
@@ -33,7 +33,12 @@ export default function(props) {
     return (
          <div className='user-card'>
             <div className='user-info'>
-                <img className='user-image' src={props.image} alt={props.username}/>
+                {props.image ? 
+                <img className='my-friend-image' src={props.image} alt={props.username}/>
+                :
+                <img className='my-friend-image' src='https://images.pexels.com/photos/761963/pexels-photo-761963.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940' alt='default'/>
+                }
+                {/* <img className='user-image' src={props.image} alt={props.username}/> */}
 
                 <p className='user-name'>
                 {friend.username}
