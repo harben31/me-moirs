@@ -7,7 +7,7 @@ import TabContext from '../../utils/tabContext';
 //import image from '../../../public/logo.png';
 
 
-export default function Header({loggedIn, userId}) {
+export default function Header({loggedIn, userId, friends}) {
     // const [user, setUser] = useState([]);
     const [tabs, setTabs] = useState();
 
@@ -40,7 +40,7 @@ export default function Header({loggedIn, userId}) {
 
    
     return (
-        
+
             !loggedIn ? (
                 <header>
                     <div className='header'>

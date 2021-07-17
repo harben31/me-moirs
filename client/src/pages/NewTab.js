@@ -19,18 +19,13 @@ export default function NewTab(props) {
     const [tabUpdate, setTabUpdate] = useState(false);
     const [target, setTarget] = useState(false);
 
-    // useEffect(() => {
-    //     if(props.location.state.applied) {
-    //         setTarget(true);
-    //     }
-    // }, []);
-
 
     useEffect(() => {
         const Id = props.match.params.id;
          API.getTab(Id)
             .then(res => {
                 setTabInfo(res.data);
+                console.log(res.data)
             })
             .catch(err => console.log(err));
     }, [props.match.params.id, post, comment, update, updateComment]);
@@ -46,7 +41,9 @@ export default function NewTab(props) {
             content: postContent,
             tab_id: tabInfo._id
         })
-        .then(() => setPost(true))
+        .then((res) => {
+            console.log(res.data._id)
+            setPost(true)})
         .catch(err => {
             console.log(err);
         });
@@ -70,6 +67,22 @@ export default function NewTab(props) {
         .then(res => console.log(res))
         .catch(err => console.log(err));
     };
+
+    // useEffect(() => {
+    //     // console.log(_id, postImage)
+    //     if (postImage) {
+    //     API.addPostImage(props._id, postImage)
+    //     .then ((data) => {
+    //         // window.location.reload()
+    //     })
+    //   }
+
+    // }, [postImage]);
+
+
+
+ 
+
 
     return (
         <div className= 'new-tabs'>

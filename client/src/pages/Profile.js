@@ -38,6 +38,7 @@ export default function Profile(props) {
     useEffect(() => {
         API.userInfo()
             .then(res => {
+              console.log(props)
                 if(res) {
                     const data = res.data;
                     // console.log('userINfo', data, 'props: ', props)
@@ -46,6 +47,8 @@ export default function Profile(props) {
                     props.setUserId(data._id);
                     // let userData = {...props.user}
                     props.setUsername(data.username);
+                    console.log('!!!!friends', data.friends)
+                    // props.setFriends(data.friends);
                     // props.setUser('name');               
                 } 
                 // return data;

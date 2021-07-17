@@ -34,6 +34,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 function App() {
   const [userId, setUserId] = useState({});
   const [username, setUsername] = useState('');
+  const [friends, setFriends] = useState([]);
   const [auth, setAuth] = useState(false);
   
 
@@ -60,14 +61,16 @@ function App() {
         ? <Component {...props} 
         user_id={userId} 
         setUserId={setUserId}
-        setUsername={setUsername}
         username={username}
+        setUsername={setUsername}
+        friends={friends}
+        setFriends={setFriends}
         />
       : <Redirect to='/' />} />;
   };
   
     return (
-      // <TabContext.Provider value={{tabs, deleteTab}}>
+
         <AnimatePresence>
           <motion.div>
             <AuthApi.Provider value={{ auth, setAuth }}>
@@ -86,7 +89,6 @@ function App() {
             </AuthApi.Provider>
           </motion.div>
         </AnimatePresence>
-      // </TabContext.Provider>
     );
 };
 
