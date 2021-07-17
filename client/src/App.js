@@ -4,7 +4,7 @@ import {
   Route,
   Redirect, withRouter
 } from "react-router-dom";
-// import TabContext from './utils/tabContext';
+import TabContext from './utils/tabContext';
 
 // import Home from './pages/Home';
 
@@ -37,6 +37,21 @@ function App() {
   const [friends, setFriends] = useState([]);
   const [auth, setAuth] = useState(false);
   
+  const [tabs, setTabs] = useState();
+  const [tabDeleted, setTabDeleted] = useState(false);
+
+  useEffect(() => {
+    if(auth) {
+      API.userInfo()
+      .then(res => {
+          if(res) {
+              const data = res.data.shortTabInfo;
+              setTabs(data);
+            } 
+      })
+      .catch(err => console.log(err));
+    }
+  }, [auth, tabDeleted]);
 
   //this route is for if user is still logged in but has navigated away and back to page
   useEffect(() => {
@@ -52,6 +67,13 @@ function App() {
       console.log(err)
     })
   }, []);
+
+  const deleteTab = (id) => {
+    API.deleteTab(id)
+        .then(res => {console.log('deleteTab response', res); setTabDeleted(true)})
+        .catch(err => console.log(err));
+  };
+
 
   //moved this fn inside of the App fn so I could get access to the setUser hook
   const RouteProtected = ({ component: Component, ...rest }) => {
@@ -70,7 +92,7 @@ function App() {
   };
   
     return (
-
+      <TabContext.Provider value={{tabs, deleteTab}}> 
         <AnimatePresence>
           <motion.div>
             <AuthApi.Provider value={{ auth, setAuth }}>
@@ -89,6 +111,7 @@ function App() {
             </AuthApi.Provider>
           </motion.div>
         </AnimatePresence>
+      </TabContext.Provider>
     );
 };
 
