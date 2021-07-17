@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import DeleteModal from '../DeleteModal';
 import API from '../../utils/API';
 import './style.css';
 
-export default function DotIcon({ handleToggle, menu, _id, update, setUpdate, postImages}) {
-    const [showDelete, setShowDelete] = useState(false);
-    const [showInput, setShowInput] = useState(false);
+
+export default function DotIcon({ showDelete, setShowDelete, handleToggle, menu, _id, update, setUpdate}) {
+
 
     const showDeleteModal = () => {
         showDelete ? setShowDelete(false) : setShowDelete(true);

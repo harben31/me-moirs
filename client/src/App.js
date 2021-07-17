@@ -4,6 +4,7 @@ import {
   Route,
   Redirect, withRouter
 } from "react-router-dom";
+// import TabContext from './utils/tabContext';
 
 // import Home from './pages/Home';
 
@@ -24,8 +25,6 @@ import API from './utils/API';
 import NewTab from './pages/NewTab';
 
 import AuthApi from './utils/AuthApi';
-
-import TabForm from './components/TabForm/TabForm';
 import { motion, AnimatePresence } from 'framer-motion';
 
 
@@ -71,26 +70,24 @@ function App() {
   };
   
     return (
-      <AnimatePresence>
-         <motion.div>
-      <AuthApi.Provider value={{ auth, setAuth }}>
-          <Router>
-              <div className='App'>
-                <Header
-                loggedIn={auth}
-                userId={userId}
-                friends={friends}
-                />
-               
-                <RouteRegistration exact path='/' component={LoginSignup}/>
-                
-                <RouteProtected exact path='/profile' component={Profile}/>
-                <RouteProtected exact path='/newtab/:id' component={NewTab} />
-                <Footer/>
-              </div>
-          </Router>
-        </AuthApi.Provider>
-        </motion.div>
+
+        <AnimatePresence>
+          <motion.div>
+            <AuthApi.Provider value={{ auth, setAuth }}>
+              <Router>
+                <div className='App'>
+                  <Header
+                    loggedIn={auth}
+                    userId={userId}
+                  />
+                  <RouteRegistration exact path='/' component={LoginSignup}/>
+                  <RouteProtected exact path='/profile' component={Profile}/>
+                  <RouteProtected exact path='/newtab/:id' component={NewTab} />
+                  <Footer/>
+                </div>
+              </Router>
+            </AuthApi.Provider>
+          </motion.div>
         </AnimatePresence>
     );
 };
