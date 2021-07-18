@@ -34,6 +34,12 @@ const tabSchema = new Schema({
             type: Schema.Types.ObjectId,
             ref: 'Post'
         }
+    ],
+    tags: [
+        {
+            type: String,
+            maxLength: 25
+        }
     ]
 });
 

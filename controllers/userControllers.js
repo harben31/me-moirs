@@ -110,7 +110,6 @@ module.exports = {
         let friendAction;
 
         if(req.body.follow){
-            
             action = {$push: {friends: req.body.friendId}};
             friendAction={$push: {usersFollowing: req.params.id}};
         } else if (!req.body.follow) {
@@ -129,7 +128,7 @@ module.exports = {
                 db.User
                     .findByIdAndUpdate({_id: req.body.friendId}, 
                         friendAction)
-                    .then(dbModel => console.log('adding to usersfollowing', dbModel))
+                    .then(dbModel => console.log('adding to usersFollowing', dbModel))
                 res.json(dbModel);
             })
             .catch(err => {
