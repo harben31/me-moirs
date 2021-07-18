@@ -20,11 +20,25 @@
     z-index: 4;
 }
 
-.commentModal {
-    position: absolute;
+.commentModalBackground {
     z-index: 5;
     top: 0;
-    left: -100vh;
+    left: 0vh;
+    height: 100vh;
+    width: 100%;
+    background: rgb(0, 0, 0, 0.7);
+    position: fixed;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+}
+
+.commentModal {
+    position: absolute;
+    z-index: 6;
+    top: 45%;
+    left: 30%;
     padding: 20px;
     width: 500px;
     background: white;

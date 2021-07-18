@@ -102,9 +102,10 @@ export default function OldPost(props) {
                     </p>
                     <DotIcon  
                         showDelete={showDelete} 
-                        setShowDelete={setShowDelete} 
+                        setShowDelete={setShowDelete}
                         handleToggle={handleToggle} 
                         menu={menu}
+                        setMenu={setMenu}
                         _id={props._id} 
                         setUpdate={props.setUpdate} 
                         update={props.update}/>
