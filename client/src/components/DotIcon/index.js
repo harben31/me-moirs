@@ -63,6 +63,7 @@ export default function DotIcon({ showDelete, setShowDelete, handleToggle, menu,
 
                 <UpdatePostModal 
                 showUpdateModal={showUpdateModal}
+                setShowUpdateModal={setShowUpdateModal}
                 setUpdate={setUpdate} 
                 update={update}
                 />
