@@ -1,15 +1,22 @@
-import React, { useState } from 'react';
+import React from 'react';
 import DeleteModal from '../DeleteModal';
+import UpdatePostModal from '../UpdatePostModal/UpdatePostModal';
 import API from '../../utils/API';
 import './style.css';
 
-export default function DotIcon({ handleToggle, menu, _id, update, setUpdate, postImages}) {
+export default function DotIcon({ showDelete, setShowDelete, handleToggle, menu, _id, update, setUpdate}) {
     const [showDelete, setShowDelete] = useState(false);
-    const [showInput, setShowInput] = useState(false);
+    const [showUpdateModal, setShowUpdateModal] = useState(false);
+
 
     const showDeleteModal = () => {
         showDelete ? setShowDelete(false) : setShowDelete(true);
     }
+
+    const openUpdateModal = () => {
+        showUpdateModal ? setShowUpdateModal(false) : setShowUpdateModal(true);
+    }
+
 
     const handleChange = (e) => {
         e.preventDefault();
@@ -34,7 +41,7 @@ export default function DotIcon({ handleToggle, menu, _id, update, setUpdate, po
             </span> 
             {menu ? (
                 <ul className='menu'>
-                    <li>Edit</li>
+                    <li onClick={() => openUpdateModal()}>Edit</li>
                     <li onClick={() => showDeleteModal()}>Delete</li>
                     <li onClick={handleChange}>Add Photo</li>
                     {
@@ -50,6 +57,12 @@ export default function DotIcon({ handleToggle, menu, _id, update, setUpdate, po
                 </ul>
             ) : null}
             <DeleteModal  showDelete={showDelete} _id={_id} deletePost={deletePost} setUpdate={setUpdate} update={update} />
+
+            <UpdatePostModal 
+            showUpdateModal={showUpdateModal}
+            setUpdate={setUpdate} 
+            update={update}
+            />
         </div>
     )
 };

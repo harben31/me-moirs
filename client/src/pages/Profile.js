@@ -17,6 +17,7 @@ import '../App.css'
 // import CarouselSlides from '../components/Carousel/CarouselSlides'
 // import TabForm from '../components/TabForm/TabForm';
 import TabModal from '../components/TabModal/TabModal';
+import MyFriends from '../components/MyFriends/MyFriends';
 
 
 
@@ -115,14 +116,14 @@ export default function Profile(props) {
                 {/* <Navbar id={user.shortTabInfo}/> */}
                 
                  {/* <CarouselSlides tabs={SliderData}/> */}
-                
                 <CoverPhoto image={coverImage} />
                  <ProfileImage user_id={props.user_id} backgroundImage={backgroundImage}/>
              {/* {cardInfo.map(card => { 
-                return <Cards key={card.id} name={card.name}
-                title={card.title}
-                description={card.description}/>})} */} 
+               return <Cards key={card.id} name={card.name}
+               title={card.title}
+              description={card.description}/>})} */} 
                 <Banner username={props.username}/>
+              {/* <MyFriends/> */}
                  {/* <Cards/> */}
                  
                 {/* <CarouselSlides slides={SliderData}/> */}

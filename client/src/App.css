@@ -30,7 +30,9 @@
   /* box-shadow: 6px 6px 4px -4px rgba(0, 0, 0, 0.7); */
   /* font-size: 100px; */
 }
-
+.friends{
+  margin-top: 160px;
+}
 .postSection {
   margin-top: 160px;
   padding: 20px;

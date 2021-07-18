@@ -81,17 +81,17 @@ module.exports = {
                     res.json({message: 'email could not be found'});
                 }
             })
-    },
+        },
+    // updateUser: function (req, res) {
+    //     db.User
+    //         .findOneAndUpdate({_id: req.params.id}, req.body)
+    //         .then(dbModel => res.json(dbModel))
+    //         .catch(err => {
+    //             console.log(err);
+    //             res.status(422).json(err);
+    //         });
+    // },
 
-    updateUser: function (req, res) {
-        db.User
-            .findOneAndUpdate({_id: req.params.id}, req.body)
-            .then(dbModel => res.json(dbModel))
-            .catch(err => {
-                console.log(err);
-                res.status(422).json(err);
-            });
-    },
     
     deleteUser: function(req, res) {
         db.User
