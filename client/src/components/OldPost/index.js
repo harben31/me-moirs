@@ -5,6 +5,7 @@ import Likes from '../Likes';
 import Comment from '../Comments/Comment';
 import CommentButton from '../Comments/CommentButton';
 import CommentBox from '../Comments/CommentBox';
+import API from '../../utils/API';
 import './style.css';
 
 
@@ -93,7 +94,7 @@ export default function OldPost(props) {
     return (
         <div className='oldPost'>
             <img className='oldPostImage' src={updateImage} alt=''/>
-            <DeleteModal showDelete={props.showDelete}/>
+            {/* <DeleteModal showDelete={props.showDelete}/> */}
             <div className='oldPostContent'>
                 <div className='postTop'>
                     <p className='postDate'>

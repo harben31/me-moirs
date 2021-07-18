@@ -20,7 +20,7 @@
     z-index: 4;
 }
 
-.modal {
+.commentModal {
     position: absolute;
     z-index: 5;
     top: 0;

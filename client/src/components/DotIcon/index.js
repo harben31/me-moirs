@@ -1,11 +1,11 @@
-import React from 'react';
+import React, {useState} from 'react';
 import DeleteModal from '../DeleteModal';
 import UpdatePostModal from '../UpdatePostModal/UpdatePostModal';
 import API from '../../utils/API';
 import './style.css';
 
 export default function DotIcon({ showDelete, setShowDelete, handleToggle, menu, _id, update, setUpdate}) {
-    const [showDelete, setShowDelete] = useState(false);
+    // const [showDelete, setShowDelete] = useState(false);
     const [showUpdateModal, setShowUpdateModal] = useState(false);
 
 
@@ -18,13 +18,13 @@ export default function DotIcon({ showDelete, setShowDelete, handleToggle, menu,
     }
 
 
-    const handleChange = (e) => {
-        e.preventDefault();
+    // const handleChange = (e) => {
+    //     e.preventDefault();
 
-        setShowInput({showInput: !showInput});
-    };
+    //     setShowInput({showInput: !showInput});
+    // };
 
-    const x = showInput;
+    // const x = showInput;
 
     const deletePost = (id) => {
         handleToggle();
@@ -43,8 +43,8 @@ export default function DotIcon({ showDelete, setShowDelete, handleToggle, menu,
                 <ul className='menu'>
                     <li onClick={() => openUpdateModal()}>Edit</li>
                     <li onClick={() => showDeleteModal()}>Delete</li>
-                    <li onClick={handleChange}>Add Photo</li>
-                    {
+                    {/* <li onClick={handleChange}>Add Photo</li> */}
+                    {/* {
                     x && (
                         <div>
                         <input type='file' 
@@ -52,11 +52,11 @@ export default function DotIcon({ showDelete, setShowDelete, handleToggle, menu,
                         onChange={postImages}/>
                         </div>
                      )
-                     }
+                     } */}
 
                 </ul>
             ) : null}
-            <DeleteModal  showDelete={showDelete} _id={_id} deletePost={deletePost} setUpdate={setUpdate} update={update} />
+            <DeleteModal  setShowDelete={setShowDelete} showDelete={showDelete} _id={_id} deletePost={deletePost} setUpdate={setUpdate} update={update} />
 
             <UpdatePostModal 
             showUpdateModal={showUpdateModal}

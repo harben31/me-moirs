@@ -37,7 +37,6 @@ export default function TabDotIcon({ showTabDelete, setShowTabDelete, tabMenu, h
                 <TabDeleteModal  
                     showTabDelete={showTabDelete} 
                     _id={_id} 
-                    // deleteTab={deleteTab} 
                     setTabUpdate={setTabUpdate} 
                     tabUpdate={tabUpdate} 
                 />
