@@ -34,10 +34,11 @@ export default {
         return axios.put('/api/users/background/' + id, {coverImage: data})
     },
 
-    // getUser: function(id) {
-    //     return axios.get('/api/users' + id)
-    // },
+    getFriendInfo: function(id) {
+        return axios.get('/api/users' + id)
+    },
     
+
     //----search for other users-----
     userByUsername: function(_id, username){
         console.log(_id, username);

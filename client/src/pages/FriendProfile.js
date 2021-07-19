@@ -13,16 +13,18 @@ export default function FriendProfile(props) {
     const [background, setBackground] = useState('');
    
     useEffect(() => {
-        API.userInfo()
+        const Id = props.params.id;
+        API.getFriendInfo(Id)
             .then(res => {
-              console.log(props)
-                if(res) {
-                    const data = res.data;
-                    props.setUserId(data._id);
-                    props.setUsername(data.username);
-                    console.log('!!!!friends', data.friends)
-               
-                } 
+              console.log('props',Id)
+                // if(res) {
+                //     const data = res.data;
+                //     console.log('Lime 21 fp', data)
+                //     props.setUserId(data._id);
+                //     props.setUsername(data.username);
+                //     console.log('!!!!friends', data.friends)
+
+                // } 
             })
             .catch(err => console.log(err));
     }, []);
@@ -30,7 +32,8 @@ export default function FriendProfile(props) {
 
     useEffect(() => {
         if (background) {
-        API.coverPhoto(props.user_id, background)
+        const Id = props.params.id;
+        API.coverPhoto(Id, background)
         .then ((data) => {
             window.location.reload()
         })
@@ -39,7 +42,8 @@ export default function FriendProfile(props) {
   
   
       useEffect(() => {
-        API.userInfo()
+        const Id = props.params.id;
+        API.getFriendInfo(Id)
         .then((res) => {
           setCoverImage(res.data.background)
         }).catch(err => {
@@ -67,20 +71,9 @@ export default function FriendProfile(props) {
     } 
     return (
         <div>
-            {/* <Header/> */}
-                {/* <Navbar id={user.shortTabInfo}/> */}
-                {/* <CarouselSlides tabs={SliderData}/> */}
                 <CoverPhoto image={coverImage} />
-                 <ProfileImage user_id={props.user_id} backgroundImage={backgroundImage}/>
-                {/* {cardInfo.map(card => { 
-                return <Cards key={card.id} name={card.name}
-                title={card.title}
-                description={card.description}/>})} */} 
+                 <ProfileImage user_id={props.friend_id} backgroundImage={backgroundImage}/>
                 <Banner username={props.username}/>
-                {/* <Cards/> */}
-                {/* <CarouselSlides slides={SliderData}/> */}
-                {/* <button onClick={OpenModal}>OpenModal</button> */}
-    
           </div>
       )
     }     

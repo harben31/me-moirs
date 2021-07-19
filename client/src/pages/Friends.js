@@ -15,10 +15,10 @@ export default function Friends(props) {
     }, [friendsArray])//I am notsure if we need this or not
     
     useEffect(() => {
-        console.log('line 10 friends',props.user_id)
+        console.log('My Id',props.user_id)
         API.getUsersFriends(props.user_id)
         .then(res => {
-            console.log('line 14 friends', res.data);
+            console.log('My Friends Data11', res.data);
             setFriendsArray(res.data) 
             })
             
@@ -43,6 +43,7 @@ export default function Friends(props) {
                         key={i}
                         {...friend}
                         user_id={props.user_id}
+                        friend_id={props.friend}
                         /> 
                     )
                 }) : null

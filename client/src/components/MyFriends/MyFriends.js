@@ -21,24 +21,31 @@ export default function MyFriends(props) {
                         <p className='friend-name'>
                             
                             {props.username}
+
                         </p>
                         <p className='friend-email'>
-                         
+
                             {props.email}
+
                         </p>
+                        {/* //We Should add friend id (+_id) to the path after friendprofile */}
                         <Link to={{ pathname: '/friendprofile/' }}>
+
                             <button className='view-profile'>
+
                                 View Profile 
+
                             </button>
+
                         </Link>
                         <button 
                         className='unfollow-btn'
-                      //   onClick={handleUnFollowReq}
+                      //onClick={handleUnFollowReq}
                         >
+
                             UnFollow
+
                         </button>
-                   
-               
                 </div>
         </div>
     )

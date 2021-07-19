@@ -17,18 +17,18 @@ module.exports = {
     },
 
 
-    // findUserById: function (req, res) {
-    //     console.log('findUserById')
-    //     db.User
-    //         .findById(req.params.id)
-    //         .then(dbModel => {
-    //             res.json(dbModel)
-    //         })
-    //         .catch(err => {
-    //             console.log(err);
-    //             res.json(err);
-    //         });
-    // },
+    findUserById: function (req, res) {
+        console.log('findUserById')
+        db.User
+            .findById(req.params.id)
+            .then(dbModel => {
+                res.json(dbModel)
+            })
+            .catch(err => {
+                console.log(err);
+                res.json(err);
+            });
+    },
 
     //need to handle case sensativity. second username all lowercase?
     findUserByUsername: function(req, res) {

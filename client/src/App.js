@@ -111,7 +111,7 @@ function App() {
                   <RouteProtected exact path='/profile' component={Profile}/>
                   <RouteProtected exact path='/newtab/:id' component={NewTab} />
                   <RouteProtected exact path='/friends' component={Friends} />
-                  <RouteProtected exact path='/friendprofile/:id' component={FriendProfile}/>
+                  <RouteProtected exact path='/friendprofile' component={FriendProfile}/>
                   <Footer/>
                 </div>
               </Router>
