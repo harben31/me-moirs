@@ -5,7 +5,7 @@ import API from '../../utils/API';
 import './style.css';
 
 
-export default function DotIcon({ UpdatePost, setPostTitle, setPostContent,  showDelete, setShowDelete, handleToggle, menu, setMenu, _id, update, setUpdate, title, content, setTitleChanged, setContentChanged}) {
+export default function DotIcon({ UpdatePost, setPostTitle, setPostContent,  showDelete, setShowDelete, handleToggle, menu, setMenu, _id, update, setUpdate, title, content, setTitleChanged, setContentChanged, postImages}) {
 
     // const [showDelete, setShowDelete] = useState(false);
     const [showUpdateModal, setShowUpdateModal] = useState(false);
@@ -15,8 +15,6 @@ export default function DotIcon({ UpdatePost, setPostTitle, setPostContent,  sho
     }
 
 
-    const handleChange = (e) => {
-        // e.preventDefault();
 
     const openUpdateModal = () => {
         showUpdateModal ? setShowUpdateModal(false) : setShowUpdateModal(true);
