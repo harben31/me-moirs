@@ -9,6 +9,7 @@ export default function DotIcon({ UpdatePost, setPostTitle, setPostContent,  sho
 
     // const [showDelete, setShowDelete] = useState(false);
     const [showUpdateModal, setShowUpdateModal] = useState(false);
+    const [showInput, setShowInput] = useState(false);
 
     const showDeleteModal = () => {
         showDelete ? setShowDelete(false) : setShowDelete(true);

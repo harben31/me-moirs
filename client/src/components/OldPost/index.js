@@ -63,9 +63,10 @@ export default function OldPost(props) {
       
 
       useEffect(() => {
-        setTitle(props.title);
-        setContent(props.content)
+        // setTitle(props.title);
+        // setContent(props.content)
         if (postImage) {
+            console.log(props._id, postImage)
         API.addPostImage(props._id, postImage)
         .then ((res) => {
 
