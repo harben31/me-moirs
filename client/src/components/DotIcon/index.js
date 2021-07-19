@@ -14,6 +14,10 @@ export default function DotIcon({ UpdatePost, setPostTitle, setPostContent,  sho
         showDelete ? setShowDelete(false) : setShowDelete(true);
     }
 
+
+    const handleChange = (e) => {
+        // e.preventDefault();
+
     const openUpdateModal = () => {
         showUpdateModal ? setShowUpdateModal(false) : setShowUpdateModal(true);
     }
@@ -46,7 +50,11 @@ export default function DotIcon({ UpdatePost, setPostTitle, setPostContent,  sho
                 <ul className='menu'>
                     <li onClick={() => openUpdateModal()}>Edit</li>
                     <li onClick={() => showDeleteModal()}>Delete</li>
+
+                    <li onClick={handleChange}>Update Photo</li>
+
                     {/* <li onClick={handleChange}>Add Photo</li>
+
                     {
                     x && (
                         <div>

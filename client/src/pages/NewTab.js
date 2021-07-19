@@ -14,11 +14,13 @@ export default function NewTab(props) {
     const [comment, setComment] = useState(false);
     const [update, setUpdate] = useState(false);
     const [updateComment, setUpdateComment] = useState(false);
+    const [updatePostImage, setUpdatePostImage] = useState(false);
     const [showTabDelete, setShowTabDelete] = useState(false);
     const [tabMenu, setTabMenu] = useState(false);
     const [tabUpdate, setTabUpdate] = useState(false);
     const [target, setTarget] = useState(false);
     const [postChanged, setPostChanged] = useState(false);
+
 
 
     useEffect(() => {
@@ -28,9 +30,12 @@ export default function NewTab(props) {
             .then(res => {
                 setTabInfo(res.data);
                 setPostChanged(false);
+                setUpdatePostImage(false);
+
             })
             .catch(err => console.log(err));
-    }, [props.match.params.id, post, comment, update, updateComment, postChanged]);
+    }, [props.match.params.id, post, comment, update, updateComment, postChanged, updatePostImage]);
+
 
     // useEffect(() => {(
     //     <Redirect to='/profile'/>
@@ -85,21 +90,6 @@ export default function NewTab(props) {
         .catch(err => console.log(err));
     };
 
-    // useEffect(() => {
-    //     // console.log(_id, postImage)
-    //     if (postImage) {
-    //     API.addPostImage(props._id, postImage)
-    //     .then ((data) => {
-    //         // window.location.reload()
-    //     })
-    //   }
-
-    // }, [postImage]);
-
-
-
- 
-
 
     return (
         <div className= 'new-tabs'>
@@ -142,8 +132,10 @@ export default function NewTab(props) {
                                             setComment={setComment}
                                             updateComment={updateComment}
                                             setUpdateComment= {setUpdateComment}
+                                            setUpdatePostImage={setUpdatePostImage}
                                             setPostTitle={setPostTitle}
                                             setPostContent={setPostContent}
+
                                         />
                                     )
                                 })) : 
