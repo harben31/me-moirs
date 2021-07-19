@@ -3,6 +3,7 @@ import SearchReturnCard from '../SearchReturnCard/SearchReturnCard';
 import './style.css';
 
 export default function(props) {
+
     return (
         <>
         {props.openSearchModal ?

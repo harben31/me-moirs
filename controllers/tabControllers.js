@@ -2,20 +2,37 @@ const db = require('../models');
 const mongoose = require('mongoose');
 
 module.exports = {
-    //editing overall tab
     updateTab: function(req, res) {
         db.Tab
-        //returning 'no such file or directory'
-            .findOneAndUpdate({ _id: idToSearch }, req.body)
+            .findOneAndUpdate({ _id: idToSearch }, req.body.tags)
             .then(dbModel => res.json(dbModel))
             .catch(err => {
                 console.log(err);
                 res.status(422).json(err);
-            })
+            });
     },
-    //loading users tabs
+
+    updateTags: function(req, res) {
+        //can PUSH arrays but to remove must be single string not in array
+        let action;
+
+        if(req.body.addTag){
+            action = {$push: {tags: req.body.tags}}
+        } else {
+            action = {$pull: {tags: req.body.tags}}
+        }
+
+        db.Tab
+            .findOneAndUpdate({_id: req.params.id}, 
+                action)
+                .then(dbModel => res.json(dbModel))
+                .catch(err => {
+                    console.log(err);
+                    res.json(err);
+                })
+    },
+
     findAllTabs: function(req, res) {
-        //find all of one users tabs. search/sort by user id
         db.Tab
             .find({_id: req.params.id})
             .populate({
@@ -30,7 +47,7 @@ module.exports = {
                 res.status(422).json(err);
             });
     },
-    //Will need to delete all posts as well
+
     deleteTab: function(req, res) {
         db.Tab
             .findById(req.params.id)
@@ -46,8 +63,8 @@ module.exports = {
                 res.json(err);
             })
     },
+
     findTabById: function(req, res) {
-       
         db.Tab
             .findById(req.params.id)
             .populate({ 
@@ -63,7 +80,3 @@ module.exports = {
             });
     }
 };
-
-//find update to following tabs
-//following tabs vs posts?
-//comments on tabs or just posts or both?

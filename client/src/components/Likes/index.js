@@ -20,7 +20,6 @@ export default function Likes(props) {
                 setLiked(true)
             }
         });
-        console.log('props:', props, 'likes', likes)
     }, [])
 
     const addLike = () => {
