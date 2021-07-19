@@ -21,19 +21,21 @@ const Background = styled.div`
     z-index: 10;
 `;
 
-const BoxContainer = styled.div`
-    width: 380px;
-    min-height: 450px;
-    // top:280px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    border-radius: 19px;
-    background-color: #fff;
-    box-shadow: 0 0 2px rgba(15, 15, 15, 0.28);
-    // position: relative;
-    overflow: hidden;
-`;
+// const BoxContainer = styled.div`
+//     width: 380px;
+//     min-height: 450px;
+//     // top:280px;
+//     margin: 0 auto;
+//     display: flex;
+//     flex-direction: column;
+//     border-radius: 19px;
+//     background-color: #fff;
+//     box-shadow: 0 0 2px rgba(15, 15, 15, 0.28);
+//     // position: relative;
+//     overflow: hidden;
+
+// `;
+
 const TopContainer = styled.div`
     width: 100%;
     height: 111px;
@@ -133,7 +135,7 @@ const Span = styled.span`
 `;
 const ClosingButton = styled.span`
     color:#fff;
-    width: 350px;
+    width: 330px;
     font-size: 20px;
     font-weight: 600;
     font-weight: 600;
@@ -221,7 +223,7 @@ export default function TabModal(/*{showModal, setShowModal, user_id}*/ props) {
                     animate='visible'
                     exit='exit'
                     >
-                        <BoxContainer>
+                        <div className='boxContainer'>
                             <TopContainer>
                                 <BackDrop>
                                 <HeaderContainer>
@@ -253,7 +255,7 @@ export default function TabModal(/*{showModal, setShowModal, user_id}*/ props) {
                                 Create
                             </SubmitButton>
                             </FormContainer>
-                        </BoxContainer>
+                        </div>
                     </motion.div>
                 </Background>
             ) : null}  

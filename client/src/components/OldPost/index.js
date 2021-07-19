@@ -52,22 +52,22 @@ export default function OldPost(props) {
         return date;
       }
       
-      useEffect(() => {
-        console.log(props._id, postImage)
-        if (postImage) {
-        API.addPostImage(props._id, postImage)
-        .then ((data) => {
-         API.getPost(props._id) 
-        .then((res) => {
-            console.log(res.data[0].image)
-            setUpdateImage(res.data[0].image)
-            // window.location.reload()
-        }).catch(err => console.log(err))   
+    //   useEffect(() => {
+    //     console.log(props._id, postImage)
+    //     if (postImage) {
+    //     API.addPostImage(props._id, postImage)
+    //     .then ((data) => {
+    //      API.getPost(props._id) 
+    //     .then((res) => {
+    //         console.log(res.data[0].image)
+    //         setUpdateImage(res.data[0].image)
+    //         // window.location.reload()
+    //     }).catch(err => console.log(err))   
         
-        }).catch(err => console.log(err)) 
-      }
+    //     }).catch(err => console.log(err)) 
+    //   }
 
-    }, [postImage, updateImage]);
+    // }, [postImage, updateImage]);
 
     
 

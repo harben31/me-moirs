@@ -12,7 +12,7 @@ export default function TabDeleteModal({ showTabDelete, _id, setTabUpdate, tabUp
                     <h5 className='content'><span className='alert'>WAIT!</span> Are you sure you want to<span className='alert'> delete </span>this?</h5>
                     <button className='deleteBtn' 
                         onClick={() => {
-                            if(_id) {deleteTab && deleteTab(_id); changeStates()};    
+                            if(_id) {deleteTab && deleteTab(_id)};    
                             if(tabUpdate) {
                                 setTabUpdate(false)
                             } else {

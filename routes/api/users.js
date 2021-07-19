@@ -182,8 +182,11 @@ router.route('/logout')
     })
 })
 
-router.route('/:id')
-    // .get(userController.findUserById)
+router.route('/username/')
+    .get(userController.findUserByUsername)
+
+router.route('/userId/:id')
+    .get(userController.findFriendById)
     // .put(userController.updateUser)
     .delete(userController.deleteUser)
 
@@ -196,11 +199,6 @@ router.route('/background/:id')
 
 router.route('/')
     .get(userController.findAllUsers)
-
-
-router.route('/username/')
-    .get(userController.findUserByUsername)
-
 
 // router.route('/email/:email')
 //     .get(userController.findUserByEmail)

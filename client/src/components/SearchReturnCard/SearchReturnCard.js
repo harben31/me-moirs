@@ -1,8 +1,7 @@
 import React, {useEffect } from 'react';
 import './style.css';
 import API from '../../utils/API';
-import userImage from '../../user.png'
-
+import userImage from '../../defaultUserImage.png'
 
 export default function(props) {
     const friend = props.friendInfo;
@@ -34,6 +33,12 @@ export default function(props) {
     return (
          <div className='user-card'>
             <div className='user-info'>
+                {/* {userImage ? 
+                <img className='my-friend-image' src={userImage} alt='default'/>
+                :
+                <img className='my-friend-image' src={props.image} alt={props.username}/>
+                } */}
+
                 {props.image ? 
                 <img className='my-friend-image' src={props.image} alt={props.username}/>
                 :
