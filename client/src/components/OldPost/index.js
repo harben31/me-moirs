@@ -7,7 +7,6 @@ import CommentButton from '../Comments/CommentButton';
 import CommentBox from '../Comments/CommentBox';
 import API from '../../utils/API';
 import './style.css';
-import API from '../../utils/API';
 import { Button } from 'react-mdl';
 
 

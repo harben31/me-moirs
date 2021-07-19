@@ -23,13 +23,13 @@ export default function DotIcon({ UpdatePost, setPostTitle, setPostContent,  sho
     }
 
 
-    // const handleChange = (e) => {
-    //     e.preventDefault();
+    const handleChange = (e) => {
+        e.preventDefault();
 
-    //     setShowInput({showInput: !showInput});
-    // };
+        setShowInput({showInput: !showInput});
+    };
 
-    // const x = showInput;
+    const x = showInput;
 
 
     const deletePost = (id) => {
@@ -53,7 +53,6 @@ export default function DotIcon({ UpdatePost, setPostTitle, setPostContent,  sho
 
                     <li onClick={handleChange}>Update Photo</li>
 
-                    {/* <li onClick={handleChange}>Add Photo</li>
 
                     {
                     x && (
@@ -63,7 +62,7 @@ export default function DotIcon({ UpdatePost, setPostTitle, setPostContent,  sho
                         onChange={postImages}/>
                         </div>
                      )
-                     } */}
+                     }
 
                         </ul>
                     
