@@ -45,3 +45,9 @@
     cursor: pointer;
     padding: 28px 25px 0 25px;
 }
+
+.post-image {
+    display: block;
+    align-items: center;
+}
+

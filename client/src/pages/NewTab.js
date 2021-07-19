@@ -12,6 +12,7 @@ export default function NewTab(props) {
     const [comment, setComment] = useState(false);
     const [update, setUpdate] = useState(false);
     const [updateComment, setUpdateComment] = useState(false);
+    const [updatePostImage, setUpdatePostImage] = useState(false);
    
 
     useEffect(() => {
@@ -19,10 +20,10 @@ export default function NewTab(props) {
          API.getTab(Id)
             .then(res => {
                 setTabInfo(res.data);
-                console.log(res.data)
+                setUpdatePostImage(false);
             })
             .catch(err => console.log(err));
-    }, [props.match.params.id, post, comment, update, updateComment]);
+    }, [props.match.params.id, post, comment, update, updateComment, updatePostImage]);
 
     const CreatePost = (e) => {
         e.preventDefault();
@@ -53,21 +54,6 @@ export default function NewTab(props) {
         .then(res => console.log(res))
         .catch(err => console.log(err));
     };
-
-    // useEffect(() => {
-    //     // console.log(_id, postImage)
-    //     if (postImage) {
-    //     API.addPostImage(props._id, postImage)
-    //     .then ((data) => {
-    //         // window.location.reload()
-    //     })
-    //   }
-
-    // }, [postImage]);
-
-
-
- 
 
 
     return (
@@ -116,6 +102,7 @@ export default function NewTab(props) {
                                             setUpdate={setUpdate}
                                             updateComment={updateComment}
                                             setUpdateComment= {setUpdateComment}
+                                            setUpdatePostImage={setUpdatePostImage}
                                         />
                                     )
                                 })) : 

@@ -12,7 +12,7 @@ export default function DotIcon({ handleToggle, menu, _id, update, setUpdate, po
     }
 
     const handleChange = (e) => {
-        e.preventDefault();
+        // e.preventDefault();
 
         setShowInput({showInput: !showInput});
     };
@@ -36,7 +36,7 @@ export default function DotIcon({ handleToggle, menu, _id, update, setUpdate, po
                 <ul className='menu'>
                     <li>Edit</li>
                     <li onClick={() => showDeleteModal()}>Delete</li>
-                    <li onClick={handleChange}>Add Photo</li>
+                    <li onClick={handleChange}>Update Photo</li>
                     {
                     x && (
                         <div>

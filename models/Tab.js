@@ -15,10 +15,10 @@ const tabSchema = new Schema({
         trim: true,
         required: 'Title is Required!'
     },
-    image: {
-        contentType: String,
-        data: Buffer
-    },
+    // image: {
+    //     contentType: String,
+    //     data: Buffer
+    // },
     description: {
         type: String,
         maxLength: 500

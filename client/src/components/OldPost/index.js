@@ -7,6 +7,7 @@ import CommentButton from '../CommentButton';
 import CommentBox from '../CommentBox';
 import './style.css';
 import API from '../../utils/API';
+import { Button } from 'react-mdl';
 
 
 export default function OldPost(props) {
@@ -14,7 +15,6 @@ export default function OldPost(props) {
     const [menu, setMenu] = useState(false);
     const [commentMenu, setCommentMenu] = useState(false);
     const [postImage, setpostImage] = useState('');
-    const [updateImage, setUpdateImage] = useState(props.image);
 
     const CreateComment = () => {
         if(!commentActivated) {
@@ -40,14 +40,6 @@ export default function OldPost(props) {
         }
     }
 
-    //there is no comment el yet. so nothing to put a button on. 
-    // const deleteComment = () => {
-    //     //need to insert comment _id below in (_id)
-    //     API.deleteComment()
-    //     .then(res => console.log(res))
-    //     .catch(err => console.log(err));
-    // };
-
     const formatDate = (dated) => {
         let postDate = new Date(dated);
         let date = postDate.toLocaleDateString();
@@ -58,22 +50,17 @@ export default function OldPost(props) {
         console.log(props._id, postImage)
         if (postImage) {
         API.addPostImage(props._id, postImage)
-        .then ((data) => {
-         API.getPost(props._id) 
-        .then((res) => {
-            console.log(res.data[0].image)
-            setUpdateImage(res.data[0].image)
-            // window.location.reload()
-        }).catch(err => console.log(err))   
-        
-        }).catch(err => console.log(err)) 
-      }
+        .then ((res) => {
 
-    }, [postImage, updateImage]);
+            props.setUpdatePostImage(true)
+            
+        }).catch(err => console.log(err)) 
+       
+        }
+
+    }, [postImage] );
 
     
-
-    console.log(props)
     const postImages = async e => {
         const files = e.target.files;
         const data = new FormData();
@@ -95,7 +82,17 @@ export default function OldPost(props) {
 
     return (
         <div className='oldPost'>
-            <img className='oldPostImage' src={updateImage} alt=''/>
+        {
+            !props.image ? (
+            <div className='post-image'>
+            <img className='oldPostImage' src='https://i.stack.imgur.com/y9DpT.jpg' alt=''/>
+             <Button><input type='file' name='file' onChange={postImages}/></Button>
+            </div>
+            ) : (
+            <img className='oldPostImage' src={props.image} alt=''/>
+            )
+         }
+                
             <DeleteModal showDelete={props.showDelete}/>
             <div className='oldPostContent'>
                 <div className='postTop'>
@@ -152,5 +149,5 @@ export default function OldPost(props) {
                 
             </div>
         </div>
-    )
+  )
 };
