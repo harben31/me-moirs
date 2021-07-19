@@ -7,3 +7,17 @@ span{
     padding: 20px 6px;
     
 }
+@media screen and (max-width: 845px ){
+    .searchWrap {
+        width: 90%;
+        left: 37px;
+    }
+}
+
+@media screen and (max-width: 700px ){
+    .searchWrap {
+        width: 80%;
+        left: 27px;
+        font-size: 11px;
+    }
+}
