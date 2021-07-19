@@ -19,8 +19,6 @@ import '../App.css'
 import TabModal from '../components/TabModal/TabModal';
 
 
-
-
 export default function Profile(props) {
     //we have user at app.js do we need both? can we do one at top level?
     // const [user, setUser] = useState([]);
@@ -96,12 +94,6 @@ export default function Profile(props) {
       } 
 
 
-
-
-  
-
-    
-    
     return (
        
         <div>
@@ -115,13 +107,12 @@ export default function Profile(props) {
                 {/* <Navbar id={user.shortTabInfo}/> */}
                 
                  {/* <CarouselSlides tabs={SliderData}/> */}
-                
                 <CoverPhoto image={coverImage} />
                  <ProfileImage user_id={props.user_id} backgroundImage={backgroundImage}/>
              {/* {cardInfo.map(card => { 
-                return <Cards key={card.id} name={card.name}
-                title={card.title}
-                description={card.description}/>})} */} 
+               return <Cards key={card.id} name={card.name}
+               title={card.title}
+              description={card.description}/>})} */} 
                 <Banner username={props.username}/>
                  {/* <Cards/> */}
                  

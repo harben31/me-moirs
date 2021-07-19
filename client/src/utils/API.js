@@ -34,10 +34,11 @@ export default {
         return axios.put('/api/users/background/' + id, {coverImage: data})
     },
 
-    // getUser: function(id) {
-    //     return axios.get('/api/users' + id)
-    // },
+    getFriendInfo: function(id) {
+        return axios.get('/api/users/userId/' + id)
+    },
     
+
     //----search for other users-----
     userByUsername: function(_id, username){
         console.log(_id, username);
@@ -102,6 +103,9 @@ export default {
         return axios.post('/api/tabs/', tabData)
     },
 
+    updateTags: function(tab_id, tags) {
+        return axios.put('/api/tags/' + tab_id, tags)
+    },
 
     //--------------Posts
     getPosts: function() {

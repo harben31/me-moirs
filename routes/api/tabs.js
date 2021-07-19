@@ -26,8 +26,7 @@ router.route('/:id')
     .put(tabController.updateTab)
     .delete(tabController.deleteTab)
 
+router.route('/tags/:id')
+    .put(tabController.updateTags)
     
-
-    
-
 module.exports = router;

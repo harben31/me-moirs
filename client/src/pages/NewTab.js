@@ -2,6 +2,8 @@ import PostsForm from '../components/PostsForm/PostsForm';
 import OldPost from '../components/OldPost';
 import React, { useState, useEffect } from 'react';
 import API from '../utils/API';
+import TabDotIcon from '../components/TabDotIcon';
+import { Redirect } from 'react-router-dom';
 
 export default function NewTab(props) {
 
@@ -13,17 +15,28 @@ export default function NewTab(props) {
     const [update, setUpdate] = useState(false);
     const [updateComment, setUpdateComment] = useState(false);
     const [updatePostImage, setUpdatePostImage] = useState(false);
-   
+    const [showTabDelete, setShowTabDelete] = useState(false);
+    const [tabMenu, setTabMenu] = useState(false);
+    const [tabUpdate, setTabUpdate] = useState(false);
+    const [target, setTarget] = useState(false);
+
+
 
     useEffect(() => {
         const Id = props.match.params.id;
          API.getTab(Id)
             .then(res => {
                 setTabInfo(res.data);
+
                 setUpdatePostImage(false);
+
             })
             .catch(err => console.log(err));
     }, [props.match.params.id, post, comment, update, updateComment, updatePostImage]);
+
+    // useEffect(() => {(
+    //     <Redirect to='/profile'/>
+    // )}, [tabUpdate]);
 
     const CreatePost = (e) => {
         e.preventDefault();
@@ -40,10 +53,14 @@ export default function NewTab(props) {
         });
     };
 
-    const deleteTab = () => {
-        API.deleteTab(tabInfo._id)
-        .then(res => console.log(res))
-        .catch(err => console.log(err));
+    const handleTabToggle = () => {
+        if (!tabMenu) {
+            setTabMenu(true);
+            setShowTabDelete(false);
+        } else {
+            setTabMenu(false);
+            setShowTabDelete(false);
+        }
     };
 
     const followTab = () => {
@@ -60,20 +77,15 @@ export default function NewTab(props) {
         <div className= 'new-tabs'>
                     <div className='tabBody'>
                         <aside className='description'>
-
-                            <div className='delTabWrap'>
-                                <span className='delTabBtn'
-                                onClick={deleteTab} class="material-icons">
-                                    delete_forever
-                                </span>
-                                <button
-                                className='followTabBtn'
-                                onClick={followTab}
-                                >
-                                    follow
-                                </button>
-                            </div>
-                     
+                            <TabDotIcon 
+                                showTabDelete={showTabDelete}
+                                setShowTabDelete={setShowTabDelete}
+                                tabMenu={tabMenu}
+                                handleTabToggle={handleTabToggle}    
+                                _id={props.match.params.id}
+                                setTabUpdate={setTabUpdate}
+                                tabUpdate={tabUpdate}
+                            />
                             {tabInfo ? (
                                 <div>
                                     <h3>About <b className='tabTitle'>{tabInfo.title}</b></h3>

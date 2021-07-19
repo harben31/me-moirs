@@ -4,6 +4,7 @@ import './style.css';
 import API from '../../utils/API';
 import { version } from 'mongoose';
 import  coverImage  from '../CoverPhoto/CoverPhoto'
+import defaultUserImage from '../../defaultUserImage.png';
 
 
 
@@ -59,7 +60,7 @@ export default function ProfileImage(props) {
      return (
         <div className= 'wrapper'>
             <div className= 'profile'>
-              <img className= 'profile-image' src={profile} alt= 'profile image'/>
+              <img className= 'profile-image' src={!profile ? (defaultUserImage) : profile} alt= 'profile image'/>
             <div className= 'add-image'>
             <div style={{position: 'relative'}}>
              <IconButton name="more_vert" id="demo-menu-lower-right" />

@@ -17,18 +17,19 @@ module.exports = {
     },
 
 
-    // findUserById: function (req, res) {
-    //     console.log('findUserById')
-    //     db.User
-    //         .findById(req.params.id)
-    //         .then(dbModel => {
-    //             res.json(dbModel)
-    //         })
-    //         .catch(err => {
-    //             console.log(err);
-    //             res.json(err);
-    //         });
-    // },
+    findFriendById: function (req, res) {
+
+        console.log('findUserById',req.params.id)
+        db.User
+            .findOne({_id:req.params.id})
+            .then(dbModel => {
+                res.json(dbModel)
+            })
+            .catch(err => {
+                console.log(err);
+                res.json(err);
+            });
+    },
 
     //need to handle case sensativity. second username all lowercase?
     findUserByUsername: function(req, res) {
@@ -81,17 +82,17 @@ module.exports = {
                     res.json({message: 'email could not be found'});
                 }
             })
-        },       
+        },
+    // updateUser: function (req, res) {
+    //     db.User
+    //         .findOneAndUpdate({_id: req.params.id}, req.body)
+    //         .then(dbModel => res.json(dbModel))
+    //         .catch(err => {
+    //             console.log(err);
+    //             res.status(422).json(err);
+    //         });
+    // },
 
-    updateUser: function (req, res) {
-        db.User
-            .findOneAndUpdate({_id: req.params.id}, req.body)
-            .then(dbModel => res.json(dbModel))
-            .catch(err => {
-                console.log(err);
-                res.status(422).json(err);
-            });
-    },
     
     deleteUser: function(req, res) {
         db.User
@@ -110,7 +111,6 @@ module.exports = {
         let friendAction;
 
         if(req.body.follow){
-            
             action = {$push: {friends: req.body.friendId}};
             friendAction={$push: {usersFollowing: req.params.id}};
         } else if (!req.body.follow) {
@@ -129,7 +129,7 @@ module.exports = {
                 db.User
                     .findByIdAndUpdate({_id: req.body.friendId}, 
                         friendAction)
-                    .then(dbModel => console.log('adding to usersfollowing', dbModel))
+                    .then(dbModel => console.log('adding to usersFollowing', dbModel))
                 res.json(dbModel);
             })
             .catch(err => {

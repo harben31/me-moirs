@@ -2,18 +2,23 @@ import React, { useState, useEffect } from 'react';
 import DeleteModal from '../DeleteModal';
 import DotIcon from '../DotIcon';
 import Likes from '../Likes';
-import Comment from '../Comment';
-import CommentButton from '../CommentButton';
-import CommentBox from '../CommentBox';
+import Comment from '../Comments/Comment';
+import CommentButton from '../Comments/CommentButton';
+import CommentBox from '../Comments/CommentBox';
 import './style.css';
 import API from '../../utils/API';
 import { Button } from 'react-mdl';
 
 
+
+
 export default function OldPost(props) {
+    console.log(props, '!!!!!!!!!!!!!!!!!')
     const [commentActivated, setCommentActivated] = useState(false);
     const [menu, setMenu] = useState(false);
     const [commentMenu, setCommentMenu] = useState(false);
+    const [showDelete, setShowDelete] = useState(false);
+    const [showCommentDelete, setShowCommentDelete] = useState(false);
     const [postImage, setpostImage] = useState('');
 
     const CreateComment = () => {
@@ -27,16 +32,20 @@ export default function OldPost(props) {
     const handleToggle = () => {
         if (!menu) {
             setMenu(true);
+            setShowDelete(false);
         } else {
             setMenu(false);
+            setShowDelete(false);
         }
     }
 
     const handleCommentToggle =() => {
         if (!commentMenu) {
             setCommentMenu(true);
+            setShowCommentDelete(false);
         } else {
             setCommentMenu(false);
+            setShowCommentDelete(false);
         }
     }
 
@@ -46,6 +55,7 @@ export default function OldPost(props) {
         return date;
       }
       
+
       useEffect(() => {
         console.log(props._id, postImage)
         if (postImage) {
@@ -99,7 +109,14 @@ export default function OldPost(props) {
                     <p className='postDate'>
                         {formatDate(props.date)}
                     </p>
-                    <DotIcon handleToggle={handleToggle} menu={menu} _id={props._id} setUpdate={props.setUpdate} update={props.update} postImages={postImages}/>
+                    <DotIcon  
+                        showDelete={showDelete} 
+                        setShowDelete={setShowDelete} 
+                        handleToggle={handleToggle} 
+                        menu={menu}
+                        _id={props._id} 
+                        setUpdate={props.setUpdate} 
+                        update={props.update}/>
                 </div>
                 <p className='oldPostTitle'>
                     <b>{props.title}</b>
@@ -137,6 +154,8 @@ export default function OldPost(props) {
                                         setCommentMenu={setCommentMenu}
                                         updateComment={props.updateComment} 
                                         setUpdateComment={props.setUpdateComment}
+                                        setShowCommentDelete={setShowCommentDelete}
+                                        showCommentDelete={showCommentDelete}
                                     />  
                                 )
                             })}
