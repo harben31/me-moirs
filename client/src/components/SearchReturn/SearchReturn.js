@@ -3,9 +3,6 @@ import SearchReturnCard from '../SearchReturnCard/SearchReturnCard';
 import './style.css';
 
 export default function(props) {
-    
-
-    console.log('!!props', props.searchResults)
     return (
         <>
         {props.openSearchModal ?
@@ -18,6 +15,8 @@ export default function(props) {
                     user_id={props.user_id}
                     setFriendsArray={props.setFriendsArray}
                     friendsArray={props.friendsArray}
+                    setNewFollow={props.setNewFollow}
+                    newFollow={props.newFollow}
                     />
                 )
             })}
