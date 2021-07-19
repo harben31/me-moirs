@@ -7,14 +7,12 @@ import CommentButton from '../Comments/CommentButton';
 import CommentBox from '../Comments/CommentBox';
 import API from '../../utils/API';
 import './style.css';
-import API from '../../utils/API';
 import { Button } from 'react-mdl';
 
 
 
 
 export default function OldPost(props) {
-    console.log(props, '!!!!!!!!!!!!!!!!!')
     const [commentActivated, setCommentActivated] = useState(false);
     const [menu, setMenu] = useState(false);
     const [commentMenu, setCommentMenu] = useState(false);
