@@ -5,9 +5,6 @@ import Banner from '../components/Banner/Banner';
 import API from '../utils/API';
 import '../App.css'
 import TabModal from '../components/TabModal/TabModal';
-import MyFriends from '../components/MyFriends/MyFriends';
-
-
 
 
 export default function Profile(props) {
@@ -100,7 +97,6 @@ export default function Profile(props) {
                title={card.title}
               description={card.description}/>})} */} 
                 <Banner username={props.username}/>
-              {/* <MyFriends/> */}
                  {/* <Cards/> */}
                  
                 {/* <CarouselSlides slides={SliderData}/> */}

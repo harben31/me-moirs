@@ -4,7 +4,9 @@ import UpdatePostModal from '../UpdatePostModal/UpdatePostModal';
 import API from '../../utils/API';
 import './style.css';
 
+
 export default function DotIcon({ UpdatePost, setPostTitle, setPostContent,  showDelete, setShowDelete, handleToggle, menu, setMenu, _id, update, setUpdate, title, content, setTitleChanged, setContentChanged}) {
+
     // const [showDelete, setShowDelete] = useState(false);
     const [showUpdateModal, setShowUpdateModal] = useState(false);
 
@@ -35,26 +37,25 @@ export default function DotIcon({ UpdatePost, setPostTitle, setPostContent,  sho
     };
 
     return (
-        // <div className='postMenuBackground' >
-            <div className='menuIcon'>
-                <span class='material-icons dotIcon' onClick={() => handleToggle()}>
-                    more_vert 
-                </span> 
-                {menu ? (
-                
-                        <ul className='menu'>
-                            <li onClick={() => openUpdateModal()}>Edit</li>
-                            <li onClick={() => showDeleteModal()}>Delete</li>
-                            {/* <li onClick={handleChange}>Add Photo</li> */}
-                            {/* {
-                            x && (
-                                <div>
-                                <input type='file' 
-                                name='file' 
-                                onChange={postImages}/>
-                                </div>
-                            )
-                            } */}
+
+        <div className='menuIcon'>
+            <span class='material-icons dotIcon' onClick={() => handleToggle()}>
+                more_vert 
+            </span> 
+            {menu ? (
+                <ul className='menu'>
+                    <li onClick={() => openUpdateModal()}>Edit</li>
+                    <li onClick={() => showDeleteModal()}>Delete</li>
+                    {/* <li onClick={handleChange}>Add Photo</li>
+                    {
+                    x && (
+                        <div>
+                        <input type='file' 
+                        name='file' 
+                        onChange={postImages}/>
+                        </div>
+                     )
+                     } */}
 
                         </ul>
                     

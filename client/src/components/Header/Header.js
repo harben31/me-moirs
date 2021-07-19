@@ -4,7 +4,8 @@ import Navbar from '../Navbar/Navbar';
 import './style.css';
 import API from '../../utils/API';
 import TabContext from '../../utils/tabContext';
-//import image from '../../../public/logo.png';
+import { Link } from 'react-router-dom';
+import Image from '../../logo.png';
 
 
 export default function Header({loggedIn, userId, friends}) {
@@ -46,8 +47,9 @@ export default function Header({loggedIn, userId, friends}) {
                     <div className='header'>
                         <div className='header-wrapper'>
                             <div className='logo'> {/* changed from class to className  */} 
-                                <a href='#home'>Name of the app.</a>
-                                {/* <img src={image} height={100} width={100} /> */}
+                            <Link to="/">Name of the app...</Link>
+                                {/* <a href='#home'>Name of the app.</a> */}
+                                <img src={Image} alt='logo' height={40} width={40} />
                             </div>
                         </div>
                     </div>
@@ -57,8 +59,10 @@ export default function Header({loggedIn, userId, friends}) {
                     <div className='header'>
                         <div className='header-wrapper'>
                             <div className='logo'> {/* changed from class to className  */} 
-                                <a href='#home'>Name of the app.</a>
-                                {/* <img src={image} height={100} width={100} /> */}
+                               <Link to="/">Name of the app...</Link>
+                        
+                                {/* <a href='#home'>Name of the app.</a> */}
+                            <img src={Image} alt='logo' height={40} width={40} />                            
                             </div>
                         </div>
                         <Navbar userId={userId}/>

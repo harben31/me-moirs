@@ -10,6 +10,7 @@ import './style.css';
 
 
 export default function OldPost(props) {
+    console.log(props, '!!!!!!!!!!!!!!!!!')
     const [commentActivated, setCommentActivated] = useState(false);
     const [menu, setMenu] = useState(false);
     const [commentMenu, setCommentMenu] = useState(false);
@@ -54,6 +55,7 @@ export default function OldPost(props) {
         return date;
       }
       
+
       useEffect(() => {
         console.log('did we get the post"s id correctly', props._id, postImage)
         setTitle(props.title);
@@ -67,7 +69,6 @@ export default function OldPost(props) {
             setUpdateImage(res.data[0].image)
             // window.location.reload()
         }).catch(err => console.log(err))   
-        
         }).catch(err => console.log(err)) 
       }
 

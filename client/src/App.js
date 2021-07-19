@@ -17,6 +17,8 @@ import LoginSignup from './pages/LoginSignup';
 
 import "./App.css";
 import Profile from './pages/Profile';
+import FriendProfile from './pages/FriendProfile';
+
 // import Demo from './pages/DemoPage';
 // import { AccountBox } from './components/AccountBox/index';
 // import Navbar from './components/Navbar/Navbar';
@@ -109,6 +111,7 @@ function App() {
                   <RouteProtected exact path='/profile' component={Profile}/>
                   <RouteProtected exact path='/newtab/:id' component={NewTab} />
                   <RouteProtected exact path='/friends' component={Friends} />
+                  <RouteProtected exact path='/friendprofile/:id' component={FriendProfile}/>
                   <Footer/>
                 </div>
               </Router>
