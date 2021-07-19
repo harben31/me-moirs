@@ -3,7 +3,6 @@ import './style.css';
 import API from '../../utils/API';
 import userImage from '../../defaultUserImage.png'
 
-
 export default function(props) {
     const friend = props.friendInfo;
 
@@ -39,6 +38,7 @@ export default function(props) {
                 :
                 <img className='my-friend-image' src={props.image} alt={props.username}/>
                 } */}
+
                 {props.image ? 
                 <img className='my-friend-image' src={props.image} alt={props.username}/>
                 :

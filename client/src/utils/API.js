@@ -103,6 +103,9 @@ export default {
         return axios.post('/api/tabs/', tabData)
     },
 
+    updateTags: function(tab_id, tags) {
+        return axios.put('/api/tags/' + tab_id, tags)
+    },
 
     //--------------Posts
     getPosts: function() {

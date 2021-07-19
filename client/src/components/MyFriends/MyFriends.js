@@ -48,6 +48,7 @@ export default function MyFriends(props) {
 
                         </button>
                 </div>
+
         </div>
     )
 }
