@@ -95,7 +95,7 @@ router.route('/login').post(
     async (req, res) => {
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
-            return res.status(400).json({
+            return res.status(400).send({
                 errors: errors.array()
             });
         };
@@ -183,7 +183,7 @@ router.route('/logout')
 })
 
 router.route('/:id')
-    // .get(userController.findUserById)
+    //.get(userController.findFriendById)
     // .put(userController.updateUser)
     .delete(userController.deleteUser)
 

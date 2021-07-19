@@ -17,7 +17,7 @@ module.exports = {
     },
 
 
-    // findUserById: function (req, res) {
+    // findFriendById: function (req, res) {
     //     console.log('findUserById')
     //     db.User
     //         .findById(req.params.id)

@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import styled from 'styled-components';
 import MovingText from 'react-moving-text';
 import API from '../../utils/API'
@@ -94,8 +94,15 @@ const Textarea = styled.textarea`
     }
 `;
 
-export default function UpdatePostModal({setPostContent, setPostTitle, createPost,showUpdateModal, setShowUpdateModal}) {
+export default function UpdatePostModal({ setPostContent, setPostTitle, UpdatePost, showUpdateModal, setShowUpdateModal, _id, title, content }) {
     const updatePostRef = useRef();
+
+    console.log('is this last id', _id);
+
+    useEffect(() => {
+        setPostTitle(title);
+        setPostContent(content);
+    }, []);
 
     const CloseUpdateModal = (e) => {
         if (updatePostRef.current === e.target) {
@@ -108,7 +115,7 @@ export default function UpdatePostModal({setPostContent, setPostTitle, createPos
         {showUpdateModal ? (
             <div className='updatePostBackground' ref={updatePostRef} onClick={CloseUpdateModal}>
                 <BoxContainer>
-                    <FormContainer onSubmit={createPost}>
+                    <FormContainer onSubmit={(e) => {UpdatePost(e, _id); setShowUpdateModal(false)}}>
                     {/* <MovingText
                         type="flip"
                         duration="2000ms"
@@ -121,19 +128,19 @@ export default function UpdatePostModal({setPostContent, setPostTitle, createPos
                         {/* </MovingText> */}
                         <Input 
                         type='text' 
-                        placeholder='Update your Post title!'
-                        required
-                        // onChange={(e) => {
-                        //    setPostTitle(e.target.value);
-                        // }}
+                        placeholder={title}
+                        onChange={(e) => {
+                            setPostTitle(e.target.value);
+                           
+                        }}
                         />
                         <Textarea
-                        type='text' 
-                        placeholder='Update your Post Content!'
-                        required
-                        // onChange={(e) => {
-                        //     setPostContent(e.target.value);
-                        // }}
+                        type='text'
+                        placeholder={content}
+                        onChange={(e) => {
+                            setPostContent(e.target.value);
+                            
+                        }}
                         />
                         <Marginer direction='vertical' margin={10} />
                         <SubmitButton type='submit'>Update!</SubmitButton>

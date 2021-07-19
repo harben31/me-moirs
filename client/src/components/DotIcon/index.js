@@ -4,7 +4,7 @@ import UpdatePostModal from '../UpdatePostModal/UpdatePostModal';
 import API from '../../utils/API';
 import './style.css';
 
-export default function DotIcon({ showDelete, setShowDelete, handleToggle, menu, setMenu, _id, update, setUpdate}) {
+export default function DotIcon({ UpdatePost, setPostTitle, setPostContent,  showDelete, setShowDelete, handleToggle, menu, setMenu, _id, update, setUpdate, title, content, setTitleChanged, setContentChanged}) {
     // const [showDelete, setShowDelete] = useState(false);
     const [showUpdateModal, setShowUpdateModal] = useState(false);
 
@@ -59,13 +59,26 @@ export default function DotIcon({ showDelete, setShowDelete, handleToggle, menu,
                         </ul>
                     
                 ) : null}
-                <DeleteModal  setShowDelete={setShowDelete} showDelete={showDelete} _id={_id} deletePost={deletePost} setUpdate={setUpdate} update={update} />
+                <DeleteModal  
+                    setShowDelete={setShowDelete} 
+                    showDelete={showDelete} 
+                    _id={_id} 
+                    deletePost={deletePost} 
+                    setUpdate={setUpdate} 
+                    update={update} 
+                />
 
                 <UpdatePostModal 
-                showUpdateModal={showUpdateModal}
-                setShowUpdateModal={setShowUpdateModal}
-                setUpdate={setUpdate} 
-                update={update}
+                    title={title}
+                    content={content}
+                    setPostTitle={setPostTitle}
+                    setPostContent={setPostContent}
+                    _id={_id}
+                    UpdatePost={UpdatePost}
+                    showUpdateModal={showUpdateModal}
+                    setShowUpdateModal={setShowUpdateModal}
+                    setTitleChanged={setTitleChanged}
+                    setContentChanged={setContentChanged}
                 />
             </div>
         // </div>

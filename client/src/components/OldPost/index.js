@@ -17,6 +17,8 @@ export default function OldPost(props) {
     const [showCommentDelete, setShowCommentDelete] = useState(false);
     const [postImage, setpostImage] = useState('');
     const [updateImage, setUpdateImage] = useState(props.image);
+    const [title, setTitle] = useState();
+    const [content, setContent] =useState();
 
     const CreateComment = () => {
         if(!commentActivated) {
@@ -53,7 +55,9 @@ export default function OldPost(props) {
       }
       
       useEffect(() => {
-        console.log(props._id, postImage)
+        console.log('did we get the post"s id correctly', props._id, postImage)
+        setTitle(props.title);
+        setContent(props.content)
         if (postImage) {
         API.addPostImage(props._id, postImage)
         .then ((data) => {
@@ -71,7 +75,7 @@ export default function OldPost(props) {
 
     
 
-    console.log(props)
+    // console.log(props)
     const postImages = async e => {
         const files = e.target.files;
         const data = new FormData();
@@ -101,14 +105,22 @@ export default function OldPost(props) {
                         {formatDate(props.date)}
                     </p>
                     <DotIcon  
+                        UpdatePost={props.UpdatePost}
                         showDelete={showDelete} 
                         setShowDelete={setShowDelete}
-                        handleToggle={handleToggle} 
+                        handleToggle={handleToggle}
+                        setPostTitle={props.setPostTitle}
+                        setPostContent={props.setPostContent} 
                         menu={menu}
                         setMenu={setMenu}
                         _id={props._id} 
                         setUpdate={props.setUpdate} 
-                        update={props.update}/>
+                        update={props.update}
+                        title={title}
+                        content={content}
+                        setTitleChanged={props.setTitleChanged}
+                        setContentChanged={props.setContentChanged}
+                    />
                 </div>
                 <p className='oldPostTitle'>
                     <b>{props.title}</b>

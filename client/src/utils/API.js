@@ -34,9 +34,9 @@ export default {
         return axios.put('/api/users/background/' + id, {coverImage: data})
     },
 
-    // getUser: function(id) {
-    //     return axios.get('/api/users' + id)
-    // },
+    getFriendUser: function(id) {
+        return axios.get('/api/users' + id)
+    },
     
     //----search for other users-----
     userByUsername: function(_id, username){
@@ -118,6 +118,11 @@ export default {
 
     savePost: function(postData) {
         return axios.post('/api/posts', postData)
+    },
+
+    updatePost: function(_id, postData) {
+        console.log('Did we get in the frontend API', );
+        return axios.put('/api/posts/' + _id, postData)
     },
 
     addLike: function(postId, userId) {

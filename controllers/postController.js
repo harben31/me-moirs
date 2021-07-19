@@ -46,6 +46,7 @@ module.exports = {
     },
     //editing posts
     updatePost: function(req, res) {
+        console.log('Did we get into backend API', req.params.id, req.body);
         db.Post
             .findOneAndUpdate({_id: req.params.id}, req.body)
             .then(dbModel => res.json(dbModel))
