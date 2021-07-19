@@ -27,3 +27,13 @@
     text-transform: capitalize;
     text-decoration: none;
 }
+@media screen and (max-width: 500px ){
+    
+    .header {
+        font-size: 25px;
+    }
+    .header img{
+        height:25px;
+        width: 25px;
+    }
+}

@@ -1,3 +1,14 @@
+.boxContainer{
+    width: 380px;
+    min-height: 450px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    border-radius: 19px;
+    background-color: #fff;
+    box-shadow: 0 0 2px rgba(15, 15, 15, 0.28);
+    overflow: hidden;
+}
 .ityped-cursor {
     animation: blink 1.5s infinite;
     color:#ffb305;
@@ -10,5 +21,10 @@
     }
     100% {
         opacity: 0;
+    }
+}
+@media screen and (max-width: 455px ){
+    .boxContainer{
+        width: 290px;
     }
 }

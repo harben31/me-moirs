@@ -33,6 +33,12 @@ const BoxContainer = styled.div`
     box-shadow: 0 0 2px rgba(15, 15, 15, 0.28);
     // position: relative;
     overflow: hidden;
+
+    @media only screen and (max-width: 400px ){
+    
+            width: 290px;
+       
+    }
 `;
 const TopContainer = styled.div`
     width: 100%;
@@ -133,7 +139,7 @@ const Span = styled.span`
 `;
 const ClosingButton = styled.span`
     color:#fff;
-    width: 350px;
+    width: 330px;
     font-size: 20px;
     font-weight: 600;
     font-weight: 600;
@@ -223,7 +229,7 @@ export default function TabModal(/*{showModal, setShowModal, user_id}*/ props) {
                     animate='visible'
                     exit='exit'
                     >
-                        <BoxContainer>
+                        <div className='boxContainer'>
                             <TopContainer>
                                 <BackDrop>
                                 <HeaderContainer>
@@ -255,7 +261,7 @@ export default function TabModal(/*{showModal, setShowModal, user_id}*/ props) {
                                 Create
                             </SubmitButton>
                             </FormContainer>
-                        </BoxContainer>
+                        </div>
                     </motion.div>
                 </Background>
             ) : null}  
