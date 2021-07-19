@@ -21,11 +21,25 @@
     z-index: 4;
 }
 
-.tabModal {
-    position: absolute;
+.tabModalBackground {
     z-index: 5;
     top: 0;
-    right: -500px;
+    left: 0vh;
+    height: 100vh;
+    width: 100%;
+    background: rgb(0, 0, 0, 0.7);
+    position: fixed;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+}
+
+.tabModal {
+    position: absolute;
+    z-index: 6;
+    top: 45%;
+    left: 30%;
     padding: 20px;
     width: 500px;
     background: white;

@@ -5,6 +5,7 @@ import Likes from '../Likes';
 import Comment from '../Comments/Comment';
 import CommentButton from '../Comments/CommentButton';
 import CommentBox from '../Comments/CommentBox';
+import API from '../../utils/API';
 import './style.css';
 
 
@@ -17,6 +18,8 @@ export default function OldPost(props) {
     const [showCommentDelete, setShowCommentDelete] = useState(false);
     const [postImage, setpostImage] = useState('');
     const [updateImage, setUpdateImage] = useState(props.image);
+    const [title, setTitle] = useState();
+    const [content, setContent] =useState();
 
     const CreateComment = () => {
         if(!commentActivated) {
@@ -52,26 +55,28 @@ export default function OldPost(props) {
         return date;
       }
       
-    //   useEffect(() => {
-    //     console.log(props._id, postImage)
-    //     if (postImage) {
-    //     API.addPostImage(props._id, postImage)
-    //     .then ((data) => {
-    //      API.getPost(props._id) 
-    //     .then((res) => {
-    //         console.log(res.data[0].image)
-    //         setUpdateImage(res.data[0].image)
-    //         // window.location.reload()
-    //     }).catch(err => console.log(err))   
-        
-    //     }).catch(err => console.log(err)) 
-    //   }
 
-    // }, [postImage, updateImage]);
+      useEffect(() => {
+        console.log('did we get the post"s id correctly', props._id, postImage)
+        setTitle(props.title);
+        setContent(props.content)
+        if (postImage) {
+        API.addPostImage(props._id, postImage)
+        .then ((data) => {
+         API.getPost(props._id) 
+        .then((res) => {
+            console.log(res.data[0].image)
+            setUpdateImage(res.data[0].image)
+            // window.location.reload()
+        }).catch(err => console.log(err))   
+        }).catch(err => console.log(err)) 
+      }
+
+    }, [postImage, updateImage]);
 
     
 
-    console.log(props)
+    // console.log(props)
     const postImages = async e => {
         const files = e.target.files;
         const data = new FormData();
@@ -94,20 +99,29 @@ export default function OldPost(props) {
     return (
         <div className='oldPost'>
             <img className='oldPostImage' src={updateImage} alt=''/>
-            <DeleteModal showDelete={props.showDelete}/>
+            {/* <DeleteModal showDelete={props.showDelete}/> */}
             <div className='oldPostContent'>
                 <div className='postTop'>
                     <p className='postDate'>
                         {formatDate(props.date)}
                     </p>
                     <DotIcon  
+                        UpdatePost={props.UpdatePost}
                         showDelete={showDelete} 
-                        setShowDelete={setShowDelete} 
-                        handleToggle={handleToggle} 
+                        setShowDelete={setShowDelete}
+                        handleToggle={handleToggle}
+                        setPostTitle={props.setPostTitle}
+                        setPostContent={props.setPostContent} 
                         menu={menu}
+                        setMenu={setMenu}
                         _id={props._id} 
                         setUpdate={props.setUpdate} 
-                        update={props.update}/>
+                        update={props.update}
+                        title={title}
+                        content={content}
+                        setTitleChanged={props.setTitleChanged}
+                        setContentChanged={props.setContentChanged}
+                    />
                 </div>
                 <p className='oldPostTitle'>
                     <b>{props.title}</b>

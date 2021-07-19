@@ -124,6 +124,11 @@ export default {
         return axios.post('/api/posts', postData)
     },
 
+    updatePost: function(_id, postData) {
+        console.log('Did we get in the frontend API', );
+        return axios.put('/api/posts/' + _id, postData)
+    },
+
     addLike: function(postId, userId) {
         return axios.put('/api/posts/like/' + postId, userId)
     },

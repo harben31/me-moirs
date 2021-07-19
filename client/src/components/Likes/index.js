@@ -12,7 +12,7 @@ export default function Likes(props) {
 
     useEffect(() => {
         setLikes(props.likes.length)
-    }, [])
+    }, [props.likes.length])
 
     useEffect(() => {
         props.likes.forEach(user_id => {

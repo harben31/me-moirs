@@ -1,21 +1,9 @@
 import React, {useState, useEffect, useContext } from 'react';
-// import Cards from '../components/Cards/Cards';
-// import Carousel from '../components/Carousel/CarouselSlides';
 import CoverPhoto from '../components/CoverPhoto/CoverPhoto';
 import ProfileImage from '../components/ProfileImage/ProfileImage';
-// import { SliderData } from '../components/Demo';
-import Navbar from '../components/Navbar/Navbar'
-// import Header from '../components/Header/Header';
 import Banner from '../components/Banner/Banner';
 import API from '../utils/API';
-// import CarouselSlides from '../components/Carousel/CarouselSlides';
-
-// import { SliderData } from '../components/Demo';
-
 import '../App.css'
-
-// import CarouselSlides from '../components/Carousel/CarouselSlides'
-// import TabForm from '../components/TabForm/TabForm';
 import TabModal from '../components/TabModal/TabModal';
 
 
@@ -102,11 +90,6 @@ export default function Profile(props) {
         setShowModal={setShowModal}
         userId={props.userId}
         />
-              
-              {/* <Header/> */}
-                {/* <Navbar id={user.shortTabInfo}/> */}
-                
-                 {/* <CarouselSlides tabs={SliderData}/> */}
                 <CoverPhoto image={coverImage} />
                  <ProfileImage user_id={props.user_id} backgroundImage={backgroundImage}/>
              {/* {cardInfo.map(card => { 
