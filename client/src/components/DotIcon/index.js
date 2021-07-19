@@ -16,7 +16,8 @@ export default function DotIcon({ UpdatePost, setPostTitle, setPostContent,  sho
 
 
     const handleChange = (e) => {
-        // e.preventDefault();
+        e.preventDefault();
+    }
 
     const openUpdateModal = () => {
         showUpdateModal ? setShowUpdateModal(false) : setShowUpdateModal(true);
@@ -65,7 +66,7 @@ export default function DotIcon({ UpdatePost, setPostTitle, setPostContent,  sho
                      )
                      } */}
 
-                        </ul>
+                </ul>
                     
                 ) : null}
                 <DeleteModal  
@@ -89,7 +90,6 @@ export default function DotIcon({ UpdatePost, setPostTitle, setPostContent,  sho
                     setTitleChanged={setTitleChanged}
                     setContentChanged={setContentChanged}
                 />
-            </div>
-        // </div>
+        </div>
     )
 };
