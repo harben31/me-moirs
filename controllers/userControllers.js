@@ -17,10 +17,11 @@ module.exports = {
     },
 
 
-    findUserById: function (req, res) {
-        console.log('findUserById')
+    findFriendById: function (req, res) {
+
+        console.log('findUserById',req.params.id)
         db.User
-            .findById(req.params.id)
+            .findOne({_id:req.params.id})
             .then(dbModel => {
                 res.json(dbModel)
             })

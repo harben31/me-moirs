@@ -35,7 +35,7 @@ export default {
     },
 
     getFriendInfo: function(id) {
-        return axios.get('/api/users' + id)
+        return axios.get('/api/users/userId/' + id)
     },
     
 

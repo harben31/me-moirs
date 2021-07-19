@@ -38,6 +38,8 @@ export default function Friends(props) {
             />
             {friendsArray.length ?  
                 friendsArray.map((friend, i) => { 
+                    console.log('Friends', friend)
+
                     return ( 
                         <MyFriends 
                         key={i}

@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 
 
 export default function MyFriends(props) {
+    console.log("props",props);
     return (
         <div className='my-friends'>
                 <div className='friend-info'>
@@ -29,7 +30,7 @@ export default function MyFriends(props) {
 
                         </p>
                         {/* //We Should add friend id (+_id) to the path after friendprofile */}
-                        <Link to={{ pathname: '/friendprofile/' }}>
+                        <Link to={{ pathname:`/friendprofile/${props._id}`}}>
 
                             <button className='view-profile'>
 
