@@ -64,17 +64,8 @@ export default function FriendProfile(props) {
     
         setBackground(file.url);
     
-      } 
-
-
-
-
-  
-
-    
-    
+    } 
     return (
-       
         <div>
             {/* <Header/> */}
                 {/* <Navbar id={user.shortTabInfo}/> */}
