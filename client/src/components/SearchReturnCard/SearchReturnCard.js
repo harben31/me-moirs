@@ -1,6 +1,7 @@
 import React, {useEffect } from 'react';
 import './style.css';
 import API from '../../utils/API';
+import userImage from '../../user.png'
 
 
 export default function(props) {
@@ -15,27 +16,30 @@ export default function(props) {
             follow: true
         })
         .then(res => { 
-            let newFriendsArray = props.friendsArray;
-            newFriendsArray.push(friend)
-            props.setFriendsArray(newFriendsArray);
+            // props.setNewFollow(true)
+            let newFriendsArray = props.friendsArray;//I am notsure if we need this or not
+            newFriendsArray.push(friend)//I am notsure if we need this or not
+            props.setFriendsArray(newFriendsArray);//I am notsure if we need this or not
+
+            if(!props.newFollow){
+                props.setNewFollow(true)
+            } else{
+                props.setNewFollow(false)
+            }
             e.target.parentNode.parentNode.setAttribute('style', 'display: none')
-            // console.log('New friend',newFriendsArray)
         })
         .catch(err => console.log(err))
     };
 
-    // useEffect(() => {
-    //     let newFriendsArray = props.friendsArray;
-    //     newFriendsArray.push(friend)
-    //     props.setFriendsArray(newFriendsArray);
-    //          console.log('New friend',newFriendsArray)
-
-    // }, [props.friendsArray])
-
     return (
          <div className='user-card'>
             <div className='user-info'>
-                <img className='user-image' src='https://images.pexels.com/photos/761963/pexels-photo-761963.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940' alt='photo'/>
+                {props.image ? 
+                <img className='my-friend-image' src={props.image} alt={props.username}/>
+                :
+                <img className='my-friend-image' src={userImage} alt='default'/>
+                }
+                {/* <img className='user-image' src={props.image} alt={props.username}/> */}
 
                 <p className='user-name'>
                 {friend.username}
@@ -54,16 +58,5 @@ export default function(props) {
                 </button>
             </div>
         </div>
-        // <div className='userCard'>
-        //     <div className='infoWrap'>
-        //         <div className='imgStandIn'></div>
-        //         <p className='userEmail'>{friend.email}</p>
-        //     </div>
-        //     <h3 className='username'>{friend.username}</h3>
-        //     <button
-        //     className='addFriendBtn'
-        //     onClick={handleFollowReq}
-        //     >Follow</button>
-        // </div>
     );
 };

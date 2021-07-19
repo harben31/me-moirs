@@ -104,72 +104,38 @@ export default function(props) {
     return (
 
        <>
-          <form className='searchWrap'>
-            {/* <label for='searchBy'>Search</label> */}
-            {/* <select
-            onChange={handleSearchByChange}
-            name='searchBy'
-            id='searchBy'>
-                <option value='username'>Username</option>
-                <option value='email'>E-mail</option>
-            </select> */}
-            <Select
-            onChange={handleSearchByChange}
-            name='searchBy'
-            id='searchBy'>
-                <option value='username'>Username</option>
-                <option value='email'>E-mail</option>
-            </Select>
-            <Input
-            onChange={handleSearchValChange}
-            type='text'
-            className='searchBar'
-            placeholder='find your friends'
-            />
-            <span
-            id='searchSubBtn'
-            onClick={handleSearch}
-            className="material-icons"
-            >search</span>
-          </form>
-          {searchResults.length
-          ?<SearchReturn
-          openSearchModal={openSearchModal}
-          setOpenSearchModal={setOpenSearchModal}
-          setFriendsArray={props.setFriendsArray}
-          friendsArray={props.friendsArray}
-          searchResults={searchResults}
-          user_id={props.user_id}/>
-          : null}
+            <form className='searchWrap'>
+                <label for='searchBy'>Search by...</label>
+                <Select
+                onChange={handleSearchByChange}
+                name='searchBy'
+                id='searchBy'>
+                    <option value='username'>Username</option>
+                    <option value='email'>E-mail</option>
+                </Select>
+                <Input
+                onChange={handleSearchValChange}
+                type='text'
+                className='searchBar'
+                placeholder='find your friends'
+                />
+                <span
+                id='searchSubBtn'
+                onClick={handleSearch}
+                className="material-icons"
+                >search</span>
+            </form>
+            {searchResults.length
+                ?<SearchReturn
+                openSearchModal={openSearchModal}
+                setOpenSearchModal={setOpenSearchModal}
+                setFriendsArray={props.setFriendsArray}
+                friendsArray={props.friendsArray}
+                setNewFollow={props.setNewFollow}
+                newFollow={props.newFollow}
+                searchResults={searchResults}
+                user_id={props.user_id}/>
+            : null}
         </>
-
-//         <>
-//             <form className='searchWrap'>
-//                 <label for='searchBy'>Search</label>
-//                 <select
-//                 onChange={handleSearchByChange}
-//                 name='searchBy'
-//                 id='searchBy'>
-//                     <option value='username'>Username</option>
-//                     <option value='email'>E-mail</option>
-//                 </select>
-//                 <input
-//                 onChange={handleSearchValChange}
-//                 type='text'
-//                 className='searchBar'
-//                 placeholder='find your friends'
-//                 />
-//                 <button
-//                 id='searchSubBtn'
-//                 onClick={handleSearch}
-//                 >Search</button>
-//             </form>
-//             {searchResults.length?
-//             <SearchReturn
-//             searchResults={searchResults}
-//             user_id={props.user_id}/>
-//             : null}
-//         </>
-// >>>>>>> main
     );
 };
