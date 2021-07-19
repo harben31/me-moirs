@@ -19,20 +19,23 @@ export default function NewTab(props) {
     const [tabMenu, setTabMenu] = useState(false);
     const [tabUpdate, setTabUpdate] = useState(false);
     const [target, setTarget] = useState(false);
+    const [postChanged, setPostChanged] = useState(false);
 
 
 
     useEffect(() => {
+        console.log('it rerendered');
         const Id = props.match.params.id;
          API.getTab(Id)
             .then(res => {
                 setTabInfo(res.data);
-
+                setPostChanged(false);
                 setUpdatePostImage(false);
 
             })
             .catch(err => console.log(err));
-    }, [props.match.params.id, post, comment, update, updateComment, updatePostImage]);
+    }, [props.match.params.id, post, comment, update, updateComment, postChanged, updatePostImage]);
+
 
     // useEffect(() => {(
     //     <Redirect to='/profile'/>
@@ -45,12 +48,27 @@ export default function NewTab(props) {
             content: postContent,
             tab_id: tabInfo._id
         })
-        .then((res) => {
-            console.log(res.data._id)
+        .then(() => {
             setPost(true)})
         .catch(err => {
             console.log(err);
         });
+    };
+
+    const UpdatePost = (e, _id) => {
+        e.preventDefault();
+        console.log('did we get here on update');
+        API.updatePost(_id, {
+            // _id: postId,
+            title: postTitle,
+            content: postContent
+        })
+        .then(res => {
+            console.log(res.data);
+            setPostChanged(true);
+            props.history.push('/newtab/' + props.match.params.id);
+        })
+        .catch(err => console.log(err));
     };
 
     const handleTabToggle = () => {
@@ -108,13 +126,16 @@ export default function NewTab(props) {
                                             {...post} 
                                             user_id={props.user_id}
                                             username={props.username}
-                                            posts={tabInfo.posts} 
-                                            setComment={setComment}
+                                            UpdatePost={UpdatePost}
                                             update={update}
                                             setUpdate={setUpdate}
+                                            setComment={setComment}
                                             updateComment={updateComment}
                                             setUpdateComment= {setUpdateComment}
                                             setUpdatePostImage={setUpdatePostImage}
+                                            setPostTitle={setPostTitle}
+                                            setPostContent={setPostContent}
+
                                         />
                                     )
                                 })) : 

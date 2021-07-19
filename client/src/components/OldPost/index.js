@@ -5,6 +5,7 @@ import Likes from '../Likes';
 import Comment from '../Comments/Comment';
 import CommentButton from '../Comments/CommentButton';
 import CommentBox from '../Comments/CommentBox';
+import API from '../../utils/API';
 import './style.css';
 import API from '../../utils/API';
 import { Button } from 'react-mdl';
@@ -20,6 +21,12 @@ export default function OldPost(props) {
     const [showDelete, setShowDelete] = useState(false);
     const [showCommentDelete, setShowCommentDelete] = useState(false);
     const [postImage, setpostImage] = useState('');
+
+
+    const [updateImage, setUpdateImage] = useState(props.image);
+    const [title, setTitle] = useState();
+    const [content, setContent] =useState();
+
 
     const CreateComment = () => {
         if(!commentActivated) {
@@ -57,7 +64,8 @@ export default function OldPost(props) {
       
 
       useEffect(() => {
-        console.log(props._id, postImage)
+        setTitle(props.title);
+        setContent(props.content)
         if (postImage) {
         API.addPostImage(props._id, postImage)
         .then ((res) => {
@@ -70,7 +78,7 @@ export default function OldPost(props) {
 
     }, [postImage] );
 
-    
+
     const postImages = async e => {
         const files = e.target.files;
         const data = new FormData();
@@ -92,6 +100,7 @@ export default function OldPost(props) {
 
     return (
         <div className='oldPost'>
+
         {
             !props.image ? (
             <div className='post-image'>
@@ -104,19 +113,29 @@ export default function OldPost(props) {
          }
                 
             <DeleteModal showDelete={props.showDelete}/>
+
             <div className='oldPostContent'>
                 <div className='postTop'>
                     <p className='postDate'>
                         {formatDate(props.date)}
                     </p>
                     <DotIcon  
+                        UpdatePost={props.UpdatePost}
                         showDelete={showDelete} 
-                        setShowDelete={setShowDelete} 
-                        handleToggle={handleToggle} 
+                        setShowDelete={setShowDelete}
+                        handleToggle={handleToggle}
+                        setPostTitle={props.setPostTitle}
+                        setPostContent={props.setPostContent} 
                         menu={menu}
+                        setMenu={setMenu}
                         _id={props._id} 
                         setUpdate={props.setUpdate} 
-                        update={props.update}/>
+                        update={props.update}
+                        title={title}
+                        content={content}
+                        setTitleChanged={props.setTitleChanged}
+                        setContentChanged={props.setContentChanged}
+                    />
                 </div>
                 <p className='oldPostTitle'>
                     <b>{props.title}</b>

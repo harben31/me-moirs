@@ -28,6 +28,7 @@ export default function CommentDotIcon({ showCommentDelete, setShowCommentDelete
                 </ul>
             ) : null}
             <CommentDeleteModal  
+                setShowCommentDelete={setShowCommentDelete}
                 showCommentDelete={showCommentDelete} 
                 _id={_id} 
                 deleteComment={deleteComment} 

@@ -103,7 +103,7 @@ export default function Navbar(props) {
                 <div className= 'friends-tab'>
                 <p>Friends</p>
                 <Link to='/friends'>
-                  <span class="material-icons">
+                  <span className="material-icons">
                     people_outline
                   </span>
                 </Link>

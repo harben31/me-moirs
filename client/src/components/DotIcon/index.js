@@ -4,10 +4,11 @@ import UpdatePostModal from '../UpdatePostModal/UpdatePostModal';
 import API from '../../utils/API';
 import './style.css';
 
-export default function DotIcon({ showDelete, setShowDelete, handleToggle, menu, _id, update, setUpdate}) {
+
+export default function DotIcon({ UpdatePost, setPostTitle, setPostContent,  showDelete, setShowDelete, handleToggle, menu, setMenu, _id, update, setUpdate, title, content, setTitleChanged, setContentChanged}) {
+
     // const [showDelete, setShowDelete] = useState(false);
     const [showUpdateModal, setShowUpdateModal] = useState(false);
-
 
     const showDeleteModal = () => {
         showDelete ? setShowDelete(false) : setShowDelete(true);
@@ -30,6 +31,7 @@ export default function DotIcon({ showDelete, setShowDelete, handleToggle, menu,
 
     // const x = showInput;
 
+
     const deletePost = (id) => {
         handleToggle();
         setShowDelete(false);
@@ -39,6 +41,7 @@ export default function DotIcon({ showDelete, setShowDelete, handleToggle, menu,
     };
 
     return (
+
         <div className='menuIcon'>
             <span class='material-icons dotIcon' onClick={() => handleToggle()}>
                 more_vert 
@@ -62,15 +65,31 @@ export default function DotIcon({ showDelete, setShowDelete, handleToggle, menu,
                      )
                      } */}
 
-                </ul>
-            ) : null}
-            <DeleteModal  showDelete={showDelete} _id={_id} deletePost={deletePost} setUpdate={setUpdate} update={update} />
+                        </ul>
+                    
+                ) : null}
+                <DeleteModal  
+                    setShowDelete={setShowDelete} 
+                    showDelete={showDelete} 
+                    _id={_id} 
+                    deletePost={deletePost} 
+                    setUpdate={setUpdate} 
+                    update={update} 
+                />
 
-            <UpdatePostModal 
-            showUpdateModal={showUpdateModal}
-            setUpdate={setUpdate} 
-            update={update}
-            />
-        </div>
+                <UpdatePostModal 
+                    title={title}
+                    content={content}
+                    setPostTitle={setPostTitle}
+                    setPostContent={setPostContent}
+                    _id={_id}
+                    UpdatePost={UpdatePost}
+                    showUpdateModal={showUpdateModal}
+                    setShowUpdateModal={setShowUpdateModal}
+                    setTitleChanged={setTitleChanged}
+                    setContentChanged={setContentChanged}
+                />
+            </div>
+        // </div>
     )
 };

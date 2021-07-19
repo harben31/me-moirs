@@ -8,7 +8,7 @@ import {
     BoldLink 
 } from './common';
 import {
-    BrowserRouter as Router,
+    // BrowserRouter as Router,
     Route,
   } from "react-router-dom";
 

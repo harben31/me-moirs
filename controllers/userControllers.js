@@ -31,6 +31,7 @@ module.exports = {
             });
     },
 
+
     //need to handle case sensativity. second username all lowercase?
     findUserByUsername: function(req, res) {
         function escapeRegex(text) {
