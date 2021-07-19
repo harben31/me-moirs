@@ -2,10 +2,24 @@ import React from 'react';
 import './style.css';
 import userImage from '../../defaultUserImage.png';
 import { Link } from 'react-router-dom';
+import API from '../../utils/API';
 
 
 export default function MyFriends(props) {
-    console.log("props",props);
+    const handleUnFollowReq = () => {
+        API.addToUsersFriends(props.user_id, {
+            friendId: props._id,
+            follow: false
+        })
+        .then(res => {
+            if(!props.newFollow){
+                props.setNewFollow(true)
+            } else{
+                props.setNewFollow(false)
+            }
+        })
+    };
+    
     return (
         <div className='my-friends'>
                 <div className='friend-info'>
@@ -41,7 +55,7 @@ export default function MyFriends(props) {
                         </Link>
                         <button 
                         className='unfollow-btn'
-                      //onClick={handleUnFollowReq}
+                      onClick={handleUnFollowReq}
                         >
 
                             UnFollow

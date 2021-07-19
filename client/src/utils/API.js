@@ -51,7 +51,6 @@ export default {
 
     //need to put friends id in req.body under friendId
     addToUsersFriends: function(userId, friendId){
-        console.log('user_id:', userId, 'friendId:', friendId)
         return axios.put('/api/users/friends/' + userId, friendId)
     },
 
