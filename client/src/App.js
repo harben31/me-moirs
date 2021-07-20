@@ -5,11 +5,6 @@ import {
   Redirect, withRouter
 } from "react-router-dom";
 import TabContext from './utils/tabContext';
-
-// import Home from './pages/Home';
-
-// import Card from './components/Cards/Cards'
-// import DemoPage from './pages/DemoPage';
  
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
@@ -19,9 +14,6 @@ import "./App.css";
 import Profile from './pages/Profile';
 import FriendProfile from './pages/FriendProfile';
 
-// import Demo from './pages/DemoPage';
-// import { AccountBox } from './components/AccountBox/index';
-// import Navbar from './components/Navbar/Navbar';
 import API from './utils/API';
 
 import NewTab from './pages/NewTab';
@@ -31,14 +23,14 @@ import AuthApi from './utils/AuthApi';
 import { motion, AnimatePresence } from 'framer-motion';
 
 
-
-
-
 function App() {
+  console.log('app.js')
   const [userId, setUserId] = useState({});
   const [username, setUsername] = useState('');
   const [friends, setFriends] = useState([]);
   const [auth, setAuth] = useState(false);
+  const [coverImage, setCoverImage] = useState([]);
+  const [profile, setProfile] = useState('');
   
   const [tabs, setTabs] = useState();
   const [tabDeleted, setTabDeleted] = useState(false);
@@ -48,19 +40,24 @@ function App() {
 
 
   useEffect(() => {
+    console.log('/info')
     if(auth) {
       API.userInfo()
       .then(res => {
           if(res) {
               const data = res.data.shortTabInfo;
+              setUsername(res.data.username);
+              setCoverImage(res.data.background);
+              setProfile(res.data.image)      
               setTabs(data);
-            } 
+          } 
       })
       .catch(err => console.log(err));
     }
   }, [auth, tabDeleted]);
 
   useEffect(() => {
+    console.log('/me')
     API.getUser()
     .then(res => {
       if(res.data.auth) {
@@ -72,13 +69,11 @@ function App() {
     })
   }, []);
 
-
   const deleteTab = (id) => {
     API.deleteTab(id)
         .then(res => setTabDeleted(true))
         .catch(err => console.log(err));
   };
-
 
   const friendTab = (id) => {
     API.getFriendInfo(id)
@@ -88,9 +83,7 @@ function App() {
     }).catch(err => console.log(err));
   } 
 
-
   //moved this fn inside of the App fn so I could get access to the setUser hook
-
   const RouteProtected = ({ component: Component, ...rest }) => {
     const authApi = useContext(AuthApi);
     return <Route {...rest}
@@ -102,6 +95,8 @@ function App() {
         setUsername={setUsername}
         friends={friends}
         setFriends={setFriends}
+        profile={profile}
+        coverImage={coverImage}
         />
       : <Redirect to='/' />} />;
   };
@@ -135,9 +130,10 @@ function App() {
 };
 
 const RouteRegistration = ({ component: Component, ...rest }) => {
+  console.log('route registration')
   const authApi = useContext(AuthApi);
-  return <Route {...rest} render={props => 
-    !authApi.auth ? <Component {...props} /> : <Redirect to='/profile' />} />;
+  return <Route {...rest} render={() => 
+    !authApi.auth ? <Component /> : <Redirect to='/profile' />} />;
 };
 
 
