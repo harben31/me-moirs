@@ -5,8 +5,9 @@ import API from '../../utils/API';
 import './style.css';
 
 
-export default function DotIcon({ UpdatePost, setPostTitle, setPostContent,  showDelete, setShowDelete, handleToggle, menu, setMenu, _id, update, setUpdate, title, content, setTitleChanged, setContentChanged}) {
+export default function DotIcon({ UpdatePost, setPostTitle, setPostContent,  showDelete, setShowDelete, handleToggle, menu, setMenu, _id, update, setUpdate, title, content, setTitleChanged, setContentChanged, postImages}) {
     const [showUpdateModal, setShowUpdateModal] = useState(false);
+    const [showInput, setShowInput] = useState(false);
 
     const showDeleteModal = () => {
         showDelete ? setShowDelete(false) : setShowDelete(true);
@@ -22,13 +23,13 @@ export default function DotIcon({ UpdatePost, setPostTitle, setPostContent,  sho
     }
 
 
-    // const handleChange = (e) => {
-    //     e.preventDefault();
+    const handleChange = (e) => {
+        e.preventDefault();
 
-    //     setShowInput({showInput: !showInput});
-    // };
+        setShowInput({showInput: !showInput});
+    };
 
-    // const x = showInput;
+    const x = showInput;
 
 
     const deletePost = (id) => {
@@ -51,7 +52,6 @@ export default function DotIcon({ UpdatePost, setPostTitle, setPostContent,  sho
                     <li onClick={() => showDeleteModal()}>Delete</li>
                     <li onClick={handleChange}>Update Photo</li>
 
-                    {/* <li onClick={handleChange}>Add Photo</li>
 
                     {
                     x && (
@@ -61,7 +61,7 @@ export default function DotIcon({ UpdatePost, setPostTitle, setPostContent,  sho
                         onChange={postImages}/>
                         </div>
                      )
-                     } */}
+                     }
 
                 </ul>
                     
