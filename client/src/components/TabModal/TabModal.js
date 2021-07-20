@@ -192,7 +192,7 @@ export default function TabModal(/*{showModal, setShowModal, user_id}*/ props) {
         API.saveTab({
             title: tabTitle,
             description: tabDescription,
-            user_id: props.userId
+            user_id: props.user_id
         }).then((res) => {
         history.push('/newtab/' + res.data._id);
         props.setShowModal(false)

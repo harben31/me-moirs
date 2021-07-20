@@ -9,18 +9,18 @@ export default function Friends(props) {
     const [friendsArray,setFriendsArray] = useState([]);
     const [newFollow, setNewFollow] = useState(false);
 
-    let myFriendsRender = friendsArray;//I am notsure if we need this or not
-    useEffect(() => {//I am notsure if we need this or not
-        myFriendsRender = friendsArray;//I am notsure if we need this or not    
-    }, [friendsArray])//I am notsure if we need this or not
+    // let myFriendsRender = friendsArray;//I am notsure if we need this or not
+    // useEffect(() => {//I am notsure if we need this or not
+    //     myFriendsRender = friendsArray;//I am notsure if we need this or not    
+    // }, [friendsArray])//I am notsure if we need this or not
     
     useEffect(() => {
+        console.log('inseuseeffect')
         API.getUsersFriends(props.user_id)
         .then(res => {
             setFriendsArray(res.data) 
         })
-            
-            .catch(err => console.log(err));
+        .catch(err => console.log(err));
     }, [newFollow]);
 
     return (
@@ -41,7 +41,8 @@ export default function Friends(props) {
                         key={i}
                         {...friend}
                         user_id={props.user_id}
-                        friend_id={props.friend}
+                        // friend_id={props.friend}
+                        friend_id={friend._id}
                         setNewFollow={setNewFollow}
                         newFollow={newFollow}
 

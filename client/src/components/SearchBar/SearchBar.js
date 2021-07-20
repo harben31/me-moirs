@@ -76,28 +76,24 @@ export default function(props) {
     const handleSearch = (e) => {
         e.preventDefault();
         let apiCall;
-        
+        console.log(props.user_id)
         //regex space replace?????
         if(searchBy === 'email') {
             apiCall = API.userByEmail(props.user_id, searchVal)
         } else {
             apiCall = API.userByUsername(props.user_id, searchVal)
+            console.log(searchVal)
         }
         
         apiCall
         .then(res => {
             setSearchResults(res.data);
             searchModal();
-            })
-            .catch(err => console.log(err));
+        })
+        .catch(err => console.log(err));
         
         document.querySelector('.searchBar').value = '';
     };
-
-    // useEffect(() => {
-    //     // need to make modal go away
-    //     // console.log('!!! searchResults', searchResults)
-    // }, [searchResults])
 
     return (
 

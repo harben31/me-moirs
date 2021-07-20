@@ -15,27 +15,14 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 
 export default function Navbar(props) {
-    const { tabs, friendTabs, tabsFriend } = useContext(TabContext);
-
+    const { tabs, userData } = useContext(TabContext);
+    console.log('tabs:', tabs)
     const authApi = useContext(AuthApi);
-    // const [tabs, setTabs] = useState();
 
     const [showModal, setShowModal] = useState(false);
     const OpenModal = () => {
         setShowModal(prev => !prev);
     };
-
-    //  useEffect(() => {
-    //   API.userInfo()
-    //       .then(res => {
-    //           if(res) {
-    //               const data = res.data.shortTabInfo;
-    //               setTabs(data);
-    //            } 
-             
-    //       })
-    //       .catch(err => console.log(err));
-    // }, []);
 
      const handleLogout = () => {
           API.logout()
@@ -72,21 +59,23 @@ export default function Navbar(props) {
                     delay:.5
                   }}
                 >
-                {tabs ? (
+                {/* {tabs ? ( */}
+                {userData.shortTabInfo ? (
                   <div className= 'carousel'>
             
                     <TabModal 
                       showModal={showModal}
                       setShowModal={setShowModal}
-                      userId={props.userId}/>
+                      user_id={props.user_id}/>
                       
                     <Carousel
                       className= 'carousel-tabs'
                       containerClass="container-with-dots"
                       infinite={true}
                       itemClass="carousel-item-padding-0-px"
-                    responsive={responsive}>
-                      {tabs && tabs.map((tab, index) => {
+                      responsive={responsive}>
+                      {/* {tabs && tabs.map((tab, index) => { */}
+                      {userData.shortTabInfo && userData.shortTabInfo.map((tab, index) => {
                         return(
                           <Link to={{
                             pathname: '/newtab/' + tab._id,
@@ -95,10 +84,6 @@ export default function Navbar(props) {
                       })} 
                     </Carousel>
                 
-                {/* <SearchBar
-                user_id={props.userId}
-                friends={props.friends}
-                />   */}
                 <div className= 'friends-tab'>
                 <p>Friends</p>
                 <Link to='/friends'>

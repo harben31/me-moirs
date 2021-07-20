@@ -52,6 +52,7 @@ export default {
     },
 
     getUsersFriends: function(userId){
+        console.log('insde api')
         return axios.get('/api/users/friends/' + userId)
     },
 

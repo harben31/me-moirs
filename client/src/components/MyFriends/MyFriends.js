@@ -7,11 +7,12 @@ import TabContext from '../../utils/tabContext';
 
 
 export default function MyFriends(props) {
+    console.log('Props:', props)
     const { friendTab }= useContext(TabContext);
     
     const handleUnFollowReq = () => {
         API.addToUsersFriends(props.user_id, {
-            friendId: props._id,
+            friendId: props.friend_id,
             follow: false
         })
         .then(res => {
@@ -49,7 +50,7 @@ export default function MyFriends(props) {
                         {/* //We Should add friend id (+_id) to the path after friendprofile */}
                         <Link to={{ pathname:`/friendprofile/${props._id}`}}>
 
-                            <button className='view-profile' onClick={friendTab(props.id)}>
+                            <button className='view-profile' onClick={friendTab(props._id)}>
 
                                 View Profile 
 

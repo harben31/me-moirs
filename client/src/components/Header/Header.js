@@ -5,7 +5,8 @@ import { Link } from 'react-router-dom';
 import Image from '../../logo.png';
 
 
-export default function Header({loggedIn, userId}) {
+export default function Header({loggedIn, user_id}) {
+    console.log('header')
     // const [tabs, setTabs] = useState();
 
     return (
@@ -31,7 +32,7 @@ export default function Header({loggedIn, userId}) {
                             <img src={Image} alt='logo' height={40} width={40} />                            
                             </div>
                         </div>
-                        <Navbar userId={userId}/>
+                        <Navbar user_id={user_id}/>
                     </div>
                 </header>
 ))};

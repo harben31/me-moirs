@@ -20,7 +20,7 @@ export default function Profile(props) {
             window.location.reload()
         })
       }
-      }, [background])
+    }, [background])
   
     const backgroundImage = async e => {
         const files = e.target.files;
