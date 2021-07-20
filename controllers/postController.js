@@ -26,7 +26,6 @@ module.exports = {
                 select: {username: 1}
             })
             .then(dbModel => {
-                console.log(dbModel);
                 res.json(dbModel);
             })
             .catch(err => {
@@ -46,7 +45,6 @@ module.exports = {
     },
     //editing posts
     updatePost: function(req, res) {
-        console.log('Did we get into backend API', req.params.id, req.body);
         db.Post
             .findOneAndUpdate({_id: req.params.id}, req.body)
             .then(dbModel => res.json(dbModel))
@@ -97,12 +95,9 @@ module.exports = {
     },
 
     addPostImage: function(req, res) {
-        console.log(req.body, 'image data')
         db.Post
         .findOneAndUpdate({_id: req.params.id}, { image: req.body.addPostImage})
-        .then(dbModel => {
-            console.log(dbModel,' PostController!!')
-            res.json(dbModel)})
+        .then(dbModel =>  res.json(dbModel))
         .catch(err => {
             console.log(err);
             res.status(422).json(err);

@@ -17,8 +17,7 @@ export default function TabDotIcon({ showTabDelete, setShowTabDelete, tabMenu, h
         handleTabToggle();
         setShowTabDelete(false);
         API.deleteTab(id)
-            .then(res => {console.log(res);
-                history.push('/profile')})
+            .then(res => history.push('/profile'))
             .catch(err => console.log(err));
     };
 
@@ -30,8 +29,8 @@ export default function TabDotIcon({ showTabDelete, setShowTabDelete, tabMenu, h
                 </span> 
                 {tabMenu ? (
                     <ul className='tabMenu'>
-                        <li>Edit</li>
-                        <li onClick={() => showTabDeleteModal()}>Delete</li>
+                        <li className='tabEditBtn'>Edit</li>
+                        <li className='tabDelBtn' onClick={() => showTabDeleteModal()}>Delete</li>
                     </ul>
                 ) : null}
                 <TabDeleteModal  

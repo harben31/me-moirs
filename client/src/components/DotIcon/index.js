@@ -6,8 +6,6 @@ import './style.css';
 
 
 export default function DotIcon({ UpdatePost, setPostTitle, setPostContent,  showDelete, setShowDelete, handleToggle, menu, setMenu, _id, update, setUpdate, title, content, setTitleChanged, setContentChanged}) {
-
-    // const [showDelete, setShowDelete] = useState(false);
     const [showUpdateModal, setShowUpdateModal] = useState(false);
 
     const showDeleteModal = () => {
@@ -37,21 +35,20 @@ export default function DotIcon({ UpdatePost, setPostTitle, setPostContent,  sho
         handleToggle();
         setShowDelete(false);
         API.deletePost(id)
-            .then(res => console.log(res))
+            .then()
             .catch(err => console.log(err));
     };
 
     return (
 
         <div className='menuIcon'>
-            <span class='material-icons dotIcon' onClick={() => handleToggle()}>
+            <span className='material-icons dotIcon' onClick={() => handleToggle()}>
                 more_vert 
             </span> 
             {menu ? (
                 <ul className='menu'>
                     <li onClick={() => openUpdateModal()}>Edit</li>
                     <li onClick={() => showDeleteModal()}>Delete</li>
-
                     <li onClick={handleChange}>Update Photo</li>
 
                     {/* <li onClick={handleChange}>Add Photo</li>
@@ -89,6 +86,7 @@ export default function DotIcon({ UpdatePost, setPostTitle, setPostContent,  sho
                     setShowUpdateModal={setShowUpdateModal}
                     setTitleChanged={setTitleChanged}
                     setContentChanged={setContentChanged}
+                    setMenu={setMenu}
                 />
         </div>
     )

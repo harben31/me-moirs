@@ -60,13 +60,10 @@ function App() {
     }
   }, [auth, tabDeleted]);
 
-  //this route is for if user is still logged in but has navigated away and back to page
   useEffect(() => {
     API.getUser()
     .then(res => {
       if(res.data.auth) {
-        // console.log(user, '!!!USER APP.JS' );
-        //setting user the user id to be passed up on api calls
         setUserId(res.data.user_id)
         setAuth(true);
       }
@@ -78,9 +75,10 @@ function App() {
 
   const deleteTab = (id) => {
     API.deleteTab(id)
-        .then(res => {console.log('deleteTab response', res); setTabDeleted(true)})
+        .then(res => setTabDeleted(true))
         .catch(err => console.log(err));
   };
+
 
   const friendTab = (id) => {
     API.getFriendInfo(id)
@@ -92,6 +90,7 @@ function App() {
 
 
   //moved this fn inside of the App fn so I could get access to the setUser hook
+
   const RouteProtected = ({ component: Component, ...rest }) => {
     const authApi = useContext(AuthApi);
     return <Route {...rest}
@@ -118,7 +117,7 @@ function App() {
                   <Header
                     loggedIn={auth}
                     userId={userId}
-                     friends={friends}
+                    friends={friends}
                   />
                   <RouteRegistration exact path='/' component={LoginSignup}/>
                   <RouteProtected exact path='/profile' component={Profile}/>

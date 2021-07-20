@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import Navbar from '../Navbar/Navbar';
 import './style.css';
 import API from '../../utils/API';
-import TabContext from '../../utils/tabContext';
+// import TabContext from '../../utils/tabContext';
 import { Link } from 'react-router-dom';
 import Image from '../../logo.png';
 
@@ -31,7 +31,6 @@ export default function Header({loggedIn, userId, friends}) {
     //             if(res) {
     //                 const data = res.data;
     //                 setUser(data);
-    //                 console.log(data)
     //              } 
 
                
@@ -55,7 +54,8 @@ export default function Header({loggedIn, userId, friends}) {
                     </div>
                 </header>
                 ) : (
-                <TabContext.Provider value={{tabs}}><header>
+                // <TabContext.Provider value={{tabs}}>
+                <header>
                     <div className='header'>
                         <div className='header-wrapper'>
                             <div className='logo'> {/* changed from class to className  */} 
@@ -68,5 +68,5 @@ export default function Header({loggedIn, userId, friends}) {
                         <Navbar userId={userId}/>
                     </div>
                 </header>
-                </TabContext.Provider>)
-)};
+                // </TabContext.Provider>)
+))};

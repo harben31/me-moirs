@@ -64,3 +64,8 @@
     padding: 5px 15px;
     border-radius: 10px;
 }
+
+.tabDelBtn,
+.tabEditBtn {
+    cursor: pointer;
+}

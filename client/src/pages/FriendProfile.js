@@ -72,12 +72,14 @@ export function FriendProfile(props) {
     //         body: data
     //     });
     
+
     //     const file = await res.json();
     //     console.log(file);
     
     //     setFriendImage(file.url);
     
     // } 
+
     return (
         <div>
          

@@ -90,15 +90,27 @@ const Textarea = styled.textarea`
     }
 `;
 
-export default function PostsForm({setPostContent, setPostTitle, createPost, postImages}) {
+export default function PostsForm({setPostContent, setPostTitle, setPostChanged, postChanged, createPost, postImages}) {
 
     const [showInput, setShowInput] = useState(false);
 
 
     const handleChange = e => {
-        e.preventDefault();
+        // e.preventDefault();
 
+        if(!postChanged){
+            setPostChanged(true);
+        } else {
+            setPostChanged(false);
+        }
         setShowInput({showInput: !showInput});
+
+        setTimeout(() => {
+            document.querySelector('.postTitleInput').value = '';
+        document.querySelector('.postContentInput').value = '';
+        }, 250);
+    
+        
     };
 
     const x = showInput;
@@ -116,7 +128,6 @@ export default function PostsForm({setPostContent, setPostTitle, createPost, pos
     //         content: postContent,
     //     })
     //     .then((res) => {
-    //         console.log(res);
     //         setPostInfo(res.data)
     //     })
     //     .catch(err => {
@@ -139,6 +150,7 @@ export default function PostsForm({setPostContent, setPostTitle, createPost, pos
                     <HeaderText>Add New Post!</HeaderText>
                 </MovingText>
                 <Input 
+                    className='postTitleInput'
                     type='text' 
                     placeholder='Give your Post title!'
                     required
@@ -147,6 +159,7 @@ export default function PostsForm({setPostContent, setPostTitle, createPost, pos
                     }}
                 />
                 <Textarea
+                    className='postContentInput'
                     type='text' 
                     placeholder='Write Your post here!'
                     required
@@ -155,7 +168,7 @@ export default function PostsForm({setPostContent, setPostTitle, createPost, pos
                     }}
                 />
                 <Marginer direction='vertical' margin={10} />
-                <SubmitButton type='submit'>Post</SubmitButton>
+                <SubmitButton onClick={handleChange} type='submit'>Post</SubmitButton>
                  {/* <hr/>
                 <SubmitButton onClick={handleChange}>Add Photo</SubmitButton>
                 {

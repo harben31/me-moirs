@@ -1,6 +1,5 @@
 const db = require('../models');
 const mongoose = require('mongoose');
-// const auth = require('../utils/auth');
 
 //onload of user profile= user data + minimal tabs data. 
 //Tabs data should not load until specific tab is selected by user. 
@@ -18,8 +17,6 @@ module.exports = {
 
 
     findFriendById: function (req, res) {
-
-        console.log('findUserById',req.params.id)
         db.User
             .findOne({_id:req.params.id})
             .populate({
@@ -190,7 +187,6 @@ module.exports = {
     },
 
     addImage: function(req, res) {
-        console.log(req.body, 'image data')
         db.User
         .findOneAndUpdate({_id: req.params.id}, {image: req.body.imageData})
         .then(dbModel => res.json(dbModel))
@@ -246,7 +242,6 @@ module.exports = {
     //         .populate('followedTabs')
     //         .populate('followedPosts')
     //         .then(dbModel => {
-    //             console.log('!!!!!', dbModel);
     //             res.json({
     //                 tabs: dbModel.followedTabs,
     //                 posts: dbModel.followedPosts
@@ -259,7 +254,6 @@ module.exports = {
     // },
 
     coverPhoto: function(req, res) {
-        console.log(req.body, 'image data')
         db.User
         .findOneAndUpdate({_id: req.params.id}, {background: req.body.coverImage})
         .then(dbModel => res.json(dbModel))

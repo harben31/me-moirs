@@ -30,7 +30,7 @@ export default function Likes(props) {
             API.addLike(props.post_id, {
                 user_id: props.user_id
             })
-            .then(res => console.log(res))
+            .then()
             .catch(err => console.log(err));
         } else {
             setLiked(false);
@@ -39,7 +39,7 @@ export default function Likes(props) {
             API.unLike(props.post_id, {
                 user_id: props.user_id
             })
-            .then(res => console.log(res))
+            .then()
             .catch(err => console.log(err));
         } 
     };

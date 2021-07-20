@@ -1,6 +1,6 @@
 .oldPost {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     border-radius: 15px;
     margin-bottom: 20px;
     background-color: white;
@@ -30,6 +30,9 @@
 .oldPostContent {
     padding: 15px 20px;
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .oldPostTitle {
@@ -47,8 +50,43 @@
 }
 
 .post-image {
-    display: block;
+    display: flex;
+    flex-direction: column;
     align-items: center;
+    width: 230px;
+}
+
+.post-image input {
+    width: 180px;
 }
 
 
+@media screen and (min-width: 420px) {
+    .oldPost {
+        flex-direction: row;
+    }
+
+    .oldPostContent {
+        display: block;
+        padding: 15px 20px 15px 0;
+    }
+
+    .post-image {
+        display: block;
+    }
+}
+
+@media screen and (min-width: 520px) {
+    .post-image {
+        flex-direction: row;
+        width: 220px;
+    }
+
+    .oldPostContent {
+        padding: 15px 20px;
+    }
+}
+
+@media screen and (min-width: 820px) {
+    
+}

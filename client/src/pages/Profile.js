@@ -73,35 +73,29 @@ export default function Profile(props) {
         });
     
         const file = await res.json();
-        console.log(file);
     
         setBackground(file.url);
-    
-      } 
+    };
 
 
     return (
        
         <div>
-        <TabModal
-        showModal={showModal}
-        setShowModal={setShowModal}
-        userId={props.userId}
-        />
-                <CoverPhoto image={coverImage} />
-                 <ProfileImage user_id={props.user_id} backgroundImage={backgroundImage}/>
-             {/* {cardInfo.map(card => { 
-               return <Cards key={card.id} name={card.name}
-               title={card.title}
-              description={card.description}/>})} */} 
-                <Banner username={props.username}/>
-                 {/* <Cards/> */}
-                 
-                {/* <CarouselSlides slides={SliderData}/> */}
-                {/* <button onClick={OpenModal}>OpenModal</button> */}
-    
-          </div>
-      )
-    }     
-      
-
+          <TabModal
+          showModal={showModal}
+          setShowModal={setShowModal}
+          userId={props.userId}
+          />
+          <CoverPhoto image={coverImage} />
+          <ProfileImage user_id={props.user_id} backgroundImage={backgroundImage}/>
+          {/* {cardInfo.map(card => { 
+          return <Cards key={card.id} name={card.name}
+          title={card.title}
+          description={card.description}/>})} */} 
+          <Banner username={props.username}/>
+          {/* <Cards/> */}
+          {/* <CarouselSlides slides={SliderData}/> */}
+          {/* <button onClick={OpenModal}>OpenModal</button> */}
+        </div>
+    )
+};    

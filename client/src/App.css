@@ -1,10 +1,8 @@
-
 .slide.active {
   opacity: 1;
   transition-duration: 1s;
   transform: scale(1.08);
 }
-
 
 .navbar {
   background: black;
@@ -12,7 +10,9 @@
 
 .tabBody {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  align-items: center;
+  margin: 5px;
 }
 
 .tabTitle {
@@ -20,22 +20,32 @@
 }
 
 .description {
-  margin-top: 145px;
+  margin-top: 135px;
   padding: 20px;
-  width: 30%;
-  height: 100vh;
-  border-radius: 0 0 15px 0;
+  width: 95%;
+  height: 33vh;
+  border-radius: 0 0 15px 15px;
   text-align: center;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
   /* box-shadow: 6px 6px 4px -4px rgba(0, 0, 0, 0.7); */
   /* font-size: 100px; */
 }
+
+.description h3 {
+  font-size: 30px;
+  margin: 0;
+}
+
+.description p {
+  margin: 0;
+}
+
 .friends{
   margin-top: 160px;
 }
 .postSection {
-  margin-top: 160px;
-  padding: 20px;
+  margin-top: 20px;
+  /* padding: 20px; */
   width: 90%;
 }
 
@@ -48,4 +58,36 @@ span {
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
+}
+
+@media screen and (min-width: 340px) {
+  .description {
+    margin-top: 125px;
+  }
+}
+
+@media screen and (min-width: 670px) {
+  .tabBody {
+    flex-direction: row;
+    margin: 0;
+    align-items: start;
+  }
+  .description {
+    width: 30%;
+    height: 100vh;
+    border-radius: 0 0 15px 0;
+    margin-top: 143px;
+  }
+  .postSection {
+    margin-top: 160px;
+    padding: 20px;
+    width: 70%;
+  }
+  .description h3 {
+    margin: 24px 0;
+    font-size: 34px;
+  }
+  .description p {
+    margin: 0 0 16px;
+  }
 }
