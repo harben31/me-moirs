@@ -31,7 +31,6 @@ export default function Header({loggedIn, userId, friends}) {
     //             if(res) {
     //                 const data = res.data;
     //                 setUser(data);
-    //                 console.log(data)
     //              } 
 
                

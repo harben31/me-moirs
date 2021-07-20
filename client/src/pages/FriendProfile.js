@@ -67,10 +67,8 @@ export function FriendProfile(props) {
         });
     
         const file = await res.json();
-        console.log(file);
     
         setBackground(file.url);
-    
     } 
     return (
         <div>

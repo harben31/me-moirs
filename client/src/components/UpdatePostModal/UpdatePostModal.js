@@ -97,8 +97,6 @@ const Textarea = styled.textarea`
 export default function UpdatePostModal({ setPostContent, setPostTitle, UpdatePost, showUpdateModal, setShowUpdateModal, _id, title, content }) {
     const updatePostRef = useRef();
 
-    console.log('is this last id', _id);
-
     useEffect(() => {
         setPostTitle(title);
         setPostContent(content);

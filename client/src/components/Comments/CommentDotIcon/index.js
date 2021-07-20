@@ -12,7 +12,7 @@ export default function CommentDotIcon({ showCommentDelete, setShowCommentDelete
         handleCommentToggle();
         setShowCommentDelete(false);
         API.deleteComment(id)
-            .then(res => console.log(res))
+            .then()
             .catch(err => console.log(err));
     };
 

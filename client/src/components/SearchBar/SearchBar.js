@@ -75,14 +75,12 @@ export default function(props) {
 
     const handleSearch = (e) => {
         e.preventDefault();
-        console.log('EEEEEEEE', e)
         let apiCall;
         
         //regex space replace?????
         if(searchBy === 'email') {
             apiCall = API.userByEmail(props.user_id, searchVal)
         } else {
-            console.log('USERNAME')
             apiCall = API.userByUsername(props.user_id, searchVal)
         }
         
