@@ -15,7 +15,6 @@ export default function Friends(props) {
     }, [friendsArray])//I am notsure if we need this or not
     
     useEffect(() => {
-        console.log('My Id',props.user_id)
         API.getUsersFriends(props.user_id)
         .then(res => {
             console.log('My Friends Data11', res.data);
@@ -45,6 +44,8 @@ export default function Friends(props) {
                         {...friend}
                         user_id={props.user_id}
                         friend_id={props.friend}
+                        setNewFollow={setNewFollow}
+                        newFollow={newFollow}
 
                         /> 
                     )

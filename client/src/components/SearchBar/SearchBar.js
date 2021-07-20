@@ -96,10 +96,10 @@ export default function(props) {
         document.querySelector('.searchBar').value = '';
     };
 
-    useEffect(() => {
-        // need to make modal go away
-        console.log('!!! searchResults', searchResults)
-    }, [searchResults])
+    // useEffect(() => {
+    //     // need to make modal go away
+    //     // console.log('!!! searchResults', searchResults)
+    // }, [searchResults])
 
     return (
 

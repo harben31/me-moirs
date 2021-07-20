@@ -26,7 +26,6 @@ export default function ProfileImage(props) {
 
 
     useEffect(() => {
-      console.log(props)
       API.userInfo()
       .then((res) => {
         setProfile(res.data.image)

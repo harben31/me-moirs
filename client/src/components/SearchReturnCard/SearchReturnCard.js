@@ -8,7 +8,6 @@ export default function(props) {
 
     const handleFollowReq = (e) => {
         e.persist()
-        //mneed to filter out friends already in list
         e.preventDefault();
         API.addToUsersFriends(props.user_id, {
             friendId: friend._id,
