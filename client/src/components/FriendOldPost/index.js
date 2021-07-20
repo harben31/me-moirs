@@ -10,7 +10,7 @@ import { Button } from 'react-mdl';
 
 
 
-export default function OldPost(props) {
+export default function FriendOldPost(props) {
     const [commentActivated, setCommentActivated] = useState(false);
     const [menu, setMenu] = useState(false);
     const [commentMenu, setCommentMenu] = useState(false);
