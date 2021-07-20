@@ -44,7 +44,7 @@ export default function DotIcon({ UpdatePost, setPostTitle, setPostContent,  sho
     return (
 
         <div className='menuIcon'>
-            <span class='material-icons dotIcon' onClick={() => handleToggle()}>
+            <span className='material-icons dotIcon' onClick={() => handleToggle()}>
                 more_vert 
             </span> 
             {menu ? (

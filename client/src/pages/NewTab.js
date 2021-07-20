@@ -24,7 +24,6 @@ export default function NewTab(props) {
 
 
     useEffect(() => {
-        console.log('it rerendered');
         const Id = props.match.params.id;
          API.getTab(Id)
             .then(res => {
@@ -118,6 +117,8 @@ export default function NewTab(props) {
                             setPostContent={setPostContent}
                             setPostTitle={setPostTitle}
                             createPost={CreatePost}
+                            setPostChanged={setPostChanged}
+                            postChanged={postChanged}
                             />
                             {tabInfo ? (tabInfo.posts ? (tabInfo.posts.slice(0).reverse().map((post, i) => {
                                     return (

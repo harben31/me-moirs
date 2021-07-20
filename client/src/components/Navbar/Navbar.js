@@ -87,7 +87,6 @@ export default function Navbar(props) {
                       itemClass="carousel-item-padding-0-px"
                     responsive={responsive}>
                       {tabs && tabs.map((tab, index) => {
-                        console.log('is it mapping')
                         return(
                           <Link to={{
                             pathname: '/newtab/' + tab._id,
