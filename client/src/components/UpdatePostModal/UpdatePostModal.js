@@ -94,7 +94,7 @@ const Textarea = styled.textarea`
     }
 `;
 
-export default function UpdatePostModal({ setPostContent, setPostTitle, UpdatePost, showUpdateModal, setShowUpdateModal, _id, title, content }) {
+export default function UpdatePostModal({ setPostContent, setPostTitle, UpdatePost, showUpdateModal, setShowUpdateModal, _id, title, content, setMenu }) {
     const updatePostRef = useRef();
 
     console.log('is this last id', _id);
@@ -115,7 +115,7 @@ export default function UpdatePostModal({ setPostContent, setPostTitle, UpdatePo
         {showUpdateModal ? (
             <div className='updatePostBackground' ref={updatePostRef} onClick={CloseUpdateModal}>
                 <BoxContainer>
-                    <FormContainer onSubmit={(e) => {UpdatePost(e, _id); setShowUpdateModal(false)}}>
+                    <FormContainer onSubmit={(e) => {UpdatePost(e, _id); setShowUpdateModal(false); setMenu(false);}}>
                     {/* <MovingText
                         type="flip"
                         duration="2000ms"
