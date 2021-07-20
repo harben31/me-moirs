@@ -100,7 +100,7 @@ function App() {
                   <Header
                     loggedIn={auth}
                     userId={userId}
-                     friends={friends}
+                    friends={friends}
                   />
                   <RouteRegistration exact path='/' component={LoginSignup}/>
                   <RouteProtected exact path='/profile' component={Profile}/>

@@ -6,8 +6,6 @@ import './style.css';
 
 
 export default function DotIcon({ UpdatePost, setPostTitle, setPostContent,  showDelete, setShowDelete, handleToggle, menu, setMenu, _id, update, setUpdate, title, content, setTitleChanged, setContentChanged}) {
-
-    // const [showDelete, setShowDelete] = useState(false);
     const [showUpdateModal, setShowUpdateModal] = useState(false);
 
     const showDeleteModal = () => {
@@ -51,7 +49,6 @@ export default function DotIcon({ UpdatePost, setPostTitle, setPostContent,  sho
                 <ul className='menu'>
                     <li onClick={() => openUpdateModal()}>Edit</li>
                     <li onClick={() => showDeleteModal()}>Delete</li>
-
                     <li onClick={handleChange}>Update Photo</li>
 
                     {/* <li onClick={handleChange}>Add Photo</li>
@@ -89,6 +86,7 @@ export default function DotIcon({ UpdatePost, setPostTitle, setPostContent,  sho
                     setShowUpdateModal={setShowUpdateModal}
                     setTitleChanged={setTitleChanged}
                     setContentChanged={setContentChanged}
+                    setMenu={setMenu}
                 />
         </div>
     )

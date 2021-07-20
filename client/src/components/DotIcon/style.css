@@ -16,7 +16,7 @@
     position: absolute;
     list-style: none;
     top: 0px;
-    left: -60px ;
+    left: -100px ;
     z-index: 4;
     cursor: pointer;
 }
@@ -40,9 +40,9 @@
     position: absolute;
     z-index: 6;
     top: 45%;
-    left: 30%;
+    left: 15%;
     padding: 20px;
-    width: 500px;
+    width: 200px;
     background: white;
     border: 2px solid rgb(42, 157, 143);
     border-radius: 10px;
@@ -64,4 +64,28 @@
     color: white;
     padding: 5px 15px;
     border-radius: 10px;
+}
+
+@media screen and (min-width: 400px) {
+    .modal {
+        width: 300px;
+    }
+}
+
+@media screen and (min-width: 570px) {
+    .modal {
+        width: 400px;
+    }
+}
+
+@media screen and (min-width: 740px) {
+    .modal {
+        width: 500px;
+    }
+}
+
+@media screen and (min-width: 890px) {
+    .modal {
+        width: 600px;
+    }
 }
