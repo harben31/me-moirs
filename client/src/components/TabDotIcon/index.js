@@ -29,7 +29,7 @@ export default function TabDotIcon({ showTabDelete, setShowTabDelete, tabMenu, h
                 </span> 
                 {tabMenu ? (
                     <ul className='tabMenu'>
-                        <li className='tabEditBtn'>Edit</li>
+                        {/* <li className='tabEditBtn'>Edit</li> */}
                         <li className='tabDelBtn' onClick={() => showTabDeleteModal()}>Delete</li>
                     </ul>
                 ) : null}

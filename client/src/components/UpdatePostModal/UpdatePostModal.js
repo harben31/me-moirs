@@ -9,10 +9,10 @@ import { SubmitButton } from '../AccountBox/common';
 const BoxContainer = styled.div`
     position: absolute;
     z-index: 5;
-    top: 45%;
-    left: 30%;
+    top: 35%;
+    left: 15%;
     padding: 20px;
-    width: 500px;
+    width: 200px;
     filter: blur(0);
     text-align: center;
     min-height: 300px;
@@ -23,6 +23,24 @@ const BoxContainer = styled.div`
     background-color: #fff;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
     overflow: hidden;
+    @media screen and (min-width: 400px) {
+        width: 300px;
+    }
+    
+    @media screen and (min-width: 570px) {
+        width: 400px;
+    }
+    
+    @media screen and (min-width: 740px) {
+        width: 500px;
+    }
+    
+    @media screen and (min-width: 890px) {
+        width: 600px;
+    }
+    @media screen and (min-width: 1040px) {
+        width: 800px;
+    }
 `;
 
 const FormContainer = styled.form`
