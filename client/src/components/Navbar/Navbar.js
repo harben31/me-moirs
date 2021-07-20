@@ -63,7 +63,6 @@ export default function Navbar(props) {
         }
       }
             return (
-              // <UserContext.Provider value={{tabs}}>
                 <motion.div
                   initial={{opacity: 0, y: -7}}
                   animate={{opacity: 1, y: 0}}
