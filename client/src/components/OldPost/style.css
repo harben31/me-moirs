@@ -79,6 +79,7 @@
 @media screen and (min-width: 520px) {
     .post-image {
         flex-direction: row;
+        width: 220px;
     }
 
     .oldPostContent {

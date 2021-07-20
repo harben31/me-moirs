@@ -1,6 +1,5 @@
 const db = require('../models');
 const mongoose = require('mongoose');
-// const auth = require('../utils/auth');
 
 //onload of user profile= user data + minimal tabs data. 
 //Tabs data should not load until specific tab is selected by user. 
