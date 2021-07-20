@@ -42,6 +42,10 @@ function App() {
   
   const [tabs, setTabs] = useState();
   const [tabDeleted, setTabDeleted] = useState(false);
+  const [friendTabs, setFriendTabs] = useState([]);
+  const [tabsFriend, setTabsFriend] = useState(false);
+
+
 
   useEffect(() => {
     if(auth) {
@@ -68,11 +72,24 @@ function App() {
     })
   }, []);
 
+
   const deleteTab = (id) => {
     API.deleteTab(id)
         .then(res => setTabDeleted(true))
         .catch(err => console.log(err));
   };
+
+
+  const friendTab = (id) => {
+    API.getFriendInfo(id)
+    .then(res => {
+      setTabsFriend(true);
+      setFriendTabs(res.data.shortTabInfo);
+    }).catch(err => console.log(err));
+  } 
+
+
+  //moved this fn inside of the App fn so I could get access to the setUser hook
 
   const RouteProtected = ({ component: Component, ...rest }) => {
     const authApi = useContext(AuthApi);
@@ -91,7 +108,7 @@ function App() {
   
     return (
 
-      <TabContext.Provider value={{tabs, deleteTab}}> 
+      <TabContext.Provider value={{tabs, deleteTab, friendTabs, friendTab, tabsFriend}}> 
         <AnimatePresence>
           <motion.div>
             <AuthApi.Provider value={{ auth, setAuth }}>

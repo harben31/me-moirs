@@ -15,7 +15,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 
 export default function Navbar(props) {
-    const { tabs } = useContext(TabContext);
+    const { tabs, friendTabs, tabsFriend } = useContext(TabContext);
 
     const authApi = useContext(AuthApi);
     // const [tabs, setTabs] = useState();
@@ -74,11 +74,12 @@ export default function Navbar(props) {
                 >
                 {tabs ? (
                   <div className= 'carousel'>
-                
+            
                     <TabModal 
                       showModal={showModal}
                       setShowModal={setShowModal}
                       userId={props.userId}/>
+                      
                     <Carousel
                       className= 'carousel-tabs'
                       containerClass="container-with-dots"

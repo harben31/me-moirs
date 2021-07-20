@@ -2,7 +2,10 @@ import React, { createContext } from 'react';
 
 const TabContext = createContext({
     tabs: [],
-    deleteTab: () => {}
+    deleteTab: () => {},
+    friendTabs:[],
+    tabsFriend: false,
+    friendTab:() => {}
 });
 
 export default TabContext;

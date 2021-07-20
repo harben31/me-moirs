@@ -19,6 +19,9 @@ module.exports = {
     findFriendById: function (req, res) {
         db.User
             .findOne({_id:req.params.id})
+            .populate({
+                path:'shortTabInfo'
+            })
             .then(dbModel => {
                 res.json(dbModel)
             })
