@@ -12,9 +12,12 @@ export default function ProfileImage(props) {
 
   const [images, setImages] = useState('');
   const [profile, setProfile] = useState('');
- 
+  
+  console.log('Props Friend Image', props.friendImage);
 
-
+  // if(props.friendImage){
+  //   setProfile(props.friendImage);
+  // }
     useEffect(() => {
       if (images) {
       API.addImage(props.user_id, images)
@@ -28,7 +31,7 @@ export default function ProfileImage(props) {
     useEffect(() => {
       API.userInfo()
       .then((res) => {
-        setProfile(res.data.image)
+          setProfile(res.data.image)
       }).catch(err => {
         console.log(err)
       })
@@ -59,7 +62,8 @@ export default function ProfileImage(props) {
      return (
         <div className= 'wrapper'>
             <div className= 'profile'>
-              <img className= 'profile-image' src={!profile ? (defaultUserImage) : profile} alt= 'profile image'/>
+              {props.friendImage ? (<img className= 'profile-image' src={props.friendImage} alt= 'profile image'/>) :
+             (<img className= 'profile-image' src={!profile ? (defaultUserImage) : profile} alt= 'profile image'/>)}
             <div className= 'add-image'>
             <div style={{position: 'relative'}}>
              <IconButton name="more_vert" id="demo-menu-lower-right" />

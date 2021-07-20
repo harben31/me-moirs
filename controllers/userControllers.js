@@ -22,6 +22,9 @@ module.exports = {
         console.log('findUserById',req.params.id)
         db.User
             .findOne({_id:req.params.id})
+            .populate({
+                path:'shortTabInfo'
+            })
             .then(dbModel => {
                 res.json(dbModel)
             })
