@@ -13,7 +13,6 @@ import { Button } from 'react-mdl';
 
 
 export default function OldPost(props) {
-    console.log(props, '!!!!!!!!!!!!!!!!!')
     const [commentActivated, setCommentActivated] = useState(false);
     const [menu, setMenu] = useState(false);
     const [commentMenu, setCommentMenu] = useState(false);
@@ -92,11 +91,10 @@ export default function OldPost(props) {
         });
     
         const file = await res.json();
-        console.log(file);
     
         setpostImage(file.url);
     
-      }
+    }
 
     return (
         <div className='oldPost'>
@@ -137,54 +135,55 @@ export default function OldPost(props) {
                         setContentChanged={props.setContentChanged}
                     />
                 </div>
-                <p className='oldPostTitle'>
-                    <b>{props.title}</b>
-                </p>
-                <p>
-                    {props.content}
-                </p>
-                <Likes
-                likes={props.likes}
-                user_id={props.user_id}
-                post_id={props._id}
-                />
-                <CommentButton createComment={CreateComment} />
-                {commentActivated ? 
-                    (
+                    <p className='oldPostTitle'>
+                        <b>{props.title}</b>
+                    </p>
+                    <p>
+                        {props.content}
+                    </p>
                     <div>
-                        <div>
-                            <CommentBox
-                            user_id={props.user_id}
-                            post_id={props._id}
-                            username={props.username}
-                            setComment={props.setComment} 
-                            commentMenu={commentMenu}
-                            />
-                        </div>
-                        <div>
-                            {props.comments.slice(0).reverse().map((comment, i) => {
-                                return (
-                                    <Comment 
-                                        key={i}
-                                        formatDate={formatDate}
-                                        {...comment}
-                                        handleCommentToggle={handleCommentToggle}
-                                        commentMenu={commentMenu}
-                                        setCommentMenu={setCommentMenu}
-                                        updateComment={props.updateComment} 
-                                        setUpdateComment={props.setUpdateComment}
-                                        setShowCommentDelete={setShowCommentDelete}
-                                        showCommentDelete={showCommentDelete}
-                                    />  
-                                )
-                            })}
-                            
-                        </div>
+                        <Likes
+                        likes={props.likes}
+                        user_id={props.user_id}
+                        post_id={props._id}
+                        />
+                        <CommentButton createComment={CreateComment} />
+                        {commentActivated ? 
+                            (
+                            <div>
+                                <div>
+                                    <CommentBox
+                                    user_id={props.user_id}
+                                    post_id={props._id}
+                                    username={props.username}
+                                    setComment={props.setComment} 
+                                    commentMenu={commentMenu}
+                                    />
+                                </div>
+                                <div>
+                                    {props.comments.slice(0).reverse().map((comment, i) => {
+                                        return (
+                                            <Comment 
+                                                key={i}
+                                                formatDate={formatDate}
+                                                {...comment}
+                                                handleCommentToggle={handleCommentToggle}
+                                                commentMenu={commentMenu}
+                                                setCommentMenu={setCommentMenu}
+                                                updateComment={props.updateComment} 
+                                                setUpdateComment={props.setUpdateComment}
+                                                setShowCommentDelete={setShowCommentDelete}
+                                                showCommentDelete={showCommentDelete}
+                                            />  
+                                        )
+                                    })}
+                                    
+                                </div>
+                            </div>
+                            ) : 
+                                null
+                        }
                     </div>
-                    ) : 
-                        null
-                }
-                
             </div>
         </div>
   )

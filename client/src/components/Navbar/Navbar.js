@@ -15,7 +15,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 
 export default function Navbar(props) {
-    const { tabs } = useContext(TabContext);
+    const { tabs, friendTabs, tabsFriend } = useContext(TabContext);
 
     const authApi = useContext(AuthApi);
     // const [tabs, setTabs] = useState();
@@ -63,7 +63,6 @@ export default function Navbar(props) {
         }
       }
             return (
-              // <UserContext.Provider value={{tabs}}>
                 <motion.div
                   initial={{opacity: 0, y: -7}}
                   animate={{opacity: 1, y: 0}}
@@ -75,11 +74,12 @@ export default function Navbar(props) {
                 >
                 {tabs ? (
                   <div className= 'carousel'>
-                
+            
                     <TabModal 
                       showModal={showModal}
                       setShowModal={setShowModal}
                       userId={props.userId}/>
+                      
                     <Carousel
                       className= 'carousel-tabs'
                       containerClass="container-with-dots"
@@ -87,7 +87,6 @@ export default function Navbar(props) {
                       itemClass="carousel-item-padding-0-px"
                     responsive={responsive}>
                       {tabs && tabs.map((tab, index) => {
-                        console.log('is it mapping')
                         return(
                           <Link to={{
                             pathname: '/newtab/' + tab._id,

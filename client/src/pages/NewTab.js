@@ -3,7 +3,6 @@ import OldPost from '../components/OldPost';
 import React, { useState, useEffect } from 'react';
 import API from '../utils/API';
 import TabDotIcon from '../components/TabDotIcon';
-import { Redirect } from 'react-router-dom';
 
 export default function NewTab(props) {
 
@@ -21,10 +20,7 @@ export default function NewTab(props) {
     const [target, setTarget] = useState(false);
     const [postChanged, setPostChanged] = useState(false);
 
-
-
     useEffect(() => {
-        console.log('it rerendered');
         const Id = props.match.params.id;
          API.getTab(Id)
             .then(res => {
@@ -35,11 +31,6 @@ export default function NewTab(props) {
             })
             .catch(err => console.log(err));
     }, [props.match.params.id, post, comment, update, updateComment, postChanged, updatePostImage]);
-
-
-    // useEffect(() => {(
-    //     <Redirect to='/profile'/>
-    // )}, [tabUpdate]);
 
     const CreatePost = (e) => {
         e.preventDefault();
@@ -57,14 +48,11 @@ export default function NewTab(props) {
 
     const UpdatePost = (e, _id) => {
         e.preventDefault();
-        console.log('did we get here on update');
         API.updatePost(_id, {
-            // _id: postId,
             title: postTitle,
             content: postContent
         })
         .then(res => {
-            console.log(res.data);
             setPostChanged(true);
             props.history.push('/newtab/' + props.match.params.id);
         })
@@ -86,7 +74,7 @@ export default function NewTab(props) {
             tab_id: tabInfo._id,
             follow: true
         })
-        .then(res => console.log(res))
+        .then()
         .catch(err => console.log(err));
     };
 
@@ -118,6 +106,8 @@ export default function NewTab(props) {
                             setPostContent={setPostContent}
                             setPostTitle={setPostTitle}
                             createPost={CreatePost}
+                            setPostChanged={setPostChanged}
+                            postChanged={postChanged}
                             />
                             {tabInfo ? (tabInfo.posts ? (tabInfo.posts.slice(0).reverse().map((post, i) => {
                                     return (

@@ -11,9 +11,6 @@ import defaultUserImage from '../../defaultUserImage.png';
 export default function ProfileImage(props) {
 
   const [images, setImages] = useState('');
-  const [profile, setProfile] = useState('');
- 
-
 
     useEffect(() => {
       if (images) {
@@ -23,20 +20,6 @@ export default function ProfileImage(props) {
       })
     }
     }, [images])
-
-
-    useEffect(() => {
-      console.log(props)
-      API.userInfo()
-      .then((res) => {
-        setProfile(res.data.image)
-      }).catch(err => {
-        console.log(err)
-      })
-    }, [])
-
-   
-
 
   const uploadImage = async e => {
       const files = e.target.files;
@@ -51,16 +34,15 @@ export default function ProfileImage(props) {
       });
 
       const file = await res.json();
-      console.log(file);
 
       setImages(file.url);
-  
   }
 
      return (
         <div className= 'wrapper'>
             <div className= 'profile'>
-              <img className= 'profile-image' src={!profile ? (defaultUserImage) : profile} alt= 'profile image'/>
+              {props.friendImage ? (<img className= 'profile-image' src={props.friendImage} alt= 'profile image'/>) :
+             (<img className= 'profile-image' src={!props.profile ? (defaultUserImage) : props.profile} alt= 'profile image'/>)}
             <div className= 'add-image'>
             <div style={{position: 'relative'}}>
              <IconButton name="more_vert" id="demo-menu-lower-right" />

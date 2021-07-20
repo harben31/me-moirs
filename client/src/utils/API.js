@@ -25,8 +25,6 @@ export default {
     },
 
     addImage: function(id, data) {
-        console.log(id)
-        console.log(data)
         return axios.put('/api/users/image/' + id, {imageData: data })
     },
     
@@ -41,7 +39,6 @@ export default {
 
     //----search for other users-----
     userByUsername: function(_id, username){
-        console.log(_id, username);
         return axios.get(`/api/users/username?id=${_id}&search=${username}`)
     },
 
@@ -51,7 +48,6 @@ export default {
 
     //need to put friends id in req.body under friendId
     addToUsersFriends: function(userId, friendId){
-        console.log('user_id:', userId, 'friendId:', friendId)
         return axios.put('/api/users/friends/' + userId, friendId)
     },
 
@@ -91,7 +87,6 @@ export default {
     },
 
     getTab: function(id) {
-        console.log(id)
         return axios.get('/api/tabs/' + id)
     },
 
@@ -125,7 +120,6 @@ export default {
     },
 
     updatePost: function(_id, postData) {
-        console.log('Did we get in the frontend API', );
         return axios.put('/api/posts/' + _id, postData)
     },
 
@@ -138,7 +132,6 @@ export default {
     },
 
     addPostImage: function(id, data) {
-        console.log('addPostImage', id, data)
         return axios.put('/api/posts/image/' + id,  {addPostImage: data})
     },
 

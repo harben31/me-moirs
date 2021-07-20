@@ -3,6 +3,7 @@ const userController = require('../../controllers/userControllers')
 const { body, validationResult } = require('express-validator');
 const bcrypt = require('bcryptjs');
 const db = require('../../models');
+const withAuth = require('../../utils/auth');
 
 router.route('/signup').post(
     [
@@ -40,6 +41,7 @@ router.route('/signup').post(
                 .then((userData) => {
                     const sessUser = userData._id ;
                     req.session.user = sessUser;
+                    req.session.logged_in = true;
                     res.json({
                         message: 'Successfully created!',
                         auth: true,
@@ -128,6 +130,7 @@ router.route('/login').post(
         if (isMatch) {
             const sessUser = user._id;
             req.session.user = sessUser;
+            req.session.logged_in = true;
             res.json({
                 message: 'You are successfully logged in!',
                 auth: true, 
@@ -147,6 +150,7 @@ router.route('/me')
             if(req.session.user) {
                 return res.json({
                     user_id: req.session.user,
+                    logged_in: req.session.logged_in,
                     message: 'You are signed in!',
                     auth:true
                 });
@@ -183,10 +187,10 @@ router.route('/logout')
 })
 
 router.route('/username/')
-    .get(userController.findUserByUsername)
+    .get(withAuth, userController.findUserByUsername)
 
 router.route('/userId/:id')
-    .get(userController.findFriendById)
+    .get(withAuth, userController.findFriendById)
     // .put(userController.updateUser)
     .delete(userController.deleteUser)
 
@@ -198,17 +202,18 @@ router.route('/background/:id')
     .put(userController.coverPhoto)
 
 router.route('/')
-    .get(userController.findAllUsers)
+    .get(withAuth, userController.findAllUsers)
 
 // router.route('/email/:email')
 //     .get(userController.findUserByEmail)
 
 router.route('/friends/:id')
-    .get(userController.findAllUsersFriends)
+    .get(withAuth, userController.findAllUsersFriends)
     .put(userController.addToFriends)
 
 router.route('/tabs/:id')
     .put(userController.followTab)
+    .get(withAuth, userController.findAllUsersFriends)
     .get(userController.findFollowedTabs)
 
 // router.route('/posts/:id')

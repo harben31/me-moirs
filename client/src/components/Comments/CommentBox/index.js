@@ -42,10 +42,7 @@ export default function CommentBox(props) {
             post_id: props.post_id,
             user_id: props.user_id
         })
-        .then(res => {
-            console.log(res);
-            props.setComment(true);
-        })
+        .then(res => props.setComment(true))
         .catch(err => console.log(err));
 
         document.querySelector('#commentInput').value = '';

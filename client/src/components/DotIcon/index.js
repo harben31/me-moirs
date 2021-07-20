@@ -5,9 +5,13 @@ import API from '../../utils/API';
 import './style.css';
 
 
+<<<<<<< HEAD
 export default function DotIcon({ UpdatePost, setPostTitle, setPostContent,  showDelete, setShowDelete, handleToggle, menu, setMenu, _id, update, setUpdate, title, content, setTitleChanged, setContentChanged, postImages}) {
 
     // const [showDelete, setShowDelete] = useState(false);
+=======
+export default function DotIcon({ UpdatePost, setPostTitle, setPostContent,  showDelete, setShowDelete, handleToggle, menu, setMenu, _id, update, setUpdate, title, content, setTitleChanged, setContentChanged}) {
+>>>>>>> 89650169b3531339406aad9c1b4e8cd5d1235744
     const [showUpdateModal, setShowUpdateModal] = useState(false);
     const [showInput, setShowInput] = useState(false);
 
@@ -16,6 +20,9 @@ export default function DotIcon({ UpdatePost, setPostTitle, setPostContent,  sho
     }
 
 
+    const handleChange = (e) => {
+        e.preventDefault();
+    }
 
     const openUpdateModal = () => {
         showUpdateModal ? setShowUpdateModal(false) : setShowUpdateModal(true);
@@ -35,21 +42,20 @@ export default function DotIcon({ UpdatePost, setPostTitle, setPostContent,  sho
         handleToggle();
         setShowDelete(false);
         API.deletePost(id)
-            .then(res => console.log(res))
+            .then()
             .catch(err => console.log(err));
     };
 
     return (
 
         <div className='menuIcon'>
-            <span class='material-icons dotIcon' onClick={() => handleToggle()}>
+            <span className='material-icons dotIcon' onClick={() => handleToggle()}>
                 more_vert 
             </span> 
             {menu ? (
                 <ul className='menu'>
                     <li onClick={() => openUpdateModal()}>Edit</li>
                     <li onClick={() => showDeleteModal()}>Delete</li>
-
                     <li onClick={handleChange}>Update Photo</li>
 
 
@@ -63,7 +69,7 @@ export default function DotIcon({ UpdatePost, setPostTitle, setPostContent,  sho
                      )
                      }
 
-                        </ul>
+                </ul>
                     
                 ) : null}
                 <DeleteModal  
@@ -86,8 +92,8 @@ export default function DotIcon({ UpdatePost, setPostTitle, setPostContent,  sho
                     setShowUpdateModal={setShowUpdateModal}
                     setTitleChanged={setTitleChanged}
                     setContentChanged={setContentChanged}
+                    setMenu={setMenu}
                 />
-            </div>
-        // </div>
+        </div>
     )
 };

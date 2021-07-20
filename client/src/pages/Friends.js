@@ -15,12 +15,10 @@ export default function Friends(props) {
     }, [friendsArray])//I am notsure if we need this or not
     
     useEffect(() => {
-        console.log('My Id',props.user_id)
         API.getUsersFriends(props.user_id)
         .then(res => {
-            console.log('My Friends Data11', res.data);
             setFriendsArray(res.data) 
-            })
+        })
             
             .catch(err => console.log(err));
     }, [newFollow]);
@@ -38,13 +36,14 @@ export default function Friends(props) {
             />
             {friendsArray.length ?  
                 friendsArray.map((friend, i) => { 
-                    console.log('Friends', friend)
                     return ( 
                         <MyFriends 
                         key={i}
                         {...friend}
                         user_id={props.user_id}
                         friend_id={props.friend}
+                        setNewFollow={setNewFollow}
+                        newFollow={newFollow}
 
                         /> 
                     )

@@ -1,11 +1,28 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import './style.css';
 import userImage from '../../defaultUserImage.png';
 import { Link } from 'react-router-dom';
+import API from '../../utils/API';
+import TabContext from '../../utils/tabContext';
 
 
 export default function MyFriends(props) {
-    console.log("props",props);
+    const { friendTab }= useContext(TabContext);
+    
+    const handleUnFollowReq = () => {
+        API.addToUsersFriends(props.user_id, {
+            friendId: props._id,
+            follow: false
+        })
+        .then(res => {
+            if(!props.newFollow){
+                props.setNewFollow(true)
+            } else{
+                props.setNewFollow(false)
+            }
+        })
+    };
+    
     return (
         <div className='my-friends'>
                 <div className='friend-info'>
@@ -32,7 +49,7 @@ export default function MyFriends(props) {
                         {/* //We Should add friend id (+_id) to the path after friendprofile */}
                         <Link to={{ pathname:`/friendprofile/${props._id}`}}>
 
-                            <button className='view-profile'>
+                            <button className='view-profile' onClick={friendTab(props.id)}>
 
                                 View Profile 
 
@@ -41,7 +58,7 @@ export default function MyFriends(props) {
                         </Link>
                         <button 
                         className='unfollow-btn'
-                      //onClick={handleUnFollowReq}
+                      onClick={handleUnFollowReq}
                         >
 
                             UnFollow

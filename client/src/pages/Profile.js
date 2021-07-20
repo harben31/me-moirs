@@ -8,40 +8,10 @@ import TabModal from '../components/TabModal/TabModal';
 
 
 export default function Profile(props) {
-    //we have user at app.js do we need both? can we do one at top level?
-    // const [user, setUser] = useState([]);
-   
-    // const [cardInfo, setCardInfo] = useState([]);
-    const [coverImage, setCoverImage] = useState([]);
-    const [profileImage, setProfileImage] = useState([]);
+  console.log('profile')
+
     const [background, setBackground] = useState('');
-   
     const [showModal, setShowModal] = useState(false);
-    // const OpenModal = () => {
-    //     setShowModal(prev => !prev);
-    // };
-
-    useEffect(() => {
-        API.userInfo()
-            .then(res => {
-              console.log(props)
-                if(res) {
-                    const data = res.data;
-                    // console.log('userINfo', data, 'props: ', props)
-                    // console.log('testing !!!!!!!!!!!!!!')
-                    // //setting the state (on App.js) to user id
-                    props.setUserId(data._id);
-                    // let userData = {...props.user}
-                    props.setUsername(data.username);
-                    console.log('!!!!friends', data.friends)
-                    // props.setFriends(data.friends);
-                    // props.setUser('name');               
-                } 
-                // return data;
-            })
-            .catch(err => console.log(err));
-    }, []);
-
 
     useEffect(() => {
         if (background) {
@@ -52,16 +22,6 @@ export default function Profile(props) {
       }
       }, [background])
   
-  
-      useEffect(() => {
-        API.userInfo()
-        .then((res) => {
-          setCoverImage(res.data.background)
-        }).catch(err => {
-          console.log(err)
-        })
-      }, [])
-
     const backgroundImage = async e => {
         const files = e.target.files;
         const data = new FormData();
@@ -75,35 +35,26 @@ export default function Profile(props) {
         });
     
         const file = await res.json();
-        console.log(file);
     
         setBackground(file.url);
-    
-      } 
+    };
 
 
     return (
        
         <div>
-        <TabModal
-        showModal={showModal}
-        setShowModal={setShowModal}
-        userId={props.userId}
-        />
-                <CoverPhoto image={coverImage} />
-                 <ProfileImage user_id={props.user_id} backgroundImage={backgroundImage}/>
-             {/* {cardInfo.map(card => { 
-               return <Cards key={card.id} name={card.name}
-               title={card.title}
-              description={card.description}/>})} */} 
-                <Banner username={props.username}/>
-                 {/* <Cards/> */}
-                 
-                {/* <CarouselSlides slides={SliderData}/> */}
-                {/* <button onClick={OpenModal}>OpenModal</button> */}
-    
-          </div>
-      )
-    }     
-      
-
+          <TabModal
+          showModal={showModal}
+          setShowModal={setShowModal}
+          userId={props.userId}
+          />
+          <CoverPhoto image={props.coverImage} />
+          <ProfileImage 
+          user_id={props.user_id}
+          backgroundImage={backgroundImage}
+          profile={props.profile}
+          /> 
+          <Banner username={props.username}/>
+        </div>
+    )
+};    
