@@ -5,7 +5,7 @@ import './style.css';
 import API from '../../utils/API';
 // import TabContext from '../../utils/tabContext';
 import { Link } from 'react-router-dom';
-import Image from '../../logo.png';
+import Image from '../../m-logo.png';
 
 
 export default function Header({loggedIn, userId, friends}) {
@@ -46,9 +46,9 @@ export default function Header({loggedIn, userId, friends}) {
                     <div className='header'>
                         <div className='header-wrapper'>
                             <div className='logo'> {/* changed from class to className  */} 
-                            <Link to="/">Name of the app...</Link>
+                            <Link to="/">ME-MOIRS</Link>
                                 {/* <a href='#home'>Name of the app.</a> */}
-                                <img src={Image} alt='logo' height={40} width={40} />
+                                <img src={Image} alt='logo' height={40} width={40}/>
                             </div>
                         </div>
                     </div>
@@ -59,7 +59,7 @@ export default function Header({loggedIn, userId, friends}) {
                     <div className='header'>
                         <div className='header-wrapper'>
                             <div className='logo'> {/* changed from class to className  */} 
-                               <Link to="/">Name of the app...</Link>
+                               <Link to="/">ME-MOIRS</Link>
                         
                                 {/* <a href='#home'>Name of the app.</a> */}
                             <img src={Image} alt='logo' height={40} width={40} />                            
