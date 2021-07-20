@@ -58,7 +58,7 @@ export default function TabCards(props) {
             <TopContainer>
                 <BackDrop>
                     <Link className='friend-tab-page' to={{
-                        pathname: '/newtab/' + props.tabInfo._id,
+                        pathname: '/friendtab/' + props.tabInfo._id,
                     }}>
                         <HeaderContainer>   
                         <HeaderText>
