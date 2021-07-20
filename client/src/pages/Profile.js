@@ -73,11 +73,9 @@ export default function Profile(props) {
         });
     
         const file = await res.json();
-        console.log(file);
     
         setBackground(file.url);
-    
-      } 
+    };
 
 
     return (

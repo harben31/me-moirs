@@ -99,10 +99,8 @@ export default function PostsForm({setPostContent, setPostTitle, setPostChanged,
         // e.preventDefault();
 
         if(!postChanged){
-            console.log('false', postChanged)
             setPostChanged(true);
         } else {
-            console.log('true', postChanged)
             setPostChanged(false);
         }
         setShowInput({showInput: !showInput});
@@ -130,7 +128,6 @@ export default function PostsForm({setPostContent, setPostTitle, setPostChanged,
     //         content: postContent,
     //     })
     //     .then((res) => {
-    //         console.log(res);
     //         setPostInfo(res.data)
     //     })
     //     .catch(err => {

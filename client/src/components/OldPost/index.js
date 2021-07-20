@@ -90,11 +90,10 @@ export default function OldPost(props) {
         });
     
         const file = await res.json();
-        console.log(file);
     
         setpostImage(file.url);
     
-      }
+    }
 
     return (
         <div className='oldPost'>

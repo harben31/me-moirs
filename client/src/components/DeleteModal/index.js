@@ -1,7 +1,6 @@
 import React, {useRef} from 'react';
 
 export default function DeleteModal({setShowDelete, showDelete, update, setUpdate, _id, deletePost, commentId, deleteComment }) {
-    // console.log(_id);
     const modalRef = useRef();
 
     const CloseModal = e => {

@@ -37,7 +37,7 @@ export default function DotIcon({ UpdatePost, setPostTitle, setPostContent,  sho
         handleToggle();
         setShowDelete(false);
         API.deletePost(id)
-            .then(res => console.log(res))
+            .then()
             .catch(err => console.log(err));
     };
 

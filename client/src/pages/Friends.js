@@ -17,9 +17,8 @@ export default function Friends(props) {
     useEffect(() => {
         API.getUsersFriends(props.user_id)
         .then(res => {
-            console.log('My Friends Data11', res.data);
             setFriendsArray(res.data) 
-            })
+        })
             
             .catch(err => console.log(err));
     }, [newFollow]);
@@ -37,7 +36,6 @@ export default function Friends(props) {
             />
             {friendsArray.length ?  
                 friendsArray.map((friend, i) => { 
-                    console.log('Friends', friend)
                     return ( 
                         <MyFriends 
                         key={i}

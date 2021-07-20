@@ -56,14 +56,12 @@ export default function NewTab(props) {
 
     const UpdatePost = (e, _id) => {
         e.preventDefault();
-        console.log('did we get here on update');
         API.updatePost(_id, {
             // _id: postId,
             title: postTitle,
             content: postContent
         })
         .then(res => {
-            console.log(res.data);
             setPostChanged(true);
             props.history.push('/newtab/' + props.match.params.id);
         })
@@ -85,7 +83,7 @@ export default function NewTab(props) {
             tab_id: tabInfo._id,
             follow: true
         })
-        .then(res => console.log(res))
+        .then()
         .catch(err => console.log(err));
     };
 

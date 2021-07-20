@@ -50,10 +50,8 @@ export default function ProfileImage(props) {
       });
 
       const file = await res.json();
-      console.log(file);
 
       setImages(file.url);
-  
   }
 
      return (
