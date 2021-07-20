@@ -5,8 +5,9 @@ import API from '../../utils/API';
 import './style.css';
 
 
-export default function DotIcon({ UpdatePost, setPostTitle, setPostContent,  showDelete, setShowDelete, handleToggle, menu, setMenu, _id, update, setUpdate, title, content, setTitleChanged, setContentChanged}) {
+export default function DotIcon({ UpdatePost, setPostTitle, setPostContent,  showDelete, setShowDelete, handleToggle, menu, setMenu, _id, update, setUpdate, title, content, setTitleChanged, setContentChanged, postImages}) {
     const [showUpdateModal, setShowUpdateModal] = useState(false);
+    const [showInput, setShowInput] = useState(false);
 
     const showDeleteModal = () => {
         showDelete ? setShowDelete(false) : setShowDelete(true);
@@ -20,6 +21,16 @@ export default function DotIcon({ UpdatePost, setPostTitle, setPostContent,  sho
     const openUpdateModal = () => {
         showUpdateModal ? setShowUpdateModal(false) : setShowUpdateModal(true);
     }
+
+
+    const handleChange = (e) => {
+        e.preventDefault();
+
+        setShowInput({showInput: !showInput});
+    };
+
+    const x = showInput;
+
 
     const deletePost = (id) => {
         handleToggle();
@@ -40,8 +51,6 @@ export default function DotIcon({ UpdatePost, setPostTitle, setPostContent,  sho
                     <li onClick={() => openUpdateModal()}>Edit</li>
                     <li onClick={() => showDeleteModal()}>Delete</li>
                     <li onClick={handleChange}>Update Photo</li>
-
-
                 </ul>
                     
             ) : null}

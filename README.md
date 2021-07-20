@@ -1,29 +1,83 @@
-# Create React Express App
+#       ME-MOIRS
 
-## About This Boilerplate
 
-This setup allows for a Node/Express/React app which can be easily deployed to Heroku.
+#       License 
 
-The front-end React app will auto-reload as it's updated via webpack dev server, and the backend Express app will auto-reload independently with nodemon.
+![License](https://img.shields.io/static/v1?label=license&message=MIT&color=brightgreen)
 
-## Starting the app locally
 
-Start by installing front and backend dependencies. While in this directory, run the following command:
+#       Description:
 
-```
-npm install
-```
+This application was developed for the user to be able to share interests and life-events with friends accross the app.
 
-This should install node modules within the server and the client folder.
 
-After both installations complete, run the following command in your terminal:
 
-```
-npm start
-```
+#       Table of Contents 
 
-Your app should now be running on <http://localhost:3000>. The Express server should intercept any AJAX requests from the client.
 
-## Deployment (Heroku)
+# [License](#License)
 
-To deploy, simply add and commit your changes, and push to Heroku. As is, the NPM scripts should take care of the rest.
+# [How-to-use](#How-to-use)
+
+# [Link-to-deployed-application](#Link-to-deployed-application)
+
+# [Technologies](#Technologies)
+
+# [Contributors](#Contributors)
+
+# [Screenshot-to-deployed-application](#Screenshot-to-deployed-application)
+
+# [Possible-future-add-ons](#Possible-future-add-ons)
+
+
+#        How-to-use  
+
+Afer navigating to the application site, new users are prompted to create a username and password. Existing users can simply login. Once logged in, the user is then directred to the profile page. The profile page allows the option for the user to upload their profile and backound images to further customize their experience while using the app. Located in the navbar are some features that provide the user with the ability to create new tab titles, see previously created tab titles, find and follow friends, or logout. When the user clicks on an existing tab title, they will be redirected to a page where they can see all of their posts, images, and details relevant to that tab title. This post page also allows the user to create new posts that they wish to share. Each post has the option to receive likes and comments from fellow friends and followers. The user also has the option to find other friends, view their profile content, and choose to follow one onther's specifc content and interests.
+
+
+#       Link-to-deployed-application
+
+[https://protected-basin-89410.herokuapp.com/](https://protected-basin-89410.herokuapp.com/)
+
+
+
+#       Technologies
+
+* Axios
+* Bcrypt.js
+* Body-Parser
+* Express
+* Express-Sessions
+* Express-Validator
+* Framer-Motion
+* If-Env
+* Ityped
+* Mongoose
+* Node.js
+* React
+* React-Moving-Text
+* React-Router-Dom
+* React-Multi-Carousel
+* React-MDL
+* Styled-Components
+
+
+
+#       Contributors
+
+* [Asia-Alnahi](https://github.com/asia-codeing)
+* [Ben-Harris](https://github.com/harben31)
+* [Cassandra-Cunningham](https://github.com/cmcunningham27)
+* [Marisa-Hanna](https://github.com/MarisaHanna)
+
+
+#      Screenshot-to-deployed-application
+
+![login](images/login.png)
+![profile](images/profile.png)
+![posts](images/posts.png)
+![friends](images/friends.png)
+
+
+
+#       Possible-future-add-ons
