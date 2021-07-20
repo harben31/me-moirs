@@ -35,7 +35,7 @@
 
 .new-tab i, .logout i, .friends-tab span{
     padding: 0px 0px 8px 0px;
-    font-size: 25px;
+    font-size: 24px;
     color: rgb(255, 255, 255);
     cursor: pointer;
 }
@@ -56,12 +56,16 @@
 
 @media screen and (max-width: 500px ){
     
-.new-tab i, .logout i, friends-tab span {
-    font-size: 20px;
-}
+    .new-tab i, .logout i {
+        font-size: 20px;
+    }
 
-.new-tab p, .logout p, .friends-tab p, .tabs{
-    font-size: 10px;
-}
+    .friends-tab span {
+        font-size: 19px;
+    }
+
+    .new-tab p, .logout p, .friends-tab p, .tabs{
+        font-size: 10px;
+    }
 
 }
