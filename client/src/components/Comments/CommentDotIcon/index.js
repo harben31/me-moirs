@@ -23,7 +23,7 @@ export default function CommentDotIcon({ showCommentDelete, setShowCommentDelete
             </span> 
             {commentMenu ? (
                 <ul className='commentMenu'>
-                    <li>Edit</li>
+                    {/* <li>Edit</li> */}
                     <li onClick={() => showCommentDeleteModal()}>Delete</li>
                 </ul>
             ) : null}

@@ -39,9 +39,9 @@
     position: absolute;
     z-index: 6;
     top: 45%;
-    left: 30%;
+    left: 15%;
     padding: 20px;
-    width: 500px;
+    width: 200px;
     background: white;
     border: 2px solid rgb(42, 157, 143);
     border-radius: 10px;
@@ -68,4 +68,27 @@
 .tabDelBtn,
 .tabEditBtn {
     cursor: pointer;
+}
+@media screen and (min-width: 400px) {
+    .tabModal {
+        width: 300px;
+    }
+}
+
+@media screen and (min-width: 570px) {
+    .tabModal {
+        width: 400px;
+    }
+}
+
+@media screen and (min-width: 740px) {
+    .tabModal {
+        width: 500px;
+    }
+}
+
+@media screen and (min-width: 890px) {
+    .tabModal {
+        width: 600px;
+    }
 }
