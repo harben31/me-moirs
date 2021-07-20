@@ -7,7 +7,6 @@ import TabContext from '../../utils/tabContext';
 
 export default function TabDotIcon({ showTabDelete, setShowTabDelete, tabMenu, handleTabToggle, _id, setTabUpdate, tabUpdate }) {
     const history = useHistory();
-    // const dTab = useContext(TabContext);
 
     const showTabDeleteModal = () => {
         showTabDelete ? setShowTabDelete(false) : setShowTabDelete(true);
@@ -29,7 +28,6 @@ export default function TabDotIcon({ showTabDelete, setShowTabDelete, tabMenu, h
                 </span> 
                 {tabMenu ? (
                     <ul className='tabMenu'>
-                        {/* <li className='tabEditBtn'>Edit</li> */}
                         <li className='tabDelBtn' onClick={() => showTabDeleteModal()}>Delete</li>
                     </ul>
                 ) : null}

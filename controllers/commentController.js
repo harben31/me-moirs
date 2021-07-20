@@ -3,9 +3,6 @@ const db = require('../models');
 module.exports = {
     getComments: function(req, res) {
         db.Comment
-        //get all posts comments using the post id passed into body
-            // .find({post_id: req.body.post_id})
-            //find all post's comment with post_id passed into url
             .find({post_id: req.params.id})
             .then(dbModel => {
                 res.json(dbModel);

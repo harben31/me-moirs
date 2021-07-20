@@ -203,8 +203,6 @@ export default function TabModal(/*{showModal, setShowModal, user_id}*/ props) {
         })
     };
 
-    
-
     const CloseModal = e => {
         if (modalRef.current === e.target) {
             props.setShowModal(false);
@@ -229,7 +227,6 @@ export default function TabModal(/*{showModal, setShowModal, user_id}*/ props) {
                                 <HeaderContainer>
                                 <ClosingButton onClick={() => props.setShowModal(prev => !prev)}>X</ClosingButton>
                                 <HeaderText>Create Your Tab!</HeaderText>
-                                {/* <SmallText>Give Your Tab <Span ref={textRef}></Span> </SmallText> */}
                                 </HeaderContainer>
                                 </BackDrop>
                             </TopContainer>

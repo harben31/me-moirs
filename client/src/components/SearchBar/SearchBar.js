@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import SearchReturn from '../SearchReturn/SearchReturn';
 import API from '../../utils/API'
@@ -76,13 +76,10 @@ export default function(props) {
     const handleSearch = (e) => {
         e.preventDefault();
         let apiCall;
-        console.log(props.user_id)
-        //regex space replace?????
         if(searchBy === 'email') {
             apiCall = API.userByEmail(props.user_id, searchVal)
         } else {
             apiCall = API.userByUsername(props.user_id, searchVal)
-            console.log(searchVal)
         }
         
         apiCall

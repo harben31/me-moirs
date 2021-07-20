@@ -2,10 +2,6 @@ import React, { useEffect, useState } from 'react';
 import API from '../../utils/API';
 
 export default function Likes(props) {
-    // state = {
-    //     likes: 0,
-    //     liked: false
-    // };
 
     const [likes, setLikes] = useState(0);
     const [liked, setLiked] = useState(false);
@@ -43,7 +39,6 @@ export default function Likes(props) {
             .catch(err => console.log(err));
         } 
     };
-
 
     return (
         <span>

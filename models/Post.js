@@ -3,7 +3,6 @@ const Schema = mongoose.Schema;
 const Comment = require('./Comment');
 const db = require('../models');
 
-//user_id as well?
 const postSchema = new Schema({
     tab_id: {
         type: mongoose.Schema.Types.ObjectId,

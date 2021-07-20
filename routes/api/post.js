@@ -20,6 +20,4 @@ router.route('/image/:id')
     .put(postController.addPostImage)    
     
 
-module.exports = router;
-
-//should Posts be attatched to tabs explicitly? or related to via ids and 'foreign keys'. 
+module.exports = router; 

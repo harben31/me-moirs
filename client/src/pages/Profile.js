@@ -8,7 +8,6 @@ import TabModal from '../components/TabModal/TabModal';
 
 
 export default function Profile(props) {
-  console.log('profile')
 
     const [background, setBackground] = useState('');
     const [showModal, setShowModal] = useState(false);

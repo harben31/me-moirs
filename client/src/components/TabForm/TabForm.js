@@ -1,8 +1,6 @@
-import React, { useState, useContext, useEffect, useRef } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import './style.css';
-
-import { init } from 'ityped'
 
 import { Marginer } from '../AccountBox/marginer';
 import { SubmitButton } from '../AccountBox/common';
@@ -132,17 +130,6 @@ const Span = styled.span`
 
 
 export default function TabForm({showModal,setShowModal}) {
-    // const textRef = useRef();
-
-    // useEffect(() => {
-    //           init(textRef.current, {
-    //             showCursor: true,
-    //             backDelay:  1500,
-    //             backSpeed:60,
-    //             strings: ['Title', 'Description' ] 
-    //         })
-    //     },
-    // [])
 
     return (
         <div>
@@ -161,17 +148,11 @@ export default function TabForm({showModal,setShowModal}) {
                             <Input 
                             type='text' 
                             placeholder='Tab Name'
-                            // onChange={(e) => {
-                            //     props.setTabTitle(e.target.value);
-                            // }}
                             required
                             />
                             <Input 
                             type='text' 
                             placeholder='Description'
-                            // onChange={(e) => {
-                            //     props.setTabDescription(e.target.value);
-                            // }}
                             required
                             />
                         <Marginer direction='vertical' margin={10} />

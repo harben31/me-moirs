@@ -7,12 +7,11 @@ import TabContext from '../../utils/tabContext';
 
 
 export default function MyFriends(props) {
-    console.log('Props:', props)
     const { friendTab }= useContext(TabContext);
     
     const handleUnFollowReq = () => {
         API.addToUsersFriends(props.user_id, {
-            friendId: props.friend_id,
+            friendId: props._id,
             follow: false
         })
         .then(res => {
@@ -32,11 +31,6 @@ export default function MyFriends(props) {
                         :
                         <img className='my-friend-image' src={userImage} alt='default'/>
                         }                       
-                        {/* {userImage ? 
-                        <img className='my-friend-image' src={userImage} alt='default'/>
-                        :
-                        <img className='my-friend-image' src={props.image} alt={props.username}/>
-                        } */}
                         <p className='friend-name'>
                             
                             {props.username}
@@ -47,7 +41,6 @@ export default function MyFriends(props) {
                             {props.email}
 
                         </p>
-                        {/* //We Should add friend id (+_id) to the path after friendprofile */}
                         <Link to={{ pathname:`/friendprofile/${props._id}`}}>
 
                             <button className='view-profile' onClick={friendTab(props._id)}>
@@ -61,7 +54,6 @@ export default function MyFriends(props) {
                         className='unfollow-btn'
                       onClick={handleUnFollowReq}
                         >
-
                             UnFollow
 
                         </button>

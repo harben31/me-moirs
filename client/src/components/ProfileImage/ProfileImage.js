@@ -2,8 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { IconButton, MenuItem, Menu } from 'react-mdl';
 import './style.css';
 import API from '../../utils/API';
-import { version } from 'mongoose';
-import  coverImage  from '../CoverPhoto/CoverPhoto'
 import defaultUserImage from '../../defaultUserImage.png';
 
 

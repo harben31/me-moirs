@@ -4,16 +4,13 @@ import ProfileImage from '../components/ProfileImage/ProfileImage';
 import { withRouter } from 'react-router-dom';
 import Navbar from '../components/Navbar/Navbar'
 import Banner from '../components/Banner/Banner';
-import TabContext from '../utils/tabContext';
 import API from '../utils/API';
 import '../App.css'
 import TabCards from '../components/TabCards/TabCards';
 
 
 export function FriendProfile(props) {
-    // const [coverImage, setCoverImage] = useState([]);
     const [profileUserName, setProfileUserName] = useState('');
-    // const [background, setBackground] = useState('');
     const [friendTabs, setFriendTabs] = useState([]);
     const [friendImage, setFriendImage] = useState('');
     const [friendBackground, setFriendBackground] = useState('');

@@ -7,15 +7,6 @@ import {
     MutedLink, 
     BoldLink 
 } from './common';
-// import {
-//     BrowserRouter as Router,
-//     Switch,
-//     Route,
-//     Link,
-//     Redirect,
-//     useHistory,
-//     useLocation
-//   } from "react-router-dom";
   
 import { Marginer } from './marginer';
 import {AccountContext}  from './accountContext';

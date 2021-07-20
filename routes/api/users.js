@@ -191,7 +191,6 @@ router.route('/username/')
 
 router.route('/userId/:id')
     .get(withAuth, userController.findFriendById)
-    // .put(userController.updateUser)
     .delete(userController.deleteUser)
 
 router.route('/image/:id')
@@ -204,8 +203,8 @@ router.route('/background/:id')
 router.route('/')
     .get(withAuth, userController.findAllUsers)
 
-// router.route('/email/:email')
-//     .get(userController.findUserByEmail)
+router.route('/email/:email')
+    .get(userController.findUserByEmail)
 
 router.route('/friends/:id')
     .get(withAuth, userController.findAllUsersFriends)
@@ -215,12 +214,5 @@ router.route('/tabs/:id')
     .put(userController.followTab)
     .get(withAuth, userController.findAllUsersFriends)
     .get(userController.findFollowedTabs)
-
-// router.route('/posts/:id')
-//     .put(userController.followPost)
-//     .get(userController.findFollowedPosts)
-
-// router.route('/all/:id')
-//     .get(userController.findFollowedAll)
 
 module.exports = router
