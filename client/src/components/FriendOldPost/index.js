@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import DeleteModal from '../DeleteModal';
-import DotIcon from '../DotIcon';
 import Likes from '../Likes';
 import Comment from '../Comments/Comment';
 import CommentButton from '../Comments/CommentButton';
@@ -108,31 +106,11 @@ export default function OldPost(props) {
             <img className='oldPostImage' src={props.image} alt=''/>
             )
          }
-                
-            {/* <DeleteModal showDelete={props.showDelete}/> */}
-
             <div className='oldPostContent'>
                 <div className='postTop'>
                     <p className='postDate'>
                         {formatDate(props.date)}
                     </p>
-                    {/* <DotIcon  
-                        UpdatePost={props.UpdatePost}
-                        showDelete={showDelete} 
-                        setShowDelete={setShowDelete}
-                        handleToggle={handleToggle}
-                        setPostTitle={props.setPostTitle}
-                        setPostContent={props.setPostContent} 
-                        menu={menu}
-                        setMenu={setMenu}
-                        _id={props._id} 
-                        setUpdate={props.setUpdate} 
-                        update={props.update}
-                        title={title}
-                        content={content}
-                        setTitleChanged={props.setTitleChanged}
-                        setContentChanged={props.setContentChanged}
-                    /> */}
                 </div>
                     <p className='oldPostTitle'>
                         <b>{props.title}</b>
