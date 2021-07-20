@@ -8,9 +8,9 @@ import {
     BoldLink 
 } from './common';
 import {
-    // BrowserRouter as Router,
+
     Route,
-  } from "react-router-dom";
+} from "react-router-dom";
 
 import { Marginer } from './marginer';
 import { AccountContext } from './accountContext';
@@ -19,8 +19,6 @@ import AuthApi from '../../utils/AuthApi';
 
 
 export default function LoginForm() {
-    // const [redirect, setRedirect] = useState(false);
-    // const [user, setUser] = useState();
     const [emailLogin, setEmailLogin] = useState('');
     const [passwordLogin, setPasswordLogin] = useState('');
 
@@ -77,7 +75,6 @@ export default function LoginForm() {
                             Signup
                         </BoldLink>
                         </MutedLink>
-                        {/* <h1>{loginStatus}</h1> */}
                     </BoxContainer>
                 </Route>
             );  

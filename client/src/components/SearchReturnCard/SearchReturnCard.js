@@ -1,4 +1,4 @@
-import React, {useEffect } from 'react';
+import React from 'react';
 import './style.css';
 import API from '../../utils/API';
 import userImage from '../../defaultUserImage.png'
@@ -14,10 +14,6 @@ export default function(props) {
             follow: true
         })
         .then(res => { 
-            // props.setNewFollow(true)
-            let newFriendsArray = props.friendsArray;//I am notsure if we need this or not
-            newFriendsArray.push(friend)//I am notsure if we need this or not
-            props.setFriendsArray(newFriendsArray);//I am notsure if we need this or not
 
             if(!props.newFollow){
                 props.setNewFollow(true)
@@ -32,18 +28,12 @@ export default function(props) {
     return (
          <div className='user-card'>
             <div className='user-info'>
-                {/* {userImage ? 
-                <img className='my-friend-image' src={userImage} alt='default'/>
-                :
-                <img className='my-friend-image' src={props.image} alt={props.username}/>
-                } */}
 
                 {props.image ? 
                 <img className='my-friend-image' src={props.image} alt={props.username}/>
                 :
                 <img className='my-friend-image' src={userImage} alt='default'/>
                 }
-                {/* <img className='user-image' src={props.image} alt={props.username}/> */}
 
                 <p className='user-name'>
                 {friend.username}

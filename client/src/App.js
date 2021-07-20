@@ -10,7 +10,7 @@ import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 import LoginSignup from './pages/LoginSignup';
 
-import "./App.css";
+import './App.css';
 import Profile from './pages/Profile';
 import FriendProfile from './pages/FriendProfile';
 
@@ -24,32 +24,20 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 
 function App() {
-  console.log('app.js')
-  const [userId, setUserId] = useState({});
-  const [username, setUsername] = useState('');
-  const [friends, setFriends] = useState([]);
+
   const [auth, setAuth] = useState(false);
-  const [coverImage, setCoverImage] = useState([]);
-  const [profile, setProfile] = useState('');
-  
-  const [tabs, setTabs] = useState();
+
   const [tabDeleted, setTabDeleted] = useState(false);
-  const [friendTabs, setFriendTabs] = useState([]);
   const [tabsFriend, setTabsFriend] = useState(false);
 
-
+  const [userData, setUserData] = useState({});
 
   useEffect(() => {
-    console.log('/info')
     if(auth) {
       API.userInfo()
       .then(res => {
           if(res) {
-              const data = res.data.shortTabInfo;
-              setUsername(res.data.username);
-              setCoverImage(res.data.background);
-              setProfile(res.data.image)      
-              setTabs(data);
+            setUserData({...res.data})      
           } 
       })
       .catch(err => console.log(err));
@@ -57,11 +45,9 @@ function App() {
   }, [auth, tabDeleted]);
 
   useEffect(() => {
-    console.log('/me')
     API.getUser()
     .then(res => {
       if(res.data.auth) {
-        setUserId(res.data.user_id)
         setAuth(true);
       }
     }).catch(err => {
@@ -79,31 +65,25 @@ function App() {
     API.getFriendInfo(id)
     .then(res => {
       setTabsFriend(true);
-      setFriendTabs(res.data.shortTabInfo);
     }).catch(err => console.log(err));
-  } 
+  };
 
-  //moved this fn inside of the App fn so I could get access to the setUser hook
   const RouteProtected = ({ component: Component, ...rest }) => {
     const authApi = useContext(AuthApi);
     return <Route {...rest}
       render={props => authApi.auth
         ? <Component {...props} 
-        user_id={userId} 
-        setUserId={setUserId}
-        username={username}
-        setUsername={setUsername}
-        friends={friends}
-        setFriends={setFriends}
-        profile={profile}
-        coverImage={coverImage}
+        user_id={userData._id} 
+        username={userData.username}
+        profile={userData.image}
+        coverImage={userData.background}
         />
       : <Redirect to='/' />} />;
   };
   
     return (
 
-      <TabContext.Provider value={{tabs, deleteTab, friendTabs, friendTab, tabsFriend}}> 
+      <TabContext.Provider value={{ deleteTab, friendTab, tabsFriend, userData}}> 
         <AnimatePresence>
           <motion.div>
             <AuthApi.Provider value={{ auth, setAuth }}>
@@ -111,8 +91,7 @@ function App() {
                 <div className='App'>
                   <Header
                     loggedIn={auth}
-                    userId={userId}
-                    friends={friends}
+                    user_id={userData._id}
                   />
                   <RouteRegistration exact path='/' component={LoginSignup}/>
                   <RouteProtected exact path='/profile' component={Profile}/>
@@ -130,12 +109,9 @@ function App() {
 };
 
 const RouteRegistration = ({ component: Component, ...rest }) => {
-  console.log('route registration')
   const authApi = useContext(AuthApi);
   return <Route {...rest} render={() => 
     !authApi.auth ? <Component /> : <Redirect to='/profile' />} />;
 };
-
-
 
 export default App;

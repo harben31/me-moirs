@@ -8,7 +8,6 @@ import TabModal from '../components/TabModal/TabModal';
 
 
 export default function Profile(props) {
-  console.log('profile')
 
     const [background, setBackground] = useState('');
     const [showModal, setShowModal] = useState(false);
@@ -20,7 +19,7 @@ export default function Profile(props) {
             window.location.reload()
         })
       }
-      }, [background])
+    }, [background])
   
     const backgroundImage = async e => {
         const files = e.target.files;

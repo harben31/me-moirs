@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import SearchReturn from '../SearchReturn/SearchReturn';
 import API from '../../utils/API'
@@ -76,8 +76,6 @@ export default function(props) {
     const handleSearch = (e) => {
         e.preventDefault();
         let apiCall;
-        
-        //regex space replace?????
         if(searchBy === 'email') {
             apiCall = API.userByEmail(props.user_id, searchVal)
         } else {
@@ -88,22 +86,17 @@ export default function(props) {
         .then(res => {
             setSearchResults(res.data);
             searchModal();
-            })
-            .catch(err => console.log(err));
+        })
+        .catch(err => console.log(err));
         
         document.querySelector('.searchBar').value = '';
     };
-
-    // useEffect(() => {
-    //     // need to make modal go away
-    //     // console.log('!!! searchResults', searchResults)
-    // }, [searchResults])
 
     return (
 
        <>
             <form className='searchWrap'>
-                <label for='searchBy'>Search by...</label>
+                <label HTMLfor='searchBy'>Search by...</label>
                 <Select
                 onChange={handleSearchByChange}
                 name='searchBy'

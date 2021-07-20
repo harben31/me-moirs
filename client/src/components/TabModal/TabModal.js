@@ -192,7 +192,7 @@ export default function TabModal(/*{showModal, setShowModal, user_id}*/ props) {
         API.saveTab({
             title: tabTitle,
             description: tabDescription,
-            user_id: props.userId
+            user_id: props.user_id
         }).then((res) => {
         history.push('/newtab/' + res.data._id);
         props.setShowModal(false)
@@ -202,8 +202,6 @@ export default function TabModal(/*{showModal, setShowModal, user_id}*/ props) {
             console.log(err)
         })
     };
-
-    
 
     const CloseModal = e => {
         if (modalRef.current === e.target) {
@@ -229,7 +227,6 @@ export default function TabModal(/*{showModal, setShowModal, user_id}*/ props) {
                                 <HeaderContainer>
                                 <ClosingButton onClick={() => props.setShowModal(prev => !prev)}>X</ClosingButton>
                                 <HeaderText>Create Your Tab!</HeaderText>
-                                {/* <SmallText>Give Your Tab <Span ref={textRef}></Span> </SmallText> */}
                                 </HeaderContainer>
                                 </BackDrop>
                             </TopContainer>

@@ -18,7 +18,6 @@ module.exports = {
     },
     findPosts: function(req, res) {
         
-        // let idToSearch = mongoose.Types.ObjectId(req.body.id);
         db.Post
             .find({_id: req.params.id})
             .populate({
@@ -33,7 +32,7 @@ module.exports = {
                 res.status(422).json(err);
             });
     },
-    //when would we call by id? how would id get to FE api
+
     findPostById: function(req, res) {
         db.Post
             .findById(req.params.id)
@@ -43,7 +42,7 @@ module.exports = {
                 res.status(422).json(err);
             });
     },
-    //editing posts
+
     updatePost: function(req, res) {
         db.Post
             .findOneAndUpdate({_id: req.params.id}, req.body)
@@ -55,7 +54,6 @@ module.exports = {
     },
 
     addLike: function(req, res) {
-        
         db.Post
             .findOneAndUpdate({_id: req.params.id},
                 {$push: {likes: req.body.user_id}})
@@ -104,6 +102,3 @@ module.exports = {
         });
     },
 };
-
-//should this be a seperate call? or just grab all post info when calling tab. 
-//or keep this for when user follows a post?

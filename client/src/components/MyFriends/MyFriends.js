@@ -31,11 +31,6 @@ export default function MyFriends(props) {
                         :
                         <img className='my-friend-image' src={userImage} alt='default'/>
                         }                       
-                        {/* {userImage ? 
-                        <img className='my-friend-image' src={userImage} alt='default'/>
-                        :
-                        <img className='my-friend-image' src={props.image} alt={props.username}/>
-                        } */}
                         <p className='friend-name'>
                             
                             {props.username}
@@ -46,10 +41,9 @@ export default function MyFriends(props) {
                             {props.email}
 
                         </p>
-                        {/* //We Should add friend id (+_id) to the path after friendprofile */}
                         <Link to={{ pathname:`/friendprofile/${props._id}`}}>
 
-                            <button className='view-profile' onClick={friendTab(props.id)}>
+                            <button className='view-profile' onClick={friendTab(props._id)}>
 
                                 View Profile 
 
@@ -60,7 +54,6 @@ export default function MyFriends(props) {
                         className='unfollow-btn'
                       onClick={handleUnFollowReq}
                         >
-
                             UnFollow
 
                         </button>

@@ -46,7 +46,6 @@ export default {
         return axios.get('/api/users/email/' + email)
     },
 
-    //need to put friends id in req.body under friendId
     addToUsersFriends: function(userId, friendId){
         return axios.put('/api/users/friends/' + userId, friendId)
     },

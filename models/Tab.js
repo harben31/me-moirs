@@ -2,9 +2,6 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const Post = require('./Post');
 
-
-//how are post connected to tabs and how are tabs connected to user. 
-//when a tab is loaded all associated posts and post's comments should load
 const tabSchema = new Schema({
     user_id: {
         type: mongoose.Schema.Types.ObjectId,
@@ -15,10 +12,6 @@ const tabSchema = new Schema({
         trim: true,
         required: 'Title is Required!'
     },
-    // image: {
-    //     contentType: String,
-    //     data: Buffer
-    // },
     description: {
         type: String,
         maxLength: 500

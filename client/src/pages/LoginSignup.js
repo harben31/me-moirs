@@ -3,31 +3,6 @@ import {AccountBox} from '../components/AccountBox/index'
 import CoverPhoto from '../components/CoverPhoto/CoverPhoto';
 import { motion, AnimatePresence } from 'framer-motion';
 
-// const formAnimation = {
-//     hidden: {
-//         y:'200',
-//         opacity:0
-//     },
-//     visible: {
-//         y:'0px',
-//         opacity:1,
-//         transition:{
-//             ease: [.6, .01, -.5, .95],
-//             duration: 1.6
-//         }
-//         // { delay: 0.1}
-//     },
-//     exit: {
-//         y:'-200',
-//         opacity:0,
-//         transition:{
-//             ease: 'easeInOut',
-//             duration: .6,
-//             delay:1
-
-//         }
-//     }   
-// }
 export default function LoginSignup() {
     const [coverImage, setCoverImage] = useState([]);
 

@@ -22,16 +22,6 @@ export default function DotIcon({ UpdatePost, setPostTitle, setPostContent,  sho
         showUpdateModal ? setShowUpdateModal(false) : setShowUpdateModal(true);
     }
 
-
-    const handleChange = (e) => {
-        e.preventDefault();
-
-        setShowInput({showInput: !showInput});
-    };
-
-    const x = showInput;
-
-
     const deletePost = (id) => {
         handleToggle();
         setShowDelete(false);
@@ -51,21 +41,9 @@ export default function DotIcon({ UpdatePost, setPostTitle, setPostContent,  sho
                     <li onClick={() => openUpdateModal()}>Edit</li>
                     <li onClick={() => showDeleteModal()}>Delete</li>
                     <li onClick={handleChange}>Update Photo</li>
-
-
-                    {
-                    x && (
-                        <div>
-                        <input type='file' 
-                        name='file' 
-                        onChange={postImages}/>
-                        </div>
-                     )
-                     }
-
                 </ul>
                     
-                ) : null}
+            ) : null}
                 <DeleteModal  
                     setShowDelete={setShowDelete} 
                     showDelete={showDelete} 

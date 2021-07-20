@@ -1,41 +1,25 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import './style.css';
-import { Tab } from 'react-mdl';
 import { Link } from 'react-router-dom';
 import API from '../../utils/API';
 import AuthApi from '../../utils/AuthApi';
 import TabModal from '../TabModal/TabModal';
-import SearchBar from '../SearchBar/SearchBar';
 import TabContext from '../../utils/tabContext';
-// import AcountContect from '../AccountBox/accountContext'
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 
 
 
 export default function Navbar(props) {
-    const { tabs, friendTabs, tabsFriend } = useContext(TabContext);
+    const { userData } = useContext(TabContext);
 
     const authApi = useContext(AuthApi);
-    // const [tabs, setTabs] = useState();
 
     const [showModal, setShowModal] = useState(false);
     const OpenModal = () => {
         setShowModal(prev => !prev);
     };
-
-    //  useEffect(() => {
-    //   API.userInfo()
-    //       .then(res => {
-    //           if(res) {
-    //               const data = res.data.shortTabInfo;
-    //               setTabs(data);
-    //            } 
-             
-    //       })
-    //       .catch(err => console.log(err));
-    // }, []);
 
      const handleLogout = () => {
           API.logout()
@@ -72,21 +56,21 @@ export default function Navbar(props) {
                     delay:.5
                   }}
                 >
-                {tabs ? (
+                {userData.shortTabInfo ? (
                   <div className= 'carousel'>
             
                     <TabModal 
                       showModal={showModal}
                       setShowModal={setShowModal}
-                      userId={props.userId}/>
+                      user_id={props.user_id}/>
                       
                     <Carousel
                       className= 'carousel-tabs'
                       containerClass="container-with-dots"
                       infinite={true}
                       itemClass="carousel-item-padding-0-px"
-                    responsive={responsive}>
-                      {tabs && tabs.map((tab, index) => {
+                      responsive={responsive}>
+                      {userData.shortTabInfo && userData.shortTabInfo.map((tab, index) => {
                         return(
                           <Link to={{
                             pathname: '/newtab/' + tab._id,
@@ -95,10 +79,6 @@ export default function Navbar(props) {
                       })} 
                     </Carousel>
                 
-                {/* <SearchBar
-                user_id={props.userId}
-                friends={props.friends}
-                />   */}
                 <div className= 'friends-tab'>
                 <p>Friends</p>
                 <Link to='/friends'>
@@ -109,7 +89,6 @@ export default function Navbar(props) {
                 </div>          
                <div className= 'new-tab'>
                 <p>New Tab</p>
-                    {/* <Link to='/newtab'><i className="fa fa-pencil-square-o" aria-hidden="true"></i></Link> */}
                     <i className="fa fa-pencil-square-o" aria-hidden="true" onClick={OpenModal}></i>
                </div>
 
@@ -122,7 +101,6 @@ export default function Navbar(props) {
                   <div className= 'carousel'>
                     <div className= 'new-tab'>
                       <p>New Tab</p>
-                      {/* <Link to='/newtab'><i className="fa fa-pencil-square-o" aria-hidden="true"></i></Link> */}
                       <i className="fa fa-pencil-square-o" aria-hidden="true" onClick={OpenModal}></i>
                     </div>
                     <div className= 'logout'>
@@ -131,5 +109,4 @@ export default function Navbar(props) {
                     </div>
                   </div>)}
                 </motion.div>
-              // </UserContext.Provider>
 )};

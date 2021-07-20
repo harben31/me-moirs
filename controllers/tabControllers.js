@@ -13,7 +13,6 @@ module.exports = {
     },
 
     updateTags: function(req, res) {
-        //can PUSH arrays but to remove must be single string not in array
         let action;
 
         if(req.body.addTag){

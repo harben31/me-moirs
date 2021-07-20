@@ -1,9 +1,6 @@
 const db = require('../models');
 const mongoose = require('mongoose');
 
-//onload of user profile= user data + minimal tabs data. 
-//Tabs data should not load until specific tab is selected by user. 
-
 module.exports = {
     findAllUsers: function (req, res) {
         db.User
@@ -50,7 +47,6 @@ module.exports = {
                 .find({username: regex})
                 .then(dbModel => {
                     if(dbModel.length) {
-                        //trim res to username, email, image, 
                         let filteredSearch = dbModel.filter(user => {
                             return !idsToFilter.includes(user._id)
                         })
@@ -60,12 +56,10 @@ module.exports = {
                     }
                 })
             })
-
-        
             .catch(err => {
                 console.log(err);
                 res.json(err);
-            })
+            });
     },
 
     findUserByEmail: function(req, res) {
@@ -84,16 +78,6 @@ module.exports = {
                 }
             })
         },
-    // updateUser: function (req, res) {
-    //     db.User
-    //         .findOneAndUpdate({_id: req.params.id}, req.body)
-    //         .then(dbModel => res.json(dbModel))
-    //         .catch(err => {
-    //             console.log(err);
-    //             res.status(422).json(err);
-    //         });
-    // },
-
     
     deleteUser: function(req, res) {
         db.User
@@ -126,7 +110,6 @@ module.exports = {
             .findOneAndUpdate({_id: req.params.id}, 
                 action)
             .then(dbModel => {
-                //doesn't return the friend just added but we should already have that info on the FE
                 db.User
                     .findByIdAndUpdate({_id: req.body.friendId}, 
                         friendAction)
@@ -195,22 +178,8 @@ module.exports = {
             res.status(422).json(err);
         });
     },
-            
-   
-
-    // followPost: function(req, res) {
-    //     db.User
-    //         .findOneAndUpdate({_id: req.params.id},
-    //             {$push: {followedPosts: req.body.post_id}})
-    //         .then(dbModel => res.json(dbModel))
-    //         .catch(err => {
-    //             console.log(err);
-    //             res.json(err);
-    //         })
-    // },
 
     findFollowedTabs: function(req, res) {
-        //add a call to add user_id to tab 
         db.User
             .findById(req.params.id)
             .populate({
@@ -218,40 +187,9 @@ module.exports = {
             })
             .then(dbModel => res.json(dbModel.followedTabs))
             .catch(err => {
-                console.log(res);
                 res.json(err);
             });
     },
-
-    // findFollowedPosts: function(req, res) {
-    //     db.User
-    //         .findById(req.params.id)
-    //         .populate({
-    //             path: 'followedPosts'
-    //         })
-    //         .then(dbModel => res.json(dbModel.followedPosts))
-    //         .catch(err => {
-    //             console.log(res);
-    //             res.json(err);
-    //         });
-    // },
-
-    // findFollowedAll: function(req, res) {
-    //     db.User
-    //         .findById(req.params.id)
-    //         .populate('followedTabs')
-    //         .populate('followedPosts')
-    //         .then(dbModel => {
-    //             res.json({
-    //                 tabs: dbModel.followedTabs,
-    //                 posts: dbModel.followedPosts
-    //             });
-    //     })
-    //         .catch(err => {
-    //             console.log(res);
-    //             res.json(err);
-    //         });
-    // },
 
     coverPhoto: function(req, res) {
         db.User

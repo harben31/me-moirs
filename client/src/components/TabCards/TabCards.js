@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 
 
 export default function TabCards(props) {
-    console.log(props);
     return (
         <div className='tab-card'>
             <Link to={{
