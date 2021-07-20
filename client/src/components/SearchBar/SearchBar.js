@@ -96,7 +96,7 @@ export default function(props) {
 
        <>
             <form className='searchWrap'>
-                <label for='searchBy'>Search by...</label>
+                <label HTMLfor='searchBy'>Search by...</label>
                 <Select
                 onChange={handleSearchByChange}
                 name='searchBy'

@@ -22,16 +22,6 @@ export default function DotIcon({ UpdatePost, setPostTitle, setPostContent,  sho
         showUpdateModal ? setShowUpdateModal(false) : setShowUpdateModal(true);
     }
 
-
-    const handleChange = (e) => {
-        e.preventDefault();
-
-        setShowInput({showInput: !showInput});
-    };
-
-    const x = showInput;
-
-
     const deletePost = (id) => {
         handleToggle();
         setShowDelete(false);
