@@ -41,7 +41,7 @@ export default function Profile(props) {
 
     return (
        
-        <div>
+        <div id='profile'>
           <TabModal
           showModal={showModal}
           setShowModal={setShowModal}

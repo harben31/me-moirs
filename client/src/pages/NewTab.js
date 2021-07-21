@@ -3,6 +3,7 @@ import OldPost from '../components/OldPost';
 import React, { useState, useEffect } from 'react';
 import API from '../utils/API';
 import TabDotIcon from '../components/TabDotIcon';
+import ImageThumbnail from '../components/ImageThumbnail';
 
 export default function NewTab(props) {
 
@@ -95,11 +96,27 @@ export default function NewTab(props) {
                             {tabInfo ? (
                                 <div>
                                     <h3>About <b className='tabTitle'>{tabInfo.title}</b></h3>
-                            <p>
-                                {tabInfo.description}
-                            </p> 
+                                    <p>
+                                        {tabInfo.description}
+                                    </p> 
+                                    
                                 </div>
                             ) : null}
+                            <div className='imgDiv'>
+                                {tabInfo ? (tabInfo.posts ? (tabInfo.posts.map((post, i) => {
+                                    console.log('image post');
+                                    if(post.image) {
+                                        return (
+                                            <ImageThumbnail 
+                                                key={i}
+                                                image={post.image}
+                                                title={post.title}
+                                            />
+                                        )
+                                    }
+                                })): null): null}  
+                            </div>
+                            
                         </aside>
                         <section className='postSection'>
                             <PostsForm
@@ -125,7 +142,6 @@ export default function NewTab(props) {
                                             setUpdatePostImage={setUpdatePostImage}
                                             setPostTitle={setPostTitle}
                                             setPostContent={setPostContent}
-
                                         />
                                     )
                                 })) : 
