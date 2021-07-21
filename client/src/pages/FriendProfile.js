@@ -31,23 +31,20 @@ export function FriendProfile(props) {
 
     return (
         <div>
-         
-              <Navbar friend_id={props.match.params.id}/>
-              <CoverPhoto friendBackground={friendBackground} />
-                 <ProfileImage friend_id={props.match.params.id} friendImage={friendImage}
-                 />
-
-                <Banner username={profileUserName}/>
-                {friendTabs.map((tabInfo,i)=>{
-                  return(
-                    <TabCards 
-                    key={i}
-                    tabInfo={tabInfo}
-                    />
-                  )}
-                )}
-                
-          </div>
-      )
-    }     
+          <CoverPhoto friendBackground={friendBackground} />
+          <ProfileImage friend_id={props.match.params.id} friendImage={friendImage}/>
+          <Banner username={profileUserName}/>
+          <div className='tab-cards'>
+            {friendTabs.map((tabInfo,i)=>{
+              return(
+                <TabCards 
+                key={i}
+                tabInfo={tabInfo}
+                />
+              )}
+            )}
+          </div>     
+        </div>
+    )
+}     
   export default withRouter(FriendProfile);
