@@ -101,3 +101,10 @@ background: linear-gradient(
         font-size: 11px;
     }   
 }
+
+/* @media screen and (max-width: 662px) {
+        .user-card {
+            display: flex;
+            flex-direction: column;
+        }
+    } */

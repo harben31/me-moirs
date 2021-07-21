@@ -19,6 +19,12 @@
   color: rgb(42, 157, 143)
 }
 
+.imageDiv {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
 .description {
   margin-top: 135px;
   padding: 20px;
@@ -41,6 +47,8 @@
 }
 
 .friends{
+  display: flex;
+  flex-direction: column;
   margin-top: 160px;
 }
 .postSection {

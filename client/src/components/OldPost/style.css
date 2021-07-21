@@ -1,3 +1,9 @@
+.anchorSpan {
+    margin-top: -200px;
+    padding-bottom: 200px;
+    display: block;
+}
+
 .oldPost {
     display: flex;
     flex-direction: column;
@@ -11,7 +17,6 @@
 .oldPostImage {
     width: 40%;
     height: 40%;
-    /* border-radius: 15px 0 0 15px; */
 }
 
 .postTop {

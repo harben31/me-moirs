@@ -29,8 +29,8 @@ export default function(props) {
          <div className='user-card'>
             <div className='user-info'>
 
-                {props.image ? 
-                <img className='my-friend-image' src={props.image} alt={props.username}/>
+                {props.friendInfo.image ? 
+                <img className='my-friend-image' src={props.friendInfo.image} alt={props.username}/>
                 :
                 <img className='my-friend-image' src={userImage} alt='default'/>
                 }
