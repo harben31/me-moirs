@@ -43,7 +43,7 @@ export default function MyFriends(props) {
                 </p>
                 <Link to={{ pathname:`/friendprofile/${props._id}`}}>
 
-                    <button className='view-profile' onClick={friendTab(props.id)}>
+                    <button className='view-profile' onClick={ () => friendTab(props._id)}>
 
                         View Profile 
 
