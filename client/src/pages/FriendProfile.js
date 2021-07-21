@@ -52,6 +52,6 @@ export function FriendProfile(props) {
             )}
           </div>     
         </div>
-      )
-    }     
+    )
+}     
   export default withRouter(FriendProfile);

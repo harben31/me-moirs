@@ -32,16 +32,6 @@ export default function FriendOldPost(props) {
         }
     };
 
-    const handleToggle = () => {
-        if (!menu) {
-            setMenu(true);
-            setShowDelete(false);
-        } else {
-            setMenu(false);
-            setShowDelete(false);
-        }
-    }
-
     const handleCommentToggle =() => {
         if (!commentMenu) {
             setCommentMenu(true);
@@ -95,73 +85,67 @@ export default function FriendOldPost(props) {
 
     return (
         <div className='oldPost'>
-
-        {
-            !props.image ? (
-            <div className='post-image'>
-            <img className='oldPostImage' src='https://i.stack.imgur.com/y9DpT.jpg' alt=''/>
-             <Button><input type='file' name='file' onChange={postImages}/></Button>
-            </div>
-            ) : (
-            <img className='oldPostImage' src={props.image} alt=''/>
-            )
-         }
+            {!props.image 
+                ? (<div className='post-image'>
+                <img className='oldPostImage' src='https://i.stack.imgur.com/y9DpT.jpg' alt=''/>
+                <Button><input type='file' name='file' onChange={postImages}/></Button>
+                </div>) 
+                : (<img className='oldPostImage' src={props.image} alt=''/>)
+            }
             <div className='oldPostContent'>
                 <div className='postTop'>
                     <p className='postDate'>
                         {formatDate(props.date)}
                     </p>
                 </div>
-                    <p className='oldPostTitle'>
-                        <b>{props.title}</b>
-                    </p>
-                    <p>
-                        {props.content}
-                    </p>
-                    <div>
-                        <Likes
-                        likes={props.likes}
-                        user_id={props.user_id}
-                        post_id={props._id}
-                        />
-                        <CommentButton createComment={CreateComment} />
-                        {commentActivated ? 
-                            (
+                <p className='oldPostTitle'>
+                    <b>{props.title}</b>
+                </p>
+                <p>
+                    {props.content}
+                </p>
+                <div>
+                    <Likes
+                    likes={props.likes}
+                    user_id={props.user_id}
+                    post_id={props._id}
+                    />
+                    <CommentButton createComment={CreateComment} />
+                    {commentActivated 
+                        ? 
+                        (<div>
                             <div>
-                                <div>
-                                    <CommentBox
-                                    user_id={props.user_id}
-                                    post_id={props._id}
-                                    username={props.username}
-                                    setComment={props.setComment} 
-                                    commentMenu={commentMenu}
-                                    />
-                                </div>
-                                <div>
-                                    {props.comments.slice(0).reverse().map((comment, i) => {
-                                        return (
-                                            <Comment 
-                                                key={i}
-                                                formatDate={formatDate}
-                                                {...comment}
-                                                handleCommentToggle={handleCommentToggle}
-                                                commentMenu={commentMenu}
-                                                setCommentMenu={setCommentMenu}
-                                                updateComment={props.updateComment} 
-                                                setUpdateComment={props.setUpdateComment}
-                                                setShowCommentDelete={setShowCommentDelete}
-                                                showCommentDelete={showCommentDelete}
-                                            />  
-                                        )
-                                    })}
-                                    
-                                </div>
+                                <CommentBox
+                                user_id={props.user_id}
+                                post_id={props._id}
+                                username={props.username}
+                                setComment={props.setComment} 
+                                commentMenu={commentMenu}
+                                />
                             </div>
-                            ) : 
-                                null
-                        }
-                    </div>
+                            <div>
+                                {props.comments.slice(0).reverse().map((comment, i) => {
+                                    return (
+                                        <Comment 
+                                            key={i}
+                                            formatDate={formatDate}
+                                            {...comment}
+                                            handleCommentToggle={handleCommentToggle}
+                                            commentMenu={commentMenu}
+                                            setCommentMenu={setCommentMenu}
+                                            updateComment={props.updateComment} 
+                                            setUpdateComment={props.setUpdateComment}
+                                            setShowCommentDelete={setShowCommentDelete}
+                                            showCommentDelete={showCommentDelete}
+                                        />  
+                                    )
+                                })}    
+                            </div>
+                        </div>) 
+                        : null
+                    }
+                </div>
             </div>
         </div>
-  )
+    )
 };
