@@ -4,7 +4,8 @@ import './style.css';
 import { useHistory } from 'react-router-dom';
 
 import API from '../../utils/API';
-import { init } from 'ityped';
+import ITyped from 'react-ityped';
+
 import { motion, AnimatePresence } from 'framer-motion';
 
 import { Marginer } from '../AccountBox/marginer';
@@ -20,21 +21,6 @@ const Background = styled.div`
     align-items: center;
     z-index: 10;
 `;
-
-// const BoxContainer = styled.div`
-//     width: 380px;
-//     min-height: 450px;
-//     // top:280px;
-//     margin: 0 auto;
-//     display: flex;
-//     flex-direction: column;
-//     border-radius: 19px;
-//     background-color: #fff;
-//     box-shadow: 0 0 2px rgba(15, 15, 15, 0.28);
-//     // position: relative;
-//     overflow: hidden;
-
-// `;
 
 const TopContainer = styled.div`
     width: 100%;
@@ -65,7 +51,6 @@ const BackDrop = styled.div`
     );
 `;
 const HeaderContainer = styled.div`
-    // background-color: black;
     left: 15px;
     padding: 10px;
     transform: rotate(-127deg);
@@ -88,9 +73,15 @@ const SmallText = styled.h5`
     color: #fff;
     font-weight: 500;
     font-size: 16px;
-    z-index: 1000;
+    z-index: 30;
     margin: 0;
-    margin-top: 7px;
+    margin-top: -99px;
+    left: 15px;
+    padding: 10px;
+    transform: rotate(-127deg);
+    width: 106%;
+    display: flex;
+    flex-direction: row;
 `;
 
 const FormContainer = styled.form`
@@ -99,7 +90,6 @@ const FormContainer = styled.form`
     top:0px;
     display: flex;
     flex-direction: column;
-    // box-shadow: 0px 0px 2.5px rgba(15, 15, 15, 0.19);
 `;
 const Input = styled.input`
     width: 100%;
@@ -129,7 +119,7 @@ const Input = styled.input`
 
 const Span = styled.span`
     color:#ffb305;
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 600;
     
 `;
@@ -155,7 +145,6 @@ const modalAnimation = {
             ease: [.6, .01, -.5, .95],
             duration: 1.6
         }
-        // { delay: 0.1}
     },
     exit: {
         y:'200',
@@ -173,18 +162,7 @@ export default function TabModal(/*{showModal, setShowModal, user_id}*/ props) {
     const [tabDescription, setTabDescription] = useState('');
 
     const modalRef = useRef();
-
-//     const textRef = useRef();
-//     useEffect(() => {
-//         init(textRef.current, {
-//           showCursor: true,
-//           backDelay:  1500,
-//           backSpeed:60,
-//           strings: ['Title', 'Description' ] 
-//       })
-//   },
-// [])
-
+    const strings= [' Title', ' Description'];
     const history = useHistory();
 
     const CreateTab = (e) => {
@@ -228,6 +206,17 @@ export default function TabModal(/*{showModal, setShowModal, user_id}*/ props) {
                                 <ClosingButton onClick={() => props.setShowModal(prev => !prev)}>X</ClosingButton>
                                 <HeaderText>Create Your Tab!</HeaderText>
                                 </HeaderContainer>
+                                <SmallText>Give Your Tab:  <Span> 
+                                        <ITyped 
+                                        showCursor={false}
+                                        strings={strings}
+                                        typeSpeed={50}
+                                        backSpeed={60}
+                                        startDelay={100}
+                                        backDelay={1500}
+                                        />
+                                    </Span>
+                                </SmallText>
                                 </BackDrop>
                             </TopContainer>
                             <FormContainer onSubmit={CreateTab} >

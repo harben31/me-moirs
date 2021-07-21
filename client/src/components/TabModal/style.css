@@ -9,11 +9,6 @@
     box-shadow: 0 0 2px rgba(15, 15, 15, 0.28);
     overflow: hidden;
 }
-.ityped-cursor {
-    animation: blink 1.5s infinite;
-    color:#ffb305;
-    font-size: 20px;
-}
 
 @keyframes blink {
     50% {
