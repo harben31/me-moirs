@@ -113,7 +113,7 @@ module.exports = {
                 db.User
                     .findByIdAndUpdate({_id: req.body.friendId}, 
                         friendAction)
-                    .then(dbModel => console.log('adding to usersFollowing', dbModel))
+                    .then()
                 res.json(dbModel);
             })
             .catch(err => {

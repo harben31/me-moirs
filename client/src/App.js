@@ -19,6 +19,7 @@ import NewTab from './pages/NewTab';
 import Friends from './pages/Friends';
 import FriendTab from './pages/FriendTab';
 
+
 import AuthApi from './utils/AuthApi';
 import { motion, AnimatePresence } from 'framer-motion';
 
