@@ -98,6 +98,7 @@ export default function OldPost(props) {
 
     return (
         <div className='oldPost'>
+            <span className='anchorSpan' id={props.title}>&nbsp;</span>
 
         {
             !props.image ? (
