@@ -38,23 +38,11 @@ export default function ProfileImage(props) {
 
      return (
         <div className= 'wrapper'>
-<<<<<<< HEAD
-            <div className= 'profile'>
-              {props.friendImage ? (<img className= 'profile-image' src={props.friendImage} alt= 'profile image'/>) :
-             (<img className= 'profile-image' src={!props.profile ? (defaultUserImage) : props.profile} alt= 'profile image'/>)}
-            <div className= 'add-image'>
-            <div style={{position: 'relative'}}>
-             <IconButton name="more_vert" id="demo-menu-lower-right" />
-             <Menu target="demo-menu-lower-right" align="right">
-             <MenuItem className='profile-img'><input type='file' name='file' onChange={uploadImage}/>Profile Image</MenuItem>
-             <MenuItem className='cover'><input type='file' name='file' onChange={props.backgroundImage}/>Cover Photo</MenuItem>
-            </Menu>
-=======
           <div className= 'profile'>
             {props.friendImage ? 
               (<img className= 'profile-image' src={props.friendImage} alt= 'profile image'/>) 
               :
-              (<img className= 'profile-image' src={!profile ? (defaultUserImage) : profile} alt= 'profile image'/>)}
+              (<img className= 'profile-image' src={!props.profile ? (defaultUserImage) : props.profile} alt= 'profile image'/>)}
               <div className= 'add-image'>
                 <div style={{position: 'relative'}}>
                   <IconButton name="more_vert" id="demo-menu-lower-right" />
@@ -64,7 +52,6 @@ export default function ProfileImage(props) {
                   </Menu>
                 </div>
               </div>
->>>>>>> tabs/cards
           </div>
         </div>
     )
