@@ -67,7 +67,7 @@ export default function TabCards(props) {
                    </Link>
                 </BackDrop>
             </TopContainer>
-            <p>
+            <p className='card-description'>
             {props.tabInfo.description}
             </p>
         </div>

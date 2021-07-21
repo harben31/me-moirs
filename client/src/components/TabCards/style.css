@@ -28,6 +28,11 @@
     font-weight: 600;
 
 }
+
+.card-description{
+    padding: 0 20px;
+}
+
 .friend-tab-page{
     text-decoration: none;
 }

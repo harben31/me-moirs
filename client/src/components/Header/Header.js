@@ -13,10 +13,9 @@ export default function Header({loggedIn, user_id}) {
                 <header>
                     <div className='header'>
                         <div className='header-wrapper'>
-                            <div className='logo'> {/* changed from class to className  */} 
+                            <div className='logo'>  
                             <Link to="/">ME-MOIRS</Link>
-                                {/* <a href='#home'>Name of the app.</a> */}
-                                <img src={Image} alt='logo' height={40} width={40}/>
+                            <Link to="/"><img src={Image} alt='logo' height={40} width={40}/></Link>
                             </div>
                         </div>
                     </div>
@@ -25,10 +24,10 @@ export default function Header({loggedIn, user_id}) {
                 <header>
                     <div className='header'>
                         <div className='header-wrapper'>
-                            <div className='logo'> {/* changed from class to className  */} 
+                            <div className='logo'>  
                                <Link to="/">ME-MOIRS</Link>
                         
-                            <img src={Image} alt='logo' height={40} width={40} />                            
+                               <Link to="/"><img src={Image} alt='logo' height={40} width={40} /></Link>                           
                             </div>
                         </div>
                         <Navbar user_id={user_id}/>
