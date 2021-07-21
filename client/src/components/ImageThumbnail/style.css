@@ -1,0 +1,11 @@
+/* .imageDiv {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+} */
+
+.tabImageThumbnail {
+    width: 50px;
+    border-radius: 10px;
+    margin: 2px;
+}
