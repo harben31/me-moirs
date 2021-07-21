@@ -47,6 +47,8 @@
 }
 
 .friends{
+  display: flex;
+  flex-direction: column;
   margin-top: 160px;
 }
 .postSection {

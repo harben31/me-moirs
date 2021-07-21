@@ -28,8 +28,6 @@
 }
 
 .view-profile, .follow-btn{
-    /* width: 100%; */
-    /* padding: 11px 40%; */
     color: #fff;
     font-size: 15px;
     font-weight: 600;
@@ -44,18 +42,3 @@
         rgba(44, 132, 146, 1) 100%
     );
     }
-/* .userCard{
-    display: flex;
-    flex-direction: column;
-    padding: 10px
-}
-
-.imgStandIn {
-    background: chartreuse;
-    height: 60px;
-    min-width: 60px;
-}
-
-.username{
-    padding-left: 10px;
-} */
