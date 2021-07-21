@@ -35,30 +35,30 @@ export default function MyFriends(props) {
                             
                             {props.username}
 
-                        </p>
-                        <p className='friend-email'>
+                </p>
+                <p className='friend-email'>
 
-                            {props.email}
+                    {props.email}
 
-                        </p>
-                        <Link to={{ pathname:`/friendprofile/${props._id}`}}>
+                </p>
+                <Link to={{ pathname:`/friendprofile/${props._id}`}}>
 
-                            <button className='view-profile' onClick={friendTab(props._id)}>
+                    <button className='view-profile' onClick={friendTab(props.id)}>
 
-                                View Profile 
+                        View Profile 
 
-                            </button>
+                    </button>
 
-                        </Link>
-                        <button 
-                        className='unfollow-btn'
-                      onClick={handleUnFollowReq}
-                        >
-                            UnFollow
+                </Link>
+                <button 
+                className='unfollow-btn'
+                onClick={handleUnFollowReq}
+                >
 
-                        </button>
-                </div>
+                    UnFollow
 
+                </button>
+            </div>
         </div>
     )
 }

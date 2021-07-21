@@ -13,7 +13,6 @@ import LoginSignup from './pages/LoginSignup';
 import './App.css';
 import Profile from './pages/Profile';
 import FriendProfile from './pages/FriendProfile';
-
 import API from './utils/API';
 
 import NewTab from './pages/NewTab';
@@ -98,6 +97,7 @@ function App() {
                   <RouteProtected exact path='/newtab/:id' component={NewTab} />
                   <RouteProtected exact path='/friends' component={Friends} />
                   <RouteProtected exact path='/friendprofile/:id' component={FriendProfile}/>
+                  <RouteProtected exact path='/friendtab/:id' component={FriendTab} />
                   <Footer/>
                 </div>
               </Router>
