@@ -44,13 +44,11 @@ Afer navigating to the application site, new users are prompted to create a user
 #       Technologies
 
 * Axios
-* Bcrypt.js
-* Body-Parser
+* Bcryptjs
 * Express
 * Express-Sessions
 * Express-Validator
 * Framer-Motion
-* If-Env
 * Ityped
 * Mongoose
 * Node.js
