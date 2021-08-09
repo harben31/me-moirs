@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
 import './style.css';
 import API from '../../utils/API';
-import userImage from '../../defaultUserImage.png'
+import userImage from '../../defaultUserImage.png';
+import TabContext from '../../utils/tabContext';
 
 export default function(props) {
+    const { friendTab } = useContext(TabContext);
     const friend = props.friendInfo;
 
     const handleFollowReq = (e) => {
@@ -41,9 +44,11 @@ export default function(props) {
                 <p className='user-email'>
                 {friend.email}
                 </p>
-                <button className='view-profile'>
-                    View Profile 
-                </button>
+                <Link to={{ pathname:`/friendprofile/${friend._id}`}}>
+                    <button className='view-profile'  onClick={ () => friendTab(friend._id) }>
+                        View Profile 
+                    </button>
+                </Link>
                 <button 
                     className='follow-btn'
                     onClick={handleFollowReq}
