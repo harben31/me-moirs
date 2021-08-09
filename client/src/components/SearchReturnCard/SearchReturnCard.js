@@ -28,8 +28,12 @@ export default function(props) {
         .catch(err => console.log(err))
     };
 
+    const handlePropagation = (e) => {
+        e.stopPropagation();
+    };
+
     return (
-         <div className='user-card'>
+         <div className='user-card' onClick={(e) => handlePropagation(e)}>
             <div className='user-info'>
 
                 {props.friendInfo.image ? 

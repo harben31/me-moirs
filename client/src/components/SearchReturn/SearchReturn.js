@@ -6,7 +6,10 @@ export default function(props) {
     return (
         <>
         {props.openSearchModal ?
-        <div className='resultsContainer' onClick={() => props.setOpenSearchModal(false)}>
+        <div className='resultsContainer' onClick={() => {
+            console.log('click!')
+            props.setOpenSearchModal(false)
+        }}>
             {props.searchResults.map((friend) => {
                 return(
                     <SearchReturnCard
