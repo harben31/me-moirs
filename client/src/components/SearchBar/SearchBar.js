@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import SearchReturn from '../SearchReturn/SearchReturn';
 import API from '../../utils/API'
@@ -60,6 +60,7 @@ export default function(props) {
     const [searchVal, setSearchVal] =useState('');
     const [searchResults, setSearchResults] = useState([]);
     const [openSearchModal, setOpenSearchModal] = useState(false);
+    const [badSearch, setBadSearch] = useState(false);
 
     const searchModal = () => {
         setOpenSearchModal(prev => !prev);
@@ -84,6 +85,11 @@ export default function(props) {
         
         apiCall
         .then(res => {
+            if(res.data.message){
+                console.log('badSeach', res.data)
+                setBadSearch(true);
+                searchModal();
+            }
             setSearchResults(res.data);
             searchModal();
         })
@@ -91,6 +97,8 @@ export default function(props) {
         
         document.querySelector('.searchBar').value = '';
     };
+
+    useEffect(()=>{console.log(typeof searchResults, searchResults.length)}, [searchResults])
 
     return (
 
@@ -116,17 +124,20 @@ export default function(props) {
                 className="material-icons"
                 >search</span>
             </form>
-            {searchResults.length
-                ?<SearchReturn
+            {/* {searchResults.length ? */}
+                <SearchReturn
+                badSearch={badSearch}
+                setBadSearch={setBadSearch}
+                friendsArray={props.friendsArray}
+                setFriendsArray={props.setFriendsArray}
+                newFollow={props.newFollow}
+                setNewFollow={props.setNewFollow}
                 openSearchModal={openSearchModal}
                 setOpenSearchModal={setOpenSearchModal}
-                setFriendsArray={props.setFriendsArray}
-                friendsArray={props.friendsArray}
-                setNewFollow={props.setNewFollow}
-                newFollow={props.newFollow}
                 searchResults={searchResults}
-                user_id={props.user_id}/>
-            : null}
+                user_id={props.user_id}
+                />
+            {/* : null} */}
         </>
     );
 };

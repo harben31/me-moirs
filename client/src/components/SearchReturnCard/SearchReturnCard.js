@@ -33,33 +33,40 @@ export default function(props) {
     };
 
     return (
-         <div className='user-card' onClick={(e) => handlePropagation(e)}>
-            <div className='user-info'>
-
-                {props.friendInfo.image ? 
-                <img className='my-friend-image' src={props.friendInfo.image} alt={props.username}/>
+        <>
+            <div className='user-card' onClick={(e) => handlePropagation(e)}>
+                {props.badSearch? 
+                    <h3 className='bad-search'>We could not find the user you are looking for.</h3>
                 :
-                <img className='my-friend-image' src={userImage} alt='default'/>
-                }
+                <div className='user-info'>
 
-                <p className='user-name'>
-                {friend.username}
-                </p>
-                <p className='user-email'>
-                {friend.email}
-                </p>
-                <Link to={{ pathname:`/friendprofile/${friend._id}`}}>
-                    <button className='view-profile'  onClick={ () => friendTab(friend._id) }>
-                        View Profile 
+                    {props.friendInfo.image ? 
+                    <img className='my-friend-image' src={props.friendInfo.image} alt={props.username}/>
+                    :
+                    <img className='my-friend-image' src={userImage} alt='default'/>
+                    }
+
+                    <p className='user-name'>
+                    {friend.username}
+                    </p>
+                    <p className='user-email'>
+                    {friend.email}
+                    </p>
+                    <Link to={{ pathname:`/friendprofile/${friend._id}`}}>
+                        <button className='view-profile'  onClick={ () => friendTab(friend._id) }>
+                            View Profile 
+                        </button>
+                    </Link>
+                    <button 
+                        className='follow-btn'
+                        onClick={handleFollowReq}
+                    >
+                        Follow
                     </button>
-                </Link>
-                <button 
-                    className='follow-btn'
-                    onClick={handleFollowReq}
-                >
-                    Follow
-                </button>
+                </div>
+                }
+                
             </div>
-        </div>
+        </>
     );
 };
