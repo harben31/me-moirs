@@ -86,7 +86,6 @@ export default function(props) {
         apiCall
         .then(res => {
             if(res.data.message){
-                console.log('badSeach', res.data)
                 setBadSearch(true);
                 searchModal();
             }

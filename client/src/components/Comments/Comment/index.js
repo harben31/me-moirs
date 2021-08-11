@@ -18,7 +18,6 @@ export default function Comment({showCommentDelete,
                                 setUpdateComment }) 
 {
     const { userData } = useContext(TabContext);
-    console.log(userData._id === tabOwnerId, 'userdata.id:', userData._id, 'tabownerid:', tabOwnerId)
 
     return (
         <div className='commentCard'>

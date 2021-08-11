@@ -104,7 +104,6 @@ export default function NewTab(props) {
                             ) : null}
                             <div className='imgDiv'>
                                 {tabInfo ? (tabInfo.posts ? (tabInfo.posts.map((post, i) => {
-                                    console.log('image post');
                                     if(post.image) {
                                         return (
                                             <ImageThumbnail 

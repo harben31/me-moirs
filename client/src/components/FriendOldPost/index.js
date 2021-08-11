@@ -11,7 +11,6 @@ import { Button } from 'react-mdl';
 
 
 export default function FriendOldPost(props) {
-    console.log('friendOldPost', props)
     const [commentActivated, setCommentActivated] = useState(false);
     const [menu, setMenu] = useState(false);
     const [commentMenu, setCommentMenu] = useState(false);
@@ -89,7 +88,6 @@ export default function FriendOldPost(props) {
             {!props.image 
                 ? (<div className='post-image'>
                 <img className='oldPostImage' src='https://i.stack.imgur.com/y9DpT.jpg' alt=''/>
-                <Button><input type='file' name='file' onChange={postImages}/></Button>
                 </div>) 
                 : (<img className='oldPostImage' src={props.image} alt=''/>)
             }
