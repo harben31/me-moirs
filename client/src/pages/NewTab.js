@@ -20,6 +20,7 @@ export default function NewTab(props) {
     const [tabUpdate, setTabUpdate] = useState(false);
     const [target, setTarget] = useState(false);
     const [postChanged, setPostChanged] = useState(false);
+    const [commentChanged, setCommentChanged] = useState(false)
 
     useEffect(() => {
         const Id = props.match.params.id;
@@ -28,10 +29,10 @@ export default function NewTab(props) {
                 setTabInfo(res.data);
                 setPostChanged(false);
                 setUpdatePostImage(false);
-
+                setCommentChanged(false)
             })
             .catch(err => console.log(err));
-    }, [props.match.params.id, post, comment, update, updateComment, postChanged, updatePostImage]);
+    }, [props.match.params.id, post, comment, update, updateComment, postChanged, commentChanged, updatePostImage]);
 
     const CreatePost = (e) => {
         e.preventDefault();
@@ -142,6 +143,8 @@ export default function NewTab(props) {
                                             setPostTitle={setPostTitle}
                                             setPostContent={setPostContent}
                                             tabOwnerId={tabInfo.user_id}
+                                            commentChanged={commentChanged}
+                                            setCommentChanged={setCommentChanged}
                                         />
                                     )
                                 })) : 

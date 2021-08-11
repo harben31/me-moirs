@@ -36,13 +36,18 @@ export default function CommentBox(props) {
 
     const createComment = (e) => {
         e.preventDefault();
+        if(!props.commentChanged){
+            props.setCommentChanged(true)
+        } else {
+            props.setCommentChanged(false)
+        }
         API.saveComment({
             content: commentContent,
             username: props.username,
             post_id: props.post_id,
             user_id: props.user_id
         })
-        .then(res => props.setComment(true))
+        .then(res => {props.setComment(true)})
         .catch(err => console.log(err));
 
         document.querySelector('#commentInput').value = '';

@@ -158,6 +158,8 @@ export default function OldPost(props) {
                                     username={props.username}
                                     setComment={props.setComment} 
                                     commentMenu={commentMenu}
+                                    commentChanged={props.commentChanged}
+                                    setCommentChanged={props.setCommentChanged}
                                     />
                                 </div>
                                 <div>
