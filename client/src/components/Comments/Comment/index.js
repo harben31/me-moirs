@@ -1,23 +1,33 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import TabContext from '../../../utils/tabContext';
 import CommentDotIcon from '../CommentDotIcon';
 import './style.css';
 
-export default function Comment({showCommentDelete, 
-                                setShowCommentDelete, 
+export default function Comment({
                                 formatDate, 
                                 username,
                                 user_id, //commenters id 
                                 tabOwnerId, 
                                 content, 
                                 date, 
-                                _id, 
-                                handleCommentToggle, 
-                                commentMenu, 
+                                _id,
                                 updateComment, 
-                                setUpdateComment }) 
-{
+                                setUpdateComment,
+}){
     const { userData } = useContext(TabContext);
+
+    const [showCommentDelete, setShowCommentDelete] = useState(false);
+    const [commentMenu, setCommentMenu] = useState(false);
+
+    const handleCommentToggle =() => {
+        if (!commentMenu) {
+            setCommentMenu(true);
+            setShowCommentDelete(false);
+        } else {
+            setCommentMenu(false);
+            setShowCommentDelete(false);
+        }
+    }
 
     return (
         <div className='commentCard'>
@@ -25,7 +35,6 @@ export default function Comment({showCommentDelete,
                 <p className='commentDate'>
                     {formatDate(date)}
                 </p>
-                {/*Need to compare the current users _id to the tab owners & the OP commenters id if it is one of those two display the dot icon otherwise do not.*/}
                 {(userData._id === user_id || userData._id === tabOwnerId)?
                     <CommentDotIcon 
                     _id={_id} 

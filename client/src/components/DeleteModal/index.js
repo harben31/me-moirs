@@ -2,7 +2,6 @@ import React, {useRef} from 'react';
 
 export default function DeleteModal({setShowDelete, showDelete, update, setUpdate, _id, deletePost, commentId, deleteComment }) {
     const modalRef = useRef();
-
     const CloseModal = e => {
         if (modalRef.current === e.target) {
             setShowDelete(false);

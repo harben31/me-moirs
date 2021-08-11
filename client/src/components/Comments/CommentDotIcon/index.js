@@ -8,10 +8,10 @@ export default function CommentDotIcon({ showCommentDelete, setShowCommentDelete
         showCommentDelete ? setShowCommentDelete(false) : setShowCommentDelete(true);
     }
 
-    const deleteComment = (id) => {
+    const deleteComment = () => {
         handleCommentToggle();
         setShowCommentDelete(false);
-        API.deleteComment(id)
+        API.deleteComment(_id)
             .then()
             .catch(err => console.log(err));
     };

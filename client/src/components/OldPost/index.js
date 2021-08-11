@@ -15,9 +15,7 @@ import { Button } from 'react-mdl';
 export default function OldPost(props) {
     const [commentActivated, setCommentActivated] = useState(false);
     const [menu, setMenu] = useState(false);
-    const [commentMenu, setCommentMenu] = useState(false);
     const [showDelete, setShowDelete] = useState(false);
-    const [showCommentDelete, setShowCommentDelete] = useState(false);
     const [postImage, setpostImage] = useState('');
 
 
@@ -44,16 +42,6 @@ export default function OldPost(props) {
         }
     }
 
-    const handleCommentToggle =() => {
-        if (!commentMenu) {
-            setCommentMenu(true);
-            setShowCommentDelete(false);
-        } else {
-            setCommentMenu(false);
-            setShowCommentDelete(false);
-        }
-    }
-
     const formatDate = (dated) => {
         let postDate = new Date(dated);
         let date = postDate.toLocaleDateString();
@@ -62,8 +50,6 @@ export default function OldPost(props) {
       
 
       useEffect(() => {
-        // setTitle(props.title);
-        // setContent(props.content)
         if (postImage) {
         API.addPostImage(props._id, postImage)
         .then ((res) => {
@@ -157,7 +143,7 @@ export default function OldPost(props) {
                                     post_id={props._id}
                                     username={props.username}
                                     setComment={props.setComment} 
-                                    commentMenu={commentMenu}
+                                    // commentMenu={commentMenu} 
                                     commentChanged={props.commentChanged}
                                     setCommentChanged={props.setCommentChanged}
                                     />
@@ -169,13 +155,8 @@ export default function OldPost(props) {
                                                 key={i}
                                                 formatDate={formatDate}
                                                 {...comment}
-                                                handleCommentToggle={handleCommentToggle}
-                                                commentMenu={commentMenu}
-                                                setCommentMenu={setCommentMenu}
                                                 updateComment={props.updateComment} 
                                                 setUpdateComment={props.setUpdateComment}
-                                                setShowCommentDelete={setShowCommentDelete}
-                                                showCommentDelete={showCommentDelete}
                                                 tabOwnerId={props.tabOwnerId}
                                             />  
                                         )
