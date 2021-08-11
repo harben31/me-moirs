@@ -142,6 +142,7 @@ export default function NewTab(props) {
                                             setUpdatePostImage={setUpdatePostImage}
                                             setPostTitle={setPostTitle}
                                             setPostContent={setPostContent}
+                                            tabOwnerId={tabInfo.user_id}
                                         />
                                     )
                                 })) : 

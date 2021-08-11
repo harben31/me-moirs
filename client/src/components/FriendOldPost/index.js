@@ -11,6 +11,7 @@ import { Button } from 'react-mdl';
 
 
 export default function FriendOldPost(props) {
+    console.log('friendOldPost', props)
     const [commentActivated, setCommentActivated] = useState(false);
     const [menu, setMenu] = useState(false);
     const [commentMenu, setCommentMenu] = useState(false);
@@ -137,6 +138,7 @@ export default function FriendOldPost(props) {
                                             setUpdateComment={props.setUpdateComment}
                                             setShowCommentDelete={setShowCommentDelete}
                                             showCommentDelete={showCommentDelete}
+                                            tabOwnerId={props.tabOwnerId}
                                         />  
                                     )
                                 })}    

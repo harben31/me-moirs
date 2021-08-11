@@ -175,6 +175,7 @@ export default function OldPost(props) {
                                                 setUpdateComment={props.setUpdateComment}
                                                 setShowCommentDelete={setShowCommentDelete}
                                                 showCommentDelete={showCommentDelete}
+                                                tabOwnerId={props.tabOwnerId}
                                             />  
                                         )
                                     })}

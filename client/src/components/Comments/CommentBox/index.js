@@ -58,7 +58,7 @@ export default function CommentBox(props) {
             placeholder='Add a comment...'
             onChange={(e) => setCommentContent(e.target.value)}
             />
-            <span onClick={createComment} class="material-icons">
+            <span onClick={createComment} className="material-icons">
                 send
             </span>
         </div>

@@ -18,7 +18,7 @@ export default function CommentDotIcon({ showCommentDelete, setShowCommentDelete
 
     return (
         <div className='commentMenuIcon'>
-            <span class='material-icons commentDotIcon' onClick={() => handleCommentToggle()}>
+            <span className='material-icons commentDotIcon' onClick={() => handleCommentToggle()}>
                 more_vert 
             </span> 
             {commentMenu ? (
