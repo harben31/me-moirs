@@ -9,6 +9,11 @@
     z-index: 100;
 }
 
+.bad-search{
+    width: 100%;
+    text-align: center;
+}
+
 .user-image {
     width: 100px;
     height: 100px;

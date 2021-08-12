@@ -32,7 +32,8 @@ module.exports = {
     //need to handle case sensativity. second username all lowercase?
     findUserByUsername: function(req, res) {
         function escapeRegex(text) {
-            return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
+            const textLower = text.toLowerCase()
+            return textLower.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
         };
         const regex = new RegExp(escapeRegex(req.query.search))
        

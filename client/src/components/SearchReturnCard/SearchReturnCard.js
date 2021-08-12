@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
 import './style.css';
 import API from '../../utils/API';
-import userImage from '../../defaultUserImage.png'
+import userImage from '../../defaultUserImage.png';
+import TabContext from '../../utils/tabContext';
 
 export default function(props) {
+    const { friendTab } = useContext(TabContext);
     const friend = props.friendInfo;
 
     const handleFollowReq = (e) => {
@@ -25,32 +28,45 @@ export default function(props) {
         .catch(err => console.log(err))
     };
 
+    const handlePropagation = (e) => {
+        e.stopPropagation();
+    };
+
     return (
-         <div className='user-card'>
-            <div className='user-info'>
-
-                {props.friendInfo.image ? 
-                <img className='my-friend-image' src={props.friendInfo.image} alt={props.username}/>
+        <>
+            <div className='user-card' onClick={(e) => handlePropagation(e)}>
+                {props.badSearch? 
+                    <h3 className='bad-search'>We could not find the user you are looking for.</h3>
                 :
-                <img className='my-friend-image' src={userImage} alt='default'/>
-                }
+                <div className='user-info'>
 
-                <p className='user-name'>
-                {friend.username}
-                </p>
-                <p className='user-email'>
-                {friend.email}
-                </p>
-                <button className='view-profile'>
-                    View Profile 
-                </button>
-                <button 
-                    className='follow-btn'
-                    onClick={handleFollowReq}
-                >
-                    Follow
-                </button>
+                    {props.friendInfo.image ? 
+                    <img className='my-friend-image' src={props.friendInfo.image} alt={props.username}/>
+                    :
+                    <img className='my-friend-image' src={userImage} alt='default'/>
+                    }
+
+                    <p className='user-name'>
+                    {friend.username}
+                    </p>
+                    <p className='user-email'>
+                    {friend.email}
+                    </p>
+                    <Link to={{ pathname:`/friendprofile/${friend._id}`}}>
+                        <button className='view-profile'  onClick={ () => friendTab(friend._id) }>
+                            View Profile 
+                        </button>
+                    </Link>
+                    <button 
+                        className='follow-btn'
+                        onClick={handleFollowReq}
+                    >
+                        Follow
+                    </button>
+                </div>
+                }
+                
             </div>
-        </div>
+        </>
     );
 };

@@ -4,7 +4,7 @@ const TabContext = createContext({
     tabs: [],
     deleteTab: () => {},
     // friendTabs:[],
-    tabsFriend: false,
+    // tabsFriend: false,
     friendTab:() => {},
     userData: {}
 });
