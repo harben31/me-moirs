@@ -8,17 +8,17 @@ export default function CommentDotIcon({ showCommentDelete, setShowCommentDelete
         showCommentDelete ? setShowCommentDelete(false) : setShowCommentDelete(true);
     }
 
-    const deleteComment = (id) => {
+    const deleteComment = () => {
         handleCommentToggle();
         setShowCommentDelete(false);
-        API.deleteComment(id)
+        API.deleteComment(_id)
             .then()
             .catch(err => console.log(err));
     };
 
     return (
         <div className='commentMenuIcon'>
-            <span class='material-icons commentDotIcon' onClick={() => handleCommentToggle()}>
+            <span className='material-icons commentDotIcon' onClick={() => handleCommentToggle()}>
                 more_vert 
             </span> 
             {commentMenu ? (

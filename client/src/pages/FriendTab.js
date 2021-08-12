@@ -57,6 +57,7 @@ export default function NewTab(props) {
                                 <FriendOldPost 
                                     key={i}
                                     {...post} 
+                                    tabOwnerId={tabInfo.user_id}
                                     user_id={props.user_id}
                                     username={props.username}
                                     update={update}

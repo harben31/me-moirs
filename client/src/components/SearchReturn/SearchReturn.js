@@ -3,7 +3,6 @@ import SearchReturnCard from '../SearchReturnCard/SearchReturnCard';
 import './style.css';
 
 export default function(props) {
-    console.log('searechreturn', props.badSearch)
     return (
         <>
         {(props.openSearchModal && !props.badSearch) ?

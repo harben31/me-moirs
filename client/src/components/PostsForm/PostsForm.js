@@ -107,7 +107,7 @@ export default function PostsForm({setPostContent, setPostTitle, setPostChanged,
 
         setTimeout(() => {
             document.querySelector('.postTitleInput').value = '';
-        document.querySelector('.postContentInput').value = '';
+            document.querySelector('.postContentInput').value = '';
         }, 250);
     
         

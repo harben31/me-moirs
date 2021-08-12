@@ -86,7 +86,6 @@ export default function(props) {
         apiCall
         .then(res => {
             if(res.data.message){
-                console.log('badSeach', res.data)
                 setBadSearch(true);
                 searchModal();
             }
@@ -97,8 +96,6 @@ export default function(props) {
         
         document.querySelector('.searchBar').value = '';
     };
-
-    useEffect(()=>{console.log(typeof searchResults, searchResults.length)}, [searchResults])
 
     return (
 
@@ -124,7 +121,6 @@ export default function(props) {
                 className="material-icons"
                 >search</span>
             </form>
-            {/* {searchResults.length ? */}
                 <SearchReturn
                 badSearch={badSearch}
                 setBadSearch={setBadSearch}
@@ -137,7 +133,6 @@ export default function(props) {
                 searchResults={searchResults}
                 user_id={props.user_id}
                 />
-            {/* : null} */}
         </>
     );
 };

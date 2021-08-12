@@ -88,7 +88,6 @@ export default function FriendOldPost(props) {
             {!props.image 
                 ? (<div className='post-image'>
                 <img className='oldPostImage' src='https://i.stack.imgur.com/y9DpT.jpg' alt=''/>
-                <Button><input type='file' name='file' onChange={postImages}/></Button>
                 </div>) 
                 : (<img className='oldPostImage' src={props.image} alt=''/>)
             }
@@ -137,6 +136,7 @@ export default function FriendOldPost(props) {
                                             setUpdateComment={props.setUpdateComment}
                                             setShowCommentDelete={setShowCommentDelete}
                                             showCommentDelete={showCommentDelete}
+                                            tabOwnerId={props.tabOwnerId}
                                         />  
                                     )
                                 })}    
